@@ -2,7 +2,7 @@
 
 /*
  * Taken from
- * https://github.com/laravel/framework/blob/5.2/src/Illuminate/Auth/Console/stubs/make/controllers/HomeController.stub
+ * https://github.com/laravel/framework/blob/5.3/src/Illuminate/Auth/Console/stubs/make/controllers/HomeController.stub
  */
 
 namespace App\Http\Controllers;
@@ -33,6 +33,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('adminlte::home');
     }
 }
