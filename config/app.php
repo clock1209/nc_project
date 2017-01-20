@@ -155,6 +155,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
 
         /*
          * Acacha AdminLTE template provider
@@ -219,6 +220,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
+        'Notification' => Illuminate\Support\Facades\Notification::class,
 
     ],
 

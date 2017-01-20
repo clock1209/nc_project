@@ -21,7 +21,7 @@
 <div class="container-fluid spark-screen">
 	<div class="row">
 			<div class="panel panel-default">
-				<div class="panel-heading">{{ trans('adminlte_lang::message.userslist') }}</div>
+				<div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.userslist') }}</i></div>
 
 				<div class="panel-body">
 					<table class="table" id="users">
@@ -38,20 +38,6 @@
 		</div>
 	</div>
 </div>
-
-	{{-- <div class="container-fluid spark-screen">
-		<div class="row">
-            <table class="table" id="users">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-            </table>
-		</div> --}}
 		
 		<script>
 
