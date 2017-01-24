@@ -35,13 +35,28 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
             <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
+            
+            @role('admin')
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.users') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
+                    @permission('create_user')
                     <li><a href="{!!URL::to('user/create')!!}">{{ trans('adminlte_lang::message.adduser') }}</a></li>
+                    @endpermission
+                    @permission('edit_user')
                     <li><a href="{!!URL::to('user')!!}">{{ trans('adminlte_lang::message.userslist') }}</a></li>
+                    @endpermission
                 </ul>
             </li>
+            @endrole
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.rolesandpermissions') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">{{ trans('adminlte_lang::message.roleslist') }}</a></li>
+                    <li><a href="#">{{ trans('adminlte_lang::message.permissionlist') }}</a></li>
+                </ul>
+            </li>
+            
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

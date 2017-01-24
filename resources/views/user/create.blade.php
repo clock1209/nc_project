@@ -15,7 +15,6 @@
             @include('alerts.request')
             <div class="panel panel-default">
                 <div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.registeruser') }}</i></div>
-
                 <div class="panel-body">
                  {!!Form::open(['route'=>'user.store', 'method'=>'POST'])!!}
                  <div class="form-group">
