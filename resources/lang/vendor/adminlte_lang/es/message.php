@@ -133,7 +133,5 @@ return [
     'registeruser'            => 'Registrar Usuario',
     'userslist'               => 'Lista de Usuarios',
     'edituser'                => 'Editar Usuario',
-    'roles'                   => 'Roles y Permisos',
-    'permissionlist'          => 'Lista de Permisos',
-    'roleslist'               => 'Lista de Roles',
+    'roles'                   => 'Roles',
 ];
