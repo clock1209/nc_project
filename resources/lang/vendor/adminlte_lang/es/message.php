@@ -134,4 +134,8 @@ return [
     'userslist'               => 'Lista de Usuarios',
     'edituser'                => 'Editar Usuario',
     'roles'                   => 'Roles',
+    'rolelist'                => 'Lista de Roles',
+    'registerrole'            => 'Registrar Rol',
+    'addrole'                 => 'Agregar Rol',
+    'editrole'                => 'Editar Rol',
 ];

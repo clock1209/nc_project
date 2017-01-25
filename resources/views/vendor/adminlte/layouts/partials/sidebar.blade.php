@@ -46,7 +46,17 @@
                     @endpermission
                 </ul>
             </li>
-            <li class="active"><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.roles') }}</span></a></li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.roles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    {{-- @permission('create_user') --}}
+                    <li><a href="{!!URL::to('role/create')!!}">{{ trans('adminlte_lang::message.addrole') }}</a></li>
+                    {{-- @endpermission --}}
+                    {{-- @permission('edit_user') --}}
+                    <li><a href="{!!URL::to('role')!!}">{{ trans('adminlte_lang::message.rolelist') }}</a></li>
+                    {{-- @endpermission --}}
+                </ul>
+            </li>
             
         </ul><!-- /.sidebar-menu -->
     </section>

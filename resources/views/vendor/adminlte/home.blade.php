@@ -5,7 +5,6 @@
 @endsection
 
 @section('contentheader_title')
-    <i class="info-box-text">> {{ trans('adminlte_lang::message.home') }}</i> 
 @endsection
 
 @section('main-content')
