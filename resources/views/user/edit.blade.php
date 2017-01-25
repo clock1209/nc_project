@@ -20,6 +20,9 @@
                 <div class="panel-body">
                    {!!Form::model($user, ['route'=> ['user.update',$user->id], 'method'=>'PUT'])!!}
                    <div class="form-group">
+                   @php
+                    // var_dump($user);
+                    @endphp
                     <div class="form-group has-feedback">
                         {!!Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Full name'])!!}
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
