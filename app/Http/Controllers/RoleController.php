@@ -30,6 +30,10 @@ class RoleController extends Controller
                 return '<a href="role/'.$role->id.'/edit" class="btn btn-xs btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
                 
             })
+            ->addColumn('permissions', function ($role) {
+                return '<a data-toggle="modal" rol_id="{{'. $role->id .' }}" id="btnPermission" data-target="#permisos" class="btn btn-xs btn-primary">Permissions</a>';
+                
+            })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);
     }

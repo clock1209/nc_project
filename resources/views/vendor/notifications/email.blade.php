@@ -149,8 +149,7 @@ $style = [
                                                 <tr>
                                                     <td style="{{ $fontFamily }}">
                                                         <p style="{{ $style['paragraph-sub'] }}">
-                                                            If you’re having trouble clicking the "{{ $actionText }}" button,
-                                                            copy and paste the URL below into your web browser:
+                                                            Si tienes problemas seleccionando el botón "{{ $actionText }}", copia la URL de la parte inferior y pegala en tu buscador:
                                                         </p>
 
                                                         <p style="{{ $style['paragraph-sub'] }}">
@@ -177,7 +176,7 @@ $style = [
                                         <p style="{{ $style['paragraph-sub'] }}">
                                             &copy; {{ date('Y') }}
                                             <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
-                                            All rights reserved.
+                                            Todos los derechos reservados.
                                         </p>
                                     </td>
                                 </tr>
