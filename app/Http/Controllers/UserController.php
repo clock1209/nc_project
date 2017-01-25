@@ -6,13 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
+use App\Role;
+use DB;
 use Illuminate\Support\Facades\Hash;
 use Datatables; 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Entrust;
 
 class UserController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $this->beforeFilter('create_user', array('only' => 'create'));
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -83,7 +91,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('user.edit',['user'=>$user]);
+        $roles = Role::pluck('display_name', 'id');
+        $userRole = $user->roles->pluck('id','id')->toArray();
+
+        return view('user.edit', ['user'=>$user])->with(compact('roles', 'userRole'));
     }
 
     /**
@@ -95,9 +106,22 @@ class UserController extends Controller
      */
     public function update($id, UserUpdateRequest $request)
     {
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = array_except($input, array('password'));
+        }
+
         $user = User::find($id);
-        $user->fill($request->all());
-        $user->save();
+        $user->update($input);
+        DB::table('role_user')->where('user_id',$id)->delete();
+
+        foreach ($request->input('roles') as $key => $value) {
+            $user->attachRole($value);
+        }
+        // $user->fill($request->all());
+        // $user->save();
         
 
         Session::flash('message', 'User Updated Successfully');

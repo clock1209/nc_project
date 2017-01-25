@@ -125,6 +125,7 @@ return [
     'password'                => 'Contraseña',
     'retrypepassword'         => 'Vuelva a escribir la contraseña',
     'fullname'                => 'Nombre completo',
+
     'adduser'                 => 'Agregar Usuario',
     'userslist'               => 'Listar Usuarios',
     'users'                   => 'Usuarios',
@@ -132,4 +133,9 @@ return [
     'registeruser'            => 'Registrar Usuario',
     'userslist'               => 'Lista de Usuarios',
     'edituser'                => 'Editar Usuario',
+    'roles'                   => 'Roles',
+    'rolelist'                => 'Lista de Roles',
+    'registerrole'            => 'Registrar Rol',
+    'addrole'                 => 'Agregar Rol',
+    'editrole'                => 'Editar Rol',
 ];

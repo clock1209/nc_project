@@ -28,6 +28,18 @@
                         {!!Form::text('email',null,['class'=>'form-control', 'placeholder'=>'Email'])!!}
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
+                    <div class="form-group has-feedback">
+                        {!!Form::password('password',['class'=>'form-control', 'placeholder'=>'Password'])!!}
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div  class="form-group has-feedback">
+                        {!!Form::password('password_confirmation',['class'=>'form-control', 'placeholder'=>'Password Confirmation'])!!}
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <strong>Role:</strong>
+                        {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+                    </div>
                     {!!Form::submit('Update', ['class'=>'btn btn-primary',
                     'style'=>'float:right'])!!}
 

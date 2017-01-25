@@ -3,7 +3,7 @@
 <?php $message=Session::get('message')?>
 
 @section('htmlheader_title')
-	{{ trans('adminlte_lang::message.userslist') }}
+	{{ trans('adminlte_lang::message.rolelist') }}
 @endsection
 
 @section('contentheader_title') 
@@ -23,15 +23,15 @@
 <div class="container-fluid spark-screen">
 	<div class="row">
 			<div class="panel panel-default">
-				<div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.userslist') }}</i></div>
+				<div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.rolelist') }}</i></div>
 
 				<div class="panel-body">
-					<table class="table" id="users">
+					<table class="table" id="roles">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Name</th>
-								<th>Email</th>
+								<th>Role</th>
+								<th>Permissions</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -44,14 +44,14 @@
 		<script>
 
 			$(document).ready(function(){
-				$('#users').DataTable({
+				$('#roles').DataTable({
 					"processing": true,
 					"serverSide": true,
-					"ajax": "/api/users",
+					"ajax": "/api/roles",
 					"columns":[
 					{data: 'id'},
-					{data: 'name'},
-					{data: 'email'},
+					{data: 'display_name'},
+					{data: 'permissions', name: 'action', orderable: false, serchable: false, bSearchable: false},
 					{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 					],
 				});
