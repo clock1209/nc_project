@@ -18,7 +18,7 @@
 </div>
 @endif
 
-
+@include('alerts.unauthorized')
 
 <div class="container-fluid spark-screen">
 	<div class="row">

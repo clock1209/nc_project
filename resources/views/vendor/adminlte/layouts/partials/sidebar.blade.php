@@ -41,7 +41,7 @@
                     @permission('create_user')
                     <li><a href="{!!URL::to('user/create')!!}">{{ trans('adminlte_lang::message.adduser') }}</a></li>
                     @endpermission
-                    @permission('edit_user')
+                    @permission('see_user')
                     <li><a href="{!!URL::to('user')!!}">{{ trans('adminlte_lang::message.userslist') }}</a></li>
                     @endpermission
                 </ul>
@@ -49,12 +49,8 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.roles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    {{-- @permission('create_user') --}}
                     <li><a href="{!!URL::to('role/create')!!}">{{ trans('adminlte_lang::message.addrole') }}</a></li>
-                    {{-- @endpermission --}}
-                    {{-- @permission('edit_user') --}}
                     <li><a href="{!!URL::to('role')!!}">{{ trans('adminlte_lang::message.rolelist') }}</a></li>
-                    {{-- @endpermission --}}
                 </ul>
             </li>
             

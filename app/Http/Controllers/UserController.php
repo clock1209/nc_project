@@ -90,11 +90,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $roles = Role::pluck('display_name', 'id');
-        $userRole = $user->roles->pluck('id','id')->toArray();
+        if(Entrust::can('edit_user')){
+            $user = User::find($id);
+            $roles = Role::pluck('display_name', 'id');
+            $userRole = $user->roles->pluck('id','id')->toArray();
 
-        return view('user.edit', ['user'=>$user])->with(compact('roles', 'userRole'));
+            return view('user.edit', ['user'=>$user])->with(compact('roles', 'userRole'));
+        }else{
+            return redirect('/user')->with('unauthorized', "Acceso no autorizado");
+        }
+        
     }
 
     /**
@@ -136,9 +141,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
 
-        Session::flash('message', 'User Deleted Successfully');
-        return Redirect::to('user');
+         if(Entrust::can('edit_user')){
+            User::destroy($id);
+
+            Session::flash('message', 'User Deleted Successfully');
+            return Redirect::to('user');
+         }else{
+            return redirect('user/edit')->with('unauthorized', "Acceso no autorizado");
+         }
+        
     }
 }
