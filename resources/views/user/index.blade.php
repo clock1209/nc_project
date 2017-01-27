@@ -42,6 +42,54 @@
 				</div>
 		</div>
 	</div>
+
+	<div class="modal" id="usuario">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Datos de Usuario</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Nombre:</div>
+						{!! Form::label('name', null, ['class'=>'form-control', 'id'=>'name']) !!}
+					</div>
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Apellido Paterno:</div>
+						{!! Form::label('lastNameFather', null, ['class'=>'form-control', 'id'=>'lastNameFather']) !!}
+					</div>
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Apellido Materno:</div>
+						{!! Form::label('lastNameMother', null, ['class'=>'form-control', 'id'=>'lastNameMother']) !!}
+					</div>
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Nombre de usuario:</div>
+						{!! Form::label('username', null, ['class'=>'form-control', 'id'=>'username']) !!}
+					</div>
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Correo:</div>
+						{!! Form::label('email', null, ['class'=>'form-control', 'id'=>'Correo']) !!}
+					</div>
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Rol:</div>
+						{!! Form::label('role', null, ['class'=>'form-control', 'id'=>'role']) !!}
+					</div>
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Teléfono:</div>
+						{!! Form::label('homePhone', null, ['class'=>'form-control', 'id'=>'homePhone']) !!}
+					</div>
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Celular:</div>
+						{!! Form::label('cellPhone', null, ['class'=>'form-control', 'id'=>'cellPhone']) !!}
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 		
 		<script>
@@ -61,6 +109,27 @@
 					{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 					],
 				});
+
+				$('body').delegate('.get-user','click',function(){
+                    usr_id = $(this).attr('usr_id');
+                    $.ajax({
+                        url : '{{ URL::to("/user") }}' + '/' + usr_id ,
+                        type : 'GET',
+                        dataType: 'json',
+                        data : {id: usr_id}
+                    }).done(function(data){
+                    	console.log(data);
+                    	$("#name").html(data.name );
+                    	$("#lastNameFather").html(data.lastNameFather );
+                    	$("#lastNameMother").html(data.lastNameMother );
+                    	$("#email").html(data.email );
+                    	$("#username").html(data.username );
+                    	$("#homePhone").html(data.homePhone );
+                    	$("#cellPhone").html(data.cellPhone );
+                    	$("#role").html(data.role );
+                    });
+
+                   });
 			});
 		</script>
 	</div>

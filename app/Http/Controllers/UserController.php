@@ -8,6 +8,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use App\Role;
 use DB;
+use Response;
 use Illuminate\Support\Facades\Hash;
 use Datatables; 
 use Illuminate\Support\Facades\Session;
@@ -28,7 +29,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        return view('user.index')->with('users' , User::all());
     }
 
     public function getBtnDatatable()
@@ -37,7 +38,8 @@ class UserController extends Controller
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                return '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+                return '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                <a data-toggle="modal" usr_id="'. $user->id .'" data-target="#usuario" class="btn btn-primary get-user">Mostrar</a>';
                 
             })
             ->editColumn('id', 'ID: {{$id}}')
@@ -90,7 +92,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return Response::json($user);
     }
 
     /**
