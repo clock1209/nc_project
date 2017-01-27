@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function getBtnDatatable()
     {
-        $users = User::select(['id', 'name','lastNameFather','lastNameMother','username', 'email']);
+        $users = User::select(['id', 'name','lastNameFather','lastNameMother','username', 'email', 'homePhone', 'cellPhone']);
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
@@ -105,7 +105,7 @@ class UserController extends Controller
             $user = User::find($id);
             $roles = Role::pluck('display_name', 'id');
             $userRole = $user->roles->pluck('id','id')->toArray();
-
+            
             return view('user.edit', ['user'=>$user])->with(compact('roles', 'userRole'));
         }else{
             return redirect('/user')->with('unauthorized', "Acceso no autorizado");
