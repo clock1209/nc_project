@@ -77,7 +77,7 @@
 			"columns":[
 			{data: 'id'},
 			{data: 'display_name'},
-			{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
+			{data: 'action', name: 'action', orderable: false, serchable: false,  bSearchable: false},
 			],
 		});
 
