@@ -31,6 +31,9 @@
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
+								<th>Apellido Paterno</th>
+								<th>Apellido Materno</th>
+								<th>Nombre de Usuario</th>
 								<th>Email</th>
 								<th>Action</th>
 							</tr>
@@ -51,6 +54,9 @@
 					"columns":[
 					{data: 'id'},
 					{data: 'name'},
+					{data: 'lastNameFather'},
+					{data: 'lastNameMother'},
+					{data: 'username'},
 					{data: 'email'},
 					{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 					],

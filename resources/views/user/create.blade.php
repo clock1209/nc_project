@@ -21,34 +21,43 @@
                  <div class="form-group">
                     <div class="form-group has-feedback">
                         {!!Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Full name'])!!}
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        {{-- <span class="glyphicon glyphicon-user form-control-feedback"></span> --}}
                     </div>
                     <div class="form-group has-feedback">
                         {!!Form::text('lastNameFather',null,['class'=>'form-control', 'placeholder'=>'Apellido Paterno'])!!}
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
                         {!!Form::text('lastNameMother',null,['class'=>'form-control', 'placeholder'=>'Apellido Materno'])!!}
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
                         {!!Form::text('username',null,['class'=>'form-control', 'placeholder'=>'Nombre de usuario'])!!}
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        {!!Form::text('email',null,['class'=>'form-control', 'placeholder'=>'Email'])!!}
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        {!!Form::text('email',null,['class'=>'form-control', 'placeholder'=>'Correo'])!!}
                     </div>
                     <div class="form-group has-feedback">
                         {!!Form::password('password',['class'=>'form-control', 'placeholder'=>'Password'])!!}
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div  class="form-group has-feedback">
                         {!!Form::password('password_confirmation',['class'=>'form-control', 'placeholder'=>'Password Confirmation'])!!}
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
-                    {!!Form::submit('Register', ['class'=>'btn btn-primary'])!!}
+                    <div class="form-group has-feedback">
+                        {{-- <strong>Role:</strong> --}}
+                        {!! Form::select('roles[]', $roles, null,['class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group has-feedback">
+                        {!!Form::text('homePhone',null,['class'=>'form-control', 'placeholder'=>'Teléfono'])!!}
+                    </div>
+                    <div class="form-group has-feedback">
+                        {!!Form::text('cellPhone',null,['class'=>'form-control', 'placeholder'=>'Celular'])!!}
+                    </div>
+                    {!!Form::submit('Guardar', ['class'=>'btn btn-primary',
+                                                'style' => 'float:right'])!!}
                 </div>
+                {!!Form::close()!!}
+                {!!Form::open(['route'=> ['user.index'], 'method'=>'GET'])!!}
+                {!!Form::submit('Cancelar', ['class'=>'btn btn-danger',
+                'style'=>'float:right; margin-right: 5px'])!!}
                 {!!Form::close()!!}
             </div>
         </div>

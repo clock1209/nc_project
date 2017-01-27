@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             @include('alerts.request')
-            @include('alerts.unauthirized')
+            @include('alerts.unauthorized')
             <div class="panel panel-default">
                 <div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.edituser') }}</i></div>
 
