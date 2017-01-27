@@ -106,10 +106,10 @@
                     });
                    }
                });
-                
+
                 $('body').delegate('.get-permisos','click',function(){
                     rol_id = $(this).attr('rol_id');
-                    
+                    $('#select-permisos option').prop('selected', false);
                     $.ajax({
                         url : '{{ URL::to("/permisos") }}',
                         type : 'GET',
