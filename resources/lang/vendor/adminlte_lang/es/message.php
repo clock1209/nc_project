@@ -126,7 +126,7 @@ return [
     'retrypepassword'         => 'Vuelva a escribir la contraseña',
     'fullname'                => 'Nombre completo',
 
-    'adduser'                 => 'Agregar Usuario',
+    'adduser'                 => 'Alta de Usuario',
     'userslist'               => 'Listar Usuarios',
     'users'                   => 'Usuarios',
     'welcome'                 => 'Bienvenido',
@@ -136,6 +136,6 @@ return [
     'roles'                   => 'Roles',
     'rolelist'                => 'Lista de Roles',
     'registerrole'            => 'Registrar Rol',
-    'addrole'                 => 'Agregar Rol',
+    'addrole'                 => 'Alta de Rol',
     'editrole'                => 'Editar Rol',
 ];

@@ -58,7 +58,7 @@ class RoleController extends Controller
             'description' => $request['description'],
         ]);
 
-        return redirect('role')->with('message','Role registered successfully');
+        return redirect('role')->with('message','Rol registrado correctante');
     }
 
     /**
@@ -99,7 +99,7 @@ class RoleController extends Controller
         $role->save();
         
 
-        Session::flash('message', 'Role Updated Successfully');
+        Session::flash('message', 'Rol Actualizafo satisfactoriamente');
         return Redirect::to('/role');
     }
 
@@ -113,7 +113,7 @@ class RoleController extends Controller
     {
         Role::destroy($id);
 
-        Session::flash('message', 'Role Deleted Successfully');
+        Session::flash('message', 'Rol eliminado satisfactoriamente');
         return Redirect::to('/role');
     }
 }
