@@ -130,7 +130,7 @@ return [
     'userslist'               => 'Listar Usuarios',
     'users'                   => 'Usuarios',
     'welcome'                 => 'Bienvenido',
-    'registeruser'            => 'Registrar Usuario',
+    'registeruser'            => 'Alta de Usuarios',
     'userslist'               => 'Lista de Usuarios',
     'edituser'                => 'Editar Usuario',
     'roles'                   => 'Roles',

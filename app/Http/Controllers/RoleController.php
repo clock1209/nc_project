@@ -19,7 +19,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('role.index');
+        return view('role.index')->with('permisos' , Permission::all());
     }
 
     public function getBtnDatatable()
@@ -27,17 +27,13 @@ class RoleController extends Controller
         $roles = Role::select(['id', 'display_name']);
         return Datatables::of($roles)
             ->addColumn('action', function ($role) {
-                return '<a href="role/'.$role->id.'/edit" class="btn btn-xs btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
-                
+                return '<a href="role/'.$role->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                <a data-toggle="modal" rol_id="'. $role->id .'" data-target="#permisos" class="btn btn-primary get-permisos">Permissions</a>';
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);
     }
 
-    public function getBtnPerm()
-    {
-        
-    }
     /**
      * Show the form for creating a new resource.
      *
