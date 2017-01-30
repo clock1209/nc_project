@@ -29,7 +29,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index')->with('users' , User::all());
+        if(Entrust::can('see_user')){
+            return view('user.index')->with('users' , User::all());
+        }else{
+            return redirect('/home')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
     }
 
     public function getBtnDatatable()
@@ -38,13 +42,30 @@ class UserController extends Controller
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                return '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                <a data-toggle="modal" usr_id="'. $user->id .'" data-target="#usuario" class="btn btn-info get-user"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>
-                <a href="user/delete/'.$user->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
                 
+                return $this->botones($user);
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);
+    }
+
+     function botones($user)
+    {
+        $see_user = "";
+        $edit_user = "";
+        $delete_user = "";
+        if(Entrust::can('see_user')){
+            $see_user =
+            '<a data-toggle="modal" usr_id="'. $user->id .'" data-target="#usuario" class="btn btn-info get-user"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>';
+        }if (Entrust::can('edit_user')) {
+            $edit_user = 
+            '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+        }if (Entrust::can('delete_user')) {
+            $delete_user = 
+            '<a href="user/delete/'.$user->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+        }
+
+        return $see_user ." ". $edit_user ." ". $delete_user;
     }
 
     /**
@@ -82,7 +103,7 @@ class UserController extends Controller
             $user->attachRole($value);
         }
 
-        return redirect('user')->with('message','User registered successfully');
+        return redirect('user')->with('message','Usuario registrado correctamente');
     }
 
     /**
@@ -93,8 +114,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return Response::json($user);
+        if(Entrust::can('see_user')){
+            $user = User::find($id);
+            return Response::json($user);
+        }else{
+            return redirect('user.index')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
+        
     }
 
     /**
@@ -112,7 +138,7 @@ class UserController extends Controller
             
             return view('user.edit', ['user'=>$user])->with(compact('roles', 'userRole'));
         }else{
-            return redirect('/user')->with('unauthorized', "Acceso no autorizado");
+            return redirect('/user')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
         }
         
     }
@@ -144,7 +170,7 @@ class UserController extends Controller
         // $user->save();
         
 
-        Session::flash('message', 'User Updated Successfully');
+        Session::flash('message', 'Usuario Actualizado exitosamente');
         return Redirect::to('/user');
     }
 
@@ -157,13 +183,13 @@ class UserController extends Controller
     public function destroy($id)
     {
 
-         if(Entrust::can('edit_user')){
+         if(Entrust::can('delete_user')){
             User::whereId($id)->delete();
 
-            Session::flash('message', 'User Deleted Successfully');
+            Session::flash('message', 'Usuario Borrado Exitosamente');
             return Redirect::to('user');
          }else{
-            return redirect('user/edit')->with('unauthorized', "Acceso no autorizado");
+            return redirect('/user')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción");
          }
         
     }

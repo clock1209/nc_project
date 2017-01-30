@@ -12,10 +12,12 @@
 @endsection
 
 @section('contentheader_title') 
+@permission('create_role')
 {!!Form::open(['route'=> ['role.create'], 'method'=>'GET'])!!}
 {!!Form::submit('Agregar Rol', ['class'=>'btn btn-success',
     'style'=>'float:right; margin-right: 5px; margin-right: 100px'])!!}
 {!!Form::close()!!}
+@endpermission
 @endsection
 
 @section('main-content')
@@ -26,6 +28,8 @@
     {{ Session::get('message') }}    
 </div>
 @endif
+
+@include('alerts.unauthorized')
 
 <div class="container-fluid spark-screen">
 	<div class="row">

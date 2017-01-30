@@ -7,10 +7,12 @@
 @endsection
 
 @section('contentheader_title') 
+@permission('create_user')
 {!!Form::open(['route'=> ['user.create'], 'method'=>'GET'])!!}
 {!!Form::submit('Agregar Usuario', ['class'=>'btn btn-success',
     'style'=>'float:right; margin-right: 5px; margin-right: 100px'])!!}
 {!!Form::close()!!}
+@endpermission
 @endsection
 
 @section('main-content')

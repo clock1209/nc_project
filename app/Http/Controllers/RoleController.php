@@ -10,6 +10,7 @@ use Datatables;
 use Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Entrust;
 
 class RoleController extends Controller
 {
@@ -20,7 +21,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('role.index')->with('permisos' , Permission::all());
+        if(Entrust::can('see_user')){
+            return view('role.index')->with('permisos' , Permission::all());
+        }else{
+            return redirect('/home')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
+        
     }
 
     public function getBtnDatatable()
@@ -28,14 +34,30 @@ class RoleController extends Controller
         $roles = Role::select(['id', 'display_name']);
         return Datatables::of($roles)
             ->addColumn('action', function ($role) {
-                return '<a href="role/'.$role->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                <a data-toggle="modal" rol_id="'. $role->id .'" data-target="#permisos" class="btn btn-primary get-permisos"><i class="glyphicon glyphicon-list"></i> Permissions</a>
-                <a data-toggle="modal" id_rol="'. $role->id .'" data-target="#mostrar_rol" class="btn btn-info get-rol-datos"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>
-                <a href="role/delete/'.$role->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>
-                ';
+                return $this->botones($role);
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);
+    }
+
+    function botones($role)
+    {
+        $see_role = "";
+        $edit_role = "";
+        $delete_role = "";
+        if(Entrust::can('see_role')){
+            $see_role =
+            '<a data-toggle="modal" rol_id="'. $role->id .'" data-target="#permisos" class="btn btn-primary get-permisos"><i class="glyphicon glyphicon-list"></i> Permissions</a>
+            <a data-toggle="modal" id_rol="'. $role->id .'" data-target="#mostrar_rol" class="btn btn-info get-rol-datos"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>';
+        }if (Entrust::can('edit_role')) {
+            $edit_role = 
+            '<a href="role/'.$role->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+        }if (Entrust::can('delete_role')) {
+            $delete_role = 
+            '<a href="role/delete/'.$role->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+        }
+
+        return $see_role ." ". $edit_role ." ". $delete_role;
     }
 
     /**
@@ -85,9 +107,14 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::find($id);
+        if(Entrust::can('edit_role')){
+            $role = Role::find($id);
 
-        return view('role.edit', ['role'=>$role]);
+            return view('role.edit', ['role'=>$role]);
+        }else{
+            return redirect('/role')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción");
+        }
+        
     }
 
     /**
@@ -116,9 +143,15 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::whereId($id)->delete();
 
-        Session::flash('message', 'Rol eliminado satisfactoriamente');
-        return Redirect::to('/role');
+        if(Entrust::can('delete_role')){
+            Role::whereId($id)->delete();
+
+            Session::flash('message', 'Rol eliminado satisfactoriamente');
+            return Redirect::to('/role');
+        }else{
+            return redirect('role')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción");
+        }
+        
     }
 }
