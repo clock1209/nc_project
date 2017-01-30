@@ -69,7 +69,7 @@
 					</div>
 					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
 						<div class="input-group-addon">Correo:</div>
-						{!! Form::label('email', null, ['class'=>'form-control', 'id'=>'Correo']) !!}
+						{!! Form::label('email', null, ['class'=>'form-control', 'id'=>'email']) !!}
 					</div>
 					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
 						<div class="input-group-addon">Rol:</div>
@@ -105,7 +105,7 @@
 					{data: 'lastNameFather'},
 					{data: 'lastNameMother'},
 					{data: 'username'},
-					{data: 'email'},
+					{data: 'email', visible: false}, 
 					{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 					],
 				});
@@ -118,11 +118,11 @@
                         dataType: 'json',
                         data : {id: usr_id}
                     }).done(function(data){
-                    	console.log(data);
+                    	console.log(data.email);
                     	$("#name").html(data.name );
                     	$("#lastNameFather").html(data.lastNameFather );
                     	$("#lastNameMother").html(data.lastNameMother );
-                    	$("#email").html(data.email );
+                    	$("#email").html(data.email);
                     	$("#username").html(data.username );
                     	$("#homePhone").html(data.homePhone );
                     	$("#cellPhone").html(data.cellPhone );

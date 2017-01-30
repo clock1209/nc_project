@@ -41,6 +41,10 @@
                 {!!Form::submit('Delete', ['class'=>'btn btn-danger',
                 'style'=>'float:right; margin-right: 5px'])!!}
                 {!!Form::close()!!}
+                {!!Form::open(['route'=> ['role.index'], 'method'=>'GET'])!!}
+                {!!Form::submit('Cancelar', ['class'=>'btn btn-danger',
+                'style'=>'float:right; margin-right: 5px'])!!}
+                {!!Form::close()!!}
             </div>
         </div>
     </div>

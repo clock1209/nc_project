@@ -12,6 +12,10 @@
 @endsection
 
 @section('contentheader_title') 
+{!!Form::open(['route'=> ['role.create'], 'method'=>'GET'])!!}
+{!!Form::submit('Agregar Rol', ['class'=>'btn btn-success',
+    'style'=>'float:right; margin-right: 5px; margin-right: 100px'])!!}
+{!!Form::close()!!}
 @endsection
 
 @section('main-content')
@@ -22,7 +26,6 @@
     {{ Session::get('message') }}    
 </div>
 @endif
-
 
 <div class="container-fluid spark-screen">
 	<div class="row">
