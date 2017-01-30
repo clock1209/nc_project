@@ -7,6 +7,7 @@ use App\Http\Requests\RoleCreateRequest;
 use App\Role;
 use App\Permission;
 use Datatables; 
+use Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -28,7 +29,9 @@ class RoleController extends Controller
         return Datatables::of($roles)
             ->addColumn('action', function ($role) {
                 return '<a href="role/'.$role->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                <a data-toggle="modal" rol_id="'. $role->id .'" data-target="#permisos" class="btn btn-primary get-permisos">Permissions</a>';
+                <a data-toggle="modal" rol_id="'. $role->id .'" data-target="#permisos" class="btn btn-primary get-permisos"><i class="glyphicon glyphicon-list"></i> Permissions</a>
+                <a data-toggle="modal" id_rol="'. $role->id .'" data-target="#mostrar_rol" class="btn btn-info get-rol-datos"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>
+                <a href="role/'.$role->id.'/edit" class="btn btn-danger" id="btnAction"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);
@@ -69,7 +72,8 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::find($id);
+        return Response::json($role);
     }
 
     /**
@@ -99,7 +103,7 @@ class RoleController extends Controller
         $role->save();
         
 
-        Session::flash('message', 'Rol Actualizafo satisfactoriamente');
+        Session::flash('message', 'Rol Actualizado satisfactoriamente');
         return Redirect::to('/role');
     }
 
@@ -111,7 +115,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
+        Role::whereId($id)->delete();
 
         Session::flash('message', 'Rol eliminado satisfactoriamente');
         return Redirect::to('/role');

@@ -37,7 +37,7 @@
 
                 </div>
                 {!!Form::close()!!}
-                {!!Form::open(['route'=> ['role.destroy',$role->id], 'method'=>'DELETE'])!!}
+                {!!Form::open(['route'=> ['role.destroy',$role->id], 'method'=>'PUT'])!!}
                 {!!Form::submit('Delete', ['class'=>'btn btn-danger',
                 'style'=>'float:right; margin-right: 5px'])!!}
                 {!!Form::close()!!}

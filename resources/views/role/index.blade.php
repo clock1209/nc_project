@@ -47,6 +47,34 @@
 	</div>
 </div>
 
+<div class="modal" id="mostrar_rol">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Datos de Usuario</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon">Nombre de Rol:</div>
+                        {!! Form::label('name', null, ['class'=>'form-control', 'id'=>'name']) !!}
+                    </div>
+                    <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon">Nombre a Mostrar:</div>
+                        {!! Form::label('display_name', null, ['class'=>'form-control', 'id'=>'display_name']) !!}
+                    </div>
+                    <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon">Descripción:</div>
+                        {!! Form::label('description', null, ['class'=>'form-control', 'id'=>'description']) !!}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <div class="modal" id="permisos">
 	<div class="modal-dialog">
       <div class="modal-content">
@@ -83,6 +111,22 @@
 			{data: 'action', name: 'action', orderable: false, serchable: false,  bSearchable: false},
 			],
 		});
+
+        $('body').delegate('.get-rol-datos','click',function(){
+            id_rol = $(this).attr('id_rol');
+            $.ajax({
+                url : '{{ URL::to("/role") }}' + '/' + id_rol ,
+                type : 'GET',
+                dataType: 'json',
+                data : {id: id_rol}
+            }).done(function(data){
+                console.log(data);
+                $("#name").html(data.name );
+                $("#display_name").html(data.display_name);
+                $("#description").html(data.description);
+            });
+
+        });
 
 			 	rol_id = null;
                $('#select-permisos').multiSelect({
