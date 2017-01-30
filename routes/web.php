@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     #adminlte_routes
 	Route::resource('user', 'UserController');
 	Route::get('user/edit', 'UserController@Edit');
+	Route::get('user/delete/{id}', 'UserController@destroy');
 
 	Route::get('user/create',['as'=>'user.create','uses'=>'UserController@create','middleware'=> ['permission:create_user']]);
 	Route::post('user/create',['as'=>'user.store','uses'=>'UserController@store','middleware'=> ['permission:create_user']]);

@@ -39,7 +39,8 @@ class UserController extends Controller
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
                 return '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                <a data-toggle="modal" usr_id="'. $user->id .'" data-target="#usuario" class="btn btn-primary get-user">Mostrar</a>';
+                <a data-toggle="modal" usr_id="'. $user->id .'" data-target="#usuario" class="btn btn-info get-user"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>
+                <a href="user/delete/'.$user->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
                 
             })
             ->editColumn('id', 'ID: {{$id}}')
@@ -157,7 +158,7 @@ class UserController extends Controller
     {
 
          if(Entrust::can('edit_user')){
-            User::destroy($id);
+            User::whereId($id)->delete();
 
             Session::flash('message', 'User Deleted Successfully');
             return Redirect::to('user');

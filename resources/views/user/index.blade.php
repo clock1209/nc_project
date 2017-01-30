@@ -7,6 +7,10 @@
 @endsection
 
 @section('contentheader_title') 
+{!!Form::open(['route'=> ['user.create'], 'method'=>'GET'])!!}
+{!!Form::submit('Agregar Usuario', ['class'=>'btn btn-success',
+    'style'=>'float:right; margin-right: 5px; margin-right: 100px'])!!}
+{!!Form::close()!!}
 @endsection
 
 @section('main-content')
@@ -100,10 +104,10 @@
 					"serverSide": true,
 					"ajax": "/api/users",
 					"columns":[
-					{data: 'id'},
+					{data: 'id', visible: false},
 					{data: 'name'},
 					{data: 'lastNameFather'},
-					{data: 'lastNameMother'},
+					{data: 'lastNameMother', visible: false},
 					{data: 'username'},
 					{data: 'email', visible: false}, 
 					{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
