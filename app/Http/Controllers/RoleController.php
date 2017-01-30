@@ -31,7 +31,9 @@ class RoleController extends Controller
                 return '<a href="role/'.$role->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>
                 <a data-toggle="modal" rol_id="'. $role->id .'" data-target="#permisos" class="btn btn-primary get-permisos"><i class="glyphicon glyphicon-list"></i> Permissions</a>
                 <a data-toggle="modal" id_rol="'. $role->id .'" data-target="#mostrar_rol" class="btn btn-info get-rol-datos"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>
-                <a href="role/'.$role->id.'/edit" class="btn btn-danger" id="btnAction"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+                <a href="role/delete/'.$role->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>
+                <form method="DELETE" route=""
+                ';
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);

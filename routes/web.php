@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('role', 'RoleController');
 	Route::get('role/edit', 'RoleController@edit');
+	Route::get('role/delete/{id}', 'RoleController@destroy');
 
 	Route::get('api/users', 'UserController@getBtnDatatable');
 	Route::get('api/roles', 'RoleController@getBtnDatatable');
