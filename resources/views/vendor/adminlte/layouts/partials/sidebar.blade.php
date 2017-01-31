@@ -34,7 +34,6 @@
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.users') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -55,6 +54,17 @@
                     @permission('see_role')
                     <li><a href="{!!URL::to('role')!!}">{{ trans('adminlte_lang::message.rolelist') }}</a></li>
                     @endpermission
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.support') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    {{-- @permission('create_role') --}}
+                    <li><a href="{!!URL::to('support')!!}">{{ trans('adminlte_lang::message.addsupport') }}</a></li>
+                    {{-- @endpermission --}}
+                    {{-- @permission('see_role') --}}
+                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.rolelist') }}</a></li> --}}
+                    {{-- @endpermission --}}
                 </ul>
             </li>
             

@@ -138,4 +138,8 @@ return [
     'registerrole'            => 'Registrar Rol',
     'addrole'                 => 'Alta de Rol',
     'editrole'                => 'Editar Rol',
+    'support'                 => 'Soporte',
+    'segistersupport'         => 'Registrar Soporte',
+    'addsupport'              => 'Alta de Soporte',
+    'websupport'              => 'Soporte Web',
 ];

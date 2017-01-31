@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('role/create',['as'=>'role.store','uses'=>'RoleController@store','middleware'=> ['permission:create_role']]);
 	Route::get('role/{id}/edit',['as'=>'role.edit','uses'=>'RoleController@edit','middleware'=> ['permission:edit_role']]);
 	Route::get('/role',['as'=>'role.index','uses'=>'RoleController@index','middleware'=> ['permission:see_role']]);
+	Route::get('role/show',['as'=>'role.show','uses'=>'RoleController@show','middleware'=> ['permission:see_role']]);
+	Route::get('role/delete',['as'=>'role.destroy','uses'=>'RoleController@destroy','middleware'=> ['permission:delete_role']]);
 
 	Route::resource('role', 'RoleController');
 	Route::get('role/edit', 'RoleController@edit');
@@ -52,6 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/permisos','PermissionController@index');
 	Route::get('/permisos/asignar','PermissionController@asignar');
 	Route::get('/permisos/desasignar','PermissionController@desasignar');
+
+	Route::resource('support', 'SupportController');
 });
 
 
