@@ -57,10 +57,10 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.support') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.motives') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{!!URL::to('support')!!}">{{ trans('adminlte_lang::message.addsupport') }}</a></li>
-                    <li><a href="{!!URL::to('/altademotivos')!!}">{{ trans('adminlte_lang::message.addmotive') }}</a></li>
+                    <li><a href="{!!URL::to('motive/create')!!}">{{ trans('adminlte_lang::message.addmotive') }}</a></li>
+                    <li><a href="{!!URL::to('motive')!!}">{{ trans('adminlte_lang::message.motiveslist') }}</a></li>
                 </ul>
             </li>
             

@@ -143,4 +143,7 @@ return [
     'addsupport'              => 'Alta de Soporte',
     'websupport'              => 'Soporte Web',
     'addmotive'               => 'Alta de Motivos',
+    'editmotive'              => 'Editar Motivo',
+    'motives'                 => 'Motivos',
+    'motiveslist'             => 'Lista de Motivos',
 ];

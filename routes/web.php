@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('altademotivos', function () {
-    return view('support.altademotivos');
+    return view('motive.altademotivos');
 });
 
 Auth::routes();
@@ -54,11 +54,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('api/users', 'UserController@getBtnDatatable');
 	Route::get('api/roles', 'RoleController@getBtnDatatable');
+	Route::get('api/motives', 'MotiveController@getBtnDatatable');
 
 	Route::get('/permisos','PermissionController@index');
 	Route::get('/permisos/asignar','PermissionController@asignar');
 	Route::get('/permisos/desasignar','PermissionController@desasignar');
 
-	Route::resource('support', 'SupportController');
-	Route::get('support/altademotivos', 'SupportController@altademotivos');
+	Route::resource('motive', 'MotiveController');
+	Route::get('motive/edit', 'MotiveController@Edit');
+	Route::get('motive/delete/{id}', 'MotiveController@destroy');
+
 });
