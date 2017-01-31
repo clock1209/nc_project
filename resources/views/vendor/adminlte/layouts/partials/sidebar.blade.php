@@ -59,12 +59,8 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.support') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    {{-- @permission('create_role') --}}
                     <li><a href="{!!URL::to('support')!!}">{{ trans('adminlte_lang::message.addsupport') }}</a></li>
-                    {{-- @endpermission --}}
-                    {{-- @permission('see_role') --}}
-                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.rolelist') }}</a></li> --}}
-                    {{-- @endpermission --}}
+                    <li><a href="{!!URL::to('/altademotivos')!!}">{{ trans('adminlte_lang::message.addmotive') }}</a></li>
                 </ul>
             </li>
             

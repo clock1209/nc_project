@@ -2,11 +2,6 @@
 
 @section('htmlheader_title')
 	{{ trans('adminlte_lang::message.rolelist') }}
-	<STYLE type="text/css">
-		.right {
-			margin-bottom: 20px
-		}
-	</STYLE>
 @endsection
 
 @section('contentheader_title') 
@@ -24,42 +19,42 @@
                 	<form class="form-horizontal">
                 		<div class="form-group mb-200">
                 			<div class="col-sm-3 pull-right">
-                				{!!Form::text('username',null,['class'=>'form-control', 'placeholder'=>'fecha'])!!}
+                				{!!Form::text('date',null,['class'=>'form-control'])!!}
                 			</div>
-                			<label for="inputEmail3" class="col-sm-2 control-label pull-right">Fecha:</label>
+                			<label for="date_lbl" class="col-sm-2 control-label pull-right">Fecha:</label>
                 		</div>
                 		<div class="form-group">
-                		<label for="inputEmail3" class="col-sm-2 control-label">Usuario:</label>
+                		<label for="user_lbl" class="col-sm-2 control-label">Usuario:</label>
                 			<div class="col-sm-10">
-                				{!! Form::select('nombres', array('L' => '-- Seleccionar --'), null, ['class'=>'form-control']) !!}
+                				{!! Form::select('user', array('L' => '-- Seleccionar --'), null, ['class'=>'form-control']) !!}
                 			</div>
                 		</div>
                 		<div class="form-group">
-                		<label for="inputEmail3" class="col-sm-2 control-label">Nombre del Cliente:</label>
+                		<label for="client_lbl" class="col-sm-2 control-label">Nombre del Cliente:</label>
                 			<div class="col-sm-10">
-                				{!!Form::text('username',null,['class'=>'form-control', 'placeholder'=>'Nombre del Cliente'])!!}
+                				{!!Form::text('client',null,['class'=>'form-control'])!!}
                 			</div>
                 		</div>
                 		<div class="form-group">
-                			<label for="inputPassword3" class="col-sm-2 control-label">Dominio:</label>
+                			<label for="domn_lbl" class="col-sm-2 control-label">Dominio:</label>
                 			<div class="col-sm-10">
-                				{!! Form::select('nombres', array('L' => '-- Seleccionar --'), null, ['class'=>'form-control']) !!}
+                				{!! Form::select('domn', array('L' => '-- Seleccionar --'), null, ['class'=>'form-control']) !!}
                 			</div>
                 		</div>
                 		<div class="form-group">
-                			<label for="inputPassword3" class="col-sm-2 control-label">Motivo:</label>
+                			<label for="motive_lbl" class="col-sm-2 control-label">Motivo:</label>
                 			<div class="col-sm-10">
-                				{!! Form::select('nombres', array('L' => '-- Seleccionar --'), null, ['class'=>'form-control']) !!}
+                				{!! Form::select('motive', array('L' => '-- Seleccionar --'), null, ['class'=>'form-control']) !!}
                 			</div>
                 		</div>
                 		<div class="form-group">
-                			<label for="inputPassword3" class="col-sm-2 control-label">Descripción:</label>
+                			<label for="description_lbl" class="col-sm-2 control-label">Descripción:</label>
                 			<div class="col-sm-10">
-                				<textarea class="form-control" rows="3" placeholder="Detalle de la llamada..."></textarea>
+                				<textarea class="form-control" id="description" rows="3" placeholder="Detalle de la llamada..."></textarea>
                 			</div>
                 		</div>
                 		<div class="form-group">
-                			<label for="inputPassword3" class="col-sm-2 control-label">Estatus:</label>
+                			<label for="status_lbl" class="col-sm-2 control-label">Estatus:</label>
                 			<div class="col-sm-10">
                 			<label class="checkbox-inline"><input type="checkbox" value="">En espera del cliente</label>
                 				<label class="checkbox-inline"><input type="checkbox" value="">Resuelto</label>
@@ -67,9 +62,9 @@
                 			</div>
                 		</div>
                 		<div class="form-group">
-                			<label for="inputPassword3" class="col-sm-2 control-label">Tiempo de atención:</label>
+                			<label for="time_lbl" class="col-sm-2 control-label">Tiempo de atención:</label>
                 			<div class="col-sm-3">
-                				{!!Form::text('username',null,['class'=>'form-control', 'placeholder'=>'Nombre del Cliente'])!!}
+                				{!!Form::text('time',null,['class'=>'form-control'])!!}
                 			</div>
                 		</div>
                 		<div class="text-center">
@@ -84,12 +79,3 @@
     </div>
 </div>
 @endsection
-
-{{-- <div class="form-group has-feedback">
-                        <div class="col-md-9 col-md-push-3">
-	                 		{!! Form::select('nombres', array('L' => '-- Seleccionar --', 'S' => 'Small'), null, ['class'=>'form-control']) !!}
-	                 	</div>
-                 		<div class="col-md-3 col-md-pull-9">
-                 			<label class="col-sm-2 control-label">Motivo:</label>
-                 		</div>
-                 	</div> --}}

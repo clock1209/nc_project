@@ -142,4 +142,5 @@ return [
     'segistersupport'         => 'Registrar Soporte',
     'addsupport'              => 'Alta de Soporte',
     'websupport'              => 'Soporte Web',
+    'addmotive'               => 'Alta de Motivos',
 ];

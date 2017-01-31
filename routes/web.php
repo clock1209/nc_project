@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('altademotivos', function () {
+    return view('support.altademotivos');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -56,19 +60,5 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/permisos/desasignar','PermissionController@desasignar');
 
 	Route::resource('support', 'SupportController');
+	Route::get('support/altademotivos', 'SupportController@altademotivos');
 });
-
-
-
-// Entrust::routeNeedsRole('user/create', 'admin', Redirect::to('/home'));
-
-// Route::filter('create_user', function()
-// {
-//     // check the current user
-//     if (!Entrust::can('create_user')) {
-//         return Redirect::to('/home');
-//     }
-// });
-
-// // only users with roles that have the 'manage_posts' permission will be able to access any admin/post route
-// Route::when('user/create', 'create_user');
