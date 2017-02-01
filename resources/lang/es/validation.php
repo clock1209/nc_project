@@ -65,7 +65,7 @@ return [
     'not_in'               => ':attribute es inválido.',
     'numeric'              => ':attribute debe ser numérico.',
     'present'              => 'El campo :attribute debe estar presente.',
-    'regex'                => 'El formato de :attribute es inválido.',
+    'regex'                => 'La :attribute es poco segura, por favor intente de nuevo.',
     'required'             => 'El campo :attribute es obligatorio.',
     'required_if'          => 'El campo :attribute es obligatorio cuando :other es :value.',
     'required_unless'      => 'El campo :attribute es obligatorio a menos que :other esté en :values.',
@@ -144,6 +144,7 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+        'terms'                 => 'terminos',
     ],
 
 ];

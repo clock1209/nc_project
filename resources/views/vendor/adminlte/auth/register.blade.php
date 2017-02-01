@@ -29,7 +29,19 @@
                 <form action="{{ url('/register') }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.fullname') }}" name="name" value="{{ old('name') }}"/>
+                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.yourname') }}" name="name" value="{{ old('name') }}"/>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.lastnamefather') }}" name="lastNameFather" value="{{ old('lastNameFather') }}"/>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.lastnamemother') }}" name="lastNameMother" value="{{ old('lastNameMother') }}"/>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.username') }}" name="username" value="{{ old('username') }}"/>
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
@@ -43,6 +55,14 @@
                     <div class="form-group has-feedback">
                         <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.retrypepassword') }}" name="password_confirmation"/>
                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.homephone') }}" name="homePhone" value="{{ old('homePhone') }}"/>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.cellphone') }}" name="cellPhone" value="{{ old('cellPhone') }}"/>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="row">
                         <div class="col-xs-1">

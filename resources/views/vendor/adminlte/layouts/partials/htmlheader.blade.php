@@ -5,6 +5,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <script src="{{ asset('/public/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+
     <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 
     <link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />

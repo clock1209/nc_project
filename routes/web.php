@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('altademotivos', function () {
-    return view('motive.altademotivos');
+Route::get('/web', function () {
+    return view('support.websupport');
 });
 
 Auth::routes();

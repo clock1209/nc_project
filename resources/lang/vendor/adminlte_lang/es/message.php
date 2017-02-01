@@ -20,7 +20,7 @@ return [
     'buttonsign'              => 'Iniciar Sesión',
     'forgotpassword'          => 'Olvidé mi contraseña',
     'registermember'          => 'Registar un nuevo miembro',
-    'terms'                   => 'Estoy de acuerdo',
+    'terms'                   => 'Terminos',
     'conditions'              => 'Términos y Condiciones',
     'register'                => 'Registro',
     'login'                   => 'Iniciar Sesión',
@@ -146,4 +146,10 @@ return [
     'editmotive'              => 'Editar Motivo',
     'motives'                 => 'Motivos',
     'motiveslist'             => 'Lista de Motivos',
+
+    'lastnamefather'          => 'Apellido Paterno',
+    'lastnamemother'          => 'Apellido Materno',
+    'homephone'               => 'Teléfono',
+    'cellphone'               => 'Celular',
+    'username'                => 'Nombre de Usuario',
 ];
