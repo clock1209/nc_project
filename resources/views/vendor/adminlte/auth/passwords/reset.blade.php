@@ -11,7 +11,7 @@
     <div id="app">
         <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            <a href="{{ url('/home') }}"><b>NUVEM</b><br> Tecnología viva</a>
         </div><!-- /.login-logo -->
 
         @if (session('status'))
@@ -37,17 +37,17 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}"/>
+                    <input type="email" class="form-control" placeholder="{{ trans('adminlte_lang::message.email') }}" name="email" value="{{ old('email') }}"/>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password"/>
+                    <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.password') }}" name="password"/>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password_confirmation"/>
+                    <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.retrypepassword') }}" name="password_confirmation"/>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
 
@@ -62,7 +62,7 @@
                 </div>
             </form>
 
-            <a href="{{ url('/login') }}">Log in</a><br>
+            <a href="{{ url('/login') }}">{{ trans('adminlte_lang::message.login') }}</a><br>
             <a href="{{ url('/register') }}" class="text-center">{{ trans('adminlte_lang::message.membreship') }}</a>
 
         </div><!-- /.login-box-body -->
