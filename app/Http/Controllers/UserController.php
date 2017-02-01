@@ -109,7 +109,7 @@ class UserController extends Controller
             $user->attachRole($value);
         }
 
-        return redirect('user/create')->with('message','Usuario registrado correctamente');
+        return redirect('user')->with('message','Usuario registrado correctamente');
     }
 
     /**
