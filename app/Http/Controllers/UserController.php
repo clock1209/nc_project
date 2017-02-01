@@ -8,6 +8,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use App\Role;
 use DB;
+use Mail;
 use Response;
 use Illuminate\Support\Facades\Hash;
 use Datatables; 
@@ -99,11 +100,16 @@ class UserController extends Controller
             'cellPhone' => $request['cellPhone'],
         ]);
 
+        Mail::send('emails.registered', $request->all(), function($msj) use ($user){
+            $msj->subject('Bienvenido al portal de NUVEM');
+            $msj->to($user->email);
+        });
+
         foreach ($request->input('roles') as $key => $value) {
             $user->attachRole($value);
         }
 
-        return redirect('user')->with('message','Usuario registrado correctamente');
+        return redirect('user/create')->with('message','Usuario registrado correctamente');
     }
 
     /**
