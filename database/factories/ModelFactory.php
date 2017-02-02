@@ -29,6 +29,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Motive::class, function (Faker\Generator $faker) {
     return [
-        'description' => $faker->text,
+        'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
     ];
 });

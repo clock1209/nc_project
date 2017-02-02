@@ -13,14 +13,14 @@
             @include('alerts.request')
             @include('alerts.unauthorized')
             <div class="panel panel-default">
-                <div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.addmotive') }}</i></div>
+                <div class="panel-heading"  style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.addmotive') }}</b></i></div>
                 <div class="panel-body">
                 {!!Form::open(['route'=>'motive.store', 'method'=>'POST'])!!}
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label for="description_lbl" class="col-sm-2 control-label">Descripción de Motivo:</label>
-                            <div class="col-sm-10">
-                                {!!Form::textarea('description',null,['class'=>'form-control', 'rows'=>'5'])!!}
+                            <label for="description_lbl" class="col-sm-4 control-label">Descripción de Motivo:</label>
+                            <div class="col-sm-7">
+                                {!!Form::text('description',null,['class'=>'form-control'])!!}
                             </div>
                         </div>
                         <div class="text-center">

@@ -35,7 +35,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.users') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='glyphicon glyphicon-user'></i> <span>{{ trans('adminlte_lang::message.users') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     @permission('create_user')
                     <li><a href="{!!URL::to('user/create')!!}">{{ trans('adminlte_lang::message.adduser') }}</a></li>
@@ -63,6 +63,7 @@
                     <li><a href="{!!URL::to('motive')!!}">{{ trans('adminlte_lang::message.motiveslist') }}</a></li>
                 </ul>
             </li>
+            <li class="active"><a href="{{ url('web') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.websupport') }}</span></a></li>
             
         </ul><!-- /.sidebar-menu -->
     </section>
