@@ -13,14 +13,14 @@
             @include('alerts.request')
             @include('alerts.unauthorized')
             <div class="panel panel-default">
-                <div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.editmotive') }}</i></div>
+                <div class="panel-heading"  style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.editmotive') }}</i></b></div>
                 <div class="panel-body">
                 {!!Form::model($motive, ['route'=> ['motive.update',$motive->id], 'method'=>'PUT'])!!}
                     <div class="form-horizontal">
                         <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Descripción de Motivo:</label>
-                            <div class="col-sm-10">
-                                {!!Form::textarea('description',null,['class'=>'form-control', 'rows'=>'5'])!!}
+                        <label for="inputEmail3" class="col-sm-4 control-label">Descripción de Motivo:</label>
+                            <div class="col-sm-7">
+                                {!!Form::text('description',null,['class'=>'form-control'])!!}
                             </div>
                         </div>
                         <div class="text-center">

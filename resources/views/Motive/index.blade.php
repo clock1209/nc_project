@@ -26,15 +26,15 @@
 <div class="container-fluid spark-screen">
 	<div class="row">
 			<div class="panel panel-default">
-				<div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.userslist') }}</i></div>
+				<div class="panel-heading"  style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.motiveslist') }}</i></b></div>
 
 				<div class="panel-body">
 					<table class="table" id="motives">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th class="col-md-8">Descripción</th>
-								<th>Action</th>
+								<th>Descripción</th>
+								<th class="col-md-4">Action</th>
 							</tr>
 						</thead>
 					</table>
@@ -45,17 +45,17 @@
 	<div class="modal" id="motive">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header"  style="background: #1792a4; color: white;">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 					<h4 class="modal-title">Detalles de Motivo</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group has-feedback">
-						{!! Form::textarea('description', null, ['class'=>'form-control', 'id'=>'description', 'rows'=>'5']) !!}
+						{!! Form::textarea('description', null, ['class'=>'form-control', 'id'=>'description', 'rows'=>'1']) !!}
 					</div>
 				</div>
 				<div class="modal-footer">
-					<a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+					<a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
 				</div>
 			</div>
 		</div>
