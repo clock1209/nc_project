@@ -121,15 +121,15 @@
                         dataType: 'json',
                         data : {id: usr_id}
                     }).done(function(data){
-                    	console.log(data.email);
-                    	$("#name").html(data.name );
-                    	$("#lastNameFather").html(data.lastNameFather );
-                    	$("#lastNameMother").html(data.lastNameMother );
-                    	$("#email").html(data.email);
-                    	$("#username").html(data.username );
-                    	$("#homePhone").html(data.homePhone );
-                    	$("#cellPhone").html(data.cellPhone );
-                    	$("#role").html(data.role );
+                    	console.log(data);
+                    	$("#name").html(data[0].name );
+                    	$("#lastNameFather").html(data[0].lastNameFather );
+                    	$("#lastNameMother").html(data[0].lastNameMother );
+                    	$("#email").html(data[0].email);
+                    	$("#username").html(data[0].username );
+                    	$("#homePhone").html(data[0].homePhone );
+                    	$("#cellPhone").html(data[0].cellPhone );
+                    	$("#role").html(data[1]);
                     });
 
                    });

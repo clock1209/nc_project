@@ -59,8 +59,12 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.motives') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
+                    @permission('create_motive')
                     <li><a href="{!!URL::to('motive/create')!!}">{{ trans('adminlte_lang::message.addmotive') }}</a></li>
+                    @endpermission
+                    @permission('create_motive')
                     <li><a href="{!!URL::to('motive')!!}">{{ trans('adminlte_lang::message.motiveslist') }}</a></li>
+                    @endpermission
                 </ul>
             </li>
             <li class="active"><a href="{{ url('websupport') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.websupport') }}</span></a></li>

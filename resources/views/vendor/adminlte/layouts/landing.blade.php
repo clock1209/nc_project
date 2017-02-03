@@ -25,7 +25,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 
-    <script src="{{ asset('/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+    {{-- <script src="{{ asset('/plugins/jQuery/jquery-2.2.3.min.js') }}"></script> --}}
 
     <title>{{ trans('adminlte_lang::message.landingdescriptionpratt') }}</title>
 
@@ -298,7 +298,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-<script src="{{ asset('/js/app.js') }}"></script>
+{{-- <script src="{{ asset('/js/app.js') }}"></script> --}}
 <script src="{{ asset('/js/smoothscroll.js') }}"></script>
 
 

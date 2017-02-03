@@ -18,7 +18,7 @@
 			@endif
 			<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
-					<div class="panel-heading">{{ trans('adminlte_lang::message.welcome') }}</div>
+					<div class="panel-heading"  style="background: #1792a4; color: white;"><b>{{ trans('adminlte_lang::message.welcome') }}</b></div>
 
 					<div class="panel-body">
 						{{ Auth::user()->name }},

@@ -76,6 +76,31 @@ class PermissionRoleSeeder extends Seeder
 		$deleteRole->description 	= 'Delete a role'; /*OPTIONAL*/
 		$deleteRole->save();
 
+		/* CREATE NEW MOTIVE'S PERMISSION'S */
+		$createMotive = new App\Permission();
+		$createMotive->name 			= 'create_motive';
+		$createMotive->display_name 	= 'Create Motive'; /*OPTIONAL*/
+		$createMotive->description 	= 'Create a new motive'; /*OPTIONAL*/
+		$createMotive->save();
+
+		$editMotive = new App\Permission();
+		$editMotive->name 			= 'edit_motive';
+		$editMotive->display_name 	= 'Edit Motive'; /*OPTIONAL*/
+		$editMotive->description 	= 'Edit a motive'; /*OPTIONAL*/
+		$editMotive->save();
+
+		$seeMotive = new App\Permission();
+		$seeMotive->name 			= 'see_motive';
+		$seeMotive->display_name 	= 'See Motives List'; /*OPTIONAL*/
+		$seeMotive->description 	= 'See Motives list'; /*OPTIONAL*/
+		$seeMotive->save();
+
+		$deleteMotive = new App\Permission();
+		$deleteMotive->name 			= 'delete_motive';
+		$deleteMotive->display_name 	= 'Delete Motive'; /*OPTIONAL*/
+		$deleteMotive->description 	= 'Delete a motive'; /*OPTIONAL*/
+		$deleteMotive->save();
+
 		/* 
 			ASSIGN PERMISSION'S 
 		*/
@@ -91,6 +116,10 @@ class PermissionRoleSeeder extends Seeder
 		$admin->attachPermission($editRole);
 		$admin->attachPermission($seeRole);
 		$admin->attachPermission($deleteRole);
+		$admin->attachPermission($createMotive);
+		$admin->attachPermission($editMotive);
+		$admin->attachPermission($seeMotive);
+		$admin->attachPermission($deleteMotive);
 
 		$user = User::find(1);
 		$user->attachRole($admin);

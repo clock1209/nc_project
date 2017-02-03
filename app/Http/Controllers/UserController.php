@@ -122,7 +122,14 @@ class UserController extends Controller
     {
         if(Entrust::can('see_user')){
             $user = User::find($id);
-            return Response::json($user);
+            $roles = Role::pluck('display_name', 'id');
+            $userRole = $user->roles->pluck('display_name','id')->toArray();
+
+            if (empty($userRole)) {
+                $userRole = ["NA"];
+            }
+
+            return Response::json([$user, implode($userRole)]);
         }else{
             return redirect('user.index')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
         }

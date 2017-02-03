@@ -14,7 +14,7 @@
         <div class="col-md-8 col-md-offset-2">
             @include('alerts.request')
             <div class="panel panel-default">
-                <div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.addrole') }}</i></div>
+                <div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.addrole') }}</b></i></div>
                 <div class="panel-body">
                  {!!Form::open(['route'=>'role.store', 'method'=>'POST'])!!}
                  <div class="form-group">

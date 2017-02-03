@@ -34,7 +34,7 @@
 <div class="container-fluid spark-screen">
 	<div class="row">
 		<div class="panel panel-default">
-			<div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.rolelist') }}</i></div>
+			<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.rolelist') }}</b></i></div>
 
 			<div class="panel-body">
 				<table class="table" id="roles">
@@ -42,7 +42,7 @@
 						<tr>
 							<th>ID</th>
 							<th>Role</th>
-							<th>Action</th>
+							<th style="width: 360px">Action</th>
 						</tr>
 					</thead>
 				</table>
