@@ -8,10 +8,7 @@
 
 @section('contentheader_title') 
 @permission('create_user')
-{!!Form::open(['route'=> ['user.create'], 'method'=>'GET'])!!}
-{!!Form::submit('Agregar Usuario', ['class'=>'btn btn-success',
-    'style'=>'float:right; margin-right: 5px; margin-right: 100px'])!!}
-{!!Form::close()!!}
+<a class="btn btn-success btn-lg" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('user.create') }}"><i class="glyphicon glyphicon-user"></i> Agregar Usuario</a>
 @endpermission
 @endsection
 
@@ -29,7 +26,7 @@
 <div class="container-fluid spark-screen">
 	<div class="row">
 			<div class="panel panel-default">
-				<div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.userslist') }}</i></div>
+				<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.userslist') }}</b></i></div>
 
 				<div class="panel-body">
 					<table class="table" id="users">
@@ -52,7 +49,7 @@
 	<div class="modal" id="usuario">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header"  style="background: #1792a4; color: white;">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 					<h4 class="modal-title">Datos de Usuario</h4>
 				</div>
@@ -91,7 +88,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+					<a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
 				</div>
 			</div>
 		</div>

@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/web', function () {
-    return view('support.websupport');
-});
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -63,5 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('motive', 'MotiveController');
 	Route::get('motive/edit', 'MotiveController@Edit');
 	Route::get('motive/delete/{id}', 'MotiveController@destroy');
+
+	Route::resource('websupport', 'webSupportController');
 
 });

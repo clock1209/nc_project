@@ -4,7 +4,6 @@
 	{{ trans('adminlte_lang::message.edituser') }}
 @endsection
 
-
 @section('contentheader_title')
 @endsection
 
@@ -16,63 +15,80 @@
             @include('alerts.request')
             @include('alerts.unauthorized')
             <div class="panel panel-default">
-                <div class="panel-heading"><i class="info-box-text">{{ trans('adminlte_lang::message.edituser') }}</i></div>
+                <div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.edituser') }}</b></i></div>
 
                 <div class="panel-body">
-                   {!!Form::model($user, ['route'=> ['user.update',$user->id], 'method'=>'PUT'])!!}
-                   <div class="form-group">
-                    <div class="form-group has-feedback">
-                        {!!Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Full name'])!!}
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                   {!!Form::model($user, ['route'=> ['user.update',$user->id], 'method'=>'PUT', 'class'=>'form-horizontal'])!!}
+
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.yourname') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('name',null,['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        {!!Form::text('lastNameFather',null,['class'=>'form-control', 'placeholder'=>'Apellido Paterno'])!!}
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.lastnamefather') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('lastNameFather',null,['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        {!!Form::text('lastNameMother',null,['class'=>'form-control', 'placeholder'=>'Apellido Materno'])!!}
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.lastnamemother') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('lastNameMother',null,['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        {!!Form::text('username',null,['class'=>'form-control', 'placeholder'=>'Nombre de Usuario'])!!}
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.username') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('username',null,['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        {!!Form::text('email',null,['class'=>'form-control', 'placeholder'=>'Email'])!!}
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.email') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('email',null,['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        {!!Form::password('password',['class'=>'form-control', 'placeholder'=>'Password'])!!}
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.password') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::password('password',['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div  class="form-group has-feedback">
-                        {!!Form::password('password_confirmation',['class'=>'form-control', 'placeholder'=>'Password Confirmation'])!!}
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.retrypepassword') }}:</label>
+                        <div class="col-sm-8"  style="padding-top: 9px;">
+                            {!!Form::password('password_confirmation',['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div  class="form-group has-feedback">
-                        {!!Form::text('homePhone',null,['class'=>'form-control', 'placeholder'=>'Teléfono'])!!}
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.roles') }}:</label>
+                        <div class="col-sm-8">
+                            {!! Form::select('roles[]', $roles,$userRole,['class'=>'form-control']) !!}
+                        </div>
                     </div>
-                    <div  class="form-group has-feedback">
-                        {!!Form::text('cellPhone',null,['class'=>'form-control', 'placeholder'=>'cellPhone'])!!}
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.homephone') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('homePhone',null,['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        <strong>Role:</strong>
-                        {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+                    <div class="form-group">
+                        <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.cellphone') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('cellPhone',null,['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    {!!Form::submit('Actualizar', ['class'=>'btn btn-primary',
-                    'style'=>'float:right'])!!}
+                    <div class="text-center">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Actualizar</button>
+                            <a class="btn btn-danger btn-close" href="{{ route('user.destroy').'/'.$user->id }}" ><i class="glyphicon glyphicon-trash"></i> Borrar</a>
+                            <a class="btn btn-danger btn-close" href="{{ route('user.index') }}"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                        </div>
+                    </div>
 
                 </div>
-                {!!Form::close()!!}
-                {!!Form::open(['route'=> ['user.destroy',$user->id], 'method'=>'DELETE'])!!}
-                {!!Form::submit('Borrar', ['class'=>'btn btn-danger',
-                'style'=>'float:right; margin-right: 5px'])!!}
-                {!!Form::close()!!}
-                {!!Form::open(['route'=> ['user.index'], 'method'=>'GET'])!!}
-                {!!Form::submit('Cancelar', ['class'=>'btn btn-danger',
-                'style'=>'float:right; margin-right: 5px'])!!}
                 {!!Form::close()!!}
             </div>
         </div>

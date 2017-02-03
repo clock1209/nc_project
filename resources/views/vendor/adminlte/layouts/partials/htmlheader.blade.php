@@ -5,7 +5,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script src="{{ asset('/public/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 
     <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 
@@ -20,6 +20,8 @@
     <link href="{{ asset('css/multi-select.css') }}" rel="stylesheet" type="text/css" />
 
     <script src="js/jquery.multi-select.js"></script>
+
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

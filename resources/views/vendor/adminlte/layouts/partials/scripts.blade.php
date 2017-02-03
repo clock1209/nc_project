@@ -2,7 +2,7 @@
 
 <!-- JQuery and bootstrap are required by Laravel 5.3 in resources/assets/js/bootstrap.js-->
 <!-- Laravel App -->
-<script src="{{ asset('/public/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+<script src="{{ asset('/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/jquery.dataTables.js') }}" charset="utf-8"></script>
 

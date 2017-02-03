@@ -46,7 +46,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.roles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-user'></i> <span>{{ trans('adminlte_lang::message.roles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     @permission('create_role')
                     <li><a href="{!!URL::to('role/create')!!}">{{ trans('adminlte_lang::message.addrole') }}</a></li>
@@ -63,7 +63,7 @@
                     <li><a href="{!!URL::to('motive')!!}">{{ trans('adminlte_lang::message.motiveslist') }}</a></li>
                 </ul>
             </li>
-            <li class="active"><a href="{{ url('web') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.websupport') }}</span></a></li>
+            <li class="active"><a href="{{ url('websupport') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.websupport') }}</span></a></li>
             
         </ul><!-- /.sidebar-menu -->
     </section>

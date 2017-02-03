@@ -65,7 +65,7 @@ return [
     'not_in'               => ':attribute es inválido.',
     'numeric'              => ':attribute debe ser numérico.',
     'present'              => 'El campo :attribute debe estar presente.',
-    'regex'                => 'La :attribute es poco segura, por favor intente de nuevo.',
+    'regex'                => 'El formato de :attribute es inválido.',
     'required'             => 'El campo :attribute es obligatorio.',
     'required_if'          => 'El campo :attribute es obligatorio cuando :other es :value.',
     'required_unless'      => 'El campo :attribute es obligatorio a menos que :other esté en :values.',
@@ -116,7 +116,7 @@ return [
 
     'attributes'           => [
         'name'                  => 'nombre',
-        'username'              => 'usuario',
+        'username'              => 'nombre de usuario',
         'email'                 => 'correo electrónico',
         'first_name'            => 'nombre',
         'last_name'             => 'apellido',
@@ -145,6 +145,16 @@ return [
         'subject'               => 'asunto',
         'message'               => 'mensaje',
         'terms'                 => 'terminos',
+
+        'attentiontime'         => 'tiempo de atención',
+        'status'                => 'estatus',
+        'motive'                => 'motivo',
+        'client'                => 'cliente',
+        'user'                  => 'usuario',
+        'lastNameFather'        => 'apellido paterno',
+        'lastNameMother'        => 'apellido materno',
+        'homePhone'             => 'teléfono',
+        'cellPhone'             => 'celular',
     ],
 
 ];
