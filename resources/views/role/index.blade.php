@@ -13,10 +13,7 @@
 
 @section('contentheader_title') 
 @permission('create_role')
-{!!Form::open(['route'=> ['role.create'], 'method'=>'GET'])!!}
-{!!Form::submit('Agregar Rol', ['class'=>'btn btn-success',
-    'style'=>'float:right; margin-right: 5px; margin-right: 100px'])!!}
-{!!Form::close()!!}
+<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('role.create') }}"><i class="glyphicon glyphicon-tags"></i>  Agregar Rol</a>
 @endpermission
 @endsection
 
@@ -54,9 +51,9 @@
 <div class="modal" id="mostrar_rol">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header"  style="background: #1792a4; color: white;">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Datos de Usuario</h4>
+                    <h4 class="modal-title">Datos de Rol</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
@@ -73,7 +70,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+                    <a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
                 </div>
             </div>
         </div>
@@ -82,12 +79,13 @@
 <div class="modal" id="permisos">
 	<div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header"  style="background: #1792a4; color: white;">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
           <h4 class="modal-title">Gestionar permisos</h4>
         </div>
         <div class="modal-body">
-          <select id="select-permisos" multiple="multiple">
+        <div class="text-center">
+        <select id="select-permisos" multiple="multiple">
                 @if(isset($permisos))
                     @foreach($permisos as $permiso)
                         <option value="{{ $permiso->id }}">{{ $permiso->display_name }}</option>
@@ -95,8 +93,10 @@
                 @endif
             </select>
         </div>
+          
+        </div>
         <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+          <a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
         </div>
       </div>
     </div>

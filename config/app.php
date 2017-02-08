@@ -166,6 +166,8 @@ return [
 
         Yajra\Datatables\DatatablesServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+
+        App\Providers\HTMLServiceProvider::class,
     ],
 
     /*
@@ -225,6 +227,8 @@ return [
         'Notification' => Illuminate\Support\Facades\Notification::class,
 
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+
+        'Build' => App\Facades\HtmlGenerator::class,
 
     ],
 

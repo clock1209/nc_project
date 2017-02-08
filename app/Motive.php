@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Motive extends Model
 {
+	use SoftDeletes;
+	
     protected $fillable = [
         'description',
     ];

@@ -16,27 +16,32 @@
             <div class="panel panel-default">
                 <div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.addrole') }}</b></i></div>
                 <div class="panel-body">
-                 {!!Form::open(['route'=>'role.store', 'method'=>'POST'])!!}
-                 <div class="form-group">
-                    <div class="form-group has-feedback">
-                        {!!Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Nombre del Rol'])!!}
-                        {{-- <span class="glyphicon glyphicon-user form-control-feedback"></span> --}}
+                 {!!Form::open(['route'=>'role.store', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
+
+                    <div class="form-group">
+                        <label for="rolName_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.rolname') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('name',null,['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        {!!Form::text('display_name',null,['class'=>'form-control', 'placeholder'=>'Nombre a Mostrar'])!!}
-                        {{-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> --}}
+                    <div class="form-group">
+                        <label for="displayName_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.displayname') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('display_name',null,['class'=>'form-control'])!!}
+                        </div>
                     </div>
-                    <div class="form-group has-feedback">
-                        {!!Form::text('description',null,['class'=>'form-control', 'placeholder'=>'Descripción'])!!}
-                        {{-- <span class="glyphicon glyphicon-lock form-control-feedback"></span> --}}
+                    <div class="form-group">
+                        <label for="displayName_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.description') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::textarea('description',null,['class'=>'form-control', 'rows'=>'3'])!!}
+                        </div>
                     </div>
-                    {!!Form::submit('Guardar', ['class'=>'btn btn-primary',
-                                                'style' =>'float: right;'])!!}
-                </div>
-                {!!Form::close()!!}
-                {!!Form::open(['route'=> ['role.index'], 'method'=>'GET'])!!}
-                {!!Form::submit('Cancelar', ['class'=>'btn btn-danger',
-                'style'=>'float:right; margin-right: 5px'])!!}
+                    <div class="text-center">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
+                            <a class="btn btn-danger btn-close" href="{{ route('role.index') }}"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                        </div>
+                    </div>
                 {!!Form::close()!!}
             </div>
         </div>

@@ -23,6 +23,7 @@ class CreateWebSupportsTable extends Migration
             $table->string('description');
             $table->string('status');
             $table->string('attentiontime');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -148,7 +148,7 @@ class UserController extends Controller
             $user = User::find($id);
             $roles = Role::pluck('display_name', 'id');
             $userRole = $user->roles->pluck('id','id')->toArray();
-            
+
             return view('user.edit', ['user'=>$user])->with(compact('roles', 'userRole'));
         }else{
             return redirect('/user')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");

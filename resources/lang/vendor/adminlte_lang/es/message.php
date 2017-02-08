@@ -152,4 +152,9 @@ return [
     'homephone'               => 'Teléfono',
     'cellphone'               => 'Celular',
     'username'                => 'Nombre de Usuario',
+    'rolname'                 => 'Nombre de Rol',
+    'displayname'             => 'Nombre a Mostrar',
+    'addwebsupport'           => 'Alta de Soporte Web',
+    'supportlist'             => 'Lista de Soportes Web',
+    'editwebsupport'          => 'Editar Soporte Web',
 ];

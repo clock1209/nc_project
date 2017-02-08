@@ -33,7 +33,9 @@
         <ul class="sidebar-menu">
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <li class="active"><a href="{{ url('home') }}"><i class='glyphicon glyphicon-home'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+
+            @permission('create_user','see_user','edit_user', 'delete_user')
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-user'></i> <span>{{ trans('adminlte_lang::message.users') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -45,8 +47,10 @@
                     @endpermission
                 </ul>
             </li>
+            @endpermission
+            @permission('create_role','see_role','edit_role', 'delete_role')
             <li class="treeview">
-                <a href="#"><i class='fa fa-user'></i> <span>{{ trans('adminlte_lang::message.roles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='glyphicon glyphicon-tags'></i> <span>{{ trans('adminlte_lang::message.roles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     @permission('create_role')
                     <li><a href="{!!URL::to('role/create')!!}">{{ trans('adminlte_lang::message.addrole') }}</a></li>
@@ -56,18 +60,32 @@
                     @endpermission
                 </ul>
             </li>
+            @endpermission
+            @permission('create_role','see_role','edit_role', 'delete_role')
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.motives') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='glyphicon glyphicon-comment'></i> <span>{{ trans('adminlte_lang::message.motives') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     @permission('create_motive')
                     <li><a href="{!!URL::to('motive/create')!!}">{{ trans('adminlte_lang::message.addmotive') }}</a></li>
                     @endpermission
-                    @permission('create_motive')
+                    @permission('see_motive')
                     <li><a href="{!!URL::to('motive')!!}">{{ trans('adminlte_lang::message.motiveslist') }}</a></li>
                     @endpermission
                 </ul>
             </li>
-            <li class="active"><a href="{{ url('websupport') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.websupport') }}</span></a></li>
+            @endpermission
+            
+            <li class="treeview">
+                <a href="#"><i class='glyphicon glyphicon-wrench'></i> <span>{{ trans('adminlte_lang::message.websupport') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    {{-- @permission('create_motive') --}}
+                    <li><a href="{{ url('websupport/create') }}">{{ trans('adminlte_lang::message.addwebsupport') }}</a></li>
+                    {{-- @endpermission --}}
+                    {{-- @permission('create_motive') --}}
+                    <li><a href="{!!URL::to('websupport')!!}">{{ trans('adminlte_lang::message.supportlist') }}</a></li>
+                    {{-- @endpermission --}}
+                </ul>
+            </li>
             
         </ul><!-- /.sidebar-menu -->
     </section>

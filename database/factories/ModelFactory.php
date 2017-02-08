@@ -32,3 +32,16 @@ $factory->define(App\Motive::class, function (Faker\Generator $faker) {
         'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
     ];
 });
+
+$factory->define(App\webSupport::class, function (Faker\Generator $faker) {
+    return [
+        'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'user' => $faker->userName,
+        'client' => $faker->name,
+        'domain' => $faker->domainName,
+        'motive' => $faker->sentence($nbWords = 4, $variableNbWords = true),
+        'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
+        'status' => $faker->randomElement($array = array('En espera del cliente', 'Resuelto', 'Cancelado')),
+        'attentiontime' => $faker->regexify('/^ ?\d{1,2}[hm] (\d{1,2}[m])?$/'),
+    ];
+});

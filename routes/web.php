@@ -36,6 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('user/show',['as'=>'user.show','uses'=>'UserController@show','middleware'=> ['permission:see_user']]);
 	Route::get('user/delete',['as'=>'user.destroy','uses'=>'UserController@destroy','middleware'=> ['permission:delete_user']]);
 
+	Route::resource('role', 'RoleController');
+	Route::get('role/edit', 'RoleController@edit');
+	Route::get('role/delete/{id}', 'RoleController@destroy');
+
 	// 	---------- PERMISSION MIDDLEWARE FOR ROLES
 	Route::get('role/create',['as'=>'role.create','uses'=>'RoleController@create','middleware'=> ['permission:create_role']]);
 	Route::post('role/create',['as'=>'role.store','uses'=>'RoleController@store','middleware'=> ['permission:create_role']]);
@@ -44,22 +48,23 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('role/show',['as'=>'role.show','uses'=>'RoleController@show','middleware'=> ['permission:see_role']]);
 	Route::get('role/delete',['as'=>'role.destroy','uses'=>'RoleController@destroy','middleware'=> ['permission:delete_role']]);
 
-	Route::resource('role', 'RoleController');
-	Route::get('role/edit', 'RoleController@edit');
-	Route::get('role/delete/{id}', 'RoleController@destroy');
-
-	Route::get('api/users', 'UserController@getBtnDatatable');
-	Route::get('api/roles', 'RoleController@getBtnDatatable');
-	Route::get('api/motives', 'MotiveController@getBtnDatatable');
-
-	Route::get('/permisos','PermissionController@index');
-	Route::get('/permisos/asignar','PermissionController@asignar');
-	Route::get('/permisos/desasignar','PermissionController@desasignar');
-
 	Route::resource('motive', 'MotiveController');
 	Route::get('motive/edit', 'MotiveController@Edit');
 	Route::get('motive/delete/{id}', 'MotiveController@destroy');
 
-	Route::resource('websupport', 'webSupportController');
+	Route::resource('websupport', 'WebSupportController');
+	Route::get('websupport/edit', 'WebSupportController@Edit');
+	Route::get('websupport/delete/{id}', 'WebSupportController@destroy');
+
+	Route::get('websupport/delete',['as'=>'websupport.destroy','uses'=>'WebSupportController@destroy','middleware'=> ['permission:delete_websupport']]);
+
+	Route::get('api/users', 'UserController@getBtnDatatable');
+	Route::get('api/roles', 'RoleController@getBtnDatatable');
+	Route::get('api/motives', 'MotiveController@getBtnDatatable');
+	Route::get('api/websupport', 'WebSupportController@getBtnDatatable');
+
+	Route::get('/permisos','PermissionController@index');
+	Route::get('/permisos/asignar','PermissionController@asignar');
+	Route::get('/permisos/desasignar','PermissionController@desasignar');
 
 });

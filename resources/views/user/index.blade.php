@@ -8,7 +8,7 @@
 
 @section('contentheader_title') 
 @permission('create_user')
-<a class="btn btn-success btn-lg" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('user.create') }}"><i class="glyphicon glyphicon-user"></i> Agregar Usuario</a>
+<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('user.create') }}"><i class="glyphicon glyphicon-user"></i> Agregar Usuario</a>
 @endpermission
 @endsection
 
@@ -38,7 +38,7 @@
 								<th>Apellido Materno</th>
 								<th>Nombre de Usuario</th>
 								<th>Email</th>
-								<th>Action</th>
+								<th style="width: 236px">Action</th>
 							</tr>
 						</thead>
 					</table>

@@ -34,7 +34,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Descripción</th>
-								<th class="col-md-4">Action</th>
+								<th style="width: 236px">Action</th>
 							</tr>
 						</thead>
 					</table>

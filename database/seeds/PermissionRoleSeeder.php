@@ -107,6 +107,7 @@ class PermissionRoleSeeder extends Seeder
 			//TO ADMIN
 		$normalUser->attachPermission($seeUser);
 		$normalUser->attachPermission($seeRole);
+		$normalUser->attachPermission($seeMotive);
 
 		$admin->attachPermission($createUser);
 		$admin->attachPermission($editUser);
