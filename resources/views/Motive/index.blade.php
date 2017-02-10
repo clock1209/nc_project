@@ -102,9 +102,8 @@
 						data: {id: mtv_id},
 					}).done(function(data){
 							console.log(data);
-							console.log(data.message);
 							table.ajax.reload();
-							$("#msj-authorized").fadeOut().fadeIn();
+							$("#msj-"+data.message).fadeOut().fadeIn();
 					});
 				});
 			});

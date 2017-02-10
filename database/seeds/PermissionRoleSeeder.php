@@ -107,6 +107,31 @@ class PermissionRoleSeeder extends Seeder
 		$deleteMotive->description 	= 'Delete a motive'; /*OPTIONAL*/
 		$deleteMotive->save();
 
+		/* CREATE NEW webSUPPORT'S PERMISSION'S */
+		$createWebSupport = new App\Permission();
+		$createWebSupport->name 			= 'create_websupport';
+		$createWebSupport->display_name 	= 'Create Web Support'; /*OPTIONAL*/
+		$createWebSupport->description 	= 'Create a new web support'; /*OPTIONAL*/
+		$createWebSupport->save();
+
+		$editWebSupport = new App\Permission();
+		$editWebSupport->name 			= 'edit_websupport';
+		$editWebSupport->display_name 	= 'Edit Web Support'; /*OPTIONAL*/
+		$editWebSupport->description 	= 'Edit a web support'; /*OPTIONAL*/
+		$editWebSupport->save();
+
+		$seeWebSupport = new App\Permission();
+		$seeWebSupport->name 			= 'see_websupport';
+		$seeWebSupport->display_name 	= 'See Web Support List'; /*OPTIONAL*/
+		$seeWebSupport->description 	= 'See Web Support list'; /*OPTIONAL*/
+		$seeWebSupport->save();
+
+		$deleteWebSupport = new App\Permission();
+		$deleteWebSupport->name 			= 'delete_websupport';
+		$deleteWebSupport->display_name 	= 'Delete Web Support'; /*OPTIONAL*/
+		$deleteWebSupport->description 	= 'Delete a web support'; /*OPTIONAL*/
+		$deleteWebSupport->save();
+
 		/* 
 			ASSIGN PERMISSION'S 
 		*/
@@ -127,6 +152,11 @@ class PermissionRoleSeeder extends Seeder
 		$admin->attachPermission($editMotive);
 		$admin->attachPermission($seeMotive);
 		$admin->attachPermission($deleteMotive);
+		$admin->attachPermission($assignPermission);
+		$admin->attachPermission($createWebSupport);
+		$admin->attachPermission($editWebSupport);
+		$admin->attachPermission($seeWebSupport);
+		$admin->attachPermission($deleteWebSupport);
 
 		$user = User::find(1);
 		$user->attachRole($admin);

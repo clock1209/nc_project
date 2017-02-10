@@ -13,6 +13,7 @@ use Datatables;
 use Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Entrust;
 
 class WebSupportController extends Controller
 {
@@ -34,14 +35,30 @@ class WebSupportController extends Controller
         return Datatables::of($supports)
             ->addColumn('action', function ($support) {
                 
-                return '<a data-toggle="modal" spt_id="'. $support->id .'" data-target="#support" class="btn btn-info get-support"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>
-                <a href="websupport/'.$support->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                <a href="websupport/delete/'.$support->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+                return $this->botones($support);
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);
     }
 
+    function botones($support)
+    {
+        $see_websupport = "";
+        $edit_websupport = "";
+        $delete_websupport = "";
+        if(Entrust::can('see_websupport')){
+            $see_websupport =
+            '<a data-toggle="modal" spt_id="'. $support->id .'" data-target="#support" class="btn btn-info get-support"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>';
+        }if (Entrust::can('edit_websupport')) {
+            $edit_websupport = 
+            '<a href="websupport/'.$support->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+        }if (Entrust::can('delete_websupport')) {
+            $delete_websupport = 
+            '<a spt_id="'. $support->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+        }
+
+        return $see_websupport ." ". $edit_websupport ." ". $delete_websupport;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -136,9 +153,12 @@ class WebSupportController extends Controller
      */
     public function destroy($id)
     {
-        webSupport::whereId($id)->delete();
+        if(Entrust::can('delete_websupport')){
+            webSupport::whereId($id)->delete();
 
-        Session::flash('message', 'Soporte Borrado Exitosamente');
-        return Redirect::to('websupport');
+            return response()->json(["message"=>"authorized"]);
+         }else{
+            return redirect('/websupport')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+         }
     }
 }

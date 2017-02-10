@@ -25,6 +25,7 @@
 
 <div class="container-fluid spark-screen">
 	<div class="row">
+		{!! Build::alert_ajax('Soporte Eliminado Exitosamente') !!}
 			<div class="panel panel-default">
 				<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.supportlist') }}</b></i></div>
 
@@ -103,7 +104,7 @@
 		<script>
 
 			$(document).ready(function(){
-				$('#supports').DataTable({
+				var table = $('#supports').DataTable({
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/websupport",
@@ -142,6 +143,21 @@
 
                    });
 
+				$('body').delegate('#btnActionDelete','click',function(){
+					spt_id = $(this).attr('spt_id');
+					var token = $("#token").val();
+					$.ajax({
+						url: '{{ route("websupport.destroy") }}'+'/'+spt_id,
+						headers: {'X-CSRF-TOKEN': token},
+						type: 'GET',
+						dataType: 'json',
+						data: {id: spt_id},
+					}).done(function(data){
+							console.log(data);
+							table.ajax.reload();
+							$("#msj-"+data.message).fadeOut().fadeIn();
+					});
+				});
 				
 			});
 		</script>
