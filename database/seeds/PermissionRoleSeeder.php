@@ -76,6 +76,12 @@ class PermissionRoleSeeder extends Seeder
 		$deleteRole->description 	= 'Delete a role'; /*OPTIONAL*/
 		$deleteRole->save();
 
+		$assignPermission = new App\Permission();
+		$assignPermission->name 			= 'assign_permission';
+		$assignPermission->display_name 	= 'Assign Permission'; /*OPTIONAL*/
+		$assignPermission->description 	= 'Assign permission to role'; /*OPTIONAL*/
+		$assignPermission->save();
+
 		/* CREATE NEW MOTIVE'S PERMISSION'S */
 		$createMotive = new App\Permission();
 		$createMotive->name 			= 'create_motive';

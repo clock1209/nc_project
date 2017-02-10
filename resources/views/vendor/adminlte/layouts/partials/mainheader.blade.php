@@ -4,9 +4,9 @@
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini">NVM</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg">NUVEM </span>
+        <span class="logo-lg">NUVEM <br>Tecnología viva</span>
     </a>
 
     <!-- Header Navbar -->

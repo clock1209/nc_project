@@ -18,7 +18,7 @@
                 <div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.registeruser') }}</b></i></div>
                 <div class="panel-body">
                  {!!Form::open(['route'=>'user.store', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
-                    
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
                      <div class="form-group">
                         <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.yourname') }}:</label>
                         <div class="col-sm-8">

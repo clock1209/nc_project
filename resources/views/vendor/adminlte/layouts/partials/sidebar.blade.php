@@ -61,7 +61,7 @@
                 </ul>
             </li>
             @endpermission
-            @permission('create_role','see_role','edit_role', 'delete_role')
+            @permission('create_motive','see_motive','edit_motive', 'delete_motive')
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-comment'></i> <span>{{ trans('adminlte_lang::message.motives') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

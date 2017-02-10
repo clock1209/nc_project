@@ -25,11 +25,11 @@
 
 <div class="container-fluid spark-screen">
 	<div class="row">
+			@include('alerts.delAjax')
 			<div class="panel panel-default">
 				<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.userslist') }}</b></i></div>
-
 				<div class="panel-body">
-					<table class="table" id="users">
+					<table class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="users">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -98,7 +98,7 @@
 		<script>
 
 			$(document).ready(function(){
-				$('#users').DataTable({
+				var table = $('#users').DataTable({
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/users",
@@ -133,6 +133,22 @@
                     });
 
                    });
+
+				$('body').delegate('#btnActionDelete','click',function(){
+					usr_id = $(this).attr('usr_id');
+					var token = $("#token").val();
+					$.ajax({
+						url: '{{ route("user.destroy") }}'+'/'+usr_id,
+						headers: {'X-CSRF-TOKEN': token},
+						type: 'GET',
+						dataType: 'json',
+						data: {id: usr_id},
+					}).done(function(data){
+							console.log(data);
+							table.ajax.reload();
+							$("#msj-delete").fadeOut().fadeIn();
+					});
+				});
 			});
 		</script>
 	</div>

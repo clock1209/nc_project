@@ -21,7 +21,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        if(Entrust::can('see_user')){
+        if(Entrust::can('see_role')){
             return view('role.index')->with('permisos' , Permission::all());
         }else{
             return redirect('/home')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
@@ -55,6 +55,8 @@ class RoleController extends Controller
         }if (Entrust::can('delete_role')) {
             $delete_role = 
             '<a href="role/delete/'.$role->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+        }if(Entrust::can('assign_role')){
+            
         }
 
         return $see_role ." ". $edit_role ." ". $delete_role;

@@ -19,10 +19,7 @@ use Entrust;
 class UserController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->beforeFilter('create_user', array('only' => 'create'));
-    // }
+    
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +60,7 @@ class UserController extends Controller
             '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
         }if (Entrust::can('delete_user')) {
             $delete_user = 
-            '<a href="user/delete/'.$user->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+            '<a usr_id="'. $user->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
         }
 
         return $see_user ." ". $edit_user ." ". $delete_user;
@@ -195,15 +192,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-
-         if(Entrust::can('delete_user')){
+         // if(Entrust::can('delete_user')){
             User::whereId($id)->delete();
 
-            Session::flash('message', 'Usuario Borrado Exitosamente');
-            return Redirect::to('user');
-         }else{
-            return redirect('/user')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción");
-         }
+            return response()->json(["message"=>"borrado"]);
+
+
+
+            // Session::flash('message', 'Usuario Borrado Exitosamente');
+            // return Redirect::to('user');
+         // }else{
+            // return redirect('/user')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción");
+         // }
         
     }
 }

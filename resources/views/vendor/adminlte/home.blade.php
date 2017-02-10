@@ -21,7 +21,7 @@
 					<div class="panel-heading"  style="background: #1792a4; color: white;"><b>{{ trans('adminlte_lang::message.welcome') }}</b></div>
 
 					<div class="panel-body">
-						{{ Auth::user()->name }},
+						<b>{{ Auth::user()->name }}</b>,
 						{{ trans('adminlte_lang::message.logged') }}
 					</div>
 				</div>
