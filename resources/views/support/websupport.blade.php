@@ -14,12 +14,12 @@
             @include('alerts.request')
             @include('alerts.unauthorized')
             <div class="panel panel-default">
-                <div class="panel-heading" style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.websupport') }}</i></b></div>
+                <div class="panel-heading" style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.addwebsupport') }}</i></b></div>
                 <div class="panel-body">
                 	{!!Form::open(['route'=>'websupport.store', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
                 		<div class="form-group mb-200">
                 			<div class="col-sm-4 pull-right">
-                				{!!Form::date('date',null,['class'=>'form-control datepicker'])!!}
+                				{!!Form::date('date',$date,['class'=>'form-control datepicker'])!!}
                 			</div>
                 			<label for="date_lbl" class="col-sm-2 control-label pull-right">Fecha:</label>
                 		</div>
@@ -56,9 +56,7 @@
                 		<div class="form-group">
                 			<label for="status_lbl" class="col-sm-3 control-label">Estatus:</label>
                 			<div class="col-sm-9 text-center">
-                                 <label class="checkbox-inline btn btn-default"><input type="radio" name="radio" value="En espera del cliente" checked="true"> En espera del cliente</label>
-                                 <label class="checkbox-inline btn btn-default"><input type="radio" name="radio" value="Resuelto"> Resuelto</label>
-                                 <label class="checkbox-inline btn btn-default"><input type="radio" name="radio" value="Cancelado"> Cancelado</label>
+                                 {!! Build::radios() !!}
                 			</div>
                 		</div>
                 		<div class="form-group">
@@ -68,9 +66,9 @@
                 			</div>
                 		</div>
                 		<div class="text-center">
-                			<div class="btn-group">
+                			<div class="form-group">
                 				<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
-                				<a class="btn btn-danger btn-close" href="{{ route('user.index') }}"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                				<a class="btn btn-danger btn-close" href="{{ route('websupport.index') }}"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
                 			</div>
                 		</div>
                 	{!! Form::close() !!}

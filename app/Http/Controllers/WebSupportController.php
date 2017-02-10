@@ -14,6 +14,7 @@ use Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Entrust;
+use Carbon\Carbon;
 
 class WebSupportController extends Controller
 {
@@ -69,8 +70,10 @@ class WebSupportController extends Controller
     {
         $users = User::pluck('username', 'username');
         $motives = Motive::pluck('description', 'description');
+        $date = Carbon::now();
+        // dd($date);
 
-        return view('support.websupport')->with(compact('users', 'motives'));
+        return view('support.websupport')->with(compact('users', 'motives', 'date'));
     }
 
     /**
@@ -136,7 +139,7 @@ class WebSupportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update($id, WebSupportRequest $request)
     {
         $support = webSupport::find($id);
         $support->update($request->all());

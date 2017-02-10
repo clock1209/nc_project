@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                        <div class="btn-group">
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Actualizar</button>
                             <a class="btn btn-danger btn-close" href="{{ route('websupport.destroy').'/'.$support->id }}" ><i class="glyphicon glyphicon-floppy-remove"></i> Borrar</a>
                             <a class="btn btn-danger btn-close" href="{{ route('websupport.index') }}"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>

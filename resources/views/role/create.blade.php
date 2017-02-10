@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <div class="btn-group">
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button>
                             <a class="btn btn-danger btn-close" href="{{ route('role.index') }}"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
                         </div>

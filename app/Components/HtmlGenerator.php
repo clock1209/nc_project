@@ -3,6 +3,7 @@
 namespace App\Components;
 
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Input;
 
 class HtmlGenerator
 {
@@ -55,4 +56,26 @@ class HtmlGenerator
 
 		return $html;						
 	}
+
+	public function radios(){
+
+		$espera = "";
+		$resuelto = "";
+		$cancelado = "";
+		if (Input::old('radio')=='En espera del cliente') {
+			$espera = 'checked=true;';
+		}elseif (Input::old('radio')=='Resuelto') {
+			$resuelto = 'checked=true;';
+		}elseif (Input::old('radio')=='Cancelado') {
+			$cancelado = 'checked=true;';
+		}
+
+		$html =
+		'<label class="checkbox-inline btn btn-default"><input type="radio" name="radio" value="En espera del cliente" checked="true" '.$espera.'> En espera del cliente</label>
+		<label class="checkbox-inline btn btn-default"><input type="radio" name="radio" value="Resuelto" '.$resuelto.'> Resuelto</label>
+		<label class="checkbox-inline btn btn-default"><input type="radio" name="radio" value="Cancelado" '.$cancelado.'> Cancelado</label>';
+
+		return $html;
+	}
+
 }
