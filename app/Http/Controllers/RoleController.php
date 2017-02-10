@@ -54,7 +54,7 @@ class RoleController extends Controller
             '<a href="role/'.$role->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
         }if (Entrust::can('delete_role')) {
             $delete_role = 
-            '<a href="role/delete/'.$role->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+            '<a rol_id="'. $role->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
         }if(Entrust::can('assign_role')){
             
         }
@@ -149,8 +149,7 @@ class RoleController extends Controller
         if(Entrust::can('delete_role')){
             Role::whereId($id)->delete();
 
-            Session::flash('message', 'Rol eliminado satisfactoriamente');
-            return Redirect::to('/role');
+            return response()->json(["message"=>"authorized"]);
         }else{
             return redirect('role')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción");
         }

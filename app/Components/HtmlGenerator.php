@@ -45,4 +45,14 @@ class HtmlGenerator
 
 		return $res;
 	}
+
+	public function alert_ajax($alertName)
+	{
+		$html = 
+		'<div id="msj-authorized" class="alert alert-success alert-dismissible" role="alert" style="display: none">
+			<strong>'.$alertName.'</strong>
+		</div>';
+
+		return $html;						
+	}
 }

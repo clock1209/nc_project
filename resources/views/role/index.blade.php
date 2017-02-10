@@ -30,6 +30,7 @@
 
 <div class="container-fluid spark-screen">
 	<div class="row">
+        {!! Build::alert_ajax('Rol Eliminado Exitosamente') !!}
 		<div class="panel panel-default">
 			<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.rolelist') }}</b></i></div>
 
@@ -105,7 +106,7 @@
 <script>
 
 	$(document).ready(function(){
-		$('#roles').DataTable({
+		var table = $('#roles').DataTable({
 			"processing": true,
 			"serverSide": true,
 			"ajax": "/api/roles",
@@ -174,6 +175,23 @@
                         $('#select-permisos').multiSelect('refresh');
                     });
                 } );
+
+                $('body').delegate('#btnActionDelete','click',function(){
+                    rol_id = $(this).attr('rol_id');
+                    var token = $("#token").val();
+                    $.ajax({
+                        url: '{{ route("role.destroy") }}'+'/'+rol_id,
+                        headers: {'X-CSRF-TOKEN': token},
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {id: rol_id},
+                    }).done(function(data){
+                            console.log(data);
+                            console.log(data.message);
+                            table.ajax.reload();
+                            $("#msj-authorized").fadeOut().fadeIn();
+                    });
+                });
 	});
 </script>
 </div>

@@ -25,7 +25,7 @@
 
 <div class="container-fluid spark-screen">
 	<div class="row">
-			@include('alerts.delAjax')
+			{!! Build::alert_ajax('Usuario Eliminado Exitosamente') !!}
 			<div class="panel panel-default">
 				<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.userslist') }}</b></i></div>
 				<div class="panel-body">
@@ -145,8 +145,9 @@
 						data: {id: usr_id},
 					}).done(function(data){
 							console.log(data);
+							console.log(data.message);
 							table.ajax.reload();
-							$("#msj-delete").fadeOut().fadeIn();
+							$("#msj-authorized").fadeOut().fadeIn();
 					});
 				});
 			});

@@ -192,18 +192,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-         // if(Entrust::can('delete_user')){
+         if(Entrust::can('delete_user')){
             User::whereId($id)->delete();
 
-            return response()->json(["message"=>"borrado"]);
-
-
-
-            // Session::flash('message', 'Usuario Borrado Exitosamente');
-            // return Redirect::to('user');
-         // }else{
-            // return redirect('/user')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción");
-         // }
+            return response()->json(["message"=>"authorized"]);
+         }else{
+            return redirect('/user')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+         }
         
     }
 }
