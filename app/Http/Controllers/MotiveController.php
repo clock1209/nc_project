@@ -8,6 +8,7 @@ use App\Motive;
 use Datatables; 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Entrust;
 
 class MotiveController extends Controller
 {
@@ -33,9 +34,7 @@ class MotiveController extends Controller
         return Datatables::of($motives)
             ->addColumn('action', function ($motive) {
                 
-                return '<a data-toggle="modal" mtv_id="'. $motive->id .'" data-target="#motive" class="btn btn-info get-motive"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>
-                <a href="motive/'.$motive->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                <a href="motive/delete/'.$motive->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+                return $this->botones($motive);
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);
@@ -48,13 +47,13 @@ class MotiveController extends Controller
         $delete_motive = "";
         if(Entrust::can('see_motive')){
             $see_motive =
-            '<a data-toggle="modal" usr_id="'. $motive->id .'" data-target="#usuario" class="btn btn-info get-motive"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>';
-        }if (Entrust::can('edit_motive')) {
-            $edit_motive = 
+            '<a data-toggle="modal" mtv_id="'. $motive->id .'" data-target="#motive" class="btn btn-info get-motive"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>';
+        }if(Entrust::can('edit_motive')){
+            $edit_motive =
             '<a href="motive/'.$motive->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
         }if (Entrust::can('delete_motive')) {
             $delete_motive = 
-            '<a href="motive/delete/'.$motive->id.'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+            '<a mtv_id="'. $motive->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
         }
 
         return $see_motive ." ". $edit_motive ." ". $delete_motive;
@@ -136,9 +135,12 @@ class MotiveController extends Controller
      */
     public function destroy($id)
     {
-        Motive::whereId($id)->delete();
+        if(Entrust::can('delete_motive')){
+            Motive::whereId($id)->delete();
 
-            Session::flash('message', 'Motivo Borrado Exitosamente');
-            return Redirect::to('motive');
+            return response()->json(["message"=>"authorized"]);
+         }else{
+            return redirect('/motive')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+         }
     }
 }

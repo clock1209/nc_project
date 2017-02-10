@@ -25,6 +25,7 @@
 
 <div class="container-fluid spark-screen">
 	<div class="row">
+		{!! Build::alert_ajax('Motivo Eliminado Exitosamente') !!}
 			<div class="panel panel-default">
 				<div class="panel-heading"  style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.motiveslist') }}</i></b></div>
 
@@ -65,7 +66,7 @@
 		<script>
 
 			$(document).ready(function(){
-				$('#motives').DataTable({
+				var table = $('#motives').DataTable({
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/motives",
@@ -89,6 +90,23 @@
                     });
 
                    });
+
+				$('body').delegate('#btnActionDelete','click',function(){
+					mtv_id = $(this).attr('mtv_id');
+					var token = $("#token").val();
+					$.ajax({
+						url: '{{ route("motive.destroy") }}'+'/'+mtv_id,
+						headers: {'X-CSRF-TOKEN': token},
+						type: 'GET',
+						dataType: 'json',
+						data: {id: mtv_id},
+					}).done(function(data){
+							console.log(data);
+							console.log(data.message);
+							table.ajax.reload();
+							$("#msj-authorized").fadeOut().fadeIn();
+					});
+				});
 			});
 		</script>
 	</div>

@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('motive/edit', 'MotiveController@Edit');
 	Route::get('motive/delete/{id}', 'MotiveController@destroy');
 
+	Route::get('motive/delete',['as'=>'motive.destroy','uses'=>'MotiveController@destroy','middleware'=> ['permission:delete_motive']]);
+
 	Route::resource('websupport', 'WebSupportController');
 	Route::get('websupport/edit', 'WebSupportController@Edit');
 	Route::get('websupport/delete/{id}', 'WebSupportController@destroy');
