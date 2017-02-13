@@ -54,22 +54,22 @@
                     </div>
                     <div class="form-group has-feedback">
                         <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.retrypepassword') }}" name="password_confirmation"/>
-                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.homephone') }}" name="homePhone" value="{{ old('homePhone') }}"/>
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        <span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.cellphone') }}" name="cellPhone" value="{{ old('cellPhone') }}"/>
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        <span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
                     </div>
                     <div class="row">
                         <div class="col-xs-1">
                             <label>
                                 <div class="checkbox_register icheck">
                                     <label>
-                                        <input type="checkbox" name="terms">
+                                        <input type="checkbox" name="terms" value="{{ old('terms') }}">
                                     </label>
                                 </div>
                             </label>

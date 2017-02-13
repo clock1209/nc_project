@@ -7,7 +7,7 @@
 @endsection
 
 @section('contentheader_title') 
-@permission('create_user')
+@permission('create_motive')
 <a class="btn btn-success btn-close" href="{{ route('motive.create') }}" style="float:right; margin-right: 5px; margin-right: 100px"><i class="glyphicon glyphicon-comment"></i> Agregar Motivo</a>
 @endpermission
 @endsection
