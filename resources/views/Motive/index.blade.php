@@ -8,7 +8,7 @@
 
 @section('contentheader_title') 
 @permission('create_user')
-<a class="btn btn-success btn-close" href="{{ route('motive.create') }}" style="float:right; margin-right: 5px; margin-right: 100px">Agregar Motivo</a>
+<a class="btn btn-success btn-close" href="{{ route('motive.create') }}" style="float:right; margin-right: 5px; margin-right: 100px"><i class="glyphicon glyphicon-comment"></i> Agregar Motivo</a>
 @endpermission
 @endsection
 
@@ -30,7 +30,7 @@
 				<div class="panel-heading"  style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.motiveslist') }}</i></b></div>
 
 				<div class="panel-body">
-					<table class="table" id="motives">
+					<table class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="motives">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -70,8 +70,9 @@
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/motives",
+					"scrollX": true,
 					"columns":[
-					{data: 'id'},
+					{data: 'id', visible: false},
 					{data: 'description'},
 					{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 					],

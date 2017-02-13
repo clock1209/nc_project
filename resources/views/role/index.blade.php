@@ -13,7 +13,7 @@
 
 @section('contentheader_title') 
 @permission('create_role')
-<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('role.create') }}"><i class="glyphicon glyphicon-tags"></i>  Agregar Rol</a>
+<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('role.create') }}"><i class="glyphicon glyphicon-tags"></i> Agregar Rol</a>
 @endpermission
 @endsection
 
@@ -110,8 +110,9 @@
 			"processing": true,
 			"serverSide": true,
 			"ajax": "/api/roles",
+            "scrollX": true,
 			"columns":[
-			{data: 'id'},
+			{data: 'id', visible: false},
 			{data: 'display_name'},
 			{data: 'action', name: 'action', orderable: false, serchable: false,  bSearchable: false},
 			],

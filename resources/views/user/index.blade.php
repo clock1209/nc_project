@@ -38,7 +38,7 @@
 								<th>Apellido Materno</th>
 								<th>Nombre de Usuario</th>
 								<th>Email</th>
-								<th style="width: 236px">Action</th>
+								<th style="width: 245px">Action</th>
 							</tr>
 						</thead>
 					</table>
@@ -102,6 +102,7 @@
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/users",
+					"scrollX": true,
 					"columns":[
 					{data: 'id', visible: false},
 					{data: 'name'},

@@ -28,7 +28,7 @@ class WebSupportRequest extends FormRequest
             'client' => 'required',
             'domain' => 'required',
             'description' => 'nullable',
-            'attentiontime' => 'required|regex:/^\s?\d{1,2}[dhm]\s?(\d{1,2}[hm]\s?(\d{1,2}[m]\s?)?)?$/',
+            'attentiontime' => 'required|regex:/^\s?\d{1,2}[dwhm]\s?(\d{1,2}[dhm]\s?(\d{1,2}[hm]\s?)?)?$/',
         ];
     }
 }

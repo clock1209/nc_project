@@ -7,9 +7,9 @@
 @endsection
 
 @section('contentheader_title') 
-{{-- @permission('create_user')
-<a class="btn btn-success btn-lg" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('user.create') }}"><i class="glyphicon glyphicon-user"></i> Agregar Usuario</a>
-@endpermission --}}
+@permission('create_websupport')
+<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('role.create') }}"><i class="glyphicon glyphicon-wrench"></i> Agregar Soporte Web</a>
+@endpermission
 @endsection
 
 @section('main-content')
@@ -42,7 +42,7 @@
 								<th>Descripción</th>
 								<th>Estatus</th>
 								<th>Tiempo</th>
-								<th style="width: 236px">Action</th>
+								<th style="width: 245px">Action</th>
 							</tr>
 						</thead>
 					</table>
@@ -108,6 +108,7 @@
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/websupport",
+					"scrollX": true,
 					"columns":[
 					{data: 'id', visible: false},
 					{data: 'date', visible: false}, 
