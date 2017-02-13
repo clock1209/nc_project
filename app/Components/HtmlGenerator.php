@@ -5,6 +5,7 @@ namespace App\Components;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Input;
 
+
 class HtmlGenerator
 {
 	public function link($url = null, $name = null, $class = null)
@@ -77,5 +78,20 @@ class HtmlGenerator
 
 		return $html;
 	}
+
+	public function domains(){
+		$cpanel = new \Gufy\CpanelPhp\Cpanel([
+			'host'        =>  'https://216.55.141.226:2087', // ip or domain complete with its protocol and port
+	        'username'    =>  'root', // username of your server, it usually root.
+	        'auth_type'   =>  'password', // set 'hash' or 'password'
+	        'password'    =>  '9VRF1VyBN9NWnW', // long hash or your user's password 
+		]);
+		$data = json_decode($cpanel->listAccounts());
+		foreach ($data->acct as $key => $value) {
+			dd($value->domain.'<br>');
+		}
+	}
+
+	
 
 }

@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('list-accounts',function(){
+		$list_accounts = CpanelWhm::listaccts();
+
+		return $list_accounts;
+	});
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
