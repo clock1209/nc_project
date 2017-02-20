@@ -48,16 +48,6 @@ class HtmlGenerator
 		return $res;
 	}
 
-	public function alert_ajax($alertName)
-	{
-		$html = 
-		'<div id="msj-authorized" class="alert alert-success alert-dismissible" role="alert" style="display: none">
-			<strong>'.$alertName.'</strong>
-		</div>';
-
-		return $html;						
-	}
-
 	public function radios(){
 
 		$espera = "";
@@ -79,19 +69,15 @@ class HtmlGenerator
 		return $html;
 	}
 
-	public function domains(){
-		$cpanel = new \Gufy\CpanelPhp\Cpanel([
-			'host'        =>  'https://216.55.141.226:2087', // ip or domain complete with its protocol and port
-	        'username'    =>  'root', // username of your server, it usually root.
-	        'auth_type'   =>  'password', // set 'hash' or 'password'
-	        'password'    =>  '9VRF1VyBN9NWnW', // long hash or your user's password 
-		]);
-		$data = json_decode($cpanel->listAccounts());
-		foreach ($data->acct as $key => $value) {
-			dd($value->domain.'<br>');
-		}
-	}
+	public function alert_ajax($alertName)
+	{
+		$html = 
+		'<div id="msj-authorized" class="alert alert-success alert-dismissible" role="alert" style="display: none">
+		<button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+			<strong>'.$alertName.'</strong>
+		</div>';
 
-	
+		return $html;						
+	}
 
 }

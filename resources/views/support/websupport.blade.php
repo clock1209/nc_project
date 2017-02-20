@@ -1,5 +1,24 @@
 @extends('adminlte::layouts.app')
 
+@section('styles')
+<style type="text/css">
+        #loader{
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+          0% { -webkit-transform: rotate(0deg); }
+          100% { -webkit-transform: rotate(360deg); }
+      }
+
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+    </style>
+@endsection
+
 @section('htmlheader_title')
 	{{ trans('adminlte_lang::message.rolelist') }}
 @endsection
@@ -13,6 +32,7 @@
         <div class="col-md-8 col-md-offset-2">
             @include('alerts.request')
             @include('alerts.unauthorized')
+            {!! Build::alert_ajax('Se actualizaron los dominios correctamente') !!}
             <div class="panel panel-default">
                 <div class="panel-heading" style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.addwebsupport') }}</i></b></div>
                 <div class="panel-body">
@@ -38,7 +58,17 @@
                 		<div class="form-group">
                 			<label for="domain_lbl" class="col-sm-3 control-label">Dominio:</label>
                 			<div class="col-sm-9">
-                				{!! Form::select('domain', array('L' => '-- Seleccionar --'), null, ['class'=>'form-control']) !!}
+                				{{-- {!! Form::select('domains[]', $domains, null, ['class'=>'form-control']) !!} --}}
+                                <div class="input-group ">
+                                    {!! Form::text('domains', "", ['list'=> 'domains','class'=>'form-control']) !!}
+                                  <datalist size='5' id="domains">
+                                      @foreach ($domains as $element)
+                                          <option value="{{ $element }}" >
+                                      @endforeach
+                                  </datalist>
+                                  <a id="btnRefresh" idtest="test" class="btn btn-default input-group-addon" data-toggle="tooltip" data-placement="top" title="refrescar"><i class="glyphicon glyphicon-refresh" id="refresh"></i></a>
+                                </div>
+                                
                 			</div>
                 		</div>
                 		<div class="form-group">
@@ -61,8 +91,12 @@
                 		</div>
                 		<div class="form-group">
                 			<label for="time_lbl" class="col-sm-3 control-label">Tiempo de atención:</label>
-                			<div class="col-sm-3">
-                				{!!Form::text('attentiontime',null,['class'=>'form-control'])!!}
+                			<div class="col-sm-4">
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    {!!Form::text('attentiontime',null,['class'=>'form-control'])!!}
+                                    <a class="btn btn-default input-group-addon " data-toggle="tooltip" data-placement="right" title="w=weeks d=day h=hours m=minutes"><i class="glyphicon glyphicon-question-sign" id=""></i></a>
+                                </div>
+                				
                 			</div>
                 		</div>
                 		<div class="text-center">
@@ -78,10 +112,33 @@
 </div>
 
 <script>
-    $('.datepicker').datepicker({
-    language: "es",
-    autoclose: true,
-    todayHighlight: true
-});
+    
+
+    $(document).ready(function(){
+        $('body').delegate('#btnRefresh','click', function(){
+            spt_id = $(this).attr('spt_id');
+            var token = $("#token").val();
+            $('#refresh').attr('id', 'loader');
+            $.ajax({
+                url: '{{ route("websupport.refresh") }}',
+                headers: {'X-CSRF-TOKEN': token},
+                type: 'GET',
+                dataType: 'json',
+                data: {id: spt_id},
+            }).done(function(data){
+                $('#domains').empty();
+                $.each(data.domains, function (key, value){
+                    $('#domains').append("<option value='" + value + "'></option>");
+                });
+                $('#loader').attr('id', 'refresh');
+                $("#msj-authorized").fadeOut().fadeIn();
+            });
+        });
+
+        $('body').delegate('#msj-authorized','click', function(){
+            $(this).hide();
+        });
+    });
 </script>
+
 @endsection

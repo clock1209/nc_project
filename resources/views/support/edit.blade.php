@@ -41,7 +41,12 @@
                         <div class="form-group">
                             <label for="domain_lbl" class="col-sm-3 control-label">Dominio:</label>
                             <div class="col-sm-9">
-                                {!! Form::select('domain', array('L' => '-- Seleccionar --'), null, ['class'=>'form-control']) !!}
+                                    {!! Form::text('domain', $selDomain, ['list'=> 'domains','class'=>'form-control']) !!}
+                                  <datalist size='5' id="domains">
+                                      @foreach ($domains as $element)
+                                          <option value="{{ $element }}" >
+                                      @endforeach
+                                  </datalist>
                             </div>
                         </div>
                         <div class="form-group">

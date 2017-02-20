@@ -11,7 +11,6 @@ class DateController extends Controller
 {
     function showDate(Request $request)
     {
- 
-       dd($request->date);
+ 		//
     }
 }

@@ -85,7 +85,7 @@
 					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
 						<div class="input-group-addon">Celular:</div>
 						{!! Form::label('cellPhone', null, ['class'=>'form-control', 'id'=>'cellPhone']) !!}
-					</div> {!! Build::domains() !!}
+					</div>
 				</div>
 				<div class="modal-footer">
 					<a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
@@ -149,6 +149,10 @@
 							table.ajax.reload();
 							$("#msj-"+data.message).fadeOut().fadeIn();
 					});
+				});
+
+				$('body').delegate('#msj-authorized','click', function(){
+					$(this).hide();
 				});
 			});
 		</script>

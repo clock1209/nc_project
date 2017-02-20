@@ -11,7 +11,8 @@
         "laravelcollective/html": "^5.3.0",
         "yajra/laravel-datatables-oracle": "^6.22",
         "zizaco/entrust": "5.2.x-dev",
-        "gufy/cpanel-whm": "dev-master"
+        "gufy/cpanel-whm": "dev-master",
+        "pmill/php-plesk": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

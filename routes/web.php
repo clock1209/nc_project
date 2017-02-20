@@ -15,11 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('list-accounts',function(){
-		$list_accounts = CpanelWhm::listaccts();
-
-		return $list_accounts;
-	});
+Route::post('websupport/refresh', ['as'=>'websupport.refresh','uses'=>'WebSupportController@refreshDomains']);
 
 Auth::routes();
 
@@ -58,12 +54,24 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('motive/edit', 'MotiveController@Edit');
 	Route::get('motive/delete/{id}', 'MotiveController@destroy');
 
+	// 	---------- PERMISSION MIDDLEWARE FOR MOTIVES
+	Route::get('motive/create',['as'=>'motive.create','uses'=>'MotiveController@create','middleware'=> ['permission:create_motive']]);
+	Route::post('motive/create',['as'=>'motive.store','uses'=>'MotiveController@store','middleware'=> ['permission:create_motive']]);
+	Route::get('motive/{id}/edit',['as'=>'motive.edit','uses'=>'MotiveController@edit','middleware'=> ['permission:edit_motive']]);
+	Route::get('/motive',['as'=>'motive.index','uses'=>'MotiveController@index','middleware'=> ['permission:see_motive']]);
+	Route::get('motive/show',['as'=>'motive.show','uses'=>'MotiveController@show','middleware'=> ['permission:see_motive']]);
 	Route::get('motive/delete',['as'=>'motive.destroy','uses'=>'MotiveController@destroy','middleware'=> ['permission:delete_motive']]);
 
+	Route::get('websupport/refresh', ['as'=>'websupport.refresh','uses'=>'WebSupportController@refreshDomains']);
 	Route::resource('websupport', 'WebSupportController');
 	Route::get('websupport/edit', 'WebSupportController@Edit');
 	Route::get('websupport/delete/{id}', 'WebSupportController@destroy');
 
+	Route::get('websupport/create',['as'=>'websupport.create','uses'=>'WebSupportController@create','middleware'=> ['permission:create_websupport']]);
+	Route::post('websupport/create',['as'=>'websupport.store','uses'=>'WebSupportController@store','middleware'=> ['permission:create_websupport']]);
+	Route::get('websupport/{id}/edit',['as'=>'websupport.edit','uses'=>'WebSupportController@edit','middleware'=> ['permission:edit_websupport']]);
+	Route::get('/websupport',['as'=>'websupport.index','uses'=>'WebSupportController@index','middleware'=> ['permission:see_websupport']]);
+	Route::get('websupport/show',['as'=>'websupport.show','uses'=>'WebSupportController@show','middleware'=> ['permission:see_websupport']]);
 	Route::get('websupport/delete',['as'=>'websupport.destroy','uses'=>'WebSupportController@destroy','middleware'=> ['permission:delete_websupport']]);
 
 	Route::get('api/users', 'UserController@getBtnDatatable');

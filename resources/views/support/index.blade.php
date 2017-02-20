@@ -8,7 +8,7 @@
 
 @section('contentheader_title') 
 @permission('create_websupport')
-<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('role.create') }}"><i class="glyphicon glyphicon-wrench"></i> Agregar Soporte Web</a>
+<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('websupport.create') }}"><i class="glyphicon glyphicon-wrench"></i> Agregar Soporte Web</a>
 @endpermission
 @endsection
 
@@ -42,7 +42,7 @@
 								<th>Descripción</th>
 								<th>Estatus</th>
 								<th>Tiempo</th>
-								<th style="width: 245px">Action</th>
+								<th style="width: 255px">Action</th>
 							</tr>
 						</thead>
 					</table>
@@ -158,6 +158,10 @@
 							table.ajax.reload();
 							$("#msj-"+data.message).fadeOut().fadeIn();
 					});
+				});
+
+				$('body').delegate('#msj-authorized','click', function(){
+					$(this).hide();
 				});
 				
 			});

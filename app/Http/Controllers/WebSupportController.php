@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Motive;
 use App\webSupport;
+use App\Domain;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\WebSupportRequest;
@@ -68,12 +69,13 @@ class WebSupportController extends Controller
      */
     public function create()
     {
+        // $this->refreshDomains();
         $users = User::pluck('username', 'username');
         $motives = Motive::pluck('description', 'description');
         $date = Carbon::now();
-        // dd($date);
+        $domains = Domain::pluck('domain','domain');
 
-        return view('support.websupport')->with(compact('users', 'motives', 'date'));
+        return view('support.websupport')->with(compact('users', 'motives', 'date', 'domains'));
     }
 
     /**
@@ -87,12 +89,13 @@ class WebSupportController extends Controller
       $status = Input::get('radio');
       $user = implode(Input::get('users'));
       $motive = implode(Input::get('motives'));
+      $domain = Input::get('domains');
 
       $support = webSupport::create([
           'date' => $request['date'],
           'user' => $user,
           'client' => $request['client'],
-          'domain' => $request['domain'],
+          'domain' => $domain,
           'motive' => $motive,
           'description' => $request['description'],
           'status' => $status,
@@ -128,8 +131,10 @@ class WebSupportController extends Controller
         $motives = Motive::pluck('description', 'description');
         $selMotive = $support->motive;
         $selRadio = $support->status;
+        $domains = Domain::pluck('domain', 'domain');
+        $selDomain = $support->domain;
 
-        return view('support.edit', ['support'=>$support])->with(compact('users', 'selUser', 'motives', 'selMotive', 'selRadio'));
+        return view('support.edit', ['support'=>$support])->with(compact('users', 'selUser', 'motives', 'selMotive', 'selRadio', 'domains', 'selDomain'));
     }
 
     /**
@@ -164,4 +169,63 @@ class WebSupportController extends Controller
             return redirect('/websupport')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
          }
     }
+
+    
+
+    public function refreshDomains()
+    {   
+        // $cpanel = new \Gufy\CpanelPhp\Cpanel([
+        //     'host'        =>  'https://216.55.141.226:2087', // ip or domain complete with its protocol and port
+        //     'username'    =>  'root', // username of your server, it usually root.
+        //     'auth_type'   =>  'password', // set 'hash' or 'password'
+        //     'password'    =>  '9VRF1VyBN9NWnW', // long hash or your user's password 
+        // ]);
+
+        // $data = json_decode($cpanel->listAccounts());
+        
+        // if($data){
+            // Domain::truncate();
+
+            // foreach ($data->acct as $key => $value) {
+            //         Domain::create([
+            //             'domain' => $value->domain,
+            //         ]);
+            //     }
+
+            $domains = Domain::pluck('domain', 'domain');
+
+            return response()->json(["message"=>"Se han refrescado los dominios", "domains"=>$domains]);
+        // }elseif (is_null($data)) {
+            return response()->json(["message"=>"error al intentar refrescar los dominios"]);
+        // }
+    }
+
+
+    // protected function domainsPlesk()
+    // {
+    //     $config = array(
+    //         'host' => '216.55.138.206',
+    //         'username' => 'admin',
+    //         'password' => 'L50#UQ_5kwT8',
+    //     );
+
+    //     $params = array(
+    //         'subscription_id'=>1,
+    //     );
+
+    //     $request = new \pmill\Plesk\ListSites($config, $params);
+    //     $info = $request->process();
+
+        
+
+    //     // var_dump($info." | ");
+
+    //     if ($info === false) {
+    //         var_dump($request->error->getMessage());
+    //     }
+
+    //     dd($info);
+    // }
+
+
 }

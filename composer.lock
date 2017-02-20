@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "22934938b0b7af8796235eda350a81e7",
-    "content-hash": "cf0a5c6df3f70d5e65f6161dbe3de8b8",
+    "hash": "218eea4df732fb6facfefc04c44a60eb",
+    "content-hash": "365a9185fdbe456045815b2713a73c4f",
     "packages": [
         {
             "name": "acacha/admin-lte-template-laravel",
@@ -1637,6 +1637,50 @@
                 "xlsx"
             ],
             "time": "2015-05-01 07:00:55"
+        },
+        {
+            "name": "pmill/php-plesk",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pmill/php-plesk.git",
+                "reference": "3ff2998d86ae8f4bbbed5359a3d195a0b863518b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pmill/php-plesk/zipball/3ff2998d86ae8f4bbbed5359a3d195a0b863518b",
+                "reference": "3ff2998d86ae8f4bbbed5359a3d195a0b863518b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "pmill\\Plesk": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "pmill",
+                    "email": "dev.pmill@gmail.com",
+                    "homepage": "https://github.com/pmill",
+                    "role": "Author"
+                }
+            ],
+            "description": "PHP client for the Plesk RPC API",
+            "homepage": "https://github.com/pmill/php-plesk",
+            "keywords": [
+                "api",
+                "php",
+                "plesk"
+            ],
+            "time": "2014-10-08 00:00:00"
         },
         {
             "name": "psr/http-message",
@@ -4531,7 +4575,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "zizaco/entrust": 20,
-        "gufy/cpanel-whm": 20
+        "gufy/cpanel-whm": 20,
+        "pmill/php-plesk": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

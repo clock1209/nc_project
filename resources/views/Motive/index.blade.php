@@ -107,6 +107,10 @@
 							$("#msj-"+data.message).fadeOut().fadeIn();
 					});
 				});
+
+				$('body').delegate('#msj-authorized','click', function(){
+					$(this).hide();
+				});
 			});
 		</script>
 	</div>
