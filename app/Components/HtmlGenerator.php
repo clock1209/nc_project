@@ -74,7 +74,7 @@ class HtmlGenerator
 		$html = 
 		'<div id="msj-authorized" class="alert alert-success alert-dismissible" role="alert" style="display: none">
 		<button type="button" class="close"><span aria-hidden="true">&times;</span></button>
-			<strong>'.$alertName.'</strong>
+			<strong class="msg-text">'.$alertName.'</strong>
 		</div>';
 
 		return $html;						

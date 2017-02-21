@@ -45,21 +45,25 @@ class RoleController extends Controller
         $see_role = "";
         $edit_role = "";
         $delete_role = "";
+        $assign_permission = "";
+        if (Entrust::can('assign_permission')) {
+            $assign_permission =
+            '<a data-toggle="modal" rol_id="'. $role->id .'" data-target="#permisos" class="btn btn-primary get-permisos"><i class="glyphicon glyphicon-list"></i> <t class="hidden-xs">Permisos</t></a>';
+        }
         if(Entrust::can('see_role')){
             $see_role =
-            '<a data-toggle="modal" rol_id="'. $role->id .'" data-target="#permisos" class="btn btn-primary get-permisos"><i class="glyphicon glyphicon-list"></i> Permissions</a>
-            <a data-toggle="modal" id_rol="'. $role->id .'" data-target="#mostrar_rol" class="btn btn-info get-rol-datos"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>';
+            '<a data-toggle="modal" id_rol="'. $role->id .'" data-target="#mostrar_rol" class="btn btn-info get-rol-datos"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
         }if (Entrust::can('edit_role')) {
             $edit_role = 
-            '<a href="role/'.$role->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            '<a href="role/'.$role->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> <t class="hidden-xs">Editar</t></a>';
         }if (Entrust::can('delete_role')) {
             $delete_role = 
-            '<a rol_id="'. $role->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+            '<a rol_id="'. $role->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
         }if(Entrust::can('assign_role')){
             
         }
 
-        return $see_role ." ". $edit_role ." ". $delete_role;
+        return $assign_permission ." ". $see_role ." ". $edit_role ." ". $delete_role;
     }
 
     /**

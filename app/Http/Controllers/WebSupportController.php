@@ -50,13 +50,13 @@ class WebSupportController extends Controller
         $delete_websupport = "";
         if(Entrust::can('see_websupport')){
             $see_websupport =
-            '<a data-toggle="modal" spt_id="'. $support->id .'" data-target="#support" class="btn btn-info get-support"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>';
+            '<a data-toggle="modal" spt_id="'. $support->id .'" data-target="#support" class="btn btn-info get-support"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
         }if (Entrust::can('edit_websupport')) {
             $edit_websupport = 
-            '<a href="websupport/'.$support->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            '<a href="websupport/'.$support->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> <t class="hidden-xs">Editar</t></a>';
         }if (Entrust::can('delete_websupport')) {
             $delete_websupport = 
-            '<a spt_id="'. $support->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+            '<a spt_id="'. $support->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
         }
 
         return $see_websupport ." ". $edit_websupport ." ". $delete_websupport;
@@ -174,30 +174,30 @@ class WebSupportController extends Controller
 
     public function refreshDomains()
     {   
-        // $cpanel = new \Gufy\CpanelPhp\Cpanel([
-        //     'host'        =>  'https://216.55.141.226:2087', // ip or domain complete with its protocol and port
-        //     'username'    =>  'root', // username of your server, it usually root.
-        //     'auth_type'   =>  'password', // set 'hash' or 'password'
-        //     'password'    =>  '9VRF1VyBN9NWnW', // long hash or your user's password 
-        // ]);
+        $cpanel = new \Gufy\CpanelPhp\Cpanel([
+            'host'        =>  'https://216.55.141.226:2087', // ip or domain complete with its protocol and port
+            'username'    =>  'root', // username of your server, it usually root.
+            'auth_type'   =>  'password', // set 'hash' or 'password'
+            'password'    =>  '9VRF1VyBN9NWnW', // long hash or your user's password 
+        ]);
 
-        // $data = json_decode($cpanel->listAccounts());
-        
-        // if($data){
-            // Domain::truncate();
+        $data = json_decode($cpanel->listAccounts());
 
-            // foreach ($data->acct as $key => $value) {
-            //         Domain::create([
-            //             'domain' => $value->domain,
-            //         ]);
-            //     }
+        if($data){
+            Domain::truncate();
+
+            foreach ($data->acct as $key => $value) {
+                    Domain::create([
+                        'domain' => $value->domain,
+                    ]);
+                }
 
             $domains = Domain::pluck('domain', 'domain');
 
-            return response()->json(["message"=>"Se han refrescado los dominios", "domains"=>$domains]);
-        // }elseif (is_null($data)) {
-            return response()->json(["message"=>"error al intentar refrescar los dominios"]);
-        // }
+            return response()->json(["message"=>"Se han actualizado los dominios correctamente", "domains"=>$domains]);
+        }elseif (is_null($data)) {
+            return response()->json(["message"=>"Surgió un error al intentar actualizar los dominios"]);
+        }
     }
 
 

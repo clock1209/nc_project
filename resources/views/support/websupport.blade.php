@@ -16,6 +16,10 @@
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
       }
+
+      .popover{
+        width: 500px;
+      }
     </style>
 @endsection
 
@@ -32,7 +36,7 @@
         <div class="col-md-8 col-md-offset-2">
             @include('alerts.request')
             @include('alerts.unauthorized')
-            {!! Build::alert_ajax('Se actualizaron los dominios correctamente') !!}
+            {!! Build::alert_ajax('mensaje') !!}
             <div class="panel panel-default">
                 <div class="panel-heading" style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.addwebsupport') }}</i></b></div>
                 <div class="panel-body">
@@ -66,7 +70,7 @@
                                           <option value="{{ $element }}" >
                                       @endforeach
                                   </datalist>
-                                  <a id="btnRefresh" idtest="test" class="btn btn-default input-group-addon" data-toggle="tooltip" data-placement="top" title="refrescar"><i class="glyphicon glyphicon-refresh" id="refresh"></i></a>
+                                  <a id="btnRefresh" idtest="test" class="btn btn-default input-group-addon" data-toggle="tooltip" data-placement="top" title="Actualizar"><i class="glyphicon glyphicon-refresh" id="refresh"></i></a>
                                 </div>
                                 
                 			</div>
@@ -94,7 +98,7 @@
                 			<div class="col-sm-4">
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                     {!!Form::text('attentiontime',null,['class'=>'form-control'])!!}
-                                    <a class="btn btn-default input-group-addon " data-toggle="tooltip" data-placement="right" title="w=weeks d=day h=hours m=minutes"><i class="glyphicon glyphicon-question-sign" id=""></i></a>
+                                    <a class="btn btn-default input-group-addon " data-toggle="popover" title="Registre el tiempo estimado de atención:" data-trigger="hover" data-content="w=week d=day h=hour m=minute (Por ejemplo, 3w 4d 12h)"><i class="glyphicon glyphicon-question-sign" id=""></i></a>
                                 </div>
                 				
                 			</div>
@@ -109,6 +113,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <script>
@@ -131,13 +136,23 @@
                     $('#domains').append("<option value='" + value + "'></option>");
                 });
                 $('#loader').attr('id', 'refresh');
-                $("#msj-authorized").fadeOut().fadeIn();
+                
+                $("#msj-authorized").fadeOut(function (){
+                    $(".msg-text").empty().html(data.message);
+                }).fadeIn();
+            }).fail(function (){
+                $('#loader').attr('id', 'refresh');
+                $("#msj-authorized").fadeOut(function (){
+                    $(".msg-text").empty().html(data.message);
+                }).fadeIn();
+            });
+            $('body').delegate('#msj-authorized','click', function(){
+                $(this).hide();
             });
         });
 
-        $('body').delegate('#msj-authorized','click', function(){
-            $(this).hide();
-        });
+        $('[data-toggle="popover"]').popover(); 
+
     });
 </script>
 

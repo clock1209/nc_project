@@ -54,13 +54,13 @@ class UserController extends Controller
         $delete_user = "";
         if(Entrust::can('see_user')){
             $see_user =
-            '<a data-toggle="modal" usr_id="'. $user->id .'" data-target="#usuario" class="btn btn-info get-user"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>';
+            '<a data-toggle="modal" usr_id="'. $user->id .'" data-target="#usuario" class="btn btn-info get-user"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
         }if (Entrust::can('edit_user')) {
             $edit_user = 
-            '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> <t class="hidden-xs">Editar</t></a>';
         }if (Entrust::can('delete_user')) {
             $delete_user = 
-            '<a usr_id="'. $user->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+            '<a usr_id="'. $user->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
         }
 
         return $see_user ." ". $edit_user ." ". $delete_user;

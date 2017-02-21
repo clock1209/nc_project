@@ -1,19 +1,22 @@
 @extends('adminlte::layouts.app')
 
+@section('styles')
+    <style type="text/css">
+        .addNew{
+            float: right;
+        }
+    </style>
+@endsection
+
 <?php $message=Session::get('message')?>
 
 @section('htmlheader_title')
 	{{ trans('adminlte_lang::message.rolelist') }}
-    	<style>
-            .user{
-                margin-top: 60px;
-            }
-        </style>
 @endsection
 
 @section('contentheader_title') 
 @permission('create_role')
-<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('role.create') }}"><i class="glyphicon glyphicon-tags"></i> Agregar Rol</a>
+<a class="btn btn-success btn-md addNew" href="{{ route('role.create') }}"><i class="glyphicon glyphicon-plus"></i> <t class="hidden-xs">Agregar Nuevo</t></a>
 @endpermission
 @endsection
 
@@ -34,13 +37,13 @@
 		<div class="panel panel-default">
 			<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.rolelist') }}</b></i></div>
 
-			<div class="panel-body">
-				<table class="table" id="roles">
+			<div class="panel-body table-responsive">
+				<table class="table table-hover" id="roles">
 					<thead>
 						<tr>
 							<th>ID</th>
 							<th>Role</th>
-							<th style="width: 360px">Action</th>
+							<th style="width: 38%">Action</th>
 						</tr>
 					</thead>
 				</table>
@@ -49,7 +52,7 @@
 	</div>
 </div>
 
-<div class="modal" id="mostrar_rol">
+<div class="modal fade bd-example-modal-sm" id="mostrar_rol">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"  style="background: #1792a4; color: white;">
@@ -77,7 +80,7 @@
         </div>
     </div>
 
-<div class="modal" id="permisos">
+<div class="modal fade" id="permisos">
 	<div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header"  style="background: #1792a4; color: white;">
@@ -85,7 +88,7 @@
           <h4 class="modal-title">Gestionar permisos</h4>
         </div>
         <div class="modal-body">
-        <div class="text-center">
+        <div class="row">
         <select id="select-permisos" multiple="multiple">
                 @if(isset($permisos))
                     @foreach($permisos as $permiso)
@@ -110,7 +113,6 @@
 			"processing": true,
 			"serverSide": true,
 			"ajax": "/api/roles",
-            "scrollX": true,
 			"columns":[
 			{data: 'id', visible: false},
 			{data: 'display_name'},

@@ -1,5 +1,13 @@
 @extends('adminlte::layouts.app')
 
+@section('styles')
+	<style type="text/css">
+		.addNew{
+			float: right;
+		}
+	</style>
+@endsection
+
 <?php $message=Session::get('message')?>
 
 @section('htmlheader_title')
@@ -8,7 +16,7 @@
 
 @section('contentheader_title') 
 @permission('create_motive')
-<a class="btn btn-success btn-close" href="{{ route('motive.create') }}" style="float:right; margin-right: 5px; margin-right: 100px"><i class="glyphicon glyphicon-comment"></i> Agregar Motivo</a>
+<a class="btn btn-success btn-close addNew" href="{{ route('motive.create') }}"><i class="glyphicon glyphicon-plus"></i><t class="hidden-xs"> Agregar Nuevo</t></a>
 @endpermission
 @endsection
 
@@ -29,13 +37,13 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"  style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.motiveslist') }}</i></b></div>
 
-				<div class="panel-body">
-					<table class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="motives">
+				<div class="panel-body table-responsive">
+					<table class="table table-hover" id="motives">
 						<thead>
 							<tr>
 								<th>ID</th>
 								<th>Descripción</th>
-								<th style="width: 236px">Action</th>
+								<th style="width: 28%">Action</th>
 							</tr>
 						</thead>
 					</table>
@@ -70,7 +78,6 @@
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/motives",
-					"scrollX": true,
 					"columns":[
 					{data: 'id', visible: false},
 					{data: 'description'},

@@ -47,13 +47,13 @@ class MotiveController extends Controller
         $delete_motive = "";
         if(Entrust::can('see_motive')){
             $see_motive =
-            '<a data-toggle="modal" mtv_id="'. $motive->id .'" data-target="#motive" class="btn btn-info get-motive"><i class="glyphicon glyphicon-info-sign"></i> Mostrar</a>';
+            '<a data-toggle="modal" mtv_id="'. $motive->id .'" data-target="#motive" class="btn btn-info  get-motive"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
         }if(Entrust::can('edit_motive')){
             $edit_motive =
-            '<a href="motive/'.$motive->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            '<a href="motive/'.$motive->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> <t class="hidden-xs">Editar</t></a>';
         }if (Entrust::can('delete_motive')) {
             $delete_motive = 
-            '<a mtv_id="'. $motive->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> Borrar</a>';
+            '<a mtv_id="'. $motive->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
         }
 
         return $see_motive ." ". $edit_motive ." ". $delete_motive;

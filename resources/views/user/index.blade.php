@@ -1,5 +1,13 @@
 @extends('adminlte::layouts.app')
 
+@section('styles')
+	<style type="text/css">
+		.addNew{
+			float: right;
+		}
+	</style>
+@endsection
+
 <?php $message=Session::get('message')?>
 
 @section('htmlheader_title')
@@ -8,7 +16,7 @@
 
 @section('contentheader_title') 
 @permission('create_user')
-<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('user.create') }}"><i class="glyphicon glyphicon-user"></i> Agregar Usuario</a>
+<a class="btn btn-success btn-md addNew" href="{{ route('user.create') }}"><i class="glyphicon glyphicon-plus"></i><t class="hidden-xs"> Agregar Nuevo</t></a>
 @endpermission
 @endsection
 
@@ -28,9 +36,9 @@
 			{!! Build::alert_ajax('Usuario Eliminado Exitosamente') !!}
 			<div class="panel panel-default">
 				<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.userslist') }}</b></i></div>
-				<div class="panel-body">
-					<table class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="users">
-						<thead>
+				<div class="panel-body table-responsive">
+					<table class="table table-hover" id="users">
+						<thead class="thead-default">
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
@@ -38,7 +46,7 @@
 								<th>Apellido Materno</th>
 								<th>Nombre de Usuario</th>
 								<th>Email</th>
-								<th style="width: 245px">Action</th>
+								<th style="width: 28%">Action</th>
 							</tr>
 						</thead>
 					</table>
@@ -102,7 +110,6 @@
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/users",
-					"scrollX": true,
 					"columns":[
 					{data: 'id', visible: false},
 					{data: 'name'},

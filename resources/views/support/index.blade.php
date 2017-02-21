@@ -1,5 +1,13 @@
 @extends('adminlte::layouts.app')
 
+@section('styles')
+	<style type="text/css">
+		.addNew{
+			float: right;
+		}
+	</style>
+@endsection
+
 <?php $message=Session::get('message')?>
 
 @section('htmlheader_title')
@@ -8,7 +16,7 @@
 
 @section('contentheader_title') 
 @permission('create_websupport')
-<a class="btn btn-success btn-md" style="float:right; margin-right: 5px; margin-right: 100px" href="{{ route('websupport.create') }}"><i class="glyphicon glyphicon-wrench"></i> Agregar Soporte Web</a>
+<a class="btn btn-success btn-md addNew" href="{{ route('websupport.create') }}"><i class="glyphicon glyphicon-plus"></i><t class="hidden-xs"> Agregar Nuevo</t></a>
 @endpermission
 @endsection
 
@@ -27,10 +35,11 @@
 	<div class="row">
 		{!! Build::alert_ajax('Soporte Eliminado Exitosamente') !!}
 			<div class="panel panel-default">
-				<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.supportlist') }}</b></i></div>
+				<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.supportlist') }}</b></i>
+				</div>
 
-				<div class="panel-body">
-					<table class="table" id="supports">
+				<div class="panel-body table-responsive">
+					<table class="table table-hover" id="supports">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -42,7 +51,7 @@
 								<th>Descripción</th>
 								<th>Estatus</th>
 								<th>Tiempo</th>
-								<th style="width: 255px">Action</th>
+								<th style="width: 28%">Action</th>
 							</tr>
 						</thead>
 					</table>
@@ -108,7 +117,6 @@
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/websupport",
-					"scrollX": true,
 					"columns":[
 					{data: 'id', visible: false},
 					{data: 'date', visible: false}, 

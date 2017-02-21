@@ -12359,6 +12359,7 @@ button.close {
 /*
  * Skin: Green
  * -----------
+ * background-color: #00a65a;
  */
 .skin-green .main-header .navbar {
   background-color: #00a65a;
@@ -12377,7 +12378,7 @@ button.close {
   color: #f6f6f6;
 }
 .skin-green .main-header .navbar .sidebar-toggle {
-  color: #ffffff;
+  color: #ff0000;
 }
 .skin-green .main-header .navbar .sidebar-toggle:hover {
   color: #f6f6f6;
@@ -12491,7 +12492,7 @@ button.close {
  * Skin: Green
  * -----------
  */
-.skin-green-light .main-header .navbar {
+/*.skin-green-light .main-header .navbar {
   background-color: #00a65a;
 }
 .skin-green-light .main-header .navbar .nav > li > a {
@@ -12639,7 +12640,7 @@ button.close {
   .skin-green-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
     border-left: 1px solid #d2d6de;
   }
-}
+}*/
 /*
  * Skin: Red
  * ---------
