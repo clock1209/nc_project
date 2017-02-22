@@ -35,9 +35,9 @@
 	<div class="row">
 		{!! Build::alert_ajax('Motivo Eliminado Exitosamente') !!}
 			<div class="panel panel-default">
-				<div class="panel-heading"  style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.motiveslist') }}</i></b></div>
+				<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.motiveslist') }}</div>
 
-				<div class="panel-body table-responsive">
+				<div class="panel-body table-responsive bgn">
 					<table class="table table-hover" id="motives">
 						<thead>
 							<tr>
@@ -51,10 +51,10 @@
 		</div>
 	</div>
 
-	<div class="modal" id="motive">
+	<div class="modal fade" id="motive">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header"  style="background: #1792a4; color: white;">
+				<div class="modal-header header-nuvem">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 					<h4 class="modal-title">Detalles de Motivo</h4>
 				</div>
@@ -63,7 +63,7 @@
 						{!! Form::textarea('description', null, ['class'=>'form-control', 'id'=>'description', 'rows'=>'1']) !!}
 					</div>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer background-nuvem">
 					<a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
 				</div>
 			</div>

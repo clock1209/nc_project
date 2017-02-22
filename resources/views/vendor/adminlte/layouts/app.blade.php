@@ -29,7 +29,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-green sidebar-mini">
+<body class="skin-green-light sidebar-mini">
 <div id="app">
     <div class="wrapper">
 
@@ -38,7 +38,7 @@ desired effect
     @include('adminlte::layouts.partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper background-nuvem">
 
         @include('adminlte::layouts.partials.contentheader')
 

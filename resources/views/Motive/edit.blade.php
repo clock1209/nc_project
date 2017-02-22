@@ -13,8 +13,8 @@
             @include('alerts.request')
             @include('alerts.unauthorized')
             <div class="panel panel-default">
-                <div class="panel-heading"  style="background: #1792a4; color: white;"><b><i class="info-box-text">{{ trans('adminlte_lang::message.editmotive') }}</i></b></div>
-                <div class="panel-body">
+                <div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.editmotive') }}</div>
+                <div class="panel-body bgn">
                 {!!Form::model($motive, ['route'=> ['motive.update',$motive->id], 'method'=>'PUT'])!!}
                     <div class="form-horizontal">
                         <div class="form-group">
@@ -25,8 +25,8 @@
                         </div>
                         <div class="text-center">
                             <div class="form-group">
-                                <button  type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Actualizar</button>
-                                <a class="btn btn-danger btn-close" href="{{ route('motive.index') }}"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                                <button  type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> <t class="hidden-xs">Actualizar</t></button>
+                                <a class="btn btn-danger btn-close" href="{{ route('motive.index') }}"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Cancelar</t></a>
                             </div>
                         </div>
                     </div>

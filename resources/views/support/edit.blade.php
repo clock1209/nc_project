@@ -39,9 +39,9 @@
             @include('alerts.unauthorized')
             {!! Build::alert_ajax('Se actualizaron los dominios correctamente') !!}
             <div class="panel panel-default">
-                <div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.editwebsupport') }}</b></i></div>
+                <div class="panel-heading header-nuvem"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.editwebsupport') }}</b></i></div>
 
-                <div class="panel-body">
+                <div class="panel-body bgn">
                    {!!Form::model($support, ['route'=> ['websupport.update',$support->id], 'method'=>'PUT', 'class'=>'form-horizontal'])!!}
 
                     <div class="form-group mb-200">
@@ -106,9 +106,9 @@
                         </div>
                         <div class="text-center">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Actualizar</button>
-                            <a class="btn btn-danger btn-close" href="{{ route('websupport.destroy').'/'.$support->id }}" ><i class="glyphicon glyphicon-floppy-remove"></i> Borrar</a>
-                            <a class="btn btn-danger btn-close" href="{{ route('websupport.index') }}"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> <t class="hidden-xs">Actualizar</t></button>
+                            <a class="btn btn-danger btn-close" href="{{ route('websupport.destroy').'/'.$support->id }}" ><i class="glyphicon glyphicon-floppy-remove"></i> <t class="hidden-xs">Borrar</t></a>
+                            <a class="btn btn-danger btn-close" href="{{ route('websupport.index') }}"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Cancelar</t></a>
                         </div>
                     </div>
                 {!!Form::close()!!}

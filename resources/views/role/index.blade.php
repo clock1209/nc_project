@@ -35,9 +35,9 @@
 	<div class="row">
         {!! Build::alert_ajax('Rol Eliminado Exitosamente') !!}
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.rolelist') }}</b></i></div>
+			<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.rolelist') }}</div>
 
-			<div class="panel-body table-responsive">
+			<div class="panel-body table-responsive bgn">
 				<table class="table table-hover" id="roles">
 					<thead>
 						<tr>
@@ -52,10 +52,10 @@
 	</div>
 </div>
 
-<div class="modal fade bd-example-modal-sm" id="mostrar_rol">
+<div class="modal fade" id="mostrar_rol">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"  style="background: #1792a4; color: white;">
+                <div class="modal-header header-nuvem"  style="background: #1792a4; color: white;">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Datos de Rol</h4>
                 </div>
@@ -73,7 +73,7 @@
                         {!! Form::label('description', null, ['class'=>'form-control', 'id'=>'description']) !!}
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer background-nuvem">
                     <a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
                 </div>
             </div>
@@ -83,7 +83,7 @@
 <div class="modal fade" id="permisos">
 	<div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header"  style="background: #1792a4; color: white;">
+        <div class="modal-header header-nuvem">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
           <h4 class="modal-title">Gestionar permisos</h4>
         </div>
@@ -99,7 +99,7 @@
         </div>
           
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer background-nuvem">
           <a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
         </div>
       </div>

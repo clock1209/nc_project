@@ -15,9 +15,9 @@
         <div class="col-md-8 col-md-offset-2">
             @include('alerts.request')
             <div class="panel panel-default">
-                <div class="panel-heading"  style="background: #1792a4; color: white;"><i class="info-box-text"><b>{{ trans('adminlte_lang::message.editrole') }}</b></i></div>
+                <div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.editrole') }}</div>
 
-                <div class="panel-body">
+                <div class="panel-body bgn">
                  {!!Form::model($role, ['route'=> ['role.update',$role->id], 'method'=>'PUT', 'class'=>'form-horizontal'])!!}
                      <div class="form-group">
                         <label for="rolName_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.rolname') }}:</label>
@@ -39,9 +39,9 @@
                     </div>
                     <div class="text-center">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Actualizar</button>
-                            <a class="btn btn-danger btn-close" href="{{ route('role.destroy').'/'.$role->id }}" ><i class="glyphicon glyphicon-floppy-remove"></i> Borrar</a>
-                            <a class="btn btn-danger btn-close" href="{{ route('role.index') }}"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> <t class="hidden-xs">Actualizar</t></button>
+                            <a class="btn btn-danger btn-close" href="{{ route('role.destroy').'/'.$role->id }}" ><i class="glyphicon glyphicon-floppy-remove"></i> <t class="hidden-xs">Borrar</t></a>
+                            <a class="btn btn-danger btn-close" href="{{ route('role.index') }}"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Cancelar</t></a>
                         </div>
                     </div>
                 {!!Form::close()!!}
