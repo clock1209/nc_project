@@ -135,7 +135,7 @@
 */
 
 .skin-green-light .main-header .navbar {
-  background-color: #afbc25; 
+  background-color: #0077b8; 
 }/*cabecera principal*/
 .skin-green-light .main-header .navbar .nav > li > a {
   color: #ffffff;
@@ -161,7 +161,7 @@
   color: #fff;
 }
 .skin-green-light .main-header .navbar .sidebar-toggle:hover {
-  background-color: #A9B51E;
+  background-color: #006CA6;
 }
 @media (max-width: 767px) {
   .skin-green-light .main-header .navbar .dropdown-menu li.divider {
@@ -171,19 +171,19 @@
     color: #fff;
   }
   .skin-green-light .main-header .navbar .dropdown-menu li a:hover {
-    background: #A9B51E;
+    background: #006CA6;
   }
 }
 .skin-green-light .main-header .logo {
-  background-color: #A9B51E;
+  background-color: #006CA6;
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
 .skin-green-light .main-header .logo:hover {
-  background-color: #9FAB14;
+  background-color: #00649A;
 }
 .skin-green-light .main-header li.user-header {
-  background-color: #afbc25;
+  background-color: #0077b8;
 }
 .skin-green-light .content-header {
   background: transparent;
@@ -218,10 +218,10 @@
 .skin-green-light .sidebar-menu > li.active > a {
   color: #fff;
   background: #919294;
-  border-left-color: #afbc25;
+  border-left-color: #0077b8;
 }
 .skin-green-light .sidebar-menu > li.active {
-  border-left-color: #afbc25;
+  border-left-color: #0077b8;
 }
 .skin-green-light .sidebar-menu > li.active > a {
   font-weight: 600;
@@ -292,7 +292,7 @@
 */
 
 .header-nuvem{
-	background: #afbc25 !important;
+	background: #0077b8 !important;
 	color: white !important;
 	font-weight: bold;
 	font-style: italic;
@@ -307,11 +307,28 @@
 	background: #fcfcfc;
 }
 
-.img-padd{
-	padding: 2% 0% 2% 0%;
+div.img-padd{
+	background-image: url('/img/nuvem_fs.png');
+	background-repeat: no-repeat;
+	/*filter: alpha(opacity=50);
+	-moz-opacity: 0.2;     
+	opacity: 0.2;*/
 }
 
 .center{
 	margin-left: auto;
     margin-right: auto;
+}
+
+.logo-water{     
+	filter: alpha(opacity=80);     
+	/*/ IE /     */
+	-moz-opacity: 0.3;     
+	/*/ Mozilla /     */
+	opacity: 0.3;     
+	/*/ CSS3 /     */
+	position: absolute;     
+	bottom: 35px;     
+	right: 20px;     
+	width: 15%;  
 }

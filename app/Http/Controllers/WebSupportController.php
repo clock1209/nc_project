@@ -175,10 +175,10 @@ class WebSupportController extends Controller
     public function refreshDomains()
     {   
         $cpanel = new \Gufy\CpanelPhp\Cpanel([
-            'host'        =>  'https://216.55.141.226:2087', // ip or domain complete with its protocol and port
-            'username'    =>  'root', // username of your server, it usually root.
+            'host'        =>  env('CP_IP'), // ip or domain complete with its protocol and port
+            'username'    =>  env('CP_USERNAME'), // username of your server, it usually root.
             'auth_type'   =>  'password', // set 'hash' or 'password'
-            'password'    =>  '9VRF1VyBN9NWnW', // long hash or your user's password 
+            'password'    =>  env('CP_PASSWORD'), // long hash or your user's password 
         ]);
 
         $data = json_decode($cpanel->listAccounts());
@@ -199,33 +199,6 @@ class WebSupportController extends Controller
             return response()->json(["message"=>"Surgió un error al intentar actualizar los dominios"]);
         }
     }
-
-
-    // protected function domainsPlesk()
-    // {
-    //     $config = array(
-    //         'host' => '216.55.138.206',
-    //         'username' => 'admin',
-    //         'password' => 'L50#UQ_5kwT8',
-    //     );
-
-    //     $params = array(
-    //         'subscription_id'=>1,
-    //     );
-
-    //     $request = new \pmill\Plesk\ListSites($config, $params);
-    //     $info = $request->process();
-
-        
-
-    //     // var_dump($info." | ");
-
-    //     if ($info === false) {
-    //         var_dump($request->error->getMessage());
-    //     }
-
-    //     dd($info);
-    // }
 
 
 }

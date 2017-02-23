@@ -38,20 +38,21 @@ desired effect
     @include('adminlte::layouts.partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper background-nuvem">
+    <div class="content-wrapper">
 
         @include('adminlte::layouts.partials.contentheader')
 
         <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
+            <img src="{{asset('img/nuvem_fs.png')}}" alt="" class="logo-water">
             @yield('main-content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
     @include('adminlte::layouts.partials.controlsidebar')
 
-    @include('adminlte::layouts.partials.footer')
+    {{-- @include('adminlte::layouts.partials.footer') --}}
 
 </div><!-- ./wrapper -->
 </div>

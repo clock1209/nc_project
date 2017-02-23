@@ -23,13 +23,10 @@
 					<div class="panel-body bgn text-center">
 						<b>{{ Auth::user()->name }}</b>,
 						{{ trans('adminlte_lang::message.logged') }}
-						<div class="img-padd">
-							<img src="{{ asset('/img/nuvem_fs.png') }}" alt="nuvem" class="img-responsive center img-padd">
-						</div>
-							
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 @endsection
