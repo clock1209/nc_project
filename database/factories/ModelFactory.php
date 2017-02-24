@@ -35,7 +35,7 @@ $factory->define(App\Motive::class, function (Faker\Generator $faker) {
 
 $factory->define(App\webSupport::class, function (Faker\Generator $faker) {
     return [
-        'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'date' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now', $timezone = date_default_timezone_get()),
         'user' => $faker->userName,
         'client' => $faker->name,
         'domain' => $faker->domainName,

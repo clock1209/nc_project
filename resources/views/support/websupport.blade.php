@@ -143,7 +143,7 @@
             }).fail(function (){
                 $('#loader').attr('id', 'refresh');
                 $("#msj-authorized").fadeOut(function (){
-                    $(".msg-text").empty().html(data.message);
+                    $(".msg-text").empty().html('La conexión ha fallado, intente en otro momento.');
                 }).fadeIn();
             });
             $('body').delegate('#msj-authorized','click', function(){

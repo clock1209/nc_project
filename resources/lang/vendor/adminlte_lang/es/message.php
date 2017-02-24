@@ -157,4 +157,6 @@ return [
     'addwebsupport'           => 'Alta de Soporte Web',
     'supportlist'             => 'Lista de Soportes Web',
     'editwebsupport'          => 'Editar Soporte Web',
+
+    'report'                  => 'Reporte',
 ];

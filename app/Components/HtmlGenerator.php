@@ -69,6 +69,22 @@ class HtmlGenerator
 		return $html;
 	}
 
+	public function rbReport(){
+
+		$range = "";
+		$month = "";
+		if (Input::old('rbReport')=='Rango de fechas') {
+			$espera = 'checked=true;';
+		}elseif (Input::old('rbReport')=='Mes') {
+			$resuelto = 'checked=true;';
+		}
+		$html =
+		'<label class="checkbox-inline"><input type="radio" name="rbReport" value="Rango de fechas" checked="true" '.$range.' id="rbRange"> Rango de fechas</label>
+		<label class="checkbox-inline"><input type="radio" name="rbReport" value="Mes" '.$month.' id="rbMonth"> Mes</label>';
+
+		return $html;
+	}
+
 	public function alert_ajax($alertName)
 	{
 		$html = 

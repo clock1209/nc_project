@@ -69,7 +69,6 @@ class WebSupportController extends Controller
      */
     public function create()
     {
-        // $this->refreshDomains();
         $users = User::pluck('username', 'username');
         $motives = Motive::pluck('description', 'description');
         $date = Carbon::now();

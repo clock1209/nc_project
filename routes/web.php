@@ -83,4 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/permisos/asignar','PermissionController@asignar');
 	Route::get('/permisos/desasignar','PermissionController@desasignar');
 
+	Route::resource('report', 'ReportController');
+	Route::post('report/result',['as'=>'report.result','uses'=>'ReportController@result']);
+	Route::get('report/searchby/{data}',['as'=>'report.searchby','uses'=>'ReportController@radio']);
 });
