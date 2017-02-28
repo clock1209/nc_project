@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
+use Datatables;
+use Response;
 
 class ReportController extends Controller
 {
@@ -95,18 +97,30 @@ class ReportController extends Controller
     public function result(Request $request)
     {
         $rbSelected = Input::get('rbReport');
-
-        // dd($request);
+        
+        $date1 = '';
+        $date2 = '';
+        $username = '';
+        $status = '';
         
         switch ($rbSelected) {
             case 'Rango de fechas':
-                // echo "hola range";
+                $date1 = $request->date1;
+                $date2 = '/'.$request->date2;
+                $username = $request->users;
+                $status = $request->status;
+                
+                return view('report/report')->with(compact('date1', 'date2', 'username', 'status'));
                 break;
 
             case 'Mes':
-                $supports = webSupport::select(['id', 'date', 'user', 'client', 'domain', 'motive', 'description', 'status', 'attentiontime'])->where('date', '2017-')->get();
-                dd($supports);
-                // $this->dateFormat($request->months);
+                // var_dump($request->year);
+                $date1 = $this->dateFormat($request->months);
+                $date2 = '/'.$request->year;
+                $username = $request->users;
+                $status = $request->status;
+
+                return view('report/report')->with(compact('date1', 'date2', 'username', 'status'));
                 break;
             
             default:
@@ -119,24 +133,34 @@ class ReportController extends Controller
     {
         $html = '';
         $months = $this->months();
+        $years = $this->years();
+        $now = Carbon::now();
+        $year = $now->year;
+        $month = $now->month;
 
         switch ($data) {
             case 'Rango de fechas':
                 $html =
                 '<div class="col-sm-4 col-md-offset-2">
-                    <input class="form-control datepicker" name="date" type="date" value="date">
+                    <input class="form-control datepicker" name="date1" type="date" value="date">
                 </div>
                 <div class="col-sm-1 text-center">
-                    <span>ó</span>
+                    <label for="status_lbl" class="col-sm-2 control-label">a</label>
                 </div>
                 <div class="col-sm-4">
-                    <input class="form-control datepicker" name="date" type="date" value="date">
+                    <input class="form-control datepicker" name="date2" type="date" value="date">
                 </div>';
                 break;
 
             case 'Mes':
                 $html =
-                '<div class="col-sm-4 col-md-offset-2"><select class="form-control" id="months" name="months"></select></div>';
+                '<div class="col-sm-4 col-md-offset-2"><select class="form-control" id="months" name="months"></select></div>
+                <div class="col-sm-1 text-center">
+                    <label for="status_lbl" class="col-sm-2 control-label">Año</label>
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-control" id="years" name="year"></select>
+                </div>';
                 break;
             
             default:
@@ -144,7 +168,7 @@ class ReportController extends Controller
                 break;
         }
 
-        return response()->json(["datos"=>$data, "html"=>$html, $months]);
+        return response()->json(["datos"=>$data, "html"=>$html, $months, $years, $month, $year]);
     }
 
     private function months(){
@@ -166,11 +190,59 @@ class ReportController extends Controller
         return $months;
     }
 
+    private function years(){
+        $year = 0;
+        // $n = 0;
+
+        for ($i=1980; $i <= 2099; $i++) { 
+            // $n++;
+            $years[$i] = $i;
+        }
+        return $years;
+        // dd($years);
+    }
+
     private function dateFormat($date)
     {
-        $today = explode(' ', Carbon::now());
-        $today = explode('-', $today[0]);
-        $today = $today[0] .'-'. $date .'-'. $today[2];
+        $res = ($date <= 9) ? '0'.$date : $date;
         // var_dump($today);
+        return $res;
+    }
+
+    public function buildDatatable($date1, $username, $status, $date2)
+    {
+        if (preg_match('/^20[0-9]{2}$/', $date2)) {
+            $support = webSupport::select(['id', 'date', 'user', 'client', 'domain', 'motive', 'description', 'status', 'attentiontime'])
+            ->where('user', $username)
+            ->where('status', $status)
+            ->where('date', 'like', $date2.'-'.$date1.'%');
+
+        }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+            $support = webSupport::select(['id', 'date', 'user', 'client', 'domain', 'motive', 'description', 'status', 'attentiontime'])
+            ->where('user', $username)
+            ->where('status', $status)
+            ->whereBetween('date', [$date1, $date2]);
+        }
+
+        return Datatables::of($support)
+            ->addColumn('action', function ($support) {
+                
+                return $this->botones($support);
+            })
+            ->editColumn('id', 'ID: {{$id}}')
+            ->make(true);
+        
+    }
+
+
+    private function botones($support)
+    {
+        $see_report = "";
+        // if(Entrust::can('see_report')){
+            $see_report =
+            '<a data-toggle="modal" rpt_id="'. $support->id .'" data-target="#support" class="btn btn-info get-support"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
+        // }
+
+        return $see_report;
     }
 }

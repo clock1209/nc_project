@@ -21,7 +21,7 @@ class WebSupportSeeder extends Seeder
 
     protected function createWebSupports()
     {
-        for ($i=0; $i < 10 ; $i++) { 
+        for ($i=0; $i < 100 ; $i++) { 
             $user = User::find(random_int(1, 12));
             $motive = Motive::find(random_int(1, 10));
             $domain = Domain::find(random_int(1, 130));

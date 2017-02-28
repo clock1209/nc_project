@@ -43,13 +43,13 @@
             			</div>
             			<div class="form-group" id="result-div">
             				<div class="col-sm-4 col-md-offset-2">
-            					{!!Form::date('date',$date,['class'=>'form-control datepicker'])!!}
+            					{!!Form::date('date1',$date,['class'=>'form-control datepicker'])!!}
             				</div>
             				<div class="col-sm-1 text-center">
-            					<span>ó</span>
+            					<label for="status_lbl" class="col-sm-2 control-label">a</label>
             				</div>
             				<div class="col-sm-4">
-            					{!!Form::date('date',$date,['class'=>'form-control datepicker'])!!}
+            					{!!Form::date('date2',$date,['class'=>'form-control datepicker'])!!}
             				</div>
             			</div>
             			<div class="form-group text-center">
@@ -70,8 +70,6 @@
 
 		$('body').delegate('#rbMonth','click', function(){
 			data = $("#radios input[type='radio']:checked").val();
-			// alert(data);
-			$("#result-div").empty();
 			$.ajax({
                 url: 'report/searchby/'+data,
                 headers: {'X-CSRF-TOKEN': token},
@@ -81,17 +79,28 @@
             }).done(function(data){
             	console.log(data);
             	// console.log(data[0]);
+                $("#result-div").empty();
             	$("#result-div").html(data.html);
             	$.each(data[0], function (key, value){
-                    $('#months').append("<option value='" + key + "'>"+ value +"</option>");
+                    if (key == data[2]) {
+                        $('#months').append("<option value='" + key + "' selected>"+ value +"</option>");
+                    }else{
+                        $('#months').append("<option value='" + key + "'>"+ value +"</option>");
+                    }
+                });
+                $.each(data[1], function (key, value){
+                    if (value == data[3]) {
+                        console.log('entró');
+                        $('#years').append("<option value='" + key + "' selected>"+ value +"</option>");
+                    }else{
+                        $('#years').append("<option value='" + key + "'>"+ value +"</option>");
+                    }
                 });
             });
 		});
 
 		$('body').delegate('#rbRange','click', function(){
 			data = $("#radios input[type='radio']:checked").val();
-
-			$("#result-div").empty();
 			$.ajax({
                 url: 'report/searchby/'+data,
                 headers: {'X-CSRF-TOKEN': token},
@@ -100,6 +109,7 @@
                 data: {data: data},
             }).done(function(data){
             	console.log(data);
+                $("#result-div").empty();
             	$("#result-div").html(data.html);
             	$(".datepicker").attr('value',date);
             });

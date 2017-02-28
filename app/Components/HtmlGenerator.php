@@ -74,9 +74,9 @@ class HtmlGenerator
 		$range = "";
 		$month = "";
 		if (Input::old('rbReport')=='Rango de fechas') {
-			$espera = 'checked=true;';
+			$range = 'checked=true;';
 		}elseif (Input::old('rbReport')=='Mes') {
-			$resuelto = 'checked=true;';
+			$month = 'checked=true;';
 		}
 		$html =
 		'<label class="checkbox-inline"><input type="radio" name="rbReport" value="Rango de fechas" checked="true" '.$range.' id="rbRange"> Rango de fechas</label>
@@ -84,6 +84,42 @@ class HtmlGenerator
 
 		return $html;
 	}
+
+	// public function rbSelected()
+	// {
+	// 	$rbSelected = Input::get('rbReport');
+	// 	$html = '';
+
+ //        switch ($rbSelected) {
+ //            case 'Rango de fechas':
+ //                $html =
+ //                '<div class="col-sm-4 col-md-offset-2">
+ //                    <input class="form-control datepicker" name="date" type="date" value="date">
+ //                </div>
+ //                <div class="col-sm-1 text-center">
+ //                    <span>ó</span>
+ //                </div>
+ //                <div class="col-sm-4">
+ //                    <input class="form-control datepicker" name="date" type="date" value="date">
+ //                </div>';
+
+ //                return $html;
+
+ //                break;
+
+ //            case 'Mes':
+ //                $html =
+ //                '<div class="col-sm-4 col-md-offset-2"><select class="form-control" id="months" name="months"></select></div>';
+
+ //                return $html;
+
+ //                break;
+            
+ //            default:
+ //                # code...
+ //                break;
+ //         }
+	// }
 
 	public function alert_ajax($alertName)
 	{

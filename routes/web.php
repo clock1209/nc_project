@@ -78,6 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/roles', 'RoleController@getBtnDatatable');
 	Route::get('api/motives', 'MotiveController@getBtnDatatable');
 	Route::get('api/websupport', 'WebSupportController@getBtnDatatable');
+	Route::get('api/reports/{date1}/{username}/{status}/{date2?}', 'ReportController@buildDatatable');
 
 	Route::get('/permisos','PermissionController@index');
 	Route::get('/permisos/asignar','PermissionController@asignar');
