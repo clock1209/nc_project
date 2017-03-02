@@ -7,6 +7,9 @@
 @section('contentheader_title')
 @endsection
 
+@section('styles')
+@endsection
+
 @section('main-content')
 
 <div class="container-fluid spark-screen">
