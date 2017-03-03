@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
+    // 	****************** USERS ROUTES ******************
 	Route::resource('user', 'UserController');
 	Route::get('user/edit', 'UserController@Edit');
 	Route::get('user/delete/{id}', 'UserController@destroy');
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('user/show',['as'=>'user.show','uses'=>'UserController@show','middleware'=> ['permission:see_user']]);
 	Route::get('user/delete',['as'=>'user.destroy','uses'=>'UserController@destroy','middleware'=> ['permission:delete_user']]);
 
+	// 	****************** ROLES ROUTES ******************
 	Route::resource('role', 'RoleController');
 	Route::get('role/edit', 'RoleController@edit');
 	Route::get('role/delete/{id}', 'RoleController@destroy');
@@ -50,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('role/show',['as'=>'role.show','uses'=>'RoleController@show','middleware'=> ['permission:see_role']]);
 	Route::get('role/delete',['as'=>'role.destroy','uses'=>'RoleController@destroy','middleware'=> ['permission:delete_role']]);
 
+	// 	****************** MOTIVES ROUTES ******************
 	Route::resource('motive', 'MotiveController');
 	Route::get('motive/edit', 'MotiveController@Edit');
 	Route::get('motive/delete/{id}', 'MotiveController@destroy');
@@ -62,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('motive/show',['as'=>'motive.show','uses'=>'MotiveController@show','middleware'=> ['permission:see_motive']]);
 	Route::get('motive/delete',['as'=>'motive.destroy','uses'=>'MotiveController@destroy','middleware'=> ['permission:delete_motive']]);
 
+	// 	****************** WEBSUPPORT ROUTES ******************
 	Route::get('websupport/refresh', ['as'=>'websupport.refresh','uses'=>'WebSupportController@refreshDomains']);
 	Route::resource('websupport', 'WebSupportController');
 	Route::get('websupport/edit', 'WebSupportController@Edit');
@@ -79,12 +83,19 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/motives', 'MotiveController@getBtnDatatable');
 	Route::get('api/websupport', 'WebSupportController@getBtnDatatable');
 	Route::get('api/reports/{date1}/{username}/{status}/{date2?}', 'ReportController@buildDatatable');
-
+	// 	****************** PERMISSION ROUTES ******************
 	Route::get('/permisos','PermissionController@index');
 	Route::get('/permisos/asignar','PermissionController@asignar');
 	Route::get('/permisos/desasignar','PermissionController@desasignar');
 
+	// 	****************** REPORT ROUTES ******************
 	Route::resource('report', 'ReportController');
 	Route::post('report/result',['as'=>'report.result','uses'=>'ReportController@result']);
 	Route::get('report/searchby/{data}',['as'=>'report.searchby','uses'=>'ReportController@radio']);
+
+	// 	****************** TICKET ROUTES ******************
+	Route::resource('ticket', 'TicketController');
+
+	/* datatable charge */
+	Route::get('api/ticket', 'TicketController@getBtnDatatable');
 });

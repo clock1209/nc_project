@@ -168,6 +168,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
 
         App\Providers\HTMLServiceProvider::class,
+        Univerze\Jira\JiraServiceProvider::class,
     ],
 
     /*
@@ -229,6 +230,7 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
         'Build' => App\Facades\HtmlGenerator::class,
+        'Jira' => Univerze\Jira\Facade\JiraFacade::class,
 
     ],
 

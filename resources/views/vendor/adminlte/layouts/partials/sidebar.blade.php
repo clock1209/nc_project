@@ -88,6 +88,7 @@
             </li>
             @endpermission
             <li class="treeview"><a href="{!!URL::to('report')!!}"><i class='glyphicon glyphicon-list-alt'></i> <span>{{ trans('adminlte_lang::message.report') }}</span></a></li>
+            <li class="treeview"><a href="{!!URL::to('ticket')!!}"><i class='glyphicon glyphicon-list-alt'></i> <span>{{ trans('adminlte_lang::message.ticket') }}</span></a></li>
             
         </ul><!-- /.sidebar-menu -->
     </section>

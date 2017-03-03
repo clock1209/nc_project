@@ -159,4 +159,6 @@ return [
     'editwebsupport'          => 'Editar Soporte Web',
 
     'report'                  => 'Reporte',
+    'ticket'                  => 'Ticket',
+    'openissues'              => 'Incidencias Abiertas',
 ];
