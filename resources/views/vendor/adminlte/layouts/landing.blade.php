@@ -52,14 +52,14 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><b>NUVEM</b> Tecnología viva</a>
+                <a class="navbar-brand" href="#"><b>NC</b> Mueblería</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#home" class="smoothScroll">{{ trans('adminlte_lang::message.home') }}</a></li>
+                   {{--  <li><a href="#home" class="smoothScroll">{{ trans('adminlte_lang::message.home') }}</a></li>
                     <li><a href="#desc" class="smoothScroll">{{ trans('adminlte_lang::message.description') }}</a></li>
                     <li><a href="#showcase" class="smoothScroll">{{ trans('adminlte_lang::message.showcase') }}</a></li>
-                    <li><a href="#contact" class="smoothScroll">{{ trans('adminlte_lang::message.contact') }}</a></li>
+                    <li><a href="#contact" class="smoothScroll">{{ trans('adminlte_lang::message.contact') }}</a></li> --}}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
@@ -75,7 +75,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 
 
     <section id="home" name="home"></section>
-    <div id="headerwrap">
+    {{-- <div id="headerwrap">
         <div class="container">
             <div class="row centered">
                 <div class="col-lg-12">
@@ -101,12 +101,12 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                 </div>
             </div>
         </div> <!--/ .container -->
-    </div><!--/ #headerwrap -->
+    </div> --}}<!--/ #headerwrap -->
 
 
     <section id="desc" name="desc"></section>
     <!-- INTRO WRAP -->
-    <div id="intro">
+    {{-- <div id="intro">
         <div class="container">
             <div class="row centered">
                 <h1>{{ trans('adminlte_lang::message.designed') }}</h1>
@@ -131,10 +131,10 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             <br>
             <hr>
         </div> <!--/ .container -->
-    </div><!--/ #introwrap -->
+    </div> --}}<!--/ #introwrap -->
 
     <!-- FEATURES WRAP -->
-    <div id="features">
+    {{-- <div id="features">
         <div class="container">
             <div class="row">
                 <h1 class="centered">{{ trans('adminlte_lang::message.whatnew') }}</h1>
@@ -208,10 +208,10 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                 </div>
             </div>
         </div><!--/ .container -->
-    </div><!--/ #features -->
+    </div> --}}<!--/ #features -->
 
 
-    <section id="showcase" name="showcase"></section>
+   {{--  <section id="showcase" name="showcase"></section>
     <div id="showcase">
         <div class="container">
             <div class="row">
@@ -241,10 +241,10 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             <br>
             <br>
         </div><!-- /container -->
-    </div>
+    </div> --}}
 
 
-    <section id="contact" name="contact"></section>
+    {{-- <section id="contact" name="contact"></section>
     <div id="footerwrap">
         <div class="container">
             <div class="col-lg-5">
@@ -278,8 +278,8 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                 </form>
             </div>
         </div>
-    </div>
-    <div id="c">
+    </div> --}}
+    {{-- <div id="c">
         <div class="container">
             <p>
                 <a href="https://github.com/acacha/adminlte-laravel"></a><b>admin-lte-laravel</b></a>. {{ trans('adminlte_lang::message.descriptionpackage') }}.<br/>
@@ -291,7 +291,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             </p>
 
         </div>
-    </div>
+    </div> --}}
 </div>
 
 <!-- Bootstrap core JavaScript
