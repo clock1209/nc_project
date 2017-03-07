@@ -11,7 +11,7 @@
     <div id="app">
         <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>NUVEM</b><br> Tecnología viva</a>
+            <a href="{{ url('/home') }}"><b>NC</b> Mueblería</a>
         </div><!-- /.login-logo -->
 
         @if (session('status'))

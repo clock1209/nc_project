@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Terms and conditions</h3>
+                <h3 class="modal-title">Términos y condiciones</h3>
             </div>
 
             <div class="modal-body">

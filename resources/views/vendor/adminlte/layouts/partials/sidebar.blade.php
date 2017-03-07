@@ -61,7 +61,7 @@
                 </ul>
             </li>
             @endpermission
-            @permission('see_motive','create_motive','edit_motive', 'delete_motive')
+            {{-- @permission('see_motive','create_motive','edit_motive', 'delete_motive')
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-comment'></i> <span>{{ trans('adminlte_lang::message.motives') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -73,8 +73,8 @@
                     @endpermission
                 </ul>
             </li>
-            @endpermission
-            @permission('see_websupport','create_websupport','edit_websupport', 'delete_websupport')
+            @endpermission --}}
+            {{-- @permission('see_websupport','create_websupport','edit_websupport', 'delete_websupport')
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-wrench'></i> <span>{{ trans('adminlte_lang::message.websupport') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -86,9 +86,9 @@
                     @endpermission
                 </ul>
             </li>
-            @endpermission
-            <li class="treeview"><a href="{!!URL::to('report')!!}"><i class='glyphicon glyphicon-list-alt'></i> <span>{{ trans('adminlte_lang::message.report') }}</span></a></li>
-            <li class="treeview"><a href="{!!URL::to('ticket')!!}"><i class='glyphicon glyphicon-list-alt'></i> <span>{{ trans('adminlte_lang::message.ticket') }}</span></a></li>
+            @endpermission --}}
+            {{-- <li class="treeview"><a href="{!!URL::to('report')!!}"><i class='glyphicon glyphicon-list-alt'></i> <span>{{ trans('adminlte_lang::message.report') }}</span></a></li>
+            <li class="treeview"><a href="{!!URL::to('ticket')!!}"><i class='glyphicon glyphicon-list-alt'></i> <span>{{ trans('adminlte_lang::message.ticket') }}</span></a></li> --}}
             
         </ul><!-- /.sidebar-menu -->
     </section>
