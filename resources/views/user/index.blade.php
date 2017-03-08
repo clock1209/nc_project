@@ -46,7 +46,7 @@
 								<th>Apellido Materno</th>
 								<th>Nombre de Usuario</th>
 								<th>Email</th>
-								<th style="width: 28%">Action</th>
+								<th style="width: 28%">Opciones</th>
 							</tr>
 						</thead>
 					</table>

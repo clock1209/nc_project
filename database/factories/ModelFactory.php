@@ -27,21 +27,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Motive::class, function (Faker\Generator $faker) {
-    return [
-        'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
-    ];
-});
+// $factory->define(App\Motive::class, function (Faker\Generator $faker) {
+//     return [
+//         'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
+//     ];
+// });
 
-$factory->define(App\webSupport::class, function (Faker\Generator $faker) {
-    return [
-        'date' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now', $timezone = date_default_timezone_get()),
-        'user' => $faker->userName,
-        'client' => $faker->name,
-        'domain' => $faker->domainName,
-        'motive' => $faker->sentence($nbWords = 4, $variableNbWords = true),
-        'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
-        'status' => $faker->randomElement($array = array('En espera del cliente', 'Resuelto', 'Cancelado')),
-        'attentiontime' => $faker->regexify('/^ ?\d{1,2}[hm] (\d{1,2}[m])?$/'),
-    ];
-});
+// $factory->define(App\webSupport::class, function (Faker\Generator $faker) {
+//     return [
+//         'date' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now', $timezone = date_default_timezone_get()),
+//         'user' => $faker->userName,
+//         'client' => $faker->name,
+//         'domain' => $faker->domainName,
+//         'motive' => $faker->sentence($nbWords = 4, $variableNbWords = true),
+//         'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
+//         'status' => $faker->randomElement($array = array('En espera del cliente', 'Resuelto', 'Cancelado')),
+//         'attentiontime' => $faker->regexify('/^ ?\d{1,2}[hm] (\d{1,2}[m])?$/'),
+//     ];
+// });

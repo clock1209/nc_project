@@ -36,7 +36,7 @@ class UserController extends Controller
 
     public function getBtnDatatable()
     {
-        $users = User::select(['id', 'name','lastNameFather','lastNameMother','username', 'email', 'homePhone', 'cellPhone']);
+        $users = User::select(['id', 'name','lastNameFather','lastNameMother','username', 'email', 'address', 'homePhone', 'cellPhone']);
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {

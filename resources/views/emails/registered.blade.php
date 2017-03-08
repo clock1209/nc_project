@@ -42,32 +42,32 @@
 			<td>
 				<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" height="220" style="border-collapse: collapse;">
 					<tr>
-						<td align="center" bgcolor="#70bbd9">
+						{{-- <td align="center" bgcolor="#70bbd9">
 							<img src="{{ asset('/img/nuvem_cabecera.png') }}" alt="header image" width="600" height="220" style="display: block;" />
-						</td>
+						</td> --}}
 					</tr>
 					<tr>
 						<td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
 							<table border="0" cellpadding="0" cellspacing="0" width="100%">
 								<tr>
 									<td align="center" class="radius-top fondo-titulo">
-										<h2>Notificación de contraseña</h2>
+										<h2>Notificación de Registro</h2>
 									</td>
 								</tr>
 								<tr>
 									<td align="center" id="contenido" class="fondo-contenido">
 										<p>Bienvenido al portal <strong>{!! $name !!} {!! $lastNameFather !!}</strong></p>
 										<p>Se ha creado exitosamente tu usuario, tus datos de acceso son los siguientes:</p><br>
-										<label>Tu Usuario:</label>
-										<label>{!! $username !!}</label><br>
+										<label>Te registraste con:</label>
+										<label>{!! $email !!}</label><br>{{-- {!! $username !!} --}}
 										<label>Tu Contraseña</label>
 										<label>{!! $password !!}</label><br>
 										<a href="http://nuvem.local/login" class="btn btn-default" role="button">Ir a Página</a>
-										<img src="{{ asset('/img/nuvem_png.png') }}" alt="nuvem image" style="display: block; padding: 15px 0 10px 0;" />
+										{{-- <img src="{{ asset('/img/nuvem_png.png') }}" alt="nuvem image" style="display: block; padding: 15px 0 10px 0;" /> --}}
 									</td>
 								</tr>
 								<tr>
-									<td align="center" class="radius-bottom fondo-titulo pad-text">Nuvem Tecnología viva - Todos los derechos reservados.</td>
+									<td align="center" class="radius-bottom fondo-titulo pad-text">NC Mueblería - Todos los derechos reservados.</td>
 								</tr>
 							</table>
 						</td>
