@@ -47,7 +47,7 @@
 								<th>Nombre de Usuario</th>
 								<th>Correo</th>
 								<th>Domicilio</th>
-								<th>Telefono</th>
+								<th>Teléfono</th>
 								<th>Celular</th>
 								<th style="width: 28%">Opciones</th>
 							</tr>
