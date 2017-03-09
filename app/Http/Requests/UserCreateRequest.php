@@ -30,6 +30,7 @@ class UserCreateRequest extends FormRequest
             'email'             => 'required|email|max:255|unique:users',
             'password'          => 'required|min:8|max:12|confirmed|regex:/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/',
             'username'          => 'required|min:5|max:20|unique:users',
+            'address'           => 'max:150|nullable|unique',
             'homePhone'         => 'nullable|numeric|digits_between:8,13',
             'cellPhone'         => 'nullable|numeric|digits_between:8,13',
         ];

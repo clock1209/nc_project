@@ -147,6 +147,7 @@ return [
     'motives'                 => 'Motivos',
     'motiveslist'             => 'Lista de Motivos',
 
+    'address'                 => 'Domicilio',
     'lastnamefather'          => 'Apellido Paterno',
     'lastnamemother'          => 'Apellido Materno',
     'homephone'               => 'Teléfono',

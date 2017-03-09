@@ -41,11 +41,14 @@
 						<thead class="thead-default">
 							<tr>
 								<th>ID</th>
-								<th>Name</th>
+								<th>Nombre</th>
 								<th>Apellido Paterno</th>
 								<th>Apellido Materno</th>
 								<th>Nombre de Usuario</th>
-								<th>Email</th>
+								<th>Correo</th>
+								<th>Domicilio</th>
+								<th>Telefono</th>
+								<th>Celular</th>
 								<th style="width: 28%">Opciones</th>
 							</tr>
 						</thead>
@@ -88,6 +91,10 @@
 						{!! Form::label('role', null, ['class'=>'form-control', 'id'=>'role']) !!}
 					</div>
 					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Domicilio:</div>
+						{!! Form::label('address', null, ['class'=>'form-control', 'id'=>'address']) !!}
+					</div>
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
 						<div class="input-group-addon">Teléfono:</div>
 						{!! Form::label('homePhone', null, ['class'=>'form-control', 'id'=>'homePhone']) !!}
 					</div>
@@ -118,6 +125,9 @@
 					{data: 'lastNameMother', visible: false},
 					{data: 'username'},
 					{data: 'email', visible: false}, 
+					{data: 'address', visible: false},
+					{data: 'homePhone', visible: false},
+					{data: 'cellPhone', visible: false},
 					{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 					],
 				});
@@ -138,6 +148,7 @@
                     	$("#username").html(data[0].username );
                     	$("#homePhone").html(data[0].homePhone );
                     	$("#cellPhone").html(data[0].cellPhone );
+                    	$("#address").html(data[0].address );
                     	$("#role").html(data[1]);
                     });
 

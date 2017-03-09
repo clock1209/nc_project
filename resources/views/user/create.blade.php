@@ -68,6 +68,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="address_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.address') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('address',null,['class'=>'form-control'])!!}
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.homephone') }}:</label>
                         <div class="col-sm-8">
                             {!!Form::text('homePhone',null,['class'=>'form-control'])!!}
