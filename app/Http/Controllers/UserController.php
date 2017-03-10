@@ -60,7 +60,8 @@ class UserController extends Controller
             '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> <t class="hidden-xs">Editar</t></a>';
         }if (Entrust::can('delete_user')) {
             $delete_user = 
-            '<a usr_id="'. $user->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
+            '<a usr_id="'. $user->id .'" class="btn btn-danger" id="btnActionDelete"
+            data-toggle="confirmation"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
         }
 
         return $see_user ." ". $edit_user ." ". $delete_user;

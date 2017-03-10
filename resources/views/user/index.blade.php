@@ -154,25 +154,39 @@
 
                    });
 
-				$('body').delegate('#btnActionDelete','click',function(){
+				$('body').delegate('#btnActionDelete','mouseenter',function(){
 					usr_id = $(this).attr('usr_id');
 					var token = $("#token").val();
-					$.ajax({
-						url: '{{ route("user.destroy") }}'+'/'+usr_id,
-						headers: {'X-CSRF-TOKEN': token},
-						type: 'GET',
-						dataType: 'json',
-						data: {id: usr_id},
-					}).done(function(data){
-							console.log(data);
-							table.ajax.reload();
-							$("#msj-"+data.message).fadeOut().fadeIn();
+					$('[data-toggle=confirmation]').confirmation({
+					  rootSelector: '[data-toggle=confirmation]',
+					  title: "¿Está seguro?",
+					  singleton: true,
+					  popout: true,
+					  btnOkLabel: 'Sí',
+					  btnCancelLabel: 'No',
+					  placement: 'left',
+					  onConfirm: function() {
+					  	$.ajax({
+					  		url: '{{ route("user.destroy") }}'+'/'+usr_id,
+					  		headers: {'X-CSRF-TOKEN': token},
+					  		type: 'GET',
+					  		dataType: 'json',
+					  		data: {id: usr_id},
+					  	}).done(function(data){
+					  		console.log(data);
+					  		table.ajax.reload();
+					  		$("#msj-"+data.message).fadeOut().fadeIn();
+					  	});
+					    },
+					    onCancel: function() {
+					    },
 					});
 				});
 
 				$('body').delegate('#msj-authorized','click', function(){
 					$(this).hide();
 				});
+
 			});
 		</script>
 	</div>
