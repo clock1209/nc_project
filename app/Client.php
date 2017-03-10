@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Client extends Model
 {
-    use Notifiable, SoftDeletes;
+    use SoftDeletes;
 
     protected $fillable = [
         'name','lastNameFather','lastNameMother', 'email', 'address','homePhone','cellPhone',

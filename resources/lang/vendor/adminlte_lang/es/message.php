@@ -148,6 +148,7 @@ return [
     'motives'                 => 'Motivos',
     'motiveslist'             => 'Lista de Motivos',
 
+    'name'                    => 'Nombre',
     'address'                 => 'Domicilio',
     'lastnamefather'          => 'Apellido Paterno',
     'lastnamemother'          => 'Apellido Materno',
@@ -171,4 +172,5 @@ return [
     'clients'                => 'Clientes',
     'addclient'              => 'Alta de Cliente',
     'clientlist'             => 'Lista de Clientes',
+    'registerclient'         => 'Alta de Cliente',
 ];
