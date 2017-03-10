@@ -118,6 +118,9 @@
 					"processing": true,
 					"serverSide": true,
 					"ajax": "/api/users",
+					"language": {
+						url: "{{ asset('/plugins/datatables/spanish.json') }}"
+					},
 					"columns":[
 					{data: 'id', visible: false},
 					{data: 'name'},

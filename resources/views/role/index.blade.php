@@ -113,6 +113,9 @@
 			"processing": true,
 			"serverSide": true,
 			"ajax": "/api/roles",
+            "language": {
+                url: "{{ asset('/plugins/datatables/spanish.json') }}"
+            },
 			"columns":[
 			{data: 'id', visible: false},
 			{data: 'display_name'},
@@ -179,19 +182,32 @@
                     });
                 } );
 
-                $('body').delegate('#btnActionDelete','click',function(){
+                $('body').delegate('#btnActionDelete','mouseenter',function(){
                     rol_id = $(this).attr('rol_id');
                     var token = $("#token").val();
-                    $.ajax({
-                        url: '{{ route("role.destroy") }}'+'/'+rol_id,
-                        headers: {'X-CSRF-TOKEN': token},
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {id: rol_id},
-                    }).done(function(data){
+                    $('[data-toggle=confirmation]').confirmation({
+                      rootSelector: '[data-toggle=confirmation]',
+                      title: "¿Está seguro?",
+                      singleton: true,
+                      popout: true,
+                      btnOkLabel: 'Sí',
+                      btnCancelLabel: 'No',
+                      placement: 'left',
+                      onConfirm: function() {
+                        $.ajax({
+                            url: '{{ route("role.destroy") }}'+'/'+rol_id,
+                            headers: {'X-CSRF-TOKEN': token},
+                            type: 'GET',
+                            dataType: 'json',
+                            data: {id: rol_id},
+                        }).done(function(data){
                             console.log(data);
                             table.ajax.reload();
                             $("#msj-"+data.message).fadeOut().fadeIn();
+                        });
+                        },
+                        onCancel: function() {
+                        },
                     });
                 });
 
