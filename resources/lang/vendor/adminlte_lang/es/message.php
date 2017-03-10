@@ -170,7 +170,9 @@ return [
     'productlist'             => 'Lista de Productos',
 
     'clients'                => 'Clientes',
+    'editclient'             => 'Editar Cliente',
     'addclient'              => 'Alta de Cliente',
     'clientlist'             => 'Lista de Clientes',
     'registerclient'         => 'Alta de Cliente',
+    'recoverclient'         => 'Recuperar Cliente',
 ];

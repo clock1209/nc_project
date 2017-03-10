@@ -30,8 +30,8 @@ class UserUpdateRequest extends FormRequest
             'email'             => 'required|email|max:255',
             'password'          => 'confirmed',
             'address'           => 'max:255|nullable',
-            'homePhone'         => 'nullable|numeric|digits_between:8,13',
-            'cellPhone'         => 'nullable|numeric|digits_between:8,13',
+            'homePhone'         => 'nullable|digits_between:8,20',
+            'cellPhone'         => 'nullable|digits_between:8,20',
         ];
     }
 }

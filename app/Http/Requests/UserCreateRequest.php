@@ -31,8 +31,8 @@ class UserCreateRequest extends FormRequest
             'password'          => 'required|min:8|max:20|confirmed|regex:/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/',
             'username'          => 'required|min:5|max:20|unique:users',
             'address'           => 'max:255|nullable',
-            'homePhone'         => 'nullable|numeric|digits_between:8,13',
-            'cellPhone'         => 'nullable|numeric|digits_between:8,13',
+            'homePhone'         => 'nullable|numeric|digits_between:8,20',
+            'cellPhone'         => 'nullable|numeric|digits_between:8,20',
         ];
     }
 }

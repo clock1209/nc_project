@@ -29,8 +29,8 @@ class ClientCreateRequest extends FormRequest
             'lastNameMother'    => 'nullable|max:255|alpha',
             'email'             => 'required|email|max:255|unique:users',
             'address'           => 'max:255|nullable',
-            'homePhone'         => 'nullable|numeric|digits_between:8,13',
-            'cellPhone'         => 'nullable|numeric|digits_between:8,13',
+            'homePhone'         => 'nullable|numeric|digits_between:8,20',
+            'cellPhone'         => 'nullable|numeric|digits_between:8,20',
         ];
     }
 }

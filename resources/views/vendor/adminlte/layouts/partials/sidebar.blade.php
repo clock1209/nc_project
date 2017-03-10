@@ -65,7 +65,7 @@
             </li>
             @endpermission
 
-            @permission('see_client','create_client','edit_client', 'delete_client')
+            @permission('see_client','create_client','edit_client', 'delete_client', 'recover_client')
             <li class="treeview">
                 <a href="#"><i class='fa fa-users'></i> <span>{{ trans('adminlte_lang::message.clients') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -74,6 +74,9 @@
                     @endpermission
                     @permission('see_client')
                     <li><a href="{!!URL::to('client')!!}">{{ trans('adminlte_lang::message.clientlist') }}</a></li>
+                    @endpermission
+                    @permission('recover_client')
+                    <li><a href="{!!URL::to('client/recover')!!}">{{ trans('adminlte_lang::message.recoverclient') }}</a></li>
                     @endpermission
                 </ul>
             </li>

@@ -29,6 +29,15 @@ class ClientController extends Controller
         }
     }
 
+    public function recover()
+    {
+         if(Entrust::can('recover_client')){
+            return view('client.recover')->with('clients' , Client::all());
+        }else{
+            return redirect('/home')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
+    }
+
     public function getBtnDatatable()
     {
         $clients = Client::select(['id', 'name','lastNameFather','lastNameMother','email', 'address', 'homePhone', 'cellPhone']);
@@ -61,6 +70,51 @@ class ClientController extends Controller
 
         return $see_client ." ". $edit_client ." ". $delete_client;
     }
+
+    public function btnRecoverClient()
+    {
+        $clients = Client::select(['id', 'name','lastNameFather','lastNameMother','email', 'address', 'homePhone', 'cellPhone'])->onlyTrashed()->get();
+
+        return Datatables::of($clients)
+            ->addColumn('action', function ($client) {
+                
+                return $this->recoveryBtn($client);
+            })
+            ->editColumn('id', 'ID: {{$id}}')
+            ->make(true);
+    }
+
+    function recoveryBtn($client)
+    {
+        $see_client = "";
+        // $edit_client = "";
+        $recover_client = "";
+        if(Entrust::can('see_client')){
+            $see_client =
+            '<a data-toggle="modal" clt_id="'. $client->id .'" data-target="#cliente" class="btn btn-info get-client"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
+        }if (Entrust::can('recover_client')) {
+            $recover_client = 
+            '<a clt_id="'. $client->id .'" class="btn btn-primary" id="btnActionRecover"
+            data-toggle="confirmation"><i class="glyphicon glyphicon-floppy-open"></i> <t class="hidden-xs">Recuperar</t></a>';
+        }
+
+        return $see_client ." ". $recover_client;
+    }
+
+    public function recovery($id)
+    {
+        if(Entrust::can('recover_client')){
+            $client = Client::onlyTrashed()->where('id', $id)->restore();
+            // dd($client);
+
+            return response()->json(["message"=>"authorized"]);
+        }else{
+            return redirect('client.index')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
+
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -122,6 +176,19 @@ class ClientController extends Controller
         // }
     }
 
+    public function showTrashed($id)
+    {
+        // echo "trashed";
+        if(Entrust::can('see_client')){
+            $client = Client::onlyTrashed()->where('id', $id)->get();
+
+            return Response::json($client);
+        }else{
+            return redirect('client.index')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
+        
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -177,12 +244,12 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        // if(Entrust::can('delete_user')){
+        if(Entrust::can('delete_client')){
             Client::whereId($id)->delete();
 
             return response()->json(["message"=>"authorized"]);
-         // }else{
-            // return redirect('/user')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
-         // }
+         }else{
+            return redirect('/client')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+         }
     }
 }
