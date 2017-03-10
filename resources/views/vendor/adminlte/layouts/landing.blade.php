@@ -23,7 +23,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <link rel="shortcut icon" href="img/X_sola.ico">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <script src=" asset('/plugins/jQuery/jquery-2.2.3.min.js') "></script> 
+    <script src="{{ asset('/plugins/jQuery/jquery-2.2.3.min.js') }}"></script> 
     <title> NC Mueblería WEB 2.0 </title>
 
     <!-- Custom styles for this template -->
@@ -53,7 +53,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#home" class="smoothScroll">{{ trans('adminlte_lang::message.home') }}</a></li>
+                    <li><a class="active" href="#home" class="smoothScroll">{{ trans('adminlte_lang::message.home') }}</a></li>
                     <li><a href="#desc" class="smoothScroll">{{ trans('Servicios') }}</a></li>
                     <li><a href="#showcase" class="smoothScroll">{{ trans('Productos') }}</a></li>
                     <li><a href="#contact" class="smoothScroll">{{ trans('adminlte_lang::message.contact') }}</a></li>
@@ -193,8 +193,8 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 
 <script>
     $('.carousel').carousel({
-        interval: 
-    })
+        interval: 3500
+    });
 </script>
 </body>
 </html>

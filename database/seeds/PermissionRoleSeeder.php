@@ -60,6 +60,37 @@ class PermissionRoleSeeder extends Seeder
 		$recoverUser->description 	= 'Permite recuperar un usuario eliminado'; /*OPTIONAL*/
 		$recoverUser->save();
 
+		/* CREATE NEW CLIENT'S PERMISSION'S */
+		$createClient = new App\Permission();
+		$createClient->name 			= 'create_client';
+		$createClient->display_name 	= 'Crear Cliente'; /*OPTIONAL*/
+		$createClient->description 	= 'Permite crear un nuevo cliente'; /*OPTIONAL*/
+		$createClient->save();
+
+		$editClient = new App\Permission();
+		$editClient->name 			= 'edit_client';
+		$editClient->display_name 	= 'Editar Cliente'; /*OPTIONAL*/
+		$editClient->description 	= 'permite editar un cliente existente'; /*OPTIONAL*/
+		$editClient->save();
+
+		$seeClient = new App\Permission();
+		$seeClient->name 			= 'see_client';
+		$seeClient->display_name 	= 'Ver Lista de Clientes'; /*OPTIONAL*/
+		$seeClient->description 	= 'Permite ver la lista de clientes'; /*OPTIONAL*/
+		$seeClient->save();
+
+		$deleteClient = new App\Permission();
+		$deleteClient->name 			= 'delete_client';
+		$deleteClient->display_name 	= 'Borrar Cliente'; /*OPTIONAL*/
+		$deleteClient->description 	= 'Permite borrar un cliente existente'; /*OPTIONAL*/
+		$deleteClient->save();
+
+		$recoverClient = new App\Permission();
+		$recoverClient->name 			= 'recover_client';
+		$recoverClient->display_name 	= 'Recuperar Cliente'; /*OPTIONAL*/
+		$recoverClient->description 	= 'Permite recuperar un cliente eliminado'; /*OPTIONAL*/
+		$recoverClient->save();
+
 		/* CREATE NEW ROLE'S PERMISSION'S */
 		$createRole = new App\Permission();
 		$createRole->name 			= 'create_role';
@@ -153,12 +184,19 @@ class PermissionRoleSeeder extends Seeder
 		$admin->attachPermission($editUser);
 		$admin->attachPermission($seeUser);
 		$admin->attachPermission($deleteUser);
+		$admin->attachPermission($recoverUser);
+
 		$admin->attachPermission($createRole);
 		$admin->attachPermission($editRole);
 		$admin->attachPermission($seeRole);
 		$admin->attachPermission($deleteRole);
 		$admin->attachPermission($assignPermission);
-		$admin->attachPermission($recoverUser);
+
+		$admin->attachPermission($createClient);
+		$admin->attachPermission($editClient);
+		$admin->attachPermission($seeClient);
+		$admin->attachPermission($deleteClient);
+		$admin->attachPermission($recoverClient);
 		// $admin->attachPermission($createMotive);
 		// $admin->attachPermission($editMotive);
 		// $admin->attachPermission($seeMotive);

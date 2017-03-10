@@ -167,4 +167,8 @@ return [
     'products'                => 'Productos',
     'addproduct'              => 'Alta de Productos',
     'productlist'             => 'Lista de Productos',
+
+    'clients'                => 'Clientes',
+    'addclient'              => 'Alta de Cliente',
+    'clientlist'             => 'Lista de Clientes',
 ];

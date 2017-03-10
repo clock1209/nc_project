@@ -65,6 +65,20 @@
             </li>
             @endpermission
 
+            @permission('see_client','create_client','edit_client', 'delete_client')
+            <li class="treeview">
+                <a href="#"><i class='fa fa-users'></i> <span>{{ trans('adminlte_lang::message.clients') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    @permission('create_client')
+                    <li><a href="{!!URL::to('client/create')!!}">{{ trans('adminlte_lang::message.addclient') }}</a></li>
+                    @endpermission
+                    @permission('see_client')
+                    <li><a href="{!!URL::to('client')!!}">{{ trans('adminlte_lang::message.clientlist') }}</a></li>
+                    @endpermission
+                </ul>
+            </li>
+            @endpermission
+
             {{-- <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-knight'></i> <span>{{ trans('adminlte_lang::message.products') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

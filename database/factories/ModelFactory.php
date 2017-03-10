@@ -28,6 +28,18 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Client::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'lastNameFather' => $faker->lastname,
+        'lastNameMother' => $faker->lastname,
+        'email' => $faker->unique()->safeEmail,
+        'address' => $faker->streetAddress,
+        'homePhone' => $faker->unique()->phoneNumber,
+        'cellPhone' => $faker->unique()->phoneNumber,
+    ];
+});
+
 // $factory->define(App\Motive::class, function (Faker\Generator $faker) {
 //     return [
 //         'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),

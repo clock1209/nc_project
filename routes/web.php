@@ -45,6 +45,22 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('user/delete',['as'=>'user.destroy','uses'=>'UserController@destroy','middleware'=> ['permission:delete_user']]);
 	Route::get('user/recovery',['as'=>'user.recovery','uses'=>'UserController@recovery','middleware'=> ['permission:recover_user']]);
 
+	// 	****************** CLIENTS ROUTES ******************
+	Route::resource('client', 'ClientController');
+	Route::get('client/edit', 'ClientController@Edit');
+	Route::get('client/delete/{id}', 'ClientController@destroy');
+
+	// 	---------- PERMISSION MIDDLEWARE FOR CLIENTS
+	// Route::get('client/create',['as'=>'client.create','uses'=>'ClientController@create','middleware'=> ['permission:create_client']]);
+	// Route::post('client/create',['as'=>'client.store','uses'=>'ClientController@store','middleware'=> ['permission:create_client']]);
+	// Route::get('client/{id}/edit',['as'=>'client.edit','uses'=>'ClientController@edit','middleware'=> ['permission:edit_client']]);
+	// Route::get('/client',['as'=>'client.index','uses'=>'ClientController@index','middleware'=> ['permission:see_client']]);
+	// Route::get('/client/recover',['as'=>'client.recover','uses'=>'ClientController@recover','middleware'=> ['permission:see_client']]);
+	Route::get('client/show',['as'=>'client.show','uses'=>'ClientController@show','middleware'=> ['permission:see_client']]);
+	// Route::get('client/showTrashed',['as'=>'client.showTrashed','uses'=>'ClientController@showTrashed','middleware'=> ['permission:see_client']]);
+	Route::get('client/delete',['as'=>'client.destroy','uses'=>'ClientController@destroy','middleware'=> ['permission:delete_client']]);
+	// Route::get('client/recovery',['as'=>'client.recovery','uses'=>'ClientController@recovery','middleware'=> ['permission:recover_user']]);
+
 	// 	****************** ROLES ROUTES ******************
 	Route::resource('role', 'RoleController');
 	Route::get('role/edit', 'RoleController@edit');
@@ -86,6 +102,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('api/users', 'UserController@getBtnDatatable');
 	Route::get('api/recover', 'UserController@btnRecoverUser');
+	Route::get('api/clients', 'ClientController@getBtnDatatable');
 	Route::get('api/roles', 'RoleController@getBtnDatatable');
 	Route::get('api/motives', 'MotiveController@getBtnDatatable');
 	Route::get('api/websupport', 'WebSupportController@getBtnDatatable');
