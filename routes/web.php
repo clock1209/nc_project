@@ -27,17 +27,23 @@ Route::group(['middleware' => 'auth'], function () {
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
     // 	****************** USERS ROUTES ******************
+	Route::get('user/recover', 'UserController@recover');
 	Route::resource('user', 'UserController');
 	Route::get('user/edit', 'UserController@Edit');
 	Route::get('user/delete/{id}', 'UserController@destroy');
+	Route::get('user/recovery/{id}', 'UserController@recovery');
+	Route::get('user/showTrashed/{id}', 'UserController@showTrashed');
 
 	// 	---------- PERMISSION MIDDLEWARE FOR USERS
 	Route::get('user/create',['as'=>'user.create','uses'=>'UserController@create','middleware'=> ['permission:create_user']]);
 	Route::post('user/create',['as'=>'user.store','uses'=>'UserController@store','middleware'=> ['permission:create_user']]);
 	Route::get('user/{id}/edit',['as'=>'user.edit','uses'=>'UserController@edit','middleware'=> ['permission:edit_user']]);
 	Route::get('/user',['as'=>'user.index','uses'=>'UserController@index','middleware'=> ['permission:see_user']]);
+	Route::get('/user/recover',['as'=>'user.recover','uses'=>'UserController@recover','middleware'=> ['permission:see_user']]);
 	Route::get('user/show',['as'=>'user.show','uses'=>'UserController@show','middleware'=> ['permission:see_user']]);
+	Route::get('user/showTrashed',['as'=>'user.showTrashed','uses'=>'UserController@showTrashed','middleware'=> ['permission:see_user']]);
 	Route::get('user/delete',['as'=>'user.destroy','uses'=>'UserController@destroy','middleware'=> ['permission:delete_user']]);
+	Route::get('user/recovery',['as'=>'user.recovery','uses'=>'UserController@recovery','middleware'=> ['permission:recover_user']]);
 
 	// 	****************** ROLES ROUTES ******************
 	Route::resource('role', 'RoleController');
@@ -79,6 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('websupport/delete',['as'=>'websupport.destroy','uses'=>'WebSupportController@destroy','middleware'=> ['permission:delete_websupport']]);
 
 	Route::get('api/users', 'UserController@getBtnDatatable');
+	Route::get('api/recover', 'UserController@btnRecoverUser');
 	Route::get('api/roles', 'RoleController@getBtnDatatable');
 	Route::get('api/motives', 'MotiveController@getBtnDatatable');
 	Route::get('api/websupport', 'WebSupportController@getBtnDatatable');

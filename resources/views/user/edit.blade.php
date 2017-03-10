@@ -69,6 +69,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="address" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.address') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('address',null,['class'=>'form-control'])!!}
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="user_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.homephone') }}:</label>
                         <div class="col-sm-8">
                             {!!Form::text('homePhone',null,['class'=>'form-control'])!!}
@@ -82,7 +88,7 @@
                     </div>
                     <div class="text-center">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> <t class="hidden-xs">Actualizar</t></button>
+                            <button type="submit" class="btn btn-primary" id="update" data-toggle="confirmation"><i class="glyphicon glyphicon-floppy-disk"></i> <t class="hidden-xs">Actualizar</t></button>
                             <a class="btn btn-danger btn-close" href="{{ route('user.destroy').'/'.$user->id }}" ><i class="glyphicon glyphicon-floppy-remove"></i> <t class="hidden-xs">Borrar</t></a>
                             <a class="btn btn-danger btn-close" href="{{ route('user.index') }}"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Cancelar</t></a>
                         </div>
@@ -95,5 +101,28 @@
     </div>
 </div>
 </div>
+
+<script>
+
+    $(document).ready(function(){
+        $('body').delegate('#update','mouseenter',function(){
+            $('[data-toggle=confirmation]').confirmation({
+              rootSelector: '[data-toggle=confirmation]',
+              title: "¿Está seguro?",
+              singleton: true,
+              popout: true,
+              btnOkLabel: 'Sí',
+              btnCancelLabel: 'No',
+              placement: 'top',
+              onConfirm: function() {
+                    $('submit').click();
+                },
+                onCancel: function() {
+                },
+            });
+        });
+    });
+    
+</script>
 	
 @endsection

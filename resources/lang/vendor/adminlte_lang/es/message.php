@@ -128,6 +128,7 @@ return [
 
     'adduser'                 => 'Alta de Usuario',
     'userslist'               => 'Listar Usuarios',
+    'recoveruser'             => 'Recuperar Usuario',
     'users'                   => 'Usuarios',
     'welcome'                 => 'Bienvenido',
     'registeruser'            => 'Alta de Usuarios',
@@ -147,6 +148,7 @@ return [
     'motives'                 => 'Motivos',
     'motiveslist'             => 'Lista de Motivos',
 
+    'address'                 => 'Domicilio',
     'lastnamefather'          => 'Apellido Paterno',
     'lastnamemother'          => 'Apellido Materno',
     'homephone'               => 'Teléfono',

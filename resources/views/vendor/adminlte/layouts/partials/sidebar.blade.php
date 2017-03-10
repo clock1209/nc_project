@@ -35,7 +35,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="treeview"><a href="{{ url('home') }}"><i class='glyphicon glyphicon-home'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
 
-            @permission('see_user','create_user','edit_user', 'delete_user')
+            @permission('see_user','create_user','edit_user', 'delete_user', 'recover_user')
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-user'></i> <span>{{ trans('adminlte_lang::message.users') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -44,6 +44,9 @@
                     @endpermission
                     @permission('see_user')
                     <li><a href="{!!URL::to('user')!!}">{{ trans('adminlte_lang::message.userslist') }}</a></li>
+                    @endpermission
+                    @permission('recover_user')
+                    <li><a href="{!!URL::to('user/recover')!!}">{{ trans('adminlte_lang::message.recoveruser') }}</a></li>
                     @endpermission
                 </ul>
             </li>

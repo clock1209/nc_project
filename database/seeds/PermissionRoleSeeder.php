@@ -54,6 +54,12 @@ class PermissionRoleSeeder extends Seeder
 		$deleteUser->description 	= 'Permite borrar un usuario existente'; /*OPTIONAL*/
 		$deleteUser->save();
 
+		$recoverUser = new App\Permission();
+		$recoverUser->name 			= 'recover_user';
+		$recoverUser->display_name 	= 'Recuperar Usuario'; /*OPTIONAL*/
+		$recoverUser->description 	= 'Permite recuperar un usuario eliminado'; /*OPTIONAL*/
+		$recoverUser->save();
+
 		/* CREATE NEW ROLE'S PERMISSION'S */
 		$createRole = new App\Permission();
 		$createRole->name 			= 'create_role';
@@ -152,6 +158,7 @@ class PermissionRoleSeeder extends Seeder
 		$admin->attachPermission($seeRole);
 		$admin->attachPermission($deleteRole);
 		$admin->attachPermission($assignPermission);
+		$admin->attachPermission($recoverUser);
 		// $admin->attachPermission($createMotive);
 		// $admin->attachPermission($editMotive);
 		// $admin->attachPermission($seeMotive);

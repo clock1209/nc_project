@@ -58,7 +58,7 @@ class RoleController extends Controller
             '<a href="role/'.$role->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> <t class="hidden-xs">Editar</t></a>';
         }if (Entrust::can('delete_role')) {
             $delete_role = 
-            '<a rol_id="'. $role->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
+            '<a rol_id="'. $role->id .'" class="btn btn-danger" id="btnActionDelete"  data-toggle="confirmation"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
         }if(Entrust::can('assign_role')){
             
         }

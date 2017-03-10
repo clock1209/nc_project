@@ -57,6 +57,10 @@
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.address') }}" name="address" value="{{ old('address') }}"/>
+                        <span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
                         <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.homephone') }}" name="homePhone" value="{{ old('homePhone') }}"/>
                         <span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
                     </div>

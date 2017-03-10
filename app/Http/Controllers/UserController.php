@@ -34,6 +34,16 @@ class UserController extends Controller
         }
     }
 
+    public function recover()
+    {
+         if(Entrust::can('recover_user')){
+            return view('user.recover')->with('users' , User::all());
+        }else{
+            return redirect('/home')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
+    }
+
+
     public function getBtnDatatable()
     {
         $users = User::select(['id', 'name','lastNameFather','lastNameMother','username', 'email', 'address', 'homePhone', 'cellPhone']);
@@ -60,10 +70,55 @@ class UserController extends Controller
             '<a href="user/'.$user->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> <t class="hidden-xs">Editar</t></a>';
         }if (Entrust::can('delete_user')) {
             $delete_user = 
-            '<a usr_id="'. $user->id .'" class="btn btn-danger" id="btnActionDelete"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
+            '<a usr_id="'. $user->id .'" class="btn btn-danger" id="btnActionDelete"
+            data-toggle="confirmation"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
         }
 
         return $see_user ." ". $edit_user ." ". $delete_user;
+    }
+
+    public function btnRecoverUser()
+    {
+        $users = User::select(['id', 'name','lastNameFather','lastNameMother','username', 'email', 'address', 'homePhone', 'cellPhone'])->onlyTrashed()->get();
+
+        return Datatables::of($users)
+            ->addColumn('action', function ($user) {
+                
+                return $this->recoveryBtn($user);
+            })
+            ->editColumn('id', 'ID: {{$id}}')
+            ->make(true);
+    }
+
+    function recoveryBtn($user)
+    {
+        $see_user = "";
+        // $edit_user = "";
+        $recover_user = "";
+        if(Entrust::can('see_user')){
+            $see_user =
+            '<a data-toggle="modal" usr_id="'. $user->id .'" data-target="#usuario" class="btn btn-info get-user"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
+        }if (Entrust::can('recover_user')) {
+            $recover_user = 
+            '<a usr_id="'. $user->id .'" class="btn btn-primary" id="btnActionRecover"
+            data-toggle="confirmation"><i class="glyphicon glyphicon-floppy-open"></i> <t class="hidden-xs">Recuperar</t></a>';
+        }
+
+        return $see_user ." ". $recover_user;
+    }
+
+    public function recovery($id)
+    {
+        if(Entrust::can('recover_user')){
+            $user = User::onlyTrashed()->where('id', $id)->restore();
+            // dd($user);
+
+            return response()->json(["message"=>"authorized"]);
+        }else{
+            return redirect('user.index')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
+
+
     }
 
     /**
@@ -93,12 +148,13 @@ class UserController extends Controller
             'username' => $request['username'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'address' => $request['address'],
             'homePhone' => $request['homePhone'],
             'cellPhone' => $request['cellPhone'],
         ]);
 
         Mail::send('emails.registered', $request->all(), function($msj) use ($user){
-            $msj->subject('Bienvenido al portal de NUVEM');
+            $msj->subject('Bienvenido al portal de NC Mueblería');
             $msj->to($user->email);
         });
 
@@ -119,6 +175,7 @@ class UserController extends Controller
     {
         if(Entrust::can('see_user')){
             $user = User::find($id);
+            // dd($user);
             $roles = Role::pluck('display_name', 'id');
             $userRole = $user->roles->pluck('display_name','id')->toArray();
 
@@ -127,6 +184,19 @@ class UserController extends Controller
             }
 
             return Response::json([$user, implode($userRole)]);
+        }else{
+            return redirect('user.index')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
+        
+    }
+
+    public function showTrashed($id)
+    {
+        // echo "trashed";
+        if(Entrust::can('see_user')){
+            $user = User::onlyTrashed()->where('id', $id)->get();
+
+            return Response::json($user);
         }else{
             return redirect('user.index')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
         }

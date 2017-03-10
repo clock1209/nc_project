@@ -33,9 +33,9 @@
 
 <div class="container-fluid spark-screen">
 	<div class="row">
-			{!! Build::alert_ajax('Usuario Eliminado Exitosamente') !!}
+			{!! Build::alert_ajax('Usuario Recuperado Exitosamente') !!}
 			<div class="panel panel-default">
-				<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.userslist') }}</div>
+				<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.recoveruser') }}</div>
 				<div class="panel-body table-responsive bgn">
 					<table class="table table-hover" id="users">
 						<thead class="thead-default">
@@ -87,10 +87,6 @@
 						{!! Form::label('email', null, ['class'=>'form-control', 'id'=>'email']) !!}
 					</div>
 					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Rol:</div>
-						{!! Form::label('role', null, ['class'=>'form-control', 'id'=>'role']) !!}
-					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
 						<div class="input-group-addon">Domicilio:</div>
 						{!! Form::label('address', null, ['class'=>'form-control', 'id'=>'address']) !!}
 					</div>
@@ -117,7 +113,7 @@
 				var table = $('#users').DataTable({
 					"processing": true,
 					"serverSide": true,
-					"ajax": "/api/users",
+					"ajax": "/api/recover",
 					"language": {
 						url: "{{ asset('/plugins/datatables/spanish.json') }}"
 					},
@@ -138,12 +134,12 @@
 				$('body').delegate('.get-user','click',function(){
                     usr_id = $(this).attr('usr_id');
                     $.ajax({
-                        url : '{{ URL::to("/user") }}' + '/' + usr_id ,
+                        url : '{{ route("user.showTrashed") }}'+'/'+usr_id,
                         type : 'GET',
                         dataType: 'json',
                         data : {id: usr_id}
                     }).done(function(data){
-                    	console.log(data);
+                    	console.log(data[0]);
                     	$("#name").html(data[0].name );
                     	$("#lastNameFather").html(data[0].lastNameFather );
                     	$("#lastNameMother").html(data[0].lastNameMother );
@@ -152,12 +148,11 @@
                     	$("#homePhone").html(data[0].homePhone );
                     	$("#cellPhone").html(data[0].cellPhone );
                     	$("#address").html(data[0].address );
-                    	$("#role").html(data[1]);
                     });
 
                    });
 
-				$('body').delegate('#btnActionDelete','mouseenter',function(){
+				$('body').delegate('#btnActionRecover','mouseenter',function(){
 					usr_id = $(this).attr('usr_id');
 					var token = $("#token").val();
 					$('[data-toggle=confirmation]').confirmation({
@@ -170,7 +165,7 @@
 					  placement: 'left',
 					  onConfirm: function() {
 					  	$.ajax({
-					  		url: '{{ route("user.destroy") }}'+'/'+usr_id,
+					  		url: '{{ route("user.recovery") }}'+'/'+usr_id,
 					  		headers: {'X-CSRF-TOKEN': token},
 					  		type: 'GET',
 					  		dataType: 'json',
