@@ -128,6 +128,7 @@ return [
 
     'adduser'                 => 'Alta de Usuario',
     'userslist'               => 'Listar Usuarios',
+    'recoveruser'             => 'Recuperar Usuario',
     'users'                   => 'Usuarios',
     'welcome'                 => 'Bienvenido',
     'registeruser'            => 'Alta de Usuarios',
