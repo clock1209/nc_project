@@ -173,5 +173,8 @@ class PermissionRoleSeeder extends Seeder
 
 		$user = User::find(2);
 		$user->attachRole($normalUser);
+
+		$user = User::find(3);
+		$user->attachRole($normalUser);
     }
 }

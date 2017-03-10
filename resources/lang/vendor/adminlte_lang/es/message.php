@@ -163,4 +163,8 @@ return [
     'report'                  => 'Reporte',
     'ticket'                  => 'Ticket',
     'openissues'              => 'Incidencias Abiertas',
+
+    'products'                => 'Productos',
+    'addproduct'              => 'Alta de Productos',
+    'productlist'             => 'Lista de Productos',
 ];
