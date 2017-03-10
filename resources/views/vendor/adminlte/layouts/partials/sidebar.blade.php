@@ -53,7 +53,7 @@
             @endpermission
             @permission('see_role','create_role','edit_role', 'delete_role')
             <li class="treeview">
-                <a href="#"><i class='glyphicon glyphicon-tags'></i> <span>{{ trans('adminlte_lang::message.roles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='glyphicon glyphicon-knight'></i> <span>{{ trans('adminlte_lang::message.roles') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     @permission('create_role')
                     <li><a href="{!!URL::to('role/create')!!}">{{ trans('adminlte_lang::message.addrole') }}</a></li>
@@ -64,6 +64,19 @@
                 </ul>
             </li>
             @endpermission
+
+            {{-- <li class="treeview">
+                <a href="#"><i class='glyphicon glyphicon-knight'></i> <span>{{ trans('adminlte_lang::message.products') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    @permission('create_role')
+                    <li><a href="#">{{ trans('adminlte_lang::message.addproduct') }}</a></li>
+                    @endpermission
+                    @permission('see_role')
+                    <li><a href="#">{{ trans('adminlte_lang::message.productlist') }}</a></li>
+                    @endpermission
+                </ul>
+            </li> --}}
+
             {{-- @permission('see_motive','create_motive','edit_motive', 'delete_motive')
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-comment'></i> <span>{{ trans('adminlte_lang::message.motives') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
