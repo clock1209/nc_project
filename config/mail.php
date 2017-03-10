@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'nuvem@nuvemtecnologia.mx',
-        'name' => 'Nuvem tecnología viva',
+        'address' => 'ncmuebleria@ncmuebleria.mx',
+        'name' => 'NC Mueblería',
     ],
 
     /*

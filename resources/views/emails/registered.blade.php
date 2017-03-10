@@ -62,7 +62,7 @@
 										<label>{!! $email !!}</label><br>{{-- {!! $username !!} --}}
 										<label>Tu Contraseña</label>
 										<label>{!! $password !!}</label><br>
-										<a href="http://nuvem.local/login" class="btn btn-default" role="button">Ir a Página</a>
+										<a href="http://ncmuebleria.local/login" class="btn btn-default" role="button">Ir a Página</a>
 										{{-- <img src="{{ asset('/img/nuvem_png.png') }}" alt="nuvem image" style="display: block; padding: 15px 0 10px 0;" /> --}}
 									</td>
 								</tr>

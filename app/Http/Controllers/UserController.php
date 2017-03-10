@@ -94,12 +94,13 @@ class UserController extends Controller
             'username' => $request['username'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'address' => $request['address'],
             'homePhone' => $request['homePhone'],
             'cellPhone' => $request['cellPhone'],
         ]);
 
         Mail::send('emails.registered', $request->all(), function($msj) use ($user){
-            $msj->subject('Bienvenido al portal de NUVEM');
+            $msj->subject('Bienvenido al portal de NC Mueblería');
             $msj->to($user->email);
         });
 
