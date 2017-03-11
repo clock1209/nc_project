@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'lastNameFather' => 'Cornejo',
             'lastNameMother' => 'Trujillo',
             'username' => 'octavio.cornejo',
-        	'email' => 'octavio@live.com',
+        	'email' => 'octavio@example.com',
         	'password' => bcrypt('123456'),
         ]);
 

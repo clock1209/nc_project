@@ -42,7 +42,7 @@ $factory->define(App\Client::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Products::class, function (Faker\Generator $faker) {
     $costo = $faker->numberBetween(1000, 3000);
-    $precio = $costo * 0.30;
+    $precio = $costo * 1.30;
     return [
         'code'              => $faker->bothify('????####'),
         'name'              => $faker->word,

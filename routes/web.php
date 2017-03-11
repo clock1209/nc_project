@@ -77,36 +77,52 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('role/show',['as'=>'role.show','uses'=>'RoleController@show','middleware'=> ['permission:see_role']]);
 	Route::get('role/delete',['as'=>'role.destroy','uses'=>'RoleController@destroy','middleware'=> ['permission:delete_role']]);
 
+	// 	****************** PRODUCTS ROUTES ******************
+	Route::resource('product', 'ProductsController');
+	Route::get('product/edit', 'ProductsController@edit');
+	Route::get('product/delete/{id}', 'ProductsController@destroy');
+
+	// 	---------- PERMISSION MIDDLEWARE FOR PRODUCTS
+	Route::get('product/create',['as'=>'product.create','uses'=>'ProductsController@create','middleware'=> ['permission:create_product']]);
+	Route::post('product/create',['as'=>'product.store','uses'=>'ProductsController@store','middleware'=> ['permission:create_product']]);
+	Route::get('product/{id}/edit',['as'=>'product.edit','uses'=>'ProductsController@edit','middleware'=> ['permission:edit_product']]);
+	Route::get('/product',['as'=>'product.index','uses'=>'ProductsController@index','middleware'=> ['permission:see_product']]);
+	Route::get('product/show',['as'=>'product.show','uses'=>'ProductsController@show','middleware'=> ['permission:see_product']]);
+	Route::get('product/delete',['as'=>'product.destroy','uses'=>'ProductsController@destroy','middleware'=> ['permission:delete_product']]);
+
+
 	// 	****************** MOTIVES ROUTES ******************
-	Route::resource('motive', 'MotiveController');
-	Route::get('motive/edit', 'MotiveController@Edit');
-	Route::get('motive/delete/{id}', 'MotiveController@destroy');
+	// Route::resource('motive', 'MotiveController');
+	// Route::get('motive/edit', 'MotiveController@Edit');
+	// Route::get('motive/delete/{id}', 'MotiveController@destroy');
 
 	// 	---------- PERMISSION MIDDLEWARE FOR MOTIVES
-	Route::get('motive/create',['as'=>'motive.create','uses'=>'MotiveController@create','middleware'=> ['permission:create_motive']]);
-	Route::post('motive/create',['as'=>'motive.store','uses'=>'MotiveController@store','middleware'=> ['permission:create_motive']]);
-	Route::get('motive/{id}/edit',['as'=>'motive.edit','uses'=>'MotiveController@edit','middleware'=> ['permission:edit_motive']]);
-	Route::get('/motive',['as'=>'motive.index','uses'=>'MotiveController@index','middleware'=> ['permission:see_motive']]);
-	Route::get('motive/show',['as'=>'motive.show','uses'=>'MotiveController@show','middleware'=> ['permission:see_motive']]);
-	Route::get('motive/delete',['as'=>'motive.destroy','uses'=>'MotiveController@destroy','middleware'=> ['permission:delete_motive']]);
+	// Route::get('motive/create',['as'=>'motive.create','uses'=>'MotiveController@create','middleware'=> ['permission:create_motive']]);
+	// Route::post('motive/create',['as'=>'motive.store','uses'=>'MotiveController@store','middleware'=> ['permission:create_motive']]);
+	// Route::get('motive/{id}/edit',['as'=>'motive.edit','uses'=>'MotiveController@edit','middleware'=> ['permission:edit_motive']]);
+	// Route::get('/motive',['as'=>'motive.index','uses'=>'MotiveController@index','middleware'=> ['permission:see_motive']]);
+	// Route::get('motive/show',['as'=>'motive.show','uses'=>'MotiveController@show','middleware'=> ['permission:see_motive']]);
+	// Route::get('motive/delete',['as'=>'motive.destroy','uses'=>'MotiveController@destroy','middleware'=> ['permission:delete_motive']]);
 
 	// 	****************** WEBSUPPORT ROUTES ******************
-	Route::get('websupport/refresh', ['as'=>'websupport.refresh','uses'=>'WebSupportController@refreshDomains']);
-	Route::resource('websupport', 'WebSupportController');
-	Route::get('websupport/edit', 'WebSupportController@Edit');
-	Route::get('websupport/delete/{id}', 'WebSupportController@destroy');
+	// Route::get('websupport/refresh', ['as'=>'websupport.refresh','uses'=>'WebSupportController@refreshDomains']);
+	// Route::resource('websupport', 'WebSupportController');
+	// Route::get('websupport/edit', 'WebSupportController@Edit');
+	// Route::get('websupport/delete/{id}', 'WebSupportController@destroy');
 
-	Route::get('websupport/create',['as'=>'websupport.create','uses'=>'WebSupportController@create','middleware'=> ['permission:create_websupport']]);
-	Route::post('websupport/create',['as'=>'websupport.store','uses'=>'WebSupportController@store','middleware'=> ['permission:create_websupport']]);
-	Route::get('websupport/{id}/edit',['as'=>'websupport.edit','uses'=>'WebSupportController@edit','middleware'=> ['permission:edit_websupport']]);
-	Route::get('/websupport',['as'=>'websupport.index','uses'=>'WebSupportController@index','middleware'=> ['permission:see_websupport']]);
-	Route::get('websupport/show',['as'=>'websupport.show','uses'=>'WebSupportController@show','middleware'=> ['permission:see_websupport']]);
-	Route::get('websupport/delete',['as'=>'websupport.destroy','uses'=>'WebSupportController@destroy','middleware'=> ['permission:delete_websupport']]);
+	// Route::get('websupport/create',['as'=>'websupport.create','uses'=>'WebSupportController@create','middleware'=> ['permission:create_websupport']]);
+	// Route::post('websupport/create',['as'=>'websupport.store','uses'=>'WebSupportController@store','middleware'=> ['permission:create_websupport']]);
+	// Route::get('websupport/{id}/edit',['as'=>'websupport.edit','uses'=>'WebSupportController@edit','middleware'=> ['permission:edit_websupport']]);
+	// Route::get('/websupport',['as'=>'websupport.index','uses'=>'WebSupportController@index','middleware'=> ['permission:see_websupport']]);
+	// Route::get('websupport/show',['as'=>'websupport.show','uses'=>'WebSupportController@show','middleware'=> ['permission:see_websupport']]);
+	// Route::get('websupport/delete',['as'=>'websupport.destroy','uses'=>'WebSupportController@destroy','middleware'=> ['permission:delete_websupport']]);
 
 	Route::get('api/users', 'UserController@getBtnDatatable');
 	Route::get('api/recover', 'UserController@btnRecoverUser');
 	Route::get('api/clients', 'ClientController@getBtnDatatable');
 	Route::get('api/c_recover', 'ClientController@btnRecoverClient');
+	Route::get('api/product', 'ProductsController@getBtnDatatable');
+	Route::get('api/pdt_recover', 'ProductsController@btnRecoverProduct');
 	Route::get('api/roles', 'RoleController@getBtnDatatable');
 	Route::get('api/motives', 'MotiveController@getBtnDatatable');
 	Route::get('api/websupport', 'WebSupportController@getBtnDatatable');
@@ -117,13 +133,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/permisos/desasignar','PermissionController@desasignar');
 
 	// 	****************** REPORT ROUTES ******************
-	Route::resource('report', 'ReportController');
-	Route::post('report/result',['as'=>'report.result','uses'=>'ReportController@result']);
-	Route::get('report/searchby/{data}',['as'=>'report.searchby','uses'=>'ReportController@radio']);
+	// Route::resource('report', 'ReportController');
+	// Route::post('report/result',['as'=>'report.result','uses'=>'ReportController@result']);
+	// Route::get('report/searchby/{data}',['as'=>'report.searchby','uses'=>'ReportController@radio']);
 
 	// 	****************** TICKET ROUTES ******************
-	Route::resource('ticket', 'TicketController');
+	// Route::resource('ticket', 'TicketController');
 
 	/* datatable charge */
-	Route::get('api/ticket', 'TicketController@getBtnDatatable');
+	// Route::get('api/ticket', 'TicketController@getBtnDatatable');
 });

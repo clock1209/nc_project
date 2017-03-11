@@ -168,11 +168,16 @@ return [
     'products'                => 'Productos',
     'addproduct'              => 'Alta de Productos',
     'productlist'             => 'Lista de Productos',
+    'editproducts'            => 'Editar Producto',
+    'recoverproduct'          => 'Recuperar Producto',
 
-    'clients'                => 'Clientes',
-    'editclient'             => 'Editar Cliente',
-    'addclient'              => 'Alta de Cliente',
-    'clientlist'             => 'Lista de Clientes',
-    'registerclient'         => 'Alta de Cliente',
-    'recoverclient'         => 'Recuperar Cliente',
+    'clients'                   => 'Clientes',
+    'editclient'                => 'Editar Cliente',
+    'addclient'                 => 'Alta de Cliente',
+    'clientlist'                => 'Lista de Clientes',
+    'registerclient'            => 'Alta de Cliente',
+    'recoverclient'             => 'Recuperar Cliente',
+
+    'manage'                    => 'Administración',
+    'customerservice'           => 'Atención a Cliente',
 ];

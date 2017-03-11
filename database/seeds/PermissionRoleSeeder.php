@@ -122,6 +122,37 @@ class PermissionRoleSeeder extends Seeder
 		$assignPermission->description 	= 'Permite asignar permisos a un rol'; /*OPTIONAL*/
 		$assignPermission->save();
 
+		/* CREATE NEW PRODUCTS'S PERMISSION'S */
+		$createProduct = new App\Permission();
+		$createProduct->name 			= 'create_product';
+		$createProduct->display_name 	= 'Crear Producto'; /*OPTIONAL*/
+		$createProduct->description 	= 'Permite crear un nuevo producto'; /*OPTIONAL*/
+		$createProduct->save();
+
+		$editProduct = new App\Permission();
+		$editProduct->name 			= 'edit_product';
+		$editProduct->display_name 	= 'Editar Producto'; /*OPTIONAL*/
+		$editProduct->description 	= 'permite editar un producto existente'; /*OPTIONAL*/
+		$editProduct->save();
+
+		$seeProduct = new App\Permission();
+		$seeProduct->name 			= 'see_product';
+		$seeProduct->display_name 	= 'Ver Lista de Productos'; /*OPTIONAL*/
+		$seeProduct->description 	= 'Permite ver la lista de productos'; /*OPTIONAL*/
+		$seeProduct->save();
+
+		$deleteProduct = new App\Permission();
+		$deleteProduct->name 			= 'delete_product';
+		$deleteProduct->display_name 	= 'Borrar Producto'; /*OPTIONAL*/
+		$deleteProduct->description 	= 'Permite borrar un producto existente'; /*OPTIONAL*/
+		$deleteProduct->save();
+
+		$recoverProduct = new App\Permission();
+		$recoverProduct->name 			= 'recover_product';
+		$recoverProduct->display_name 	= 'Recuperar Producto'; /*OPTIONAL*/
+		$recoverProduct->description 	= 'Permite recuperar un producto eliminado'; /*OPTIONAL*/
+		$recoverProduct->save();
+
 		/* CREATE NEW MOTIVE'S PERMISSION'S */
 		// $createMotive = new App\Permission();
 		// $createMotive->name 			= 'create_motive';
@@ -197,6 +228,12 @@ class PermissionRoleSeeder extends Seeder
 		$admin->attachPermission($seeClient);
 		$admin->attachPermission($deleteClient);
 		$admin->attachPermission($recoverClient);
+
+		$admin->attachPermission($createProduct);
+		$admin->attachPermission($editProduct);
+		$admin->attachPermission($seeProduct);
+		$admin->attachPermission($deleteProduct);
+		$admin->attachPermission($recoverProduct);
 		// $admin->attachPermission($createMotive);
 		// $admin->attachPermission($editMotive);
 		// $admin->attachPermission($seeMotive);

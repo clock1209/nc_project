@@ -31,10 +31,48 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
+            <li class="header">{{ trans('adminlte_lang::message.customerservice') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="treeview"><a href="{{ url('home') }}"><i class='glyphicon glyphicon-home'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
 
+            @permission('see_client','create_client','edit_client', 'delete_client', 'recover_client')
+            <li class="treeview">
+                <a href="#"><i class='fa fa-users'></i> <span>{{ trans('adminlte_lang::message.clients') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    @permission('create_client')
+                    <li><a href="{!!URL::to('client/create')!!}">{{ trans('adminlte_lang::message.addclient') }}</a></li>
+                    @endpermission
+                    @permission('see_client')
+                    <li><a href="{!!URL::to('client')!!}">{{ trans('adminlte_lang::message.clientlist') }}</a></li>
+                    @endpermission
+                    @permission('recover_client')
+                    <li><a href="{!!URL::to('client/recover')!!}">{{ trans('adminlte_lang::message.recoverclient') }}</a></li>
+                    @endpermission
+                </ul>
+            </li>
+            @endpermission
+
+            @permission('see_product','create_product','edit_product', 'delete_product', 'recover_product')
+            <li class="treeview">
+                <a href="#"><i class='glyphicon glyphicon-bed'></i> <span>{{ trans('adminlte_lang::message.products') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    @permission('create_product')
+                    <li><a href="{!!URL::to('product/create')!!}">{{ trans('adminlte_lang::message.addproduct') }}</a></li>
+                    @endpermission
+                    @permission('see_product')
+                    <li><a href="{!!URL::to('product')!!}">{{ trans('adminlte_lang::message.productlist') }}</a></li>
+                    @endpermission
+                    @permission('recover_product')
+                    <li><a href="#">{{ trans('adminlte_lang::message.recoverproduct') }}</a></li>
+                    @endpermission
+                </ul>
+            </li>
+            @endpermission
+
+            @permission('see_user','create_user','edit_user', 'delete_user', 'recover_user')
+            <li class="header">{{ trans('adminlte_lang::message.manage') }}</li>
+            @endpermission
+            
             @permission('see_user','create_user','edit_user', 'delete_user', 'recover_user')
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-user'></i> <span>{{ trans('adminlte_lang::message.users') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -65,34 +103,6 @@
             </li>
             @endpermission
 
-            @permission('see_client','create_client','edit_client', 'delete_client', 'recover_client')
-            <li class="treeview">
-                <a href="#"><i class='fa fa-users'></i> <span>{{ trans('adminlte_lang::message.clients') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    @permission('create_client')
-                    <li><a href="{!!URL::to('client/create')!!}">{{ trans('adminlte_lang::message.addclient') }}</a></li>
-                    @endpermission
-                    @permission('see_client')
-                    <li><a href="{!!URL::to('client')!!}">{{ trans('adminlte_lang::message.clientlist') }}</a></li>
-                    @endpermission
-                    @permission('recover_client')
-                    <li><a href="{!!URL::to('client/recover')!!}">{{ trans('adminlte_lang::message.recoverclient') }}</a></li>
-                    @endpermission
-                </ul>
-            </li>
-            @endpermission
-
-            {{-- <li class="treeview">
-                <a href="#"><i class='glyphicon glyphicon-knight'></i> <span>{{ trans('adminlte_lang::message.products') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    @permission('create_role')
-                    <li><a href="#">{{ trans('adminlte_lang::message.addproduct') }}</a></li>
-                    @endpermission
-                    @permission('see_role')
-                    <li><a href="#">{{ trans('adminlte_lang::message.productlist') }}</a></li>
-                    @endpermission
-                </ul>
-            </li> --}}
 
             {{-- @permission('see_motive','create_motive','edit_motive', 'delete_motive')
             <li class="treeview">
