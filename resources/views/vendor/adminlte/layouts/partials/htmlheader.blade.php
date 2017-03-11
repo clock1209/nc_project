@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="{{ asset('plugins/datatables/jquery.dataTables.css') }}">
 
-    <link href="{{ asset('/css/multi-select.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/css/multi-select-nc.css') }}" rel="stylesheet" type="text/css" />
 
     <script src="/js/jquery.multi-select.js"></script>
 

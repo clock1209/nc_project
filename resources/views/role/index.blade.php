@@ -141,8 +141,8 @@
 
 			 	rol_id = null;
                $('#select-permisos').multiSelect({
-                    selectableHeader: "<div class='custom-header'>Permisos no asignados</div>",
-                    selectionHeader: "<div class='custom-header'>Permisos asignados</div>",
+                    selectableHeader: "<h4 class='text-center'><b>Permisos no asignados</h4></b>",
+                    selectionHeader: "<h4  class='text-center'><b>Permisos asignados</h4></b>",
                    afterSelect:function(value){//enviamos al servidor el id del permiso seleccionado
                         $.ajax({
                         url : '{{ URL::to("/permisos/asignar") }}',
