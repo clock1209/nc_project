@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'lastNameFather' => 'Cornejo',
             'lastNameMother' => 'Trujillo',
             'username' => 'octavio.cornejo',
-        	'email' => 'saber_oct@live.com',
+        	'email' => 'octavio@live.com',
         	'password' => bcrypt('123456'),
         ]);
 
@@ -34,7 +34,34 @@ class UserSeeder extends Seeder
             'lastNameFather' => 'Jimenez',
             'lastNameMother' => 'Sedano',
             'username' => 'conejo.blas',
-            'email' => 'blassi@example.com',
+            'email' => 'blas@example.com',
+            'password' => bcrypt('123456'),
+        ]);
+
+        factory(App\User::class)->create([
+            'name' => 'Jouse',
+            'lastNameFather' => 'Rodriguez',
+            'lastNameMother' => 'Velazquez',
+            'username' => 'joshu.gogo',
+            'email' => 'josue@example.com',
+            'password' => bcrypt('123456'),
+        ]);
+
+        factory(App\User::class)->create([
+            'name' => 'Adan',
+            'lastNameFather' => 'Jimenez',
+            'lastNameMother' => 'Sedano',
+            'username' => 'adan.peluca',
+            'email' => 'adan@example.com',
+            'password' => bcrypt('123456'),
+        ]);
+
+        factory(App\User::class)->create([
+            'name' => 'Joceline',
+            'lastNameFather' => 'Diaz',
+            'lastNameMother' => 'Velasquez',
+            'username' => 'joss.stop',
+            'email' => 'joceline@example.com',
             'password' => bcrypt('123456'),
         ]);
 

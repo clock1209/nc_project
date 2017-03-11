@@ -15,7 +15,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'name' => $faker->firstName,
         'lastNameFather' => $faker->lastname,
         'lastNameMother' => $faker->lastname,
         'username' => $faker->userName,
@@ -30,13 +30,27 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Client::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->firstName,
         'lastNameFather' => $faker->lastname,
         'lastNameMother' => $faker->lastname,
         'email' => $faker->unique()->safeEmail,
         'address' => $faker->streetAddress,
         'homePhone' => $faker->unique()->phoneNumber,
         'cellPhone' => $faker->unique()->phoneNumber,
+    ];
+});
+
+$factory->define(App\Products::class, function (Faker\Generator $faker) {
+    $costo = $faker->numberBetween(1000, 3000);
+    $precio = $costo * 0.30;
+    return [
+        'code'              => $faker->bothify('????####'),
+        'name'              => $faker->word,
+        'category'          => $faker->randomElement($array = array('Oficina', 'Hogar', 'Servicio')),
+        'sale_price'        => $precio,     
+        'production_cost'   => $costo,
+        'quantity'          => $faker->numberBetween($min = 1, $max = 20),
+        'description'       => $faker->sentence($nbWords = 6, $variableNbWords = true),
     ];
 });
 
