@@ -197,13 +197,13 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        // if(Entrust::can('edit_user')){
+        if(Entrust::can('edit_client')){
             $client = Client::find($id);
 
             return view('client.edit', ['client'=>$client]);
-        // }else{
-            // return redirect('/user')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
-        // }
+        }else{
+            return redirect('/client')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
     }
 
     /**

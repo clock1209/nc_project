@@ -78,9 +78,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('role/delete',['as'=>'role.destroy','uses'=>'RoleController@destroy','middleware'=> ['permission:delete_role']]);
 
 	// 	****************** PRODUCTS ROUTES ******************
+	Route::get('product/recover', 'ProductsController@recover');
 	Route::resource('product', 'ProductsController');
 	Route::get('product/edit', 'ProductsController@edit');
 	Route::get('product/delete/{id}', 'ProductsController@destroy');
+	Route::get('product/recovery/{id}', 'ProductsController@recovery');
+	Route::get('product/showTrashed/{id}', 'ProductsController@showTrashed');
 
 	// 	---------- PERMISSION MIDDLEWARE FOR PRODUCTS
 	Route::get('product/create',['as'=>'product.create','uses'=>'ProductsController@create','middleware'=> ['permission:create_product']]);
@@ -89,6 +92,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/product',['as'=>'product.index','uses'=>'ProductsController@index','middleware'=> ['permission:see_product']]);
 	Route::get('product/show',['as'=>'product.show','uses'=>'ProductsController@show','middleware'=> ['permission:see_product']]);
 	Route::get('product/delete',['as'=>'product.destroy','uses'=>'ProductsController@destroy','middleware'=> ['permission:delete_product']]);
+	Route::get('/product/recover',['as'=>'product.recover','uses'=>'ProductsController@recover','middleware'=> ['permission:see_product']]);
+	Route::get('product/showTrashed',['as'=>'product.showTrashed','uses'=>'ProductsController@showTrashed','middleware'=> ['permission:see_product']]);
+	Route::get('product/recovery',['as'=>'product.recovery','uses'=>'ProductsController@recovery','middleware'=> ['permission:recover_product']]);
 
 
 	// 	****************** MOTIVES ROUTES ******************
@@ -122,7 +128,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/clients', 'ClientController@getBtnDatatable');
 	Route::get('api/c_recover', 'ClientController@btnRecoverClient');
 	Route::get('api/product', 'ProductsController@getBtnDatatable');
-	Route::get('api/pdt_recover', 'ProductsController@btnRecoverProduct');
+	Route::get('api/pdt_recover', 'ProductsController@btnRecoverProducts');
 	Route::get('api/roles', 'RoleController@getBtnDatatable');
 	Route::get('api/motives', 'MotiveController@getBtnDatatable');
 	Route::get('api/websupport', 'WebSupportController@getBtnDatatable');

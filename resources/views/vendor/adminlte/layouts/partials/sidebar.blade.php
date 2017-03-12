@@ -63,7 +63,7 @@
                     <li><a href="{!!URL::to('product')!!}">{{ trans('adminlte_lang::message.productlist') }}</a></li>
                     @endpermission
                     @permission('recover_product')
-                    <li><a href="#">{{ trans('adminlte_lang::message.recoverproduct') }}</a></li>
+                    <li><a href="{!!URL::to('product/recover')!!}">{{ trans('adminlte_lang::message.recoverproduct') }}</a></li>
                     @endpermission
                 </ul>
             </li>
