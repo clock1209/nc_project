@@ -32,6 +32,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="product_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.details') }}:</label>
+                        <div class="col-sm-8">
+                            {!!Form::text('details',null,['class'=>'form-control'])!!}
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="product_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.category') }}:</label>
                         <div class="col-sm-8">
                             {!!Form::text('category',null,['class'=>'form-control'])!!}

@@ -175,6 +175,7 @@ return [
     'sale_price'                => 'Precio de Venta',
     'production_cost'           => 'Costo de Producción',
     'quantity'                  => 'Existencias',
+    'details'                  => 'Detalles',
 
     'clients'                   => 'Clientes',
     'editclient'                => 'Editar Cliente',

@@ -43,6 +43,7 @@
 								<th>ID</th>
 								<th>Código</th>
 								<th>Nombre</th>
+								<th>Detalles</th>
 								<th>Categoria</th>
 								<th>Precio</th>
 								<th>Costo</th>
@@ -72,6 +73,10 @@
 					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
 						<div class="input-group-addon">Nombre de Producto:</div>
 						{!! Form::label('name', null, ['class'=>'form-control', 'id'=>'name']) !!}
+					</div>
+					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon">Detalles de Producto:</div>
+						{!! Form::label('details', null, ['class'=>'form-control', 'id'=>'details']) !!}
 					</div>
 					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
 						<div class="input-group-addon">Categoria:</div>
@@ -116,6 +121,7 @@
 					{data: 'id', visible: false},
 					{data: 'code'},
 					{data: 'name'},
+					{data: 'details'},
 					{data: 'category'},
 					{data: 'sale_price'}, 
 					{data: 'production_cost', visible: false},
@@ -135,6 +141,7 @@
                     }).done(function(data){
                     	console.log(data[0]);
                     	$("#name").html(data[0].name );
+                    	$("#details").html(data[0].details );
                     	$("#code").html(data[0].code );
                     	$("#category").html(data[0].category );
                     	$("#sale_price").html('$ ' + data[0].sale_price);

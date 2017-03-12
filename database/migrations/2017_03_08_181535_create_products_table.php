@@ -17,11 +17,12 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('code');
             $table->string('name');
+            $table->string('details')->nullable();
             $table->string('category');
             $table->float('sale_price');
             $table->float('production_cost');
             $table->string('description')->nullable();
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

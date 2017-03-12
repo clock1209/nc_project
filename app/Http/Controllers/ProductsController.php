@@ -38,7 +38,7 @@ class ProductsController extends Controller
 
     public function getBtnDatatable()
     {
-        $products = Products::select(['id', 'code','name','category','sale_price', 'production_cost', 'description', 'quantity']);
+        $products = Products::select(['id', 'code','name', 'details', 'category','sale_price', 'production_cost', 'description', 'quantity']);
 
         return Datatables::of($products)
             ->addColumn('action', function ($product) {
@@ -72,7 +72,7 @@ class ProductsController extends Controller
 
     public function btnRecoverProducts()
     {
-        $products = Products::select(['id', 'code','name','category','sale_price', 'production_cost', 'description', 'quantity'])->onlyTrashed()->get();
+        $products = Products::select(['id', 'code','name', 'details', 'category','sale_price', 'production_cost', 'description', 'quantity'])->onlyTrashed()->get();
 
         return Datatables::of($products)
             ->addColumn('action', function ($product) {
@@ -135,6 +135,7 @@ class ProductsController extends Controller
         $product = Products::create([
             'code' => $request['code'],
             'name' => $request['name'],
+            'details' => $request['details'],
             'category' => $request['category'],
             'sale_price' => $request['sale_price'],
             'production_cost' => $request['production_cost'],

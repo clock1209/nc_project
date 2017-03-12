@@ -46,6 +46,7 @@ $factory->define(App\Products::class, function (Faker\Generator $faker) {
     return [
         'code'              => $faker->bothify('????####'),
         'name'              => $faker->word,
+        'details'           => $faker->word,
         'category'          => $faker->randomElement($array = array('Oficina', 'Hogar', 'Servicio')),
         'sale_price'        => $precio,     
         'production_cost'   => $costo,
