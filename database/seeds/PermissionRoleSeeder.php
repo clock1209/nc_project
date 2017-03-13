@@ -20,6 +20,18 @@ class PermissionRoleSeeder extends Seeder
 		$normalUser->description  = 'Usuario sin privilegios'; // optional
 		$normalUser->save();
 
+		$normalCashier = new App\Role();
+    	$normalCashier->name         = 'cashier';
+		$normalCashier->display_name = 'Cajero'; // optional
+		$normalCashier->description  = 'Usuario con permisos de ventas'; // optional
+		$normalCashier->save();
+
+		$normalManufacturer = new App\Role();
+    	$normalManufacturer->name         = 'manufacturer';
+		$normalManufacturer->display_name = 'Fabricante'; // optional
+		$normalManufacturer->description  = 'Usuario con permisos de producción'; // optional
+		$normalManufacturer->save();
+
 		$admin = new App\Role();
 		$admin->name         = 'admin';
 		$admin->display_name = 'Admin'; // optional
@@ -153,6 +165,75 @@ class PermissionRoleSeeder extends Seeder
 		$recoverProduct->description 	= 'Permite recuperar un producto eliminado'; /*OPTIONAL*/
 		$recoverProduct->save();
 
+		/* CREATE NEW QUOTE'S PERMISSION'S */
+		$createQuote = new App\Permission();
+		$createQuote->name 			= 'create_quote';
+		$createQuote->display_name 	= 'Crear Cotización'; /*OPTIONAL*/
+		$createQuote->description 	= 'Permite crear una nueva cotización'; /*OPTIONAL*/
+		$createQuote->save();
+
+		$editQuote = new App\Permission();
+		$editQuote->name 			= 'edit_quote';
+		$editQuote->display_name 	= 'Editar Cotización'; /*OPTIONAL*/
+		$editQuote->description 	= 'permite editar una cotización existente'; /*OPTIONAL*/
+		$editQuote->save();
+
+		$seeQuote = new App\Permission();
+		$seeQuote->name 			= 'see_quote';
+		$seeQuote->display_name 	= 'Ver Lista de Cotizaciones'; /*OPTIONAL*/
+		$seeQuote->description 	= 'Permite ver la lista de cotizaciones'; /*OPTIONAL*/
+		$seeQuote->save();
+
+		$deleteQuote = new App\Permission();
+		$deleteQuote->name 			= 'delete_quote';
+		$deleteQuote->display_name 	= 'Borrar Cotización'; /*OPTIONAL*/
+		$deleteQuote->description 	= 'Permite borrar una Cotización existente'; /*OPTIONAL*/
+		$deleteQuote->save();
+
+		$recoverQuote = new App\Permission();
+		$recoverQuote->name 			= 'recover_quote';
+		$recoverQuote->display_name 	= 'Recuperar Cotización'; /*OPTIONAL*/
+		$recoverQuote->description 	= 'Permite recuperar una cotización eliminada'; /*OPTIONAL*/
+		$recoverQuote->save();
+
+		/* CREATE NEW ORDER'S PERMISSION'S */
+		$createOrder = new App\Permission();
+		$createOrder->name 			= 'create_order';
+		$createOrder->display_name 	= 'Crear Pedido'; /*OPTIONAL*/
+		$createOrder->description 	= 'Permite crear un nuevo pedido'; /*OPTIONAL*/
+		$createOrder->save();
+
+		$editOrder = new App\Permission();
+		$editOrder->name 			= 'edit_order';
+		$editOrder->display_name 	= 'Editar Pedido'; /*OPTIONAL*/
+		$editOrder->description 	= 'Permite editar un pedido existente'; /*OPTIONAL*/
+		$editOrder->save();
+
+		$seeOrder = new App\Permission();
+		$seeOrder->name 			= 'see_order';
+		$seeOrder->display_name 	= 'Ver Lista de Pedidos'; /*OPTIONAL*/
+		$seeOrder->description 	= 'Permite ver la lista de pedidos'; /*OPTIONAL*/
+		$seeOrder->save();
+
+		$deleteOrder = new App\Permission();
+		$deleteOrder->name 			= 'delete_order';
+		$deleteOrder->display_name 	= 'Borrar Pedido'; /*OPTIONAL*/
+		$deleteOrder->description 	= 'Permite borrar un pedido existente'; /*OPTIONAL*/
+		$deleteOrder->save();
+
+		$recoverOrder = new App\Permission();
+		$recoverOrder->name 			= 'recover_order';
+		$recoverOrder->display_name 	= 'Recuperar Pedido'; /*OPTIONAL*/
+		$recoverOrder->description 	= 'Permite recuperar un pedido eliminado'; /*OPTIONAL*/
+		$recoverOrder->save();
+
+		/* CREATE NEW ORDER'S PERMISSION'S */
+		$makeSale = new App\Permission();
+		$makeSale->name 			= 'make_sale';
+		$makeSale->display_name 	= 'Hacer Venta'; /*OPTIONAL*/
+		$makeSale->description 	= 'Permite hacer ventas de mostrador'; /*OPTIONAL*/
+		$makeSale->save();
+
 		/* CREATE NEW MOTIVE'S PERMISSION'S */
 		// $createMotive = new App\Permission();
 		// $createMotive->name 			= 'create_motive';
@@ -234,6 +315,20 @@ class PermissionRoleSeeder extends Seeder
 		$admin->attachPermission($seeProduct);
 		$admin->attachPermission($deleteProduct);
 		$admin->attachPermission($recoverProduct);
+
+		$admin->attachPermission($createQuote);
+		$admin->attachPermission($editQuote);
+		$admin->attachPermission($seeQuote);
+		$admin->attachPermission($deleteQuote);
+		$admin->attachPermission($recoverQuote);
+
+		$admin->attachPermission($createOrder);
+		$admin->attachPermission($editOrder);
+		$admin->attachPermission($seeOrder);
+		$admin->attachPermission($deleteOrder);
+		$admin->attachPermission($recoverOrder);
+
+		$admin->attachPermission($makeSale);
 		// $admin->attachPermission($createMotive);
 		// $admin->attachPermission($editMotive);
 		// $admin->attachPermission($seeMotive);

@@ -184,6 +184,13 @@ return [
     'registerclient'            => 'Alta de Cliente',
     'recoverclient'             => 'Recuperar Cliente',
 
+    'quotes'                   => 'Cotización',
+    'editquote'                => 'Editar Cotización',
+    'addquote'                 => 'Alta de Cotización',
+    'quotelist'                => 'Lista de Cotizaciónes',
+    'registerquote'            => 'Alta de Cotización',
+    'recoverquote'             => 'Recuperar Cotización',
+
     'manage'                    => 'Administración',
     'customerservice'           => 'Atención a Cliente',
 ];

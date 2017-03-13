@@ -69,6 +69,23 @@
             </li>
             @endpermission
 
+            @permission('see_quote','create_quote','edit_quote', 'delete_quote', 'recover_quote')
+            <li class="treeview">
+                <a href="#"><i class='glyphicon glyphicon-briefcase'></i> <span>{{ trans('adminlte_lang::message.quotes') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    @permission('create_quote')
+                    <li><a href="{!!URL::to('quote/create')!!}">{{ trans('adminlte_lang::message.addquote') }}</a></li>
+                    @endpermission
+                    @permission('see_quote')
+                    <li><a href="{!!URL::to('quote')!!}">{{ trans('adminlte_lang::message.quotelist') }}</a></li>
+                    @endpermission
+                    @permission('recover_quote')
+                    <li><a href="{!!URL::to('quote/recover')!!}">{{ trans('adminlte_lang::message.recoverquote') }}</a></li>
+                    @endpermission
+                </ul>
+            </li>
+            @endpermission
+
             @permission('see_user','create_user','edit_user', 'delete_user', 'recover_user')
             <li class="header">{{ trans('adminlte_lang::message.manage') }}</li>
             @endpermission
