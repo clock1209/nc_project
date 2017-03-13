@@ -113,6 +113,15 @@
 		
 		<script>
 
+		paceOptions = {
+		  // Disable the 'elements' source
+		  elements: false,
+
+		  // Only show the progress on regular and ajax-y page navigation,
+		  // not every request
+		  restartOnRequestAfter: false
+		}
+
 			$(document).ready(function(){
 				var table = $('#users').DataTable({
 					"processing": true,
@@ -189,6 +198,8 @@
 				$('body').delegate('#msj-authorized','click', function(){
 					$(this).hide();
 				});
+
+				$(document).ajaxStart(function() { Pace.start(); });
 
 			});
 		</script>

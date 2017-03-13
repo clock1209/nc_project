@@ -19,8 +19,7 @@
     <link href="{{ asset('/css/multi-select-nc.css') }}" rel="stylesheet" type="text/css" />
 
     <script src="/js/jquery.multi-select.js"></script>
-
-    
+    <script src="/plugins/pace/pace.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
