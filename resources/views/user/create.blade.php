@@ -95,6 +95,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+      $("[name='homePhone']").inputmask("9999-9999");  //static mask
+        $("[name='cellPhone']").inputmask("(99)-9999-9999");  //static mask
+    });
+</script>
 </div>
 	
 @endsection

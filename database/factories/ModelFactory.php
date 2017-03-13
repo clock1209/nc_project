@@ -22,8 +22,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'address' => $faker->streetAddress,
-        'homePhone' => $faker->unique()->phoneNumber,
-        'cellPhone' => $faker->unique()->phoneNumber,
+        'homePhone' => $faker->unique()->regexify('/^([0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2})$/'),
+        'cellPhone' => $faker->unique()->regexify('/^(33-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2})$/'),
         'remember_token' => str_random(10),
     ];
 });
@@ -35,8 +35,8 @@ $factory->define(App\Client::class, function (Faker\Generator $faker) {
         'lastNameMother' => $faker->lastname,
         'email' => $faker->unique()->safeEmail,
         'address' => $faker->streetAddress,
-        'homePhone' => $faker->unique()->phoneNumber,
-        'cellPhone' => $faker->unique()->phoneNumber,
+        'homePhone' => $faker->unique()->regexify('/^([0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2})$/'),
+        'cellPhone' => $faker->unique()->regexify('/^(33-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2})$/'),
     ];
 });
 
@@ -47,11 +47,11 @@ $factory->define(App\Products::class, function (Faker\Generator $faker) {
         'code'              => $faker->bothify('????####'),
         'name'              => $faker->word,
         'details'           => $faker->word,
-        'category'          => $faker->randomElement($array = array('Oficina', 'Hogar', 'Servicio')),
+        'category'          => $faker->randomElement($array = array('Oficina', 'Hogar', 'Negocio', 'infantil')),
         'sale_price'        => $precio,     
         'production_cost'   => $costo,
-        'quantity'          => $faker->numberBetween($min = 1, $max = 20),
-        'description'       => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'quantity'          => $faker->numberBetween($min = 1, $max = 15),
+        'description'       => $faker->sentence($nbWords = 5, $variableNbWords = true),
     ];
 });
 

@@ -24,14 +24,14 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'              => 'required|max:255|alpha',
-            'lastNameFather'    => 'required|max:255|alpha',
-            'lastNameMother'    => 'nullable|max:255|alpha',
-            'email'             => 'required|email|max:255',
-            'password'          => 'confirmed',
+            'name'              => 'required|max:60|regex:/^[A-Za-z\s]+$/',
+            'lastNameFather'    => 'required|max:60|regex:/^[A-Za-z\s]+$/',
+            'lastNameMother'    => 'nullable|max:60|regex:/^[A-Za-z\s]+$/',
+            'email'             => 'required|email|max:100',
+            'password'          => 'min:8|max:20|confirmed|regex:/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/',
             'address'           => 'max:255|nullable',
-            'homePhone'         => 'nullable|digits_between:8,20',
-            'cellPhone'         => 'nullable|digits_between:8,20',
+            'homePhone'         => 'nullable|min:8|max:15|regex:/^[1-9\(\)\-]+$/',
+            'cellPhone'         => 'nullable|min:8|max:15|regex:/^[1-9\(\)\-]+$/',
         ];
     }
 }

@@ -227,12 +227,19 @@ class PermissionRoleSeeder extends Seeder
 		$recoverOrder->description 	= 'Permite recuperar un pedido eliminado'; /*OPTIONAL*/
 		$recoverOrder->save();
 
-		/* CREATE NEW ORDER'S PERMISSION'S */
+		/* CREATE NEW SALE'S PERMISSION'S */
 		$makeSale = new App\Permission();
 		$makeSale->name 			= 'make_sale';
 		$makeSale->display_name 	= 'Hacer Venta'; /*OPTIONAL*/
 		$makeSale->description 	= 'Permite hacer ventas de mostrador'; /*OPTIONAL*/
 		$makeSale->save();
+
+		/* CREATE NEW REPORT'S PERMISSION'S */
+		$report = new App\Permission();
+		$report->name 			= 'report';
+		$report->display_name 	= 'Ver Reportes'; /*OPTIONAL*/
+		$report->description 	= 'Permite ver reportes generales'; /*OPTIONAL*/
+		$report->save();
 
 		/* CREATE NEW MOTIVE'S PERMISSION'S */
 		// $createMotive = new App\Permission();
@@ -292,6 +299,20 @@ class PermissionRoleSeeder extends Seeder
 		$normalUser->attachPermission($seeRole);
 		// $normalUser->attachPermission($seeMotive);
 
+		$normalCashier->attachPermission($makeSale);
+		$normalCashier->attachPermission($createOrder);
+		$normalCashier->attachPermission($seeOrder);
+		$normalCashier->attachPermission($createClient);
+		$normalCashier->attachPermission($seeClient);
+		$normalCashier->attachPermission($seeProduct);
+		$normalCashier->attachPermission($createQuote);
+		$normalCashier->attachPermission($seeQuote);
+
+		$normalManufacturer->attachPermission($createProduct);
+		$normalManufacturer->attachPermission($seeProduct);
+		$normalManufacturer->attachPermission($seeOrder);
+		$normalManufacturer->attachPermission($editOrder);
+
 		$admin->attachPermission($createUser);
 		$admin->attachPermission($editUser);
 		$admin->attachPermission($seeUser);
@@ -329,6 +350,8 @@ class PermissionRoleSeeder extends Seeder
 		$admin->attachPermission($recoverOrder);
 
 		$admin->attachPermission($makeSale);
+
+		$admin->attachPermission($report);
 		// $admin->attachPermission($createMotive);
 		// $admin->attachPermission($editMotive);
 		// $admin->attachPermission($seeMotive);
@@ -342,10 +365,10 @@ class PermissionRoleSeeder extends Seeder
 		$user->attachRole($admin);
 
 		$user = User::find(2);
-		$user->attachRole($normalUser);
+		$user->attachRole($normalCashier);
 
 		$user = User::find(3);
-		$user->attachRole($normalUser);
+		$user->attachRole($normalManufacturer);
 
 		$user = User::find(4);
 		$user->attachRole($admin);
@@ -354,6 +377,9 @@ class PermissionRoleSeeder extends Seeder
 		$user->attachRole($admin);
 
 		$user = User::find(6);
-		$user->attachRole($normalUser);
+		$user->attachRole($normalCashier);
+
+		$user = User::find(7);
+		$user->attachRole($normalManufacturer);
     }
 }

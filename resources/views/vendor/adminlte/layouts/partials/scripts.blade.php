@@ -6,6 +6,8 @@
 <script src="{{ asset('/plugins/datatables/jquery.dataTables.js') }}" charset="utf-8"></script>
 
 <script src="{{ asset('/plugins/bs-confirm/bootstrap-confirmation.min.js') }}" charset="utf-8"></script>
+<script src="{{ asset('/plugins/input-mask/jquery.inputmask.js') }}" charset="utf-8"></script>
+<script src="{{ asset('/plugins/input-mask/jquery.inputmask.extensions.js') }}" charset="utf-8"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the

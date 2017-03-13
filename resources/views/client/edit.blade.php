@@ -97,6 +97,9 @@
                 },
             });
         });
+
+        $("[name='homePhone']").inputmask("9999-9999");  //static mask
+        $("[name='cellPhone']").inputmask("(99)-9999-9999");  //static mask
     });
     
 </script>

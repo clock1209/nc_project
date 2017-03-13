@@ -86,6 +86,27 @@
             </li>
             @endpermission
 
+            @permission('see_order','create_order','edit_order', 'delete_order', 'recover_order')
+            <li class="treeview">
+                <a href="#"><i class='glyphicon glyphicon-paperclip'></i> <span>{{ trans('adminlte_lang::message.orders') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    @permission('create_order')
+                    <li><a href="{!!URL::to('order/create')!!}">{{ trans('adminlte_lang::message.addorder') }}</a></li>
+                    @endpermission
+                    @permission('see_order')
+                    <li><a href="{!!URL::to('order')!!}">{{ trans('adminlte_lang::message.orderlist') }}</a></li>
+                    @endpermission
+                    @permission('recover_order')
+                    <li><a href="{!!URL::to('order/recover')!!}">{{ trans('adminlte_lang::message.recoverorder') }}</a></li>
+                    @endpermission
+                </ul>
+            </li>
+            @endpermission
+            
+            @permission('make_sale')
+            <li class="treeview"><a href="{{ url('sale') }}"><i class='glyphicon glyphicon-usd'></i> <span>{{ trans('adminlte_lang::message.sale') }}</span></a></li>
+            @endpermission
+
             @permission('see_user','create_user','edit_user', 'delete_user', 'recover_user')
             <li class="header">{{ trans('adminlte_lang::message.manage') }}</li>
             @endpermission
@@ -118,6 +139,10 @@
                     @endpermission
                 </ul>
             </li>
+            @endpermission
+
+             @permission('report')
+            <li class="treeview"><a href="{{ url('sale') }}"><i class='glyphicon glyphicon-list-alt'></i> <span>{{ trans('adminlte_lang::message.reports') }}</span></a></li>
             @endpermission
 
 
