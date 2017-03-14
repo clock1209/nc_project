@@ -96,6 +96,25 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('product/showTrashed',['as'=>'product.showTrashed','uses'=>'ProductsController@showTrashed','middleware'=> ['permission:see_product']]);
 	Route::get('product/recovery',['as'=>'product.recovery','uses'=>'ProductsController@recovery','middleware'=> ['permission:recover_product']]);
 
+	// 	****************** QUOTES ROUTES ******************
+	Route::get('quote/recover', 'QuoteController@recover');
+	Route::resource('quote', 'QuoteController');
+	Route::get('quote/edit', 'QuoteController@edit');
+	Route::get('quote/delete/{id}', 'QuoteController@destroy');
+	Route::get('quote/recovery/{id}', 'QuoteController@recovery');
+	Route::get('quote/showTrashed/{id}', 'QuoteController@showTrashed');
+
+	// 	---------- PERMISSION MIDDLEWARE FOR QUOTES
+	// Route::get('product/create',['as'=>'product.create','uses'=>'ProductsController@create','middleware'=> ['permission:create_product']]);
+	// Route::post('product/create',['as'=>'product.store','uses'=>'ProductsController@store','middleware'=> ['permission:create_product']]);
+	// Route::get('product/{id}/edit',['as'=>'product.edit','uses'=>'ProductsController@edit','middleware'=> ['permission:edit_product']]);
+	// Route::get('/product',['as'=>'product.index','uses'=>'ProductsController@index','middleware'=> ['permission:see_product']]);
+	// Route::get('product/show',['as'=>'product.show','uses'=>'ProductsController@show','middleware'=> ['permission:see_product']]);
+	// Route::get('product/delete',['as'=>'product.destroy','uses'=>'ProductsController@destroy','middleware'=> ['permission:delete_product']]);
+	// Route::get('/product/recover',['as'=>'product.recover','uses'=>'ProductsController@recover','middleware'=> ['permission:see_product']]);
+	// Route::get('product/showTrashed',['as'=>'product.showTrashed','uses'=>'ProductsController@showTrashed','middleware'=> ['permission:see_product']]);
+	// Route::get('product/recovery',['as'=>'product.recovery','uses'=>'ProductsController@recovery','middleware'=> ['permission:recover_product']]);
+
 
 	// 	****************** MOTIVES ROUTES ******************
 	// Route::resource('motive', 'MotiveController');

@@ -69,6 +69,27 @@ class HtmlGenerator
 		return $html;
 	}
 
+	public function quoteCreateRadios(){
+
+		$specialorder = "";
+		$repair = "";
+		$width = 'Style="widht: 45%;"'; 
+
+		if (Input::old('radio')=='Pedido Especial') {
+			$specialorder = 'checked=true;';
+		}elseif (Input::old('radio')=='Reparación') {
+			$repair = 'checked=true;';
+		}
+
+		$html =
+		'<label class="checkbox-inline btn btn-default"' . $width .'><input type="radio" name="radio" value="Pedido Especial" checked="true" '.$specialorder.'> Pedido Especial</label>
+		<label class="checkbox-inline btn btn-default"' . $width .'><input type="radio" name="radio" value="Reparación" '.$repair.'> Reparación</label>';
+
+		return $html;
+	}
+
+
+
 	public function rbReport(){
 
 		$range = "";
