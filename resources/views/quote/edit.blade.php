@@ -1,45 +1,46 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	{{ trans('adminlte_lang::message.addquote') }}
+    {{ trans('adminlte_lang::message.editquote') }}
 @endsection
 
 @section('contentheader_title')
 @endsection
 
 @section('main-content')
-    
+
 <div class="container-fluid spark-screen">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             @include('alerts.request')
             @include('alerts.unauthorized')
             <div class="panel panel-default">
-                <div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.registerquote') }}</div>
+                <div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.editquote') }}</div>
+
                 <div class="panel-body bgn">
-                 {!!Form::open(['route'=>'quote.store', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+                   {!!Form::model($quote, ['route'=> ['quote.update',$quote->id], 'method'=>'PUT', 'class'=>'form-horizontal'])!!}
+
                     <div class="form-group mb-200" style="margin-bottom: 50px">
                         <div class="col-sm-4 pull-right">
-                            {!!Form::date('date',$date,['class'=>'form-control datepicker'])!!}
+                            {!!Form::date('quote_date',null,['class'=>'form-control datepicker'])!!}
                         </div>
                         <label for="date_lbl" class="col-sm-2 control-label pull-right">Fecha:</label>
                         <div class="col-sm-3 pull-right">
                             {{-- <label for="username" class="form-control bg-olive">{{ Auth::user()->username }}</label> --}}
-                            {!!Form::label('username',Auth::user()->username,['class' => 'form-control-static'])!!}
+                            {!!Form::text('user',null,['class' => 'form-control','readonly bg-olive'])!!}
                         </div>
-                        <label for="user_lbl" class="col-sm-2 control-label bg-olive pull-right">Usuario:</label>
+                        <label for="user_lbl" class="col-sm-2 control-label pull-right">Usuario:</label>
                     </div>
 
                     <div class="form-group">
                         <label for="client_lbl" class="col-sm-3 control-label">Cliente:</label>
                         <div class="col-sm-9">
-                            {!! Form::text('client', "", ['list'=> 'clients','class'=>'form-control']) !!}
-                            <datalist size='5' id="clients">
+                            {!! Form::text('client', null, ['list'=> 'clients','class'=>'form-control']) !!}
+                            {{-- <datalist size='5' id="clients">
                                 @foreach ($clients as $client)
                                     <option value="{{ $client }}" >
                                 @endforeach
-                            </datalist>
+                            </datalist> --}}
                         </div>
                     </div>
                     <div class="form-group">
@@ -90,23 +91,48 @@
                             {{ Form::checkbox('agree', 'aceptado', false,['class'=>'bg-info']) }}
                         </div>
                     </div>
+
+
                     <div class="text-center">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> <t class="hidden-xs">Guardar</t></button>
+                            <button type="submit" class="btn btn-primary" id="update" data-toggle="confirmation"><i class="glyphicon glyphicon-floppy-disk"></i> <t class="hidden-xs">Actualizar</t></button>
+                            <a class="btn btn-danger btn-close" href="{{ route('quote.destroy').'/'.$quote->id }}" ><i class="glyphicon glyphicon-floppy-remove"></i> <t class="hidden-xs">Borrar</t></a>
                             <a class="btn btn-danger btn-close" href="{{ route('quote.index') }}"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Cancelar</t></a>
                         </div>
                     </div>
+
                 </div>
+                {!!Form::close()!!}
             </div>
         </div>
     </div>
 </div>
+</div>
 
 <script>
-    $(document).ready(function(){
-        $("[name='phone_number']").inputmask("(99)-9999-9999");  //static mask
-    });   
-</script>
-	
-@endsection
 
+    $(document).ready(function(){
+        $('body').delegate('#update','mouseenter',function(){
+            $('[data-toggle=confirmation]').confirmation({
+              rootSelector: '[data-toggle=confirmation]',
+              title: "¿Está seguro?",
+              singleton: true,
+              popout: true,
+              btnOkLabel: 'Sí',
+              btnCancelLabel: 'No',
+              placement: 'top',
+              onConfirm: function() {
+                    $('submit').click();
+                },
+                onCancel: function() {
+                },
+            });
+        });
+
+        $("[name='homePhone']").inputmask("9999-9999");  //static mask
+        $("[name='cellPhone']").inputmask("(99)-9999-9999");  //static mask
+    });
+    
+</script>
+    
+@endsection
