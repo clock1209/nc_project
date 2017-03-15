@@ -96,6 +96,28 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('product/showTrashed',['as'=>'product.showTrashed','uses'=>'ProductsController@showTrashed','middleware'=> ['permission:see_product']]);
 	Route::get('product/recovery',['as'=>'product.recovery','uses'=>'ProductsController@recovery','middleware'=> ['permission:recover_product']]);
 
+	// 	****************** QUOTES ROUTES ******************
+	Route::get('quote/recover', 'QuoteController@recover');
+	Route::resource('quote', 'QuoteController');
+	Route::get('quote/edit', 'QuoteController@edit');
+	Route::get('quote/delete/{id}', 'QuoteController@destroy');
+	Route::get('quote/recovery/{id}', 'QuoteController@recovery');
+	Route::get('quote/showTrashed/{id}', 'QuoteController@showTrashed');
+
+	Route::get('api/quotes', 'QuoteController@getBtnDatatable');
+	Route::get('api/qt_recover', 'QuoteController@btnRecoverQuote');
+
+	// 	---------- PERMISSION MIDDLEWARE FOR QUOTES
+	Route::get('quote/create',['as'=>'quote.create','uses'=>'QuoteController@create','middleware'=> ['permission:create_quote']]);
+	Route::post('quote/create',['as'=>'quote.store','uses'=>'QuoteController@store','middleware'=> ['permission:create_quote']]);
+	Route::get('quote/{id}/edit',['as'=>'quote.edit','uses'=>'QuoteController@edit','middleware'=> ['permission:edit_quote']]);
+	Route::get('/quote',['as'=>'quote.index','uses'=>'QuoteController@index','middleware'=> ['permission:see_quote']]);
+	Route::get('quote/show',['as'=>'quote.show','uses'=>'QuoteController@show','middleware'=> ['permission:see_quote']]);
+	Route::get('quote/delete',['as'=>'quote.destroy','uses'=>'QuoteController@destroy','middleware'=> ['permission:delete_quote']]);
+	Route::get('/quote/recover',['as'=>'quote.recover','uses'=>'QuoteController@recover','middleware'=> ['permission:see_quote']]);
+	Route::get('quote/showTrashed',['as'=>'quote.showTrashed','uses'=>'QuoteController@showTrashed','middleware'=> ['permission:see_quote']]);
+	Route::get('quote/recovery',['as'=>'quote.recovery','uses'=>'QuoteController@recovery','middleware'=> ['permission:recover_quote']]);
+
 
 	// 	****************** MOTIVES ROUTES ******************
 	// Route::resource('motive', 'MotiveController');

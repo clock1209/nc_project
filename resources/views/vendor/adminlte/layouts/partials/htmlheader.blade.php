@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables/jquery.dataTables.css') }}">
 
     <link href="{{ asset('/css/multi-select-nc.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/plugins/iCheck/square/blue.css') }}" rel="stylesheet">
 
     <script src="/js/jquery.multi-select.js"></script>
     <script src="/plugins/pace/pace.js"></script>
