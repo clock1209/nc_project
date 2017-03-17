@@ -41,12 +41,11 @@ $factory->define(App\Client::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Products::class, function (Faker\Generator $faker) {
-    $costo = $faker->numberBetween(1000, 3000);
-    $precio = $costo * 1.30;
+    $costo = $faker->numberBetween(400, 2000);
+    $precio = $costo * 1.40;
     return [
-        'code'              => $faker->bothify('????####'),
-        'name'              => $faker->word,
-        'details'           => $faker->word,
+        'name'              => $faker->product,
+        'details'           => $faker->color,
         'category'          => $faker->randomElement($array = array('Oficina', 'Hogar', 'Negocio', 'infantil')),
         'sale_price'        => $precio,     
         'production_cost'   => $costo,

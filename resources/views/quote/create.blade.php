@@ -26,6 +26,7 @@
                         <label for="date_lbl" class="col-sm-2 control-label pull-right">Fecha:</label>
                         <div class="col-sm-3 pull-right">
                             {{-- <label for="username" class="form-control bg-olive">{{ Auth::user()->username }}</label> --}}
+                            {!! Form::hidden('username', Auth::user()->username) !!}
                             {!!Form::label('username',Auth::user()->username,['class' => 'form-control-static'])!!}
                         </div>
                         <label for="user_lbl" class="col-sm-2 control-label bg-olive pull-right">Usuario:</label>

@@ -169,6 +169,7 @@ return [
 
         App\Providers\HTMLServiceProvider::class,
         Univerze\Jira\JiraServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
     ],
 
     /*
@@ -231,7 +232,7 @@ return [
 
         'Build' => App\Facades\HtmlGenerator::class,
         'Jira' => Univerze\Jira\Facade\JiraFacade::class,
-
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
     ],
 
 ];

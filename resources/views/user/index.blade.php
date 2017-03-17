@@ -131,6 +131,7 @@
 			</div>
 		</div>
 	</div>
+	@include('sweet::alert')
 </div>
 		
 		<script>

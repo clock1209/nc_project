@@ -41,7 +41,6 @@
 						<thead class="thead-default">
 							<tr>
 								<th>ID</th>
-								<th>Código</th>
 								<th>Nombre</th>
 								<th>Detalles</th>
 								<th>Categoria</th>
@@ -66,10 +65,6 @@
 					<h4 class="modal-title">Datos del producto</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Code:</div>
-						{!! Form::label('code', null, ['class'=>'form-control', 'id'=>'code']) !!}
-					</div>
 					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
 						<div class="input-group-addon">Nombre de Producto:</div>
 						{!! Form::label('name', null, ['class'=>'form-control', 'id'=>'name']) !!}
@@ -128,7 +123,6 @@
 					},
 					"columns":[
 					{data: 'id', visible: false},
-					{data: 'code'},
 					{data: 'name'},
 					{data: 'details'},
 					{data: 'category'},
@@ -151,7 +145,6 @@
                     	console.log(data);
                     	$("#name").html(data.name );
                     	$("#details").html(data.details );
-                    	$("#code").html(data.code );
                     	$("#category").html(data.category );
                     	$("#sale_price").html('$ ' + data.sale_price);
                     	$("#production_cost").html('$ ' + data.production_cost );

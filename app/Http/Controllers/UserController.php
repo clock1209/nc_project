@@ -15,6 +15,7 @@ use Datatables;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Entrust;
+use Alert;
 
 class UserController extends Controller
 {
@@ -153,10 +154,18 @@ class UserController extends Controller
             'cellPhone' => $request['cellPhone'],
         ]);
 
-        Mail::send('emails.registered', $request->all(), function($msj) use ($user){
-            $msj->subject('Bienvenido al portal de NC Mueblería');
-            $msj->to($user->email);
-        });
+        try{
+            Mail::send('emails.registered', $request->all(), function($msj) use ($user){
+                $msj->subject('Bienvenido al portal de NC Mueblería');
+                $msj->to($user->email);
+            });
+
+            alert()->success('Se envió el correo electrónico a '.$user->email.' correctamente', 'Correo Enviado!')->persistent("Cerrar");;
+        }catch(Exception $e){
+            alert()->error('No se pudo enviar el correo electrónico a '.$user->email.' correctamente', 'Correo NO Enviado!')->persistent("Cerrar");;
+        }
+
+        
 
         foreach ($request->input('roles') as $key => $value) {
             $user->attachRole($value);

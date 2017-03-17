@@ -140,7 +140,7 @@ class QuoteController extends Controller
     {
         $type = Input::get('radio');
         $user = Input::get('username');
-        // dd($request);
+        // dd($user);
 
         $quote = Quote::create([
           'client' => $request['client'],
