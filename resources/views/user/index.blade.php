@@ -66,41 +66,63 @@
 					<h4 class="modal-title">Datos de Usuario</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Nombre:</div>
-						{!! Form::label('name', null, ['class'=>'form-control', 'id'=>'name']) !!}
-					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Apellido Paterno:</div>
-						{!! Form::label('lastNameFather', null, ['class'=>'form-control', 'id'=>'lastNameFather']) !!}
-					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Apellido Materno:</div>
-						{!! Form::label('lastNameMother', null, ['class'=>'form-control', 'id'=>'lastNameMother']) !!}
-					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Nombre de usuario:</div>
-						{!! Form::label('username', null, ['class'=>'form-control', 'id'=>'username']) !!}
-					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Correo:</div>
-						{!! Form::label('email', null, ['class'=>'form-control', 'id'=>'email']) !!}
-					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Rol:</div>
-						{!! Form::label('role', null, ['class'=>'form-control', 'id'=>'role']) !!}
-					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Domicilio:</div>
-						{!! Form::label('address', null, ['class'=>'form-control', 'id'=>'address']) !!}
-					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Teléfono:</div>
-						{!! Form::label('homePhone', null, ['class'=>'form-control', 'id'=>'homePhone']) !!}
-					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Celular:</div>
-						{!! Form::label('cellPhone', null, ['class'=>'form-control', 'id'=>'cellPhone']) !!}
+					<div class="row">
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Nombre:', null, ['class'=>'form-control bg-olive']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('name', null, ['class'=>'form-control text-danger', 'id'=>'name']) !!}
+						</div>
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Apellido Paterno:', null, ['class'=>'form-control bg-olive']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('lastNameFather', null, ['class'=>'form-control text-danger', 'id'=>'lastNameFather']) !!}
+						</div>
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Apellido Materno:', null, ['class'=>'form-control bg-olive']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('lastNameMother', null, ['class'=>'form-control text-danger', 'id'=>'lastNameMother']) !!}
+						</div>
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Nombre Usuario:', null, ['class'=>'form-control bg-olive']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('username', null, ['class'=>'form-control text-danger', 'id'=>'username']) !!}
+						</div>
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Correo:', null, ['class'=>'form-control bg-olive']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('email', null, ['class'=>'form-control text-danger', 'id'=>'email']) !!}
+						</div>
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Rol:', null, ['class'=>'form-control bg-olive']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('role', null, ['class'=>'form-control text-danger', 'id'=>'role']) !!}
+						</div>
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Teléfono:', null, ['class'=>'form-control bg-olive']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('homePhone', null, ['class'=>'form-control text-danger', 'id'=>'homePhone']) !!}
+						</div>
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Celular:', null, ['class'=>'form-control bg-olive']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('cellPhone', null, ['class'=>'form-control text-danger', 'id'=>'cellPhone']) !!}
+						</div>
+						<div class="col-md-12 col-sm-12">
+							{!! Form::label('Domicilio:', null, ['class'=>'form-control bg-olive']) !!}
+							</div>
+							<div class="col-md-12 col-sm-12" style="margin-bottom: 5px; margin-top: 0px">
+							{{-- {!! Form::textarea('address', null, ['readonly', 'class'=>'form-control text-danger', 'id'=>'address', 'rows' => '2']) !!} --}}
+							<div class="form-control" id="address"></div>
+						</div>
+
 					</div>
 				</div>
 				<div class="modal-footer background-nuvem">

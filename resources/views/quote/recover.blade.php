@@ -114,13 +114,15 @@
 							{!! Form::label('Domicilio:', null, ['class'=>'form-control bg-olive']) !!}
 						</div>
 						<div class="col-md-12 col-sm-12" style="margin-bottom: 5px; margin-top: 0px">
-							{!! Form::textarea('address', null, ['readonly', 'class'=>'form-control text-danger', 'id'=>'address', 'rows' => '2']) !!}
+							{{-- {!! Form::textarea('address', null, ['readonly', 'class'=>'form-control text-danger', 'id'=>'address', 'rows' => '2']) !!} --}}
+							<div class="form-control" id="address"></div>
 						</div>
 						<div class="col-md-12 col-sm-12">
 							{!! Form::label('Descripción:', null, ['class'=>'form-control bg-olive']) !!}
 						</div>
 						<div class="col-md-12 col-sm-12"  style="margin-top: 0px">
-							{!! Form::textarea('description', null, ['readonly', 'class'=>'form-control text-danger', 'id'=>'description', 'rows' => '4']) !!}
+							{{-- {!! Form::textarea('description', null, ['readonly', 'class'=>'form-control text-danger', 'id'=>'description', 'rows' => '4']) !!} --}}
+							<div class="form-control" id="description"></div>
 						</div>
 					</div>
 
