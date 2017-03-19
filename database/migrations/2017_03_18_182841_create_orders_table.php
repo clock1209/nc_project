@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuotesTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,20 @@ class CreateQuotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('quotes', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('client')->default('Cliente Mostrador');
+            $table->string('client');
             $table->string('user');
             $table->date('quote_date');
             $table->string('phone_number');
-            $table->string('email')->nullable();
-            $table->string('address')->nullable();
+            $table->string('email');
+            $table->string('address');
             $table->text('description');
             $table->float('budget');
-            $table->date('expiration_date');
-            $table->string('status')->default('En espera');
+            $table->float('retainer');
+            $table->date('delivery_date');
+            $table->string('priority')->default('Normal');
+            $table->string('status')->default('En Progreso');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -37,6 +39,6 @@ class CreateQuotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quotes');
+        Schema::dropIfExists('orders');
     }
 }

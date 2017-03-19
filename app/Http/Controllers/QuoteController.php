@@ -36,7 +36,7 @@ class QuoteController extends Controller
 
     public function getBtnDatatable()
     {
-        $quotes = Quote::select(['id', 'client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget', 'expiration_date']);
+        $quotes = Quote::select(['id', 'client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget', 'expiration_date', 'status']);
 
         return Datatables::of($quotes)
             ->addColumn('action', function ($quote) {
@@ -68,7 +68,7 @@ class QuoteController extends Controller
 
     public function btnRecoverQuote()
     {
-        $quotes = Quote::select(['id', 'client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget', 'expiration_date'])->onlyTrashed()->get();
+        $quotes = Quote::select(['id', 'client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget', 'expiration_date', 'status'])->onlyTrashed()->get();
 
         return Datatables::of($quotes)
             ->addColumn('action', function ($quote) {
@@ -126,8 +126,9 @@ class QuoteController extends Controller
         }
 
         $date = Carbon::now();
+        $exp_date = Carbon::now()->addDays(5);
 
-        return view('quote.create')->with(compact('date', 'clients'));
+        return view('quote.create')->with(compact('date', 'exp_date', 'clients'));
     }
 
     /**
@@ -138,9 +139,22 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
+      if(Input::get('order') == 'aceptado'){
+          $type = Input::get('radio');
+          $user = Input::get('username');
+          $date = Input::get('date');
+          $exp_date = Input::get('expiration_date');
+          // dd($exp_date);
+          $client = Input::get('client');
+          $budget = Input::get('budget');
+          $status = $this->statusList();
+          $priority = $this->priorityList();
+
+          return view('order.create')->with(compact('date', 'exp_date', 'client', 'budget', 'status', 'priority'));
+      }else{
         $type = Input::get('radio');
         $user = Input::get('username');
-        // dd($user);
+                // dd($user);
 
         $quote = Quote::create([
           'client' => $request['client'],
@@ -152,10 +166,12 @@ class QuoteController extends Controller
           'description' => $request['description'],
           'budget' => $request['budget'],
           'expiration_date' => $request['expiration_date'],
-        ]);
+          ]);
 
-        // dd($request);
-      return redirect('/home')->with('message','La información se ha guardado.');
+                // dd($request);
+        return redirect('quote')->with('message','La información se ha guardado.');
+      }
+        
     }
 
     /**
@@ -233,4 +249,28 @@ class QuoteController extends Controller
             return redirect('/quote')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
          }
     }
+
+    private function statusList()
+    {
+        $array = [
+            'En progreso',
+            'Detenido',
+            'Listo',
+            'Entregado'
+        ];
+
+        return $array;
+    }
+
+    private function priorityList()
+    {
+        $array = [
+            'Normal',
+            'Baja',
+            'Alta',
+        ];
+
+        return $array;
+    }
+
 }

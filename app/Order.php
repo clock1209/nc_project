@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Quote extends Model
+class Order extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
-        'client','user','quote_date','phone_number', 'email', 'address','description','budget','expiration_date','status'
+        'retainer','budget','delivery_date', 'priority', 'status',
     ];
 
     protected $dates = ['deleted_at'];

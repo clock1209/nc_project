@@ -74,7 +74,7 @@
                     <div class="form-group" style="margin-bottom: 50px;">
                         <label for="expiration_date_lbl" class="col-sm-3 control-label">Expiración:</label>
                         <div class="col-sm-4">
-                            {!!Form::date('expiration_date',null,['class'=>'form-control datepicker'])!!}
+                            {!!Form::date('expiration_date',$exp_date,['class'=>'form-control datepicker'])!!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -91,9 +91,16 @@
                             {{ Form::checkbox('agree', 'aceptado', false,['class'=>'bg-info']) }}
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="input-group col-md-2 pull-right">
+                            <small class=" bg-info">Hacer Pedido </small>
+                            {{ Form::checkbox('order', 'aceptado', false,['class'=>'bg-info']) }}
+                        </div>
+                    </div>
                     <div class="text-center">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> <t class="hidden-xs">Guardar</t></button>
+                            {{-- <a class="btn btn-success btn-close" href="{{ route('quote.test','3') }}"><i class="glyphicon glyphicon-paperclip"></i> <t class="hidden-xs">Hacer Pedido</t></a> --}}
                             <a class="btn btn-danger btn-close" href="{{ route('quote.index') }}"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Cancelar</t></a>
                         </div>
                     </div>
@@ -105,7 +112,7 @@
 
 <script>
     $(document).ready(function(){
-        $("[name='phone_number']").inputmask("(99)-9999-9999");  //static mask
+        $("[name='phone_number']").inputmask("(99)-9999-9999");
     });   
 </script>
 	

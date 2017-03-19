@@ -190,6 +190,10 @@ return [
     'orderlist'                => 'Lista de Pedidos',
     'registerorder'            => 'Alta de Pedido',
     'recoverorder'             => 'Recuperar Pedido',
+    'status'                    => 'Estatus',
+    'priority'                  => 'Prioridad',
+    'delivery_date'             => 'Fecha de entrega',
+    'retainer'                  => 'Anticipo',
 
     'reports'                   => 'Reportes',
     'editreport'                => 'Editar Reporte',
