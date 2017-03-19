@@ -53,7 +53,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        dd($request);
+        $order = Order::create([
+            'name' => $request['name'],
+            'lastNameFather' => $request['lastNameFather'],
+            'lastNameMother' => $request['lastNameMother'],
+            'email' => $request['email'],
+            'address' => $request['address'],
+            'homePhone' => $request['homePhone'],
+            'cellPhone' => $request['cellPhone'],
+        ]);
     }
 
     /**

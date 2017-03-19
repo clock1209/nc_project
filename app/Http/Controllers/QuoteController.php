@@ -147,10 +147,14 @@ class QuoteController extends Controller
           // dd($exp_date);
           $client = Input::get('client');
           $budget = Input::get('budget');
+          $phonenumber = Input::get('phone_number');
+          $address = Input::get('address');
+          $description = Input::get('description');
+          $email = Input::get('email');
           $status = $this->statusList();
           $priority = $this->priorityList();
 
-          return view('order.create')->with(compact('date', 'exp_date', 'client', 'budget', 'status', 'priority'));
+          return view('order.create')->with(compact('date', 'exp_date', 'client', 'budget', 'status', 'priority', 'phonenumber', 'email', 'address', 'description'));
       }else{
         $type = Input::get('radio');
         $user = Input::get('username');

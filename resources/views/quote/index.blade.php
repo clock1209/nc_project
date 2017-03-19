@@ -128,7 +128,7 @@
 
 					</div>
 
-				</div>
+				</div>{{-- modal-body --}}
 				<div class="modal-footer background-nuvem">
 					<a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
 				</div>
