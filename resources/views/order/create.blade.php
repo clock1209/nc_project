@@ -20,14 +20,15 @@
                  {!!Form::open(['route'=>'order.store', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
                     
-                    {!! Form::hidden(client, $client) !!}
-                    {!! Form::hidden(user, Auth::user()->username) !!}
-                    {!! Form::hidden(address, $address) !!}
-                    {!! Form::hidden(description, $description) !!}
-                    {!! Form::hidden(date, $date) !!}
-                    {!! Form::hidden(phonenumber, $phonenumber) !!}
-                    {!! Form::hidden(email, $email) !!}
-                    {!! Form::hidden(exp_date, $client) !!}
+                    {!! Form::hidden('client', $client) !!}
+                    {!! Form::hidden('user', Auth::user()->username) !!}
+                    {!! Form::hidden('address', $address) !!}
+                    {!! Form::hidden('budget', $budget) !!}
+                    {!! Form::hidden('description', $description) !!}
+                    {!! Form::hidden('date', $date) !!}
+                    {!! Form::hidden('phonenumber', $phonenumber) !!}
+                    {!! Form::hidden('email', $email) !!}
+                    {!! Form::hidden('exp_date', $client) !!}
 
                     <div class="form-group">
                         <div class="col-sm-8 col-md-offset-3">

@@ -257,10 +257,10 @@ class QuoteController extends Controller
     private function statusList()
     {
         $array = [
-            'En progreso',
-            'Detenido',
-            'Listo',
-            'Entregado'
+            'En progreso' => 'En progreso',
+            'Detenido' => 'Detenido',
+            'Listo' => 'Listo',
+            'Entregado' => 'Entregado'
         ];
 
         return $array;
@@ -269,9 +269,9 @@ class QuoteController extends Controller
     private function priorityList()
     {
         $array = [
-            'Normal',
-            'Baja',
-            'Alta',
+            'Normal' => 'Normal',
+            'Baja' => 'Baja',
+            'Alta' => 'Alta',
         ];
 
         return $array;

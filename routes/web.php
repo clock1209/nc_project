@@ -135,9 +135,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('order/create',['as'=>'order.create','uses'=>'OrderController@create','middleware'=> ['permission:create_order']]);
 	Route::post('order/create',['as'=>'order.store','uses'=>'OrderController@store','middleware'=> ['permission:create_order']]);
 	// Route::get('order/{id}/edit',['as'=>'order.edit','uses'=>'OrderController@edit','middleware'=> ['permission:edit_order']]);
-	// Route::get('/order',['as'=>'order.index','uses'=>'OrderController@index','middleware'=> ['permission:see_order']]);
-	// Route::get('order/show',['as'=>'order.show','uses'=>'OrderController@show','middleware'=> ['permission:see_order']]);
-	// Route::get('order/delete',['as'=>'order.destroy','uses'=>'OrderController@destroy','middleware'=> ['permission:delete_order']]);
+	Route::get('/order',['as'=>'order.index','uses'=>'OrderController@index','middleware'=> ['permission:see_order']]);
+	Route::get('order/show',['as'=>'order.show','uses'=>'OrderController@show','middleware'=> ['permission:see_order']]);
+	Route::get('order/delete',['as'=>'order.destroy','uses'=>'OrderController@destroy','middleware'=> ['permission:delete_order']]);
 	// Route::get('/order/recover',['as'=>'order.recover','uses'=>'OrderController@recover','middleware'=> ['permission:see_order']]);
 	// Route::get('order/showTrashed',['as'=>'order.showTrashed','uses'=>'OrderController@showTrashed','middleware'=> ['permission:see_order']]);
 	// Route::get('order/recovery',['as'=>'order.recovery','uses'=>'OrderController@recovery','middleware'=> ['permission:recover_order']]);

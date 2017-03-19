@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Order;
 use App\Client;
 use App\Quote;
@@ -29,6 +30,39 @@ class OrderController extends Controller
         // } 
     }
 
+    public function getBtnDatatable()
+    {
+        $orders = Order::select(['id', 'client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget', 'retainer', 'delivery_date', 'priority', 'status']);
+
+        return Datatables::of($orders)
+            ->addColumn('action', function ($order) {
+                
+                return $this->botones($order);
+            })
+            ->editColumn('budget', '$ {{$budget}}')
+            ->make(true);
+    }
+
+    function botones($order)
+    {
+        $see_order = "";
+        $edit_order = "";
+        $delete_order = "";
+        if(Entrust::can('see_order')){
+            $see_order =
+            '<a data-toggle="modal" odr_id="'. $order->id .'" data-target="#pedido" class="btn btn-info get-order"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
+        }if (Entrust::can('edit_order')) {
+            $edit_order = 
+            '<a href="order/'.$order->id.'/edit" class="btn btn-primary" id="btnAction"><i class="glyphicon glyphicon-edit"></i> <t class="hidden-xs">Editar</t></a>';
+        }if (Entrust::can('delete_order')) {
+            $delete_order = 
+            '<a odr_id="'. $order->id .'" class="btn btn-danger" id="btnActionDelete" data-toggle="confirmation"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Borrar</t></a>';
+        }
+
+        return $see_order ." ". $edit_order ." ". $delete_order;
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -54,16 +88,23 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
+        // dd($request);
         $order = Order::create([
-            'name' => $request['name'],
-            'lastNameFather' => $request['lastNameFather'],
-            'lastNameMother' => $request['lastNameMother'],
-            'email' => $request['email'],
+            'client' => $request['client'],
+            'user' => $request['user'],
+            'quote_date' => $request['date'],
+            'phone_number' => $request['phonenumber'],
             'address' => $request['address'],
-            'homePhone' => $request['homePhone'],
-            'cellPhone' => $request['cellPhone'],
+            'email' => $request['email'],
+            'description' => $request['description'],
+            'budget' => $request['budget'],
+            'retainer' => $request['retainer'],
+            'delivery_date' => $request['deliver_date'],
+            'priority' => $request['priority'],
+            'status' => $request['status'],
         ]);
+
+        return redirect('order')->with('message','Orden registrada correctamente');
     }
 
     /**
@@ -74,7 +115,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+        $order = Order::find($id);
+        return Response::json($order);
     }
 
     /**
@@ -85,7 +128,13 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(Entrust::can('edit_order')){
+            $order = Order::find($id);
+            // dd($order);
+            return view('order.edit', ['order'=>$order]);
+        }else{
+            return redirect('/order')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+        }
     }
 
     /**
@@ -108,7 +157,13 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Entrust::can('delete_order')){
+            Order::whereId($id)->delete();
+
+            return response()->json(["message"=>"authorized"]);
+         }else{
+            return redirect('/order')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
+         }
     }
 
     private function statusList()

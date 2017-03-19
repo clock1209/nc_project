@@ -11,7 +11,7 @@ class Order extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'retainer','budget','delivery_date', 'priority', 'status',
+        'client','user','quote_date','phone_number','email','address','description','retainer','budget','delivery_date', 'priority', 'status',
     ];
 
     protected $dates = ['deleted_at'];
