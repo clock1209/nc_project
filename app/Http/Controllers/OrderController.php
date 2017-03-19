@@ -130,8 +130,12 @@ class OrderController extends Controller
     {
         if(Entrust::can('edit_order')){
             $order = Order::find($id);
-            // dd($order);
-            return view('order.edit', ['order'=>$order]);
+            $sta_sel = $order['status'];
+            $prio_sel = $order['priority'];
+            $status = $this->statusList();
+            $priority = $this->priorityList();
+            // dd($prio_sel);
+            return view('order.edit', ['order'=>$order])->with(compact('status', 'priority', 'sta_sel', 'prio_sel'));
         }else{
             return redirect('/order')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
         }
@@ -146,7 +150,13 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $order = Order::find($id);
+        $order->update($input);
+
+        Session::flash('message', 'Pedido Actualizado exitosamente');
+        return Redirect::to('/order');
     }
 
     /**
@@ -169,10 +179,21 @@ class OrderController extends Controller
     private function statusList()
     {
         $array = [
-            'En progreso',
-            'Detenido',
-            'Listo',
-            'Entregado'
+            'En progreso' => 'En progreso',
+            'Detenido' => 'Detenido',
+            'Listo' => 'Listo',
+            'Entregado' => 'Entregado'
+        ];
+
+        return $array;
+    }
+
+    private function priorityList()
+    {
+        $array = [
+            'Normal' => 'Normal',
+            'Baja' => 'Baja',
+            'Alta' => 'Alta',
         ];
 
         return $array;

@@ -134,7 +134,7 @@ Route::group(['middleware' => 'auth'], function () {
 	// 	---------- PERMISSION MIDDLEWARE FOR ORDERS
 	Route::get('order/create',['as'=>'order.create','uses'=>'OrderController@create','middleware'=> ['permission:create_order']]);
 	Route::post('order/create',['as'=>'order.store','uses'=>'OrderController@store','middleware'=> ['permission:create_order']]);
-	// Route::get('order/{id}/edit',['as'=>'order.edit','uses'=>'OrderController@edit','middleware'=> ['permission:edit_order']]);
+	Route::get('order/{id}/edit',['as'=>'order.edit','uses'=>'OrderController@edit','middleware'=> ['permission:edit_order']]);
 	Route::get('/order',['as'=>'order.index','uses'=>'OrderController@index','middleware'=> ['permission:see_order']]);
 	Route::get('order/show',['as'=>'order.show','uses'=>'OrderController@show','middleware'=> ['permission:see_order']]);
 	Route::get('order/delete',['as'=>'order.destroy','uses'=>'OrderController@destroy','middleware'=> ['permission:delete_order']]);
