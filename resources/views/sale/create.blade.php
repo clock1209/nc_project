@@ -54,7 +54,7 @@
 				</div>{{-- row --}}
 				<div class="row" id="display_total">
 					<div class="form-inline pull-right">
-						<h2>Total: </h2><h1 id="total_label" class="text-danger"> nums</h1>
+						<h2>Total: </h2><h1 id="total_label" class="text-danger"></h1>
 					</div>
 				</div>
 					{{-- <table class="table table-hover" id="clients">
@@ -107,6 +107,8 @@
 			],
 		});
 
+		var sum = 0;
+		// var quantity = 0;
 		$('body').delegate('#btnAdd','mouseenter',function(){
 			pdt_id = $(this).attr('pdt_id');
 			// alert(pdt_id);
@@ -129,9 +131,18 @@
 					}).done(function(data){
 						console.log(data);
 						var subtotal = data.sale_price;
+						$('td[name="td"]').each(function(){
+							// var price = $(this);
+							alert('td');
+							// var q = data.quantity;
+							sum = parseInt(sum) + parseInt(subtotal);
+							// quantity += parseInt(q);
+							// var total = total + subtotal;
+						});
 						// table.ajax.reload();
 						// alert(data.name);
 						$('#tbody').append("<tr><td><input type='number' name='cant' min='1' max="+data.quantity+" step='1' value='1'></td><td>"+data.name+"</td><td name='sale_price'>$"+data.sale_price+"</td><td name='td'>$"+subtotal+"</td></tr>");
+						$('#total_label').append(sum);
 						// $("#msj-"+data.message).fadeOut().fadeIn();
 						
 						// <input type="number" name="points" min="0" max="100" step="10" value="30">
@@ -157,12 +168,12 @@
 			res = subtotal * cant;
 
 			$(this).find('td[name="td"]').text("$"+res);
+			$('body').find('h1#total_label').text("$"+res);
 
 			// $('td[name="td"]').each(function(){
 			// 	total = parseFloat(total) + parseFloat(subtotal);
 			// });
 			// alert(total);
-			// $('body').find('h1#total_label').text("$"+total);
 
 		});
 
