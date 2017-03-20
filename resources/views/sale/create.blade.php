@@ -7,6 +7,20 @@
 @section('contentheader_title')
 @endsection
 
+@section('styles')
+	<style type="text/css" media="screen">
+		.total{
+			border-width: 1px;
+			border-style: solid;
+			border-color: #ccc;
+		}
+
+		.et{
+			margin-right: 15px;
+		}
+	</style>
+@endsection
+
 @section('main-content')
 
 <div class="container-fluid spark-screen">
@@ -16,7 +30,7 @@
 				<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.clientlist') }}</div>
 				<div class="panel-body table-responsive bgn">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-5">
 						<table class="table table-hover" id="products">
 							<h3 class="text-center">Productos</h3>
 							<thead class="thead-default">
@@ -34,13 +48,14 @@
 							</thead>
 						</table>
 					</div>{{-- div tabla productos --}}
-					<div class="col-md-6">
+					<div class="col-md-7">
 						<table class="table table-hover" id="addTable">
 						<h3  class="text-center">Venta</h3>
 						<thead class="thead-default">
 							<tr>
 								<th>Cant</th>
 								<th>Producto</th>
+								<th>Detalle</th>
 								<th>Precio Unitario</th>
 								<th>Subtotal</th>
 							</tr>
@@ -49,14 +64,27 @@
 							
 						</tbody>
 					</table>
+						<div class="form-group form-inline">
+							<div class="total">
+								{{-- <h4 class="pull-left">cant total: </h4> --}}
+								<h1 id="total_label" class="text-danger pull-right et"> 0</h1>
+								<h2 class="pull-right">Total: $</h2>
+							</div>
+							
+						</div>
+						<div class="form-group">
+							<div>
+								<button type="button" class="btn btn-success" id="btnVenta">Vender</button>
+							</div>
+						</div>
 					</div>
 					
 				</div>{{-- row --}}
-				<div class="row" id="display_total">
+				{{-- <div class="row" id="display_total">
 					<div class="form-inline pull-right">
-						<h2>Total: </h2><h1 id="total_label" class="text-danger"></h1>
+						<h2>Total: </h2><h1 id="total_label" class="text-danger">0</h1>
 					</div>
-				</div>
+				</div> --}}
 					{{-- <table class="table table-hover" id="clients">
 						<thead class="thead-default">
 							<tr>
@@ -107,11 +135,8 @@
 			],
 		});
 
-		var sum = 0;
-		// var quantity = 0;
 		$('body').delegate('#btnAdd','mouseenter',function(){
 			pdt_id = $(this).attr('pdt_id');
-			// alert(pdt_id);
 			var token = $("#token").val();
 			$('[data-toggle=confirmation]').confirmation({
 				rootSelector: '[data-toggle=confirmation]',
@@ -131,21 +156,19 @@
 					}).done(function(data){
 						console.log(data);
 						var subtotal = data.sale_price;
-						$('td[name="td"]').each(function(){
-							// var price = $(this);
-							alert('td');
-							// var q = data.quantity;
-							sum = parseInt(sum) + parseInt(subtotal);
-							// quantity += parseInt(q);
-							// var total = total + subtotal;
-						});
+						var sum = 0;
+						// alert("sum 1: " + sum);
 						// table.ajax.reload();
 						// alert(data.name);
-						$('#tbody').append("<tr><td><input type='number' name='cant' min='1' max="+data.quantity+" step='1' value='1'></td><td>"+data.name+"</td><td name='sale_price'>$"+data.sale_price+"</td><td name='td'>$"+subtotal+"</td></tr>");
-						$('#total_label').append(sum);
-						// $("#msj-"+data.message).fadeOut().fadeIn();
-						
-						// <input type="number" name="points" min="0" max="100" step="10" value="30">
+						$('#tbody').append("<tr><td><input type='number' name='cant' min='1' max="+data.quantity+" step='1' value='1'></td><td>"+data.name+"</td><td>"+data.details+"</td><td name='sale_price'>$"+data.sale_price+"</td><td name='td'>$"+subtotal+"</td></tr>");
+						$('td[name="td"]').each(function(){
+							var ff = $(this).html();
+							ff = ff.replace('$', '');
+							// alert("ff this: " + ff);
+							sum = parseInt(sum) + parseInt(ff);
+							// alert("sum final: " + sum);
+						});
+						$('#total_label').empty().append(sum);
 					});
 				},
 				onCancel: function() {
@@ -153,10 +176,6 @@
 			});
 		});
 
-		// $('body').delegate('input', 'change', function (){
-		// 	$('td[name="td"]').on(this).text('gg');
-		// });
-		// 
 		var total = 0;
 		var subtotal = 0;
 		var cant = 0;
@@ -170,36 +189,22 @@
 			$(this).find('td[name="td"]').text("$"+res);
 			$('body').find('h1#total_label').text("$"+res);
 
-			// $('td[name="td"]').each(function(){
-			// 	total = parseFloat(total) + parseFloat(subtotal);
-			// });
-			// alert(total);
+			var sum = 0;
+			// alert("suma 1: " + sum)
+			$('td[name="td"]').each(function(){
+				var ff = $(this).html();
+				ff = ff.replace('$', '');
+				// alert("ff this: " + ff);
+				sum = parseInt(sum) + parseInt(ff);
+				// alert("sum final: " + sum);
+			});
+			$('#total_label').empty().append(sum);
+		});
+
+		$('body').delegate('#btnVenta','click',function(){
 
 		});
 
-		$('body').delegate('h1#total_label', 'change', function (){
-			// alert('cambio');
-			// subtotal = $(this).find('td[name="td"]').val();
-			alert('subtotal');
-			// subtotal = subtotal.replace('$', '');
-			// $(this).find('h1[name="total"]').text("hola");
-			// cant = $(this).find('input[name="cant"]').val();
-			// res = subtotal * cant;
-
-			// $(this).find('td[name="td"]').text("$"+res);
-		});
-
-		// $('body').delegate('h1#total_label', 'mouseenter', function (){
-		// 	alert('dd f');
-		// 	// subtotal = $(this).find('td[name="td"]').html();
-		// 	// alert(subtotal);
-		// 	// subtotal = subtotal.replace('$', '');
-		// 	// $(this).find('h1[name="total"]').text("hola");
-		// 	// cant = $(this).find('input[name="cant"]').val();
-		// 	// res = subtotal * cant;
-
-		// 	// $(this).find('td[name="td"]').text("$"+res);
-		// });
 	});
 </script>
 
