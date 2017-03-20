@@ -104,7 +104,7 @@
             @endpermission
             
             @permission('make_sale')
-            <li class="treeview"><a href="{{ url('sale') }}"><i class='glyphicon glyphicon-usd'></i> <span>{{ trans('adminlte_lang::message.sale') }}</span></a></li>
+            <li class="treeview"><a href="{!!URL::to('sale/create')!!}"><i class='glyphicon glyphicon-usd'></i> <span>{{ trans('adminlte_lang::message.sale') }}</span></a></li>
             @endpermission
 
             @permission('see_user','create_user','edit_user', 'delete_user', 'recover_user')

@@ -141,6 +141,28 @@ Route::group(['middleware' => 'auth'], function () {
 	// Route::get('/order/recover',['as'=>'order.recover','uses'=>'OrderController@recover','middleware'=> ['permission:see_order']]);
 	// Route::get('order/showTrashed',['as'=>'order.showTrashed','uses'=>'OrderController@showTrashed','middleware'=> ['permission:see_order']]);
 	// Route::get('order/recovery',['as'=>'order.recovery','uses'=>'OrderController@recovery','middleware'=> ['permission:recover_order']]);
+	// 
+	
+
+	// 	****************** SALES ROUTES ******************
+	// Route::get('sale/recover', 'SaleController@recover');
+	Route::resource('sale', 'SaleController');
+	Route::get('sale/add/{id}', ['as'=>'sale.addProduct','uses'=>'SaleController@addProduct']);
+	// Route::get('sale/edit', 'SaleController@edit');
+	// Route::get('sale/delete/{id}', 'SaleController@destroy');
+	// Route::get('sale/recovery/{id}', 'SaleController@recovery');
+	// Route::get('sale/showTrashed/{id}', 'SaleController@showTrashed');
+
+	Route::get('api/prd_sales', 'SaleController@getBtnDatatable');
+	// Route::get('api/ord_recover', 'SaleController@btnRecoverSale');
+
+	// 	---------- PERMISSION MIDDLEWARE FOR SALES
+	// Route::get('sale/create',['as'=>'sale.create','uses'=>'SaleController@create','middleware'=> ['permission:create_sale']]);
+	// Route::post('sale/create',['as'=>'sale.store','uses'=>'SaleController@store','middleware'=> ['permission:create_sale']]);
+	// Route::get('sale/{id}/edit',['as'=>'sale.edit','uses'=>'SaleController@edit','middleware'=> ['permission:edit_sale']]);
+	// Route::get('/sale',['as'=>'sale.index','uses'=>'SaleController@index','middleware'=> ['permission:see_sale']]);
+	// Route::get('sale/show',['as'=>'sale.show','uses'=>'SaleController@show','middleware'=> ['permission:see_sale']]);
+	// Route::get('sale/delete',['as'=>'sale.destroy','uses'=>'SaleController@destroy','middleware'=> ['permission:delete_order']]);
 
 
 	// 	****************** MOTIVES ROUTES ******************
