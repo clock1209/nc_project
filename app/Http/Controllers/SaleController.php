@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Products;
+use App\Sale;
 use Response;
 use Entrust;
 use DB;
@@ -131,5 +132,38 @@ class SaleController extends Controller
         $product = Products::find($id);
 
         return Response::json($product);
+    }
+
+
+    static $folio = 120;
+    public function makeSale($cant, $cmax, $name, $detail, $unip, $subt)
+    {
+        $unip = str_replace('$', '', $unip);
+        $subt = str_replace('$', '', $subt);
+        // echo "unip" . $unip;
+        // echo "subt" . $subt;
+        // var_dump($cant);
+        // var_dump($name);
+        // var_dump($detail);
+        // dd($name);
+        $res = $cmax - $cant;
+
+        // echo "jjijo";
+        // dd($subt);
+
+        $producto = Products::where('name', $name)
+                            ->where('details', $detail)
+                            ->update(['quantity' => $res]);
+
+        $sale = Sale::create([
+            'folio' => SaleController::$folio + 1,
+            'product' => $name,
+            'quantity' => $cant,
+            'unitary_price' => $unip,
+            'subtotal' => $subt,
+        ]);
+        
+
+        var_dump($producto);
     }
 }

@@ -160,7 +160,7 @@
 						// alert("sum 1: " + sum);
 						// table.ajax.reload();
 						// alert(data.name);
-						$('#tbody').append("<tr><td><input type='number' name='cant' min='1' max="+data.quantity+" step='1' value='1'></td><td>"+data.name+"</td><td>"+data.details+"</td><td name='sale_price'>$"+data.sale_price+"</td><td name='td'>$"+subtotal+"</td></tr>");
+						$('#tbody').append("<tr name='fila'><td><input type='number' name='cant' min='1' max="+data.quantity+" step='1' value='1'></td><td name='name'>"+data.name+"</td><td name='details'>"+data.details+"</td><td name='sale_price'>$"+data.sale_price+"</td><td name='td'>$"+subtotal+"</td></tr>");
 						$('td[name="td"]').each(function(){
 							var ff = $(this).html();
 							ff = ff.replace('$', '');
@@ -202,7 +202,26 @@
 		});
 
 		$('body').delegate('#btnVenta','click',function(){
-
+			var token = $("#token").val();
+			$('#tbody tr').each(function(){
+				$this = $(this);
+				var subt = $this.find('td[name="td"]').html();
+				var name = $this.find('td[name="name"]').html();
+				var det = $this.find('td[name="details"]').html();
+				var unip = $this.find('td[name="sale_price"]').html();
+				var cant = $this.find('input[name="cant"]').val();
+				var cmax = $this.find('input').attr('max');
+				$.ajax({
+					url: '/sale/' + cant + '/' + cmax + '/' + name + '/' + det + '/' + unip + '/' + subt,
+					headers: {'X-CSRF-TOKEN': token},
+					type: 'GET',
+					dataType: 'json',
+					data: {id: pdt_id},
+				}).done(function(data){
+					console.log(data);
+				});
+			});
+			
 		});
 
 	});
