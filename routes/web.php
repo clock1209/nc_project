@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 	****************** CLIENTS ROUTES ******************
 	Route::get('client/recover', 'ClientController@recover');
+	Route::get('client/data/{name}',['as' => 'client.data','uses' => 'ClientController@getClientData']);
 	Route::resource('client', 'ClientController');
 	Route::get('client/edit', 'ClientController@Edit');
 	Route::get('client/delete/{id}', 'ClientController@destroy');

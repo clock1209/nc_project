@@ -118,11 +118,12 @@ class QuoteController extends Controller
      */
     public function create()
     {
-        $var = 0;
-        $client = Client::pluck('name', 'lastNameFather', 'lastNameMother');
+        // $var = 0;
+        // $client = Client::pluck('name', 'lastNameFather', 'lastNameMother');
+        $client = Client::all();
         foreach ($client as $key => $value) {
-            $var += 1;
-            $clients[$var] =  $value . " ". $key;
+            // $var += 1;
+            $clients[$key] =  $value->name . " ". $value->lastNameFather ." ". $value->lastNameMother;
         }
 
         $date = Carbon::now();
@@ -276,5 +277,6 @@ class QuoteController extends Controller
 
         return $array;
     }
+
 
 }
