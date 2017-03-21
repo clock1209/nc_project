@@ -54,6 +54,32 @@ $factory->define(App\Products::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Sale::class, function (Faker\Generator $faker) {
+    // $folio 
+        $r = null;
+       $product = App\Products::find(random_int(1, 50));
+         $folio = App\Sale::all('folio');
+
+        foreach($folio as $fol){
+            $r = $fol->folio;
+        }
+        $resfolio = $r + 1;
+       // $resfolio = 120;
+       $cant = $faker->numberBetween($min = 1, $max = 3);
+       $price = $product->sale_price;
+       $res = $cant * $price;
+
+       return [
+       'folio' => $resfolio,
+       'product' => $product->name,
+       'quantity' => $cant,
+       'unitary_price' => $price,
+       'subtotal' => $res,
+       ];
+    
+   
+});
+
 // $factory->define(App\Motive::class, function (Faker\Generator $faker) {
 //     return [
 //         'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),

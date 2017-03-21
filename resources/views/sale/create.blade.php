@@ -74,7 +74,9 @@
 						</div>
 						<div class="form-group">
 							<div>
-								<button type="button" class="btn btn-success" id="btnVenta">Vender</button>
+								{!!Form::open(['route'=>'sale.details', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
+								<button type="submit" class="btn btn-success" id="btnVenta">Vender</button>
+								{!! Form::close() !!}
 							</div>
 						</div>
 					</div>
@@ -147,6 +149,7 @@
 				btnCancelLabel: 'No',
 				placement: 'left',
 				onConfirm: function() {
+
 					$.ajax({
 						url: '{{ route("sale.addProduct", '') }}' + '/' + pdt_id,
 						headers: {'X-CSRF-TOKEN': token},
@@ -155,6 +158,9 @@
 						data: {id: pdt_id},
 					}).done(function(data){
 						console.log(data);
+						$('table tr').has('a[pdt_id="'+ pdt_id +'"]').remove()
+						// var $this = $(this).parent().find('tr');
+						// $('td').hide();
 						var subtotal = data.sale_price;
 						var sum = 0;
 						// alert("sum 1: " + sum);
@@ -235,15 +241,27 @@
 			// alert(folio);
 			
 
-			$.ajax({
-				url: '/sale/details',
-				headers: {'X-CSRF-TOKEN': token},
-				type: 'GET',
-				dataType: 'json',
-				data: {id: pdt_id},
-			}).done(function(data){
-				console.log(data);
-			});
+			// $.ajax({
+			// 	url: '/sale/details',
+			// 	headers: {'X-CSRF-TOKEN': token},
+			// 	type: 'GET',
+			// 	dataType: 'json',
+			// 	data: {id: pdt_id},
+			// }).done(function(data){
+			// 	// console.log(data);
+			// 	// event.PreventDefault();
+			// 	alert('antes');
+			// 	// similar behavior as an HTTP redirect
+			// 	window.location.replace("http://stackoverflow.com");
+
+			// 	alert('num: 2');
+			// 	// similar behavior as clicking on a link
+			// 	window.location.href = "http://stackoverflow.com";
+			// 	// location.href="data";
+			// 	alert('num 3');
+			// 	return false;
+			// 	alert('ultima');
+			// });
 			
 		});
 

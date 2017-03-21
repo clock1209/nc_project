@@ -185,7 +185,8 @@ class SaleController extends Controller
 
     public function saleDetails()
     {
-        dd('hola fina j');
+
+        // var_dump('entro f');
         // $folio = Sale::all('folio');
 
         // foreach($folio as $fol){
@@ -194,6 +195,6 @@ class SaleController extends Controller
         // dd($res);
         // dd();
         // $resfolio = $folio + 1;
-        return Redirect::to('/sale');
+        return redirect('sale/create');
     }
 }

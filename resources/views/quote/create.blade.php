@@ -113,6 +113,8 @@
 <script>
     $(document).ready(function(){
         $("[name='phone_number']").inputmask("(99)-9999-9999");
+
+        
     });   
 </script>
 	
