@@ -78,7 +78,7 @@
 							</div>
 						</div>
 					</div>
-					
+				<input name="folio" type="text" value="">
 				</div>{{-- row --}}
 				{{-- <div class="row" id="display_total">
 					<div class="form-inline pull-right">
@@ -203,7 +203,15 @@
 
 		$('body').delegate('#btnVenta','click',function(){
 			var token = $("#token").val();
-			$('#tbody tr').each(function(){
+			$.ajax({
+				url: '/sale/folio',
+				headers: {'X-CSRF-TOKEN': token},
+				type: 'GET',
+				dataType: 'json',
+				data: {id: pdt_id},
+			}).done(function(data){
+				console.log(data);
+				$('#tbody tr').each(function(){
 				$this = $(this);
 				var subt = $this.find('td[name="td"]').html();
 				var name = $this.find('td[name="name"]').html();
@@ -212,7 +220,7 @@
 				var cant = $this.find('input[name="cant"]').val();
 				var cmax = $this.find('input').attr('max');
 				$.ajax({
-					url: '/sale/' + cant + '/' + cmax + '/' + name + '/' + det + '/' + unip + '/' + subt,
+					url: '/sale/' + cant + '/' + cmax + '/' + name + '/' + det + '/' + unip + '/' + subt + '/' + data,
 					headers: {'X-CSRF-TOKEN': token},
 					type: 'GET',
 					dataType: 'json',
@@ -220,6 +228,21 @@
 				}).done(function(data){
 					console.log(data);
 				});
+			});
+			});
+			// 	var res = $('input[name="folio"]').html();
+			// 	alert(res);
+			// alert(folio);
+			
+
+			$.ajax({
+				url: '/sale/details',
+				headers: {'X-CSRF-TOKEN': token},
+				type: 'GET',
+				dataType: 'json',
+				data: {id: pdt_id},
+			}).done(function(data){
+				console.log(data);
 			});
 			
 		});

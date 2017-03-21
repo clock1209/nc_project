@@ -119,7 +119,7 @@ class QuoteController extends Controller
     public function create()
     {
         $var = 0;
-        $client = Client::pluck('name', 'lastNameFather');
+        $client = Client::pluck('name', 'lastNameFather', 'lastNameMother');
         foreach ($client as $key => $value) {
             $var += 1;
             $clients[$var] =  $value . " ". $key;

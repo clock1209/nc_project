@@ -134,9 +134,23 @@ class SaleController extends Controller
         return Response::json($product);
     }
 
+    public function getFolio()
+    {
+        // dd('quieriendo obterner folio');
+        $folio = Sale::all('folio');
+
+        foreach($folio as $fol){
+            $res = $fol->folio;
+        }
+        // dd($res);
+        // dd();
+        $resfolio = $res + 1;
+        return Response::json($resfolio);
+    }
+
 
     static $folio = 120;
-    public function makeSale($cant, $cmax, $name, $detail, $unip, $subt)
+    public function makeSale($cant, $cmax, $name, $detail, $unip, $subt, $folio)
     {
         $unip = str_replace('$', '', $unip);
         $subt = str_replace('$', '', $subt);
@@ -151,12 +165,14 @@ class SaleController extends Controller
         // echo "jjijo";
         // dd($subt);
 
-        $producto = Products::where('name', $name)
-                            ->where('details', $detail)
-                            ->update(['quantity' => $res]);
+        // $producto = Products::where('name', $name)
+        //                     ->where('details', $detail)
+        //                     ->update(['quantity' => $res]);
+
+        //                     
 
         $sale = Sale::create([
-            'folio' => SaleController::$folio + 1,
+            'folio' => $folio,
             'product' => $name,
             'quantity' => $cant,
             'unitary_price' => $unip,
@@ -164,6 +180,20 @@ class SaleController extends Controller
         ]);
         
 
-        var_dump($producto);
+        // var_dump($producto);
+    }
+
+    public function saleDetails()
+    {
+        dd('hola fina j');
+        // $folio = Sale::all('folio');
+
+        // foreach($folio as $fol){
+        //     $res = $fol->folio;
+        // }
+        // dd($res);
+        // dd();
+        // $resfolio = $folio + 1;
+        return Redirect::to('/sale');
     }
 }
