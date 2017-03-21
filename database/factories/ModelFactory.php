@@ -102,6 +102,32 @@ $factory->define(App\Quote::class, function (Faker\Generator $faker) {
         'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
         'budget' => $faker->randomFloat($nbMaxDecimals = 0, $min = 500, $max = 3000),
         'expiration_date' => $tomorrow,
+        'status' => 'Detenido',
+    ];
+});
+
+$factory->define(App\Order::class, function (Faker\Generator $faker) {
+    $client = App\Client::find(random_int(1, 70));
+    $nclient = $client->name .' '. $client->lastNameFather .' '. $client->lastNameMother;
+    $user = App\User::find(random_int(1, 32));
+    $phone = ($client->cellPhone == null) ? $client->homePhone : $client->cellPhone;
+    $date = $faker->dateTimeBetween($startDate = '-4 days', $endDate = 'now', $timezone = date_default_timezone_get());
+    $dedate = $faker->dateTimeBetween($startDate = 'now', $endDate = '5 days', $timezone = date_default_timezone_get());
+    $presupuesto = $faker->randomFloat($nbMaxDecimals = 0, $min = 500, $max = 3000);
+    $anticipo = $presupuesto * .30;
+
+    return [
+        'client' => $nclient,
+        'user' => $user->username,
+        'quote_date' => $date,
+        'phone_number' => $phone,
+        'email' => $client->email,
+        'address' => $client->address,
+        'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
+        'budget' => $presupuesto,
+        'retainer' => $anticipo,
+        'delivery_date' => $dedate,
+        'priority' => $faker->randomElement($array = array('Alta', 'Normal', 'Baja')),
         'status' => $faker->randomElement($array = array('En progreso', 'Detenido', 'Listo', 'Entregado')),
     ];
 });
