@@ -155,6 +155,13 @@ class QuoteController extends Controller
           $status = $this->statusList();
           $priority = $this->priorityList();
 
+          if ($client == null) {
+            $client = 'Cliente Mostrador';
+            $phonenumber = 'NA';
+            $address = 'NA';
+            $email = 'NA';
+          }
+
           return view('order.create')->with(compact('date', 'exp_date', 'client', 'budget', 'status', 'priority', 'phonenumber', 'email', 'address', 'description'));
       }else{
         $type = Input::get('radio');

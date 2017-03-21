@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -78,6 +79,31 @@ $factory->define(App\Sale::class, function (Faker\Generator $faker) {
        ];
     
    
+});
+
+$factory->define(App\Quote::class, function (Faker\Generator $faker) {
+    $client = App\Client::find(random_int(1, 70));
+    $nclient = $client->name .' '. $client->lastNameFather .' '. $client->lastNameMother;
+    $user = App\User::find(random_int(1, 32));
+    $phone = ($client->cellPhone == null) ? $client->homePhone : $client->cellPhone;
+    $date = $faker->dateTimeBetween($startDate = '-4 days', $endDate = 'now', $timezone = date_default_timezone_get());
+    $tomorrow = Carbon::tomorrow();
+    // $expDate = Carbon::createFromFormat('Y-m-d', $tomorrow)->toDateString();
+    // $expDate = $expDate->addDays(5);
+
+
+    return [
+        'client' => $nclient,
+        'user' => $user->username,
+        'quote_date' => $date,
+        'phone_number' => $phone,
+        'email' => $client->email,
+        'address' => $client->address,
+        'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
+        'budget' => $faker->randomFloat($nbMaxDecimals = 0, $min = 500, $max = 3000),
+        'expiration_date' => $tomorrow,
+        'status' => $faker->randomElement($array = array('En progreso', 'Detenido', 'Listo', 'Entregado')),
+    ];
 });
 
 // $factory->define(App\Motive::class, function (Faker\Generator $faker) {
