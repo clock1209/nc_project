@@ -146,17 +146,19 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 	****************** SALES ROUTES ******************
 	// Route::get('sale/recover', 'SaleController@recover');
+	Route::get('sale/details/{total}/{name?}',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
 	Route::get('sale/{cant}/{cmax}/{name}/{detail}/{unip}/{subt}/{folio}', ['as'=>'sale.makeSale','uses'=>'SaleController@makeSale']);
-	Route::get('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
 	Route::get('sale/folio',['as'=>'sale.folio','uses'=>'SaleController@getFolio']);
 	Route::resource('sale', 'SaleController');
 	Route::get('sale/add/{id}', ['as'=>'sale.addProduct','uses'=>'SaleController@addProduct']);
+	Route::get('sale/clientadd/{id}', ['as'=>'sale.addClient','uses'=>'SaleController@addClient']);
 	// Route::get('sale/edit', 'SaleController@edit');
 	// Route::get('sale/delete/{id}', 'SaleController@destroy');
 	// Route::get('sale/recovery/{id}', 'SaleController@recovery');
 	// Route::get('sale/showTrashed/{id}', 'SaleController@showTrashed');
 
 	Route::get('api/prd_sales', 'SaleController@getBtnDatatable');
+	Route::get('api/clt_sales', 'SaleController@getBtnDatatableClt');
 	// Route::get('api/ord_recover', 'SaleController@btnRecoverSale');
 
 	// 	---------- PERMISSION MIDDLEWARE FOR SALES

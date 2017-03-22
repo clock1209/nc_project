@@ -11,6 +11,16 @@ class ClientSeeder2 extends Seeder
      */
     public function run()
     {
+    	factory(App\Client::class)->create([
+        	'name' => 'Pedro',
+            'lastNameFather' => 'Sola',
+            'lastNameMother' => 'Fernandez',
+        	'email' => 'pedro@email.net',
+        	'address' => 'delicias #334 col. Miravelle',
+        	'homePhone' => '3317334533',
+        	'cellPhone' => '',
+        ]);
+
         factory(App\Client::class, 70)->create();
     }
 }

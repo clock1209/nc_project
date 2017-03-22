@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Products;
+use App\Client;
 use App\Sale;
+use App\VentaTotal;
 use Response;
 use Entrust;
 use DB;
+use Auth;
 use Datatables;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -31,9 +34,14 @@ class SaleController extends Controller
      */
     public function create()
     {
+        $cli = Client::all();
+        // $client = Client::pluck('name', 'lastNameFather', 'lastNameMother');
+        foreach ($cli as $key => $value) {
+            $clients[$key] =  $value->name . " ". $value->lastNameFather . " " . $value->lastNameMother;
+        }
         // dd('ventas');
         // return view('client.index')->with('client' , Client::all());
-        return view('sale.create')->with('product' , Products::all());
+        return view('sale.create')->with('product' , Products::all())->with(compact('clients'));
     }
 
     public function getBtnDatatable()
@@ -45,6 +53,20 @@ class SaleController extends Controller
                 
                 return '<a data-toggle="modal" pdt_id="'. $product->id .'" data-target="#producto" class="btn btn-info get-product"><i class="glyphicon glyphicon-info-sign"></i></a>
                     <a pdt_id="'. $product->id .'" class="btn btn-success" id="btnAdd"
+                    data-toggle="confirmation"><i class="glyphicon glyphicon-plus"></i></a>';
+            })
+            ->make(true);
+    }
+
+    public function getBtnDatatableClt()
+    {
+        $clients = Client::select(['id', 'name','lastNameFather','lastNameMother','email', 'address', 'homePhone', 'cellPhone']);
+
+        return Datatables::of($clients)
+            ->addColumn('action', function ($client) {
+                
+                return '<a data-toggle="modal" clt_id="'. $client->id .'" data-target="#cliente" class="btn btn-info get-client"><i class="glyphicon glyphicon-info-sign"></i></a>
+                    <a clt_id="'. $client->id .'" class="btn btn-success" id="ClienteAdd"
                     data-toggle="confirmation"><i class="glyphicon glyphicon-plus"></i></a>';
             })
             ->make(true);
@@ -134,11 +156,19 @@ class SaleController extends Controller
         return Response::json($product);
     }
 
+    public function addClient($id)
+    {
+        // dd($id);
+        $client = Client::find($id);
+
+        return Response::json($client);
+    }
+
     public function getFolio()
     {
         // dd('quieriendo obterner folio');
         $folio = Sale::all('folio');
-
+        dd($folio);
         foreach($folio as $fol){
             $res = $fol->folio;
         }
@@ -180,20 +210,55 @@ class SaleController extends Controller
         ]);
         
 
-        // var_dump($producto);
+        return Response::json($folio);
     }
 
-    public function saleDetails()
+    public function saleDetails($total, $name = null)
     {
-        dd('hola fina j');
-        // $folio = Sale::all('folio');
+        $id_client = null;
+        if ($name == null) {
+            $name = 'Venta de Mostrador';
+            $id_client = 666;
+        }else{
+            list($nm, $ln1, $ln2) = explode(' ', $name);
 
+            $client = Client::select('id')
+                        ->where('name', $nm)
+                        ->where('lastNameFather', $ln1)
+                        ->where('lastNameMother', $ln2)
+                        ->first();
+
+            $id_client = $client->id;
+        }
+
+        
+
+        $folio = Sale::all('folio');
+        foreach($folio as $fol){
+            $resfolio = $fol->folio;
+        }
+        $resfolio += 1;
+
+        $vt = VentaTotal::create([
+            'id_client' => $id_client,
+            'id_user' => Auth::user()->id,
+            'folio' => $resfolio,
+            'client' => $name,
+            'user' => Auth::user()->username,
+            'total' => $total,
+        ]);       
+        // dd($client->id);
+        // dd(Auth::user()->name);
+        // $folio = Sale::all('folio');
         // foreach($folio as $fol){
         //     $res = $fol->folio;
         // }
         // dd($res);
         // dd();
         // $resfolio = $folio + 1;
-        return Redirect::to('/sale');
+        // return "/home";
+        // return Response::json('/home');
+        // return Redirect::to('/sale');
+        // return (String) view('client.create')->render();
     }
 }

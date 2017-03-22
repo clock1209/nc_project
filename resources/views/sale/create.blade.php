@@ -29,10 +29,77 @@
 			<div class="panel panel-default">
 				<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.clientlist') }}</div>
 				<div class="panel-body table-responsive bgn">
+				<a data-toggle="collapse" href="#collapse1" class="btn bg-info">Hacer venta a usuario</a>
+					<div id="collapse1" class="row panel-collapse collapse">
+						<div class="form-horizontal">
+							<div class="form-group">
+								<label for="client_lbl" class="col-sm-3 control-label">Cliente:</label>
+								<div class="col-sm-9">
+									{!! Form::text('client', "", ['list'=> 'clients','class'=>'form-control']) !!}
+									<datalist size='5' id="clients">
+										@foreach ($clients as $client)
+											<option value="{{ $client }}" >
+										@endforeach
+									</datalist>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				{{-- <div id="collapse1" class="row panel-collapse collapse">
+					<div class="col-md-5">
+						<table class="table table-hover" id="clients">
+							<h3 class="text-center">Agregar Cliente</h3>
+							<thead class="thead-default">
+								<tr>
+									<th>ID</th>
+									<th>Nombre</th>
+									<th>Apellido Paterno</th>
+									<th>Apellido Materno</th>
+									<th>Correo</th>
+									<th>Domicilio</th>
+									<th>Teléfono</th>
+									<th>Celular</th>
+									<th>Opciones</th>
+								</tr>
+							</thead>
+						</table>
+					</div>{{-- div tabla productos 
+					<div class="col-md-7">
+						<div class="form-horizontal">
+							<input name="id_clt" type="text" id="id_clt">
+							<div class="form-group">
+								<label for="client_lbl" class="col-sm-3 control-label text-right">{{ trans('adminlte_lang::message.name') }}:</label>
+								<div class="col-sm-8">
+									{!!Form::text('name',null,['class'=>'form-control'])!!}
+								</div>
+	                    	</div>
+	                    	<div class="form-group">
+	                    		<label for="client_lbl" class="col-sm-3 control-label text-right">{{ trans('adminlte_lang::message.lastnamefather') }}:</label>
+	                    		<div class="col-sm-8">
+	                    		{!!Form::text('lastNameFather',null,['class'=>'form-control'])!!}
+	                    		</div>
+	                    	</div>
+	                    	<div class="form-group">
+	                    		<label for="client_lbl" class="col-sm-3 control-label text-right">{{ trans('adminlte_lang::message.lastnamemother') }}:</label>
+	                    		<div class="col-sm-8">
+	                    		{!!Form::text('lastNameMother',null,['class'=>'form-control'])!!}
+	                    		</div>
+	                    	</div>
+	                    	<div class="form-group">
+	                    		<label for="client_lbl" class="col-sm-3 control-label text-right">{{ trans('adminlte_lang::message.email') }}:</label>
+	                    		<div class="col-sm-8">
+	                    		{!!Form::text('email',null,['class'=>'form-control'])!!}
+	                    		</div>
+	                    	</div>
+	                    </div>
+					</div>{{-- div datos cliente 
+					{{-- <div class="panel-footer">Panel Footer</div>
+				</div> --}}
 				<div class="row">
 					<div class="col-md-5">
 						<table class="table table-hover" id="products">
-							<h3 class="text-center">Productos</h3>
+							<h3 class="text-center">Agregar Productos</h3>
 							<thead class="thead-default">
 								<tr>
 									<th>ID</th>
@@ -78,7 +145,6 @@
 							</div>
 						</div>
 					</div>
-				<input name="folio" type="text" value="">
 				</div>{{-- row --}}
 				{{-- <div class="row" id="display_total">
 					<div class="form-inline pull-right">
@@ -135,6 +201,27 @@
 			],
 		});
 
+		// var table2 = $('#clients').DataTable({
+		// 	"processing": true,
+		// 	"serverSide": true,
+		// 	"scrollY": 120,
+		// 	"ajax": "/api/clt_sales",
+		// 	"language": {
+		// 		url: "{{-- asset('/plugins/datatables/spanish.json') --}}"
+		// 	},
+		// 	"columns":[
+		// 	{data: 'id', visible: false},
+		// 	{data: 'name'},
+		// 	{data: 'lastNameFather'},
+		// 	{data: 'lastNameMother'},
+		// 	{data: 'email', visible: false}, 
+		// 	{data: 'address', visible: false},
+		// 	{data: 'homePhone', visible: false},
+		// 	{data: 'cellPhone', visible: false},
+		// 	{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
+		// 	],
+		// });
+
 		$('body').delegate('#btnAdd','mouseenter',function(){
 			pdt_id = $(this).attr('pdt_id');
 			var token = $("#token").val();
@@ -176,6 +263,39 @@
 			});
 		});
 
+		//CLIENTES
+		// $('body').delegate('#ClienteAdd','mouseenter',function(){
+		// 	clt_id = $(this).attr('clt_id');
+		// 	var token = $("#token").val();
+		// 	$('[data-toggle=confirmation]').confirmation({
+		// 		rootSelector: '[data-toggle=confirmation]',
+		// 		title: "¿Está seguro?",
+		// 		singleton: true,
+		// 		popout: true,
+		// 		btnOkLabel: 'Sí',
+		// 		btnCancelLabel: 'No',
+		// 		placement: 'left',
+		// 		onConfirm: function() {
+		// 			$.ajax({
+		// 				url: '/sale/clientadd' + '/' + clt_id,
+		// 				headers: {'X-CSRF-TOKEN': token},
+		// 				type: 'GET',
+		// 				dataType: 'json',
+		// 				data: {id: clt_id},
+		// 			}).done(function(data){
+		// 				console.log(data);
+  //                   	$("#id_clt").html(data.id );
+		// 				$("input[name='name']").html(data.name );
+  //                   	$("input[name='lastNameFather']").html(data.lastNameFather );
+  //                   	$("input[name='lastNameMother']").html(data.lastNameMother );
+  //                   	$("input[name='email']").html(data.email);
+		// 			});
+		// 		},
+		// 		onCancel: function() {
+		// 		},
+		// 	});
+		// });
+
 		var total = 0;
 		var subtotal = 0;
 		var cant = 0;
@@ -203,7 +323,7 @@
 
 		$('body').delegate('#btnVenta','click',function(){
 			var token = $("#token").val();
-			$.ajax({
+			var promise = $.ajax({
 				url: '/sale/folio',
 				headers: {'X-CSRF-TOKEN': token},
 				type: 'GET',
@@ -233,17 +353,21 @@
 			// 	var res = $('input[name="folio"]').html();
 			// 	alert(res);
 			// alert(folio);
+			var total = $('#total_label').html();
+			var cliente = $('input[name="client"]').val();
+			alert(total);
+				$.ajax({
+					url: '/sale/details/' + total + '/' + cliente,
+					headers: {'X-CSRF-TOKEN': token},
+					type: 'GET',
+					dataType: 'json',
+					data: {name: cliente},
+				}).done(function(data){
+					console.log(data);
+					// window.location=data.ToString();
+				// window.location.replace("http://ncmuebleria.local/sale/create");
+				});
 			
-
-			$.ajax({
-				url: '/sale/details',
-				headers: {'X-CSRF-TOKEN': token},
-				type: 'GET',
-				dataType: 'json',
-				data: {id: pdt_id},
-			}).done(function(data){
-				console.log(data);
-			});
 			
 		});
 
