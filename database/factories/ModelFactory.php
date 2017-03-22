@@ -102,7 +102,8 @@ $factory->define(App\Quote::class, function (Faker\Generator $faker) {
         'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
         'budget' => $faker->randomFloat($nbMaxDecimals = 0, $min = 500, $max = 3000),
         'expiration_date' => $tomorrow,
-        'status' => 'Detenido',
+        'type' => $faker->randomElement($array = array('Pedido Especial', 'Reparación')),
+        'status' => 'En espera',
     ];
 });
 

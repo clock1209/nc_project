@@ -24,6 +24,7 @@ class CreateQuotesTable extends Migration
             $table->text('description');
             $table->float('budget');
             $table->date('expiration_date');
+            $table->string('type');
             $table->string('status')->default('En espera');
             $table->softDeletes();
             $table->timestamps();

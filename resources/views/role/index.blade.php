@@ -92,7 +92,24 @@
         <select id="select-permisos" multiple="multiple">
                 @if(isset($permisos))
                     @foreach($permisos as $permiso)
-                        <option value="{{ $permiso->id }}">{{ $permiso->display_name }}</option>
+                    {{-- <option value="{{ $permiso->id }}">{{ $permiso->display_name }}</option> --}}
+                        @if (preg_match('/Usuario[s]?$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-user" style="width: 100%"> {{ $permiso->display_name }}</option>
+                        @elseif (preg_match('/Rol(es)?$|Permiso$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-knight" style="width: 100%"> {{ $permiso->display_name }}</option>
+                        @elseif (preg_match('/Cliente[s]?$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="fa fa-users" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Pedido[s]?$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-paperclip" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Producto[s]?$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-bed" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Cotización?$|Cotizaciones$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-briefcase" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Venta$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-usd" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Reportes$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-list-alt" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @endif
                     @endforeach
                 @endif
             </select>
@@ -151,7 +168,7 @@ paceOptions = {
 
 			 	rol_id = null;
                $('#select-permisos').multiSelect({
-                    selectableHeader: "<h4 class='text-center'><b>Permisos no asignados</h4></b>",
+                    selectableHeader: "<h4 class='text-center'><b>Permisos <span class='text-danger'>NO</span> asignados</h4></b>",
                     selectionHeader: "<h4  class='text-center'><b>Permisos asignados</h4></b>",
                    afterSelect:function(value){//enviamos al servidor el id del permiso seleccionado
                         $.ajax({

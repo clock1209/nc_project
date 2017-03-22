@@ -35,7 +35,7 @@
 	<div class="row">
 			{!! Build::alert_ajax('Cotización Eliminada Exitosamente') !!}
 			<div class="panel panel-default">
-				<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.quotelist') }}</div>
+				<div class="panel-heading header-nuvem">Registro de cotizaciones</div>
 				<div class="panel-body table-responsive bgn">
 					<table class="table table-hover" id="quotes">
 						<thead class="thead-default">
@@ -64,7 +64,7 @@
 			<div class="modal-content">
 				<div class="modal-header header-nuvem">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">Datos de Cliente</h4>
+					<h4 class="modal-title">Datos de cotización</h4>
 				</div>
 				<div class="modal-body">
 					<div class="row">
@@ -188,7 +188,7 @@
                     	$("#email").html(data.email );
                     	$("#address").html(data.address );
                     	$("#description").html(data.description );
-                    	$("#budget").html(data.budget );
+                    	$("#budget").html("$"+data.budget );
                     	$("#expiration_date").html(data.expiration_date );
                     });
 

@@ -82,8 +82,8 @@ class HtmlGenerator
 		}
 
 		$html =
-		'<label class="checkbox-inline btn btn-default"' . $width .'><input type="radio" name="radio" value="Pedido Especial" checked="true" '.$specialorder.'> Pedido Especial</label>
-		<label class="checkbox-inline btn btn-default"' . $width .'><input type="radio" name="radio" value="Reparación" '.$repair.'> Reparación</label>';
+		'<label class="checkbox-inline btn bg-inverted"' . $width .'><input type="radio" name="radio" value="Pedido Especial" checked="true" '.$specialorder.'> Pedido Especial</label>
+		<label class="checkbox-inline btn bg-inverted"' . $width .'><input type="radio" name="radio" value="Reparación" '.$repair.'> Reparación</label>';
 
 		return $html;
 	}

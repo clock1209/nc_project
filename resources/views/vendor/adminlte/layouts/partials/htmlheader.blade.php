@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables/jquery.dataTables.css') }}">
 
     <link href="{{ asset('/css/multi-select-nc.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/plugins/iCheck/square/blue.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('/plugins/iCheck/square/blue.css') }}" rel="stylesheet"> --}}
 
     <script src="{{ asset('/plugins/sweetalert-master/dist/sweetalert.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/sweetalert-master/dist/sweetalert.css') }}">
