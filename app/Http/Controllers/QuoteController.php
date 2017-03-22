@@ -118,6 +118,7 @@ class QuoteController extends Controller
      */
     public function create()
     {
+
         $cli = Client::all();
         // $client = Client::pluck('name', 'lastNameFather', 'lastNameMother');
         foreach ($cli as $key => $value) {
@@ -152,6 +153,13 @@ class QuoteController extends Controller
           $email = Input::get('email');
           $status = $this->statusList();
           $priority = $this->priorityList();
+
+          if ($client == null) {
+            $client = 'Cliente Mostrador';
+            $phonenumber = 'NA';
+            $address = 'NA';
+            $email = 'NA';
+          }
 
           return view('order.create')->with(compact('date', 'exp_date', 'client', 'budget', 'status', 'priority', 'phonenumber', 'email', 'address', 'description'));
       }else{
@@ -275,5 +283,6 @@ class QuoteController extends Controller
 
         return $array;
     }
+
 
 }

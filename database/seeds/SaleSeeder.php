@@ -1,5 +1,7 @@
 <?php
+
 use Illuminate\Database\Seeder;
+
 class SaleSeeder extends Seeder
 {
     /**
@@ -25,6 +27,7 @@ class SaleSeeder extends Seeder
             $cant = rand(1, 3);
             $price = $product->sale_price;
             $res = $cant * $price;
+
             factory(App\Sale::class)->create([
                 'folio' => $i,
                 'product' => $product->name,

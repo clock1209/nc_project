@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -51,6 +52,103 @@ $factory->define(App\Products::class, function (Faker\Generator $faker) {
         'production_cost'   => $costo,
         'quantity'          => $faker->numberBetween($min = 1, $max = 15),
         'description'       => $faker->sentence($nbWords = 5, $variableNbWords = true),
+    ];
+});
+
+$factory->define(App\Sale::class, function (Faker\Generator $faker) {
+    // $folio 
+        $r = null;
+       $product = App\Products::find(random_int(1, 50));
+         $folio = App\Sale::all('folio');
+
+        foreach($folio as $fol){
+            $r = $fol->folio;
+        }
+        $resfolio = $r + 1;
+       // $resfolio = 120;
+       $cant = $faker->numberBetween($min = 1, $max = 3);
+       $price = $product->sale_price;
+       $res = $cant * $price;
+
+       return [
+       'folio' => $resfolio,
+       'product' => $product->name,
+       'quantity' => $cant,
+       'unitary_price' => $price,
+       'subtotal' => $res,
+       ];
+    
+   
+});
+
+$factory->define(App\Quote::class, function (Faker\Generator $faker) {
+    $client = App\Client::find(random_int(1, 70));
+    $nclient = $client->name .' '. $client->lastNameFather .' '. $client->lastNameMother;
+    $user = App\User::find(random_int(1, 32));
+    $phone = ($client->cellPhone == null) ? $client->homePhone : $client->cellPhone;
+    $date = $faker->dateTimeBetween($startDate = '-4 days', $endDate = 'now', $timezone = date_default_timezone_get());
+    $tomorrow = Carbon::tomorrow();
+    // $expDate = Carbon::createFromFormat('Y-m-d', $tomorrow)->toDateString();
+    // $expDate = $expDate->addDays(5);
+
+
+    return [
+        'client' => $nclient,
+        'user' => $user->username,
+        'quote_date' => $date,
+        'phone_number' => $phone,
+        'email' => $client->email,
+        'address' => $client->address,
+        'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
+        'budget' => $faker->randomFloat($nbMaxDecimals = 0, $min = 500, $max = 3000),
+        'expiration_date' => $tomorrow,
+        'status' => 'Detenido',
+    ];
+});
+
+$factory->define(App\Order::class, function (Faker\Generator $faker) {
+    $client = App\Client::find(random_int(1, 70));
+    $nclient = $client->name .' '. $client->lastNameFather .' '. $client->lastNameMother;
+    $user = App\User::find(random_int(1, 32));
+    $phone = ($client->cellPhone == null) ? $client->homePhone : $client->cellPhone;
+    $date = $faker->dateTimeBetween($startDate = '-4 days', $endDate = 'now', $timezone = date_default_timezone_get());
+    $dedate = $faker->dateTimeBetween($startDate = 'now', $endDate = '5 days', $timezone = date_default_timezone_get());
+    $presupuesto = $faker->randomFloat($nbMaxDecimals = 0, $min = 500, $max = 3000);
+    $anticipo = $presupuesto * .30;
+
+    return [
+        'client' => $nclient,
+        'user' => $user->username,
+        'quote_date' => $date,
+        'phone_number' => $phone,
+        'email' => $client->email,
+        'address' => $client->address,
+        'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
+        'budget' => $presupuesto,
+        'retainer' => $anticipo,
+        'delivery_date' => $dedate,
+        'priority' => $faker->randomElement($array = array('Alta', 'Normal', 'Baja')),
+        'status' => $faker->randomElement($array = array('En progreso', 'Detenido', 'Listo', 'Entregado')),
+    ];
+});
+
+$factory->define(App\VentaTotal::class, function (Faker\Generator $faker) {
+    $date = $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now', $timezone = date_default_timezone_get());
+    $client = App\Client::find(random_int(1, 70));
+    $nclient = $client->name .' '. $client->lastNameFather .' '. $client->lastNameMother;
+    $user = App\User::find(random_int(1, 32));
+    $nuser = $user->name .' '. $user->lastNameFather .' '. $user->lastNameMother;
+    // $folio = random_int(1, 119);
+    $total = $faker->numberBetween(500, 9000);
+
+    return [
+        'date'      =>  $date,
+        'id_client' =>  $client->id,
+        'id_user'   =>  $user->id,
+        'folio'     =>  $faker->unique()->numberBetween(1 , 119),
+        'client'    =>  $nclient,
+        'user'      =>  $nuser,
+        'total'     =>  $total,
     ];
 });
 

@@ -252,4 +252,29 @@ class ClientController extends Controller
             return redirect('/client')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
          }
     }
+
+    public function getClientData($name)
+    {
+        if ($name == null) {
+            $name = 'Cotizacion de Mostrador';
+        }else{
+            list($nm, $ln1, $ln2) = explode(' ', $name);
+        }
+
+        // dd($ln2);
+
+        $client = Client::select('id', 'homePhone', 'cellPhone', 'email', 'address')
+                        ->where('name', $nm)
+                        ->where('lastNameFather', $ln1)
+                        ->where('lastNameMother', $ln2)
+                        ->first();
+        // dd($client->address);
+        $phone = ($client->cellPhone == null) ? $client->homePhone : $client->cellPhone;
+        $address = $client->address;
+        $email = $client->email;
+
+        return response()->json(["phone" => $phone,
+                                    "address" => $address,
+                                    "email" => $email]);
+    }
 }

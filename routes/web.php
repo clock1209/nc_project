@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 	****************** CLIENTS ROUTES ******************
 	Route::get('client/recover', 'ClientController@recover');
+	Route::get('client/data/{name}',['as' => 'client.data','uses' => 'ClientController@getClientData']);
 	Route::resource('client', 'ClientController');
 	Route::get('client/edit', 'ClientController@Edit');
 	Route::get('client/delete/{id}', 'ClientController@destroy');
@@ -146,8 +147,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 	****************** SALES ROUTES ******************
 	// Route::get('sale/recover', 'SaleController@recover');
-	Route::get('sale/details/{total}/{name?}',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
+	Route::get('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
 	Route::get('sale/{cant}/{cmax}/{name}/{detail}/{unip}/{subt}/{folio}', ['as'=>'sale.makeSale','uses'=>'SaleController@makeSale']);
+
+	Route::post('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
 	Route::get('sale/folio',['as'=>'sale.folio','uses'=>'SaleController@getFolio']);
 	Route::resource('sale', 'SaleController');
 	Route::get('sale/add/{id}', ['as'=>'sale.addProduct','uses'=>'SaleController@addProduct']);

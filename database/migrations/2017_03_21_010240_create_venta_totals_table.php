@@ -15,6 +15,7 @@ class CreateVentaTotalsTable extends Migration
     {
         Schema::create('venta_totals', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('date');
             $table->integer('id_client');
             $table->integer('id_user');
             $table->integer('folio');

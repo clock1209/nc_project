@@ -213,40 +213,40 @@ class SaleController extends Controller
         return Response::json($folio);
     }
 
-    public function saleDetails($total, $name = null)
+    public function saleDetails()
     {
-        $id_client = null;
-        if ($name == null) {
-            $name = 'Venta de Mostrador';
-            $id_client = 666;
-        }else{
-            list($nm, $ln1, $ln2) = explode(' ', $name);
+        // $id_client = null;
+        // if ($name == null) {
+        //     $name = 'Venta de Mostrador';
+        //     $id_client = 666;
+        // }else{
+        //     list($nm, $ln1, $ln2) = explode(' ', $name);
 
-            $client = Client::select('id')
-                        ->where('name', $nm)
-                        ->where('lastNameFather', $ln1)
-                        ->where('lastNameMother', $ln2)
-                        ->first();
+        //     $client = Client::select('id')
+        //                 ->where('name', $nm)
+        //                 ->where('lastNameFather', $ln1)
+        //                 ->where('lastNameMother', $ln2)
+        //                 ->first();
 
-            $id_client = $client->id;
-        }
+        //     $id_client = $client->id;
+        // }
 
         
 
-        $folio = Sale::all('folio');
-        foreach($folio as $fol){
-            $resfolio = $fol->folio;
-        }
-        $resfolio += 1;
+        // $folio = Sale::all('folio');
+        // foreach($folio as $fol){
+        //     $resfolio = $fol->folio;
+        // }
+        // $resfolio += 1;
 
-        $vt = VentaTotal::create([
-            'id_client' => $id_client,
-            'id_user' => Auth::user()->id,
-            'folio' => $resfolio,
-            'client' => $name,
-            'user' => Auth::user()->username,
-            'total' => $total,
-        ]);       
+        // $vt = VentaTotal::create([
+        //     'id_client' => $id_client,
+        //     'id_user' => Auth::user()->id,
+        //     'folio' => $resfolio,
+        //     'client' => $name,
+        //     'user' => Auth::user()->username,
+        //     'total' => $total,
+        // ]);       
         // dd($client->id);
         // dd(Auth::user()->name);
         // $folio = Sale::all('folio');
@@ -256,9 +256,7 @@ class SaleController extends Controller
         // dd($res);
         // dd();
         // $resfolio = $folio + 1;
-        // return "/home";
-        // return Response::json('/home');
-        // return Redirect::to('/sale');
-        // return (String) view('client.create')->render();
+
+        return redirect('sale/create');
     }
 }

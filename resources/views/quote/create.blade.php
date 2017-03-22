@@ -113,6 +113,25 @@
 <script>
     $(document).ready(function(){
         $("[name='phone_number']").inputmask("(99)-9999-9999");
+
+        $('body').delegate('input[name="client"]','focusout',function(){
+            var client = $(this).val();
+            // alert(client);
+            $.ajax({
+                url: '/client/data/' + client,
+                headers: {'X-CSRF-TOKEN': token},
+                type: 'GET',
+                dataType: 'json',
+                // data: {name: client},
+            }).done(function(data){
+                console.log(data);
+                $('input[name="phone_number"]').val(data.phone);
+                $('input[name="email"]').val(data.email);
+                $('textarea[name="address"]').val(data.address);
+                // $('#total_label').empty().append(sum);
+            });
+            
+        });
     });   
 </script>
 	
