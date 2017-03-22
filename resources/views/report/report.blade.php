@@ -25,7 +25,7 @@
 								<th>Cliente</th>
 								<th>Usuario</th>
 								<th>Total</th>
-								<th style="width: 28%">Action</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 					</table>
@@ -47,8 +47,11 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<table class="table table-hover" id="sale-details">
+							<h4 style="margin-left: 25px;">
+								<span class="text-muted">#Folio: <b name="folio"></b></span>
+							</h4>
 							<thead class="thead-default">
-								<tr>
+								<tr class="bg-faded">
 									<th>Cant</th>
 									<th>Producto</th>
 									<th>Precio Unitario</th>
@@ -58,6 +61,7 @@
 							<tbody id="tbody">
 								
 							</tbody>
+							<div name="venta_muestra" class="text-center"></div>
 						</table>
 					</div>{{-- row --}}
 				</div>
@@ -105,9 +109,17 @@
 			}).done(function(data){
 				console.log(data);
 				$('#tbody').empty();
-                $.each(data, function (key, value){
-                	$('#tbody').append("<tr name='fila'><td>"+value.quantity+"</td><td name='name'>"+value.product+"</td><td name='sale_price'>$"+value.unitary_price+"</td><td name='td'>$"+value.subtotal+"</td></tr>");
-                });
+				$('div[name="venta_muestra"]').empty();
+
+				if (typeof data === 'object' ) {
+					$.each(data, function (key, value){
+						$('#tbody').append("<tr name='fila'><td>"+value.quantity+"</td><td name='name'>"+value.product+"</td><td name='sale_price'>$"+value.unitary_price+"</td><td name='td'>$"+value.subtotal+"</td></tr>");
+						$('b[name="folio"]').html(value.folio);
+					});
+				}else {
+					$('div[name="venta_muestra"]').append("<h3>Venta de Muestra ;)</h3>");
+	                $('b[name="folio"]').html(data);
+				}
 			});
 
 		});

@@ -262,9 +262,15 @@ class ReportController extends Controller
         $sale = Sale::all()
                 ->where('folio', $folio);
 
-        foreach ($sale as $key => $value) {
-            $sales[$key] = $value;
+        if ($sale->isEmpty()) {
+            $sales = $folio;
+        }else{
+            foreach ($sale as $key => $value) {
+                $sales[$key] = $value;
+            }
         }
+
+        // $sales = ($sales == null) ? $folio : $sales;
 
         return Response::json($sales);
     }
