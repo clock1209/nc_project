@@ -215,6 +215,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/permisos/desasignar','PermissionController@desasignar');
 
 	// 	****************** REPORT ROUTES ******************
+	Route::get('report/folio/{folio}',['as'=>'report.saleDetails','uses'=>'ReportController@saleDetails']);
 	Route::resource('report', 'ReportController');
 	Route::post('report/result',['as'=>'report.result','uses'=>'ReportController@result']);
 	Route::get('report/searchby/{data}',['as'=>'report.searchby','uses'=>'ReportController@radio']);

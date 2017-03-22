@@ -37,6 +37,37 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="venta">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header header-nuvem">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Detalles de venta</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<table class="table table-hover" id="sale-details">
+							<thead class="thead-default">
+								<tr>
+									<th>Cant</th>
+									<th>Producto</th>
+									<th>Precio Unitario</th>
+									<th>Subtotal</th>
+								</tr>
+							</thead>
+							<tbody id="tbody">
+								
+							</tbody>
+						</table>
+					</div>{{-- row --}}
+				</div>
+				<div class="modal-footer background-nuvem">
+					<a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 <script>
 
@@ -62,6 +93,23 @@
 			{data: 'total'},
 			{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 			],
+		});
+
+		$('body').delegate('.get-venta_total','click',function(){
+			folio = $(this).attr('folio');
+			$.ajax({
+				url : '{{ URL::to("report/folio") }}' + '/' + folio ,
+				type : 'GET',
+				dataType: 'json',
+				data : {id: folio}
+			}).done(function(data){
+				console.log(data);
+				$('#tbody').empty();
+                $.each(data, function (key, value){
+                	$('#tbody').append("<tr name='fila'><td>"+value.quantity+"</td><td name='name'>"+value.product+"</td><td name='sale_price'>$"+value.unitary_price+"</td><td name='td'>$"+value.subtotal+"</td></tr>");
+                });
+			});
+
 		});
 	});
 </script>

@@ -208,10 +208,10 @@ class SaleController extends Controller
     public function saleDetails(Request $request)
     {
         // dd($request->final_total);
-        $client = null;
+        $client_name = null;
         $id_client = 666;
         if ($request->sel_client == null) {
-            $client = 'Venta de Mostrador';
+            $client_name = 'Venta de Mostrador';
         }else{
             list($nm, $ln1, $ln2) = explode(' ', $request->sel_client);
 
@@ -220,6 +220,8 @@ class SaleController extends Controller
                         ->where('lastNameFather', $ln1)
                         ->where('lastNameMother', $ln2)
                         ->first();
+
+            $client_name = $request->sel_client;
         }
 
         $folio = Sale::all('folio');
@@ -233,7 +235,7 @@ class SaleController extends Controller
             'id_client' => $id_client,
             'id_user' => Auth::user()->id,
             'folio' => $resfolio,
-            'client' => $request->sel_client,
+            'client' => $client_name,
             'user' => Auth::user()->username,
             'total' => $request->final_total,
         ]);       

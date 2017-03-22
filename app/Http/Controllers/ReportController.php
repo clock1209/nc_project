@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Sale;
 use App\VentaTotal;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -250,9 +251,21 @@ class ReportController extends Controller
         $see_report = "";
         // if(Entrust::can('see_report')){
             $see_report =
-            '<a data-toggle="modal" vt_id="'. $venta_total->id .'" data-target="#venta_total" class="btn btn-info get-venta_total"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
+            '<a data-toggle="modal" vt_id="'. $venta_total->id .'" folio="'. $venta_total->folio .'" data-target="#venta" class="btn btn-info get-venta_total"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Detalles</t></a>';
         // }
 
         return $see_report;
+    }
+
+    public function saleDetails($folio)
+    {
+        $sale = Sale::all()
+                ->where('folio', $folio);
+
+        foreach ($sale as $key => $value) {
+            $sales[$key] = $value;
+        }
+
+        return Response::json($sales);
     }
 }
