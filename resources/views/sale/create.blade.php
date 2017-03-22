@@ -201,7 +201,7 @@
 			{data: 'quantity'},
 			{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 			],
-		});
+		}); 
 
 		// var table2 = $('#clients').DataTable({
 		// 	"processing": true,
@@ -328,6 +328,8 @@
 		});
 
 		$('body').delegate('#btnVenta','click',function(){
+			pdt_id = $(this).attr('pdt_id');
+			alert('le pico');
 			var token = $("#token").val();
 			var promise = $.ajax({
 				url: '/sale/folio',
@@ -345,6 +347,7 @@
 				var unip = $this.find('td[name="sale_price"]').html();
 				var cant = $this.find('input[name="cant"]').val();
 				var cmax = $this.find('input').attr('max');
+				alert('aqui esta');
 				$.ajax({
 					url: '/sale/' + cant + '/' + cmax + '/' + name + '/' + det + '/' + unip + '/' + subt + '/' + data,
 					headers: {'X-CSRF-TOKEN': token},
@@ -395,7 +398,7 @@
 			// 	return false;
 			// 	alert('ultima');
 			// });
-			
+			// $("form").trigger( "submit" );
 		});
 
 	});

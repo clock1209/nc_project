@@ -141,8 +141,19 @@
             </li>
             @endpermission
 
-             @permission('report')
-            <li class="treeview"><a href="{{ url('sale') }}"><i class='glyphicon glyphicon-list-alt'></i> <span>{{ trans('adminlte_lang::message.reports') }}</span></a></li>
+            @permission('report')
+            {{-- <li class="treeview"><a href="{{ url('sale') }}"><i class='glyphicon glyphicon-list-alt'></i> <span>{{ trans('adminlte_lang::message.reports') }}</span></a></li> --}}
+            <li class="treeview">
+                <a href="#"><i class='glyphicon glyphicon-list-alt'></i> <span>Reportes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    {{-- @permission('create_role') --}}
+                    <li><a href="{!!URL::to('report')!!}">Venta/Usuario</a></li>
+                    {{-- @endpermission --}}
+                    {{-- @permission('see_role') --}}
+                    <li><a href="{!!URL::to('role')!!}">{{ trans('adminlte_lang::message.rolelist') }}</a></li>
+                    {{-- @endpermission --}}
+                </ul>
+            </li>
             @endpermission
 
 

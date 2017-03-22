@@ -84,7 +84,7 @@ $factory->define(App\Sale::class, function (Faker\Generator $faker) {
 $factory->define(App\Quote::class, function (Faker\Generator $faker) {
     $client = App\Client::find(random_int(1, 70));
     $nclient = $client->name .' '. $client->lastNameFather .' '. $client->lastNameMother;
-    $user = App\User::find(random_int(1, 32));
+    $user = App\User::find(random_int(1, 22));
     $phone = ($client->cellPhone == null) ? $client->homePhone : $client->cellPhone;
     $date = $faker->dateTimeBetween($startDate = '-4 days', $endDate = 'now', $timezone = date_default_timezone_get());
     $tomorrow = Carbon::tomorrow();
@@ -109,7 +109,7 @@ $factory->define(App\Quote::class, function (Faker\Generator $faker) {
 $factory->define(App\Order::class, function (Faker\Generator $faker) {
     $client = App\Client::find(random_int(1, 70));
     $nclient = $client->name .' '. $client->lastNameFather .' '. $client->lastNameMother;
-    $user = App\User::find(random_int(1, 32));
+    $user = App\User::find(random_int(1, 22));
     $phone = ($client->cellPhone == null) ? $client->homePhone : $client->cellPhone;
     $date = $faker->dateTimeBetween($startDate = '-4 days', $endDate = 'now', $timezone = date_default_timezone_get());
     $dedate = $faker->dateTimeBetween($startDate = 'now', $endDate = '5 days', $timezone = date_default_timezone_get());
@@ -136,8 +136,8 @@ $factory->define(App\VentaTotal::class, function (Faker\Generator $faker) {
     $date = $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now', $timezone = date_default_timezone_get());
     $client = App\Client::find(random_int(1, 70));
     $nclient = $client->name .' '. $client->lastNameFather .' '. $client->lastNameMother;
-    $user = App\User::find(random_int(1, 32));
-    $nuser = $user->name .' '. $user->lastNameFather .' '. $user->lastNameMother;
+    $user = App\User::find(random_int(1, 22));
+    // $nuser = $user->name .' '. $user->lastNameFather .' '. $user->lastNameMother;
     // $folio = random_int(1, 119);
     $total = $faker->numberBetween(500, 9000);
 
@@ -147,7 +147,7 @@ $factory->define(App\VentaTotal::class, function (Faker\Generator $faker) {
         'id_user'   =>  $user->id,
         'folio'     =>  $faker->unique()->numberBetween(1 , 119),
         'client'    =>  $nclient,
-        'user'      =>  $nuser,
+        'user'      =>  $user->username,
         'total'     =>  $total,
     ];
 });

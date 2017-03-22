@@ -147,7 +147,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 	****************** SALES ROUTES ******************
 	// Route::get('sale/recover', 'SaleController@recover');
-	Route::get('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
+	Route::post('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
 	Route::get('sale/{cant}/{cmax}/{name}/{detail}/{unip}/{subt}/{folio}', ['as'=>'sale.makeSale','uses'=>'SaleController@makeSale']);
 
 	Route::post('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
@@ -208,16 +208,16 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/roles', 'RoleController@getBtnDatatable');
 	Route::get('api/motives', 'MotiveController@getBtnDatatable');
 	Route::get('api/websupport', 'WebSupportController@getBtnDatatable');
-	Route::get('api/reports/{date1}/{username}/{status}/{date2?}', 'ReportController@buildDatatable');
+	Route::get('api/reports/{date1}/{username}/{date2?}', 'ReportController@buildDatatable');
 	// 	****************** PERMISSION ROUTES ******************
 	Route::get('/permisos','PermissionController@index');
 	Route::get('/permisos/asignar','PermissionController@asignar');
 	Route::get('/permisos/desasignar','PermissionController@desasignar');
 
 	// 	****************** REPORT ROUTES ******************
-	// Route::resource('report', 'ReportController');
-	// Route::post('report/result',['as'=>'report.result','uses'=>'ReportController@result']);
-	// Route::get('report/searchby/{data}',['as'=>'report.searchby','uses'=>'ReportController@radio']);
+	Route::resource('report', 'ReportController');
+	Route::post('report/result',['as'=>'report.result','uses'=>'ReportController@result']);
+	Route::get('report/searchby/{data}',['as'=>'report.searchby','uses'=>'ReportController@radio']);
 
 	// 	****************** TICKET ROUTES ******************
 	// Route::resource('ticket', 'TicketController');

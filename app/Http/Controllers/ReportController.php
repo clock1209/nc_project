@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\webSupport;
+use App\VentaTotal;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
@@ -22,10 +22,14 @@ class ReportController extends Controller
     public function index()
     {
         $users = User::pluck('username','username');
-        $status = webSupport::pluck('status','status');
+        // $status = webSupport::pluck('status','status');
+        $users2['Todos'] = 'Todos';
+        foreach ($users as $key => $value) {
+            $users2[$value] = $value;
+        }
         $date = Carbon::now();
 
-        return view('report.index')->with(compact('users','status','date'));
+        return view('report.index')->with(compact('users2','date'));
     }
 
     /**
@@ -97,36 +101,32 @@ class ReportController extends Controller
     public function result(Request $request)
     {
         $rbSelected = Input::get('rbReport');
-        
         $date1 = '';
         $date2 = '';
         $username = '';
-        $status = '';
-        
-        switch ($rbSelected) {
-            case 'Rango de fechas':
+
+            switch ($rbSelected) {
+                case 'Rango de fechas':
                 $date1 = $request->date1;
                 $date2 = '/'.$request->date2;
                 $username = $request->users;
-                $status = $request->status;
                 
-                return view('report/report')->with(compact('date1', 'date2', 'username', 'status'));
+                return view('report/report')->with(compact('date1', 'date2', 'username'));
                 break;
 
-            case 'Mes':
+                case 'Mes':
                 // var_dump($request->year);
                 $date1 = $this->dateFormat($request->months);
                 $date2 = '/'.$request->year;
                 $username = $request->users;
-                $status = $request->status;
 
-                return view('report/report')->with(compact('date1', 'date2', 'username', 'status'));
+                return view('report/report')->with(compact('date1', 'date2', 'username'));
                 break;
-            
-            default:
+
+                default:
                 # code...
                 break;
-        }
+            }
     }
 
     protected function radio($data)
@@ -209,38 +209,48 @@ class ReportController extends Controller
         return $res;
     }
 
-    public function buildDatatable($date1, $username, $status, $date2)
+    public function buildDatatable($date1, $username, $date2)
     {
-        if (preg_match('/^20[0-9]{2}$/', $date2)) {
-            $support = webSupport::select(['id', 'date', 'user', 'client', 'domain', 'motive', 'description', 'status', 'attentiontime'])
-            ->where('user', $username)
-            ->where('status', $status)
-            ->where('date', 'like', $date2.'-'.$date1.'%');
+        // dd($date1);
+        if($username == 'Todos'){
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $venta_total = VentaTotal::select(['id', 'date', 'id_client', 'id_user', 'folio', 'client', 'user', 'total'])
+                ->where('date', 'like', $date2.'-'.$date1.'%');
 
-        }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
-            $support = webSupport::select(['id', 'date', 'user', 'client', 'domain', 'motive', 'description', 'status', 'attentiontime'])
-            ->where('user', $username)
-            ->where('status', $status)
-            ->whereBetween('date', [$date1, $date2]);
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $venta_total = VentaTotal::select(['id', 'date', 'id_client', 'id_user', 'folio', 'client', 'user', 'total'])
+                ->whereBetween('date', [$date1, $date2]);
+            }
+        }else{
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $venta_total = VentaTotal::select(['id', 'date', 'id_client', 'id_user', 'folio', 'client', 'user', 'total'])
+                ->where('user', $username)
+                ->where('date', 'like', $date2.'-'.$date1.'%');
+
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $venta_total = VentaTotal::select(['id', 'date', 'id_client', 'id_user', 'folio', 'client', 'user', 'total'])
+                ->where('user', $username)
+                ->whereBetween('date', [$date1, $date2]);
+            }
         }
 
-        return Datatables::of($support)
-            ->addColumn('action', function ($support) {
+        return Datatables::of($venta_total)
+            ->addColumn('action', function ($venta_total) {
                 
-                return $this->botones($support);
+                return $this->botones($venta_total);
             })
-            ->editColumn('id', 'ID: {{$id}}')
+            ->editColumn('total', '$ {{$total}}')
             ->make(true);
         
     }
 
 
-    private function botones($support)
+    private function botones($venta_total)
     {
         $see_report = "";
         // if(Entrust::can('see_report')){
             $see_report =
-            '<a data-toggle="modal" rpt_id="'. $support->id .'" data-target="#support" class="btn btn-info get-support"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
+            '<a data-toggle="modal" vt_id="'. $venta_total->id .'" data-target="#venta_total" class="btn btn-info get-venta_total"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Mostrar</t></a>';
         // }
 
         return $see_report;

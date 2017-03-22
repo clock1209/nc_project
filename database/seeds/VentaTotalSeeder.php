@@ -11,6 +11,6 @@ class VentaTotalSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\VentaTotal::class, 70)->create();
+        factory(App\VentaTotal::class, 100)->create();
     }
 }

@@ -18,24 +18,24 @@
             @include('alerts.request')
             @include('alerts.unauthorized')
             	<div class="panel panel-default">
-            		<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.report') }}</div>
+            		<div class="panel-heading header-nuvem">reporte venta/usuario</div>
             		<div class="panel-body bgn">
             			{!!Form::open(['route'=>'report.result', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
             			<input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
             			<div class="form-group">
             				<label for="user_lbl" class="col-sm-2 control-label">Usuario:</label>
             				<div class="col-sm-10">
-            					{!! Form::select('users', $users, null, ['class'=>'form-control']) !!}
+            					{!! Form::select('users', $users2, null, ['class'=>'form-control']) !!}
             				</div>
             			</div>
-            			<div class="form-group">
+            			{{-- <div class="form-group">
             				<label for="status_lbl" class="col-sm-2 control-label">Estatus:</label>
             				<div class="col-sm-10">
             					{!! Form::select('status', $status, null, ['class'=>'form-control']) !!}
             				</div>
-            			</div>
+            			</div> --}}
             			<div class="form-group">
-            				<label for="searchBy_lbl" class="col-sm-2 colcontrol-label">Buscar por:</label>
+            				<label for="searchBy_lbl" class="col-sm-2 control-label">Buscar por:</label>
             				<div class="col-sm-10">
             					<div class="row">
             						<div class="col-sm-12" id="radios">

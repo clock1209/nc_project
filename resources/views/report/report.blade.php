@@ -12,20 +12,19 @@
 <div class="container-fluid spark-screen">
 	<div class="row">
 			<div class="panel panel-default">
-				<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.report') }}</div>
+				<div class="panel-heading header-nuvem">reporte de ventas/usuario</div>
 				<div class="panel-body table-responsive bgn">
 					<table class="table table-hover" id="reports">
 						<thead class="thead-default">
 							<tr>
 								<th>ID</th>
 								<th>Fecha</th>
-								<th>Usuario</th>
+								<th>ID Cliente</th>
+								<th>ID Usuario</th>
+								<th>Folio</th>
 								<th>Cliente</th>
-								<th>Dominio</th>
-								<th>Motivo</th>
-								<th>Descripción</th>
-								<th>Estatus</th>
-								<th>Tiempo</th>
+								<th>Usuario</th>
+								<th>Total</th>
 								<th style="width: 28%">Action</th>
 							</tr>
 						</thead>
@@ -33,7 +32,6 @@
 					<input type="hidden" id="date1" value="{{ $date1 }}">
 					<input type="hidden" id="date2" value="{{ $date2 }}">
 					<input type="hidden" id="username" value="{{ $username }}">
-					<input type="hidden" id="status" value="{{ $status }}">
 				</div>
 			</div>
 		</div>
@@ -46,21 +44,22 @@
 		date1 = $("#date1").val();
 		date2 = $("#date2").val();
 		username = $("#username").val();
-		status = $("#status").val();
 		var table = $('#reports').DataTable({
 			"processing": true,
 			"serverSide": true,
-			"ajax": "/api/reports"+"/"+date1+"/"+username+"/"+status+date2,
+			"ajax": "/api/reports"+"/"+date1+"/"+username+date2,
+			"language": {
+				url: "{{ asset('/plugins/datatables/spanish.json') }}"
+			},
 			"columns":[
 			{data: 'id', visible: false},
 			{data: 'date'},
+			{data: 'id_client', visible: false},
+			{data: 'id_user', visible: false},
+			{data: 'folio', visible: false},
+			{data: 'client'}, 
 			{data: 'user'},
-			{data: 'client'},
-			{data: 'domain', visible: false},
-			{data: 'motive', visible: false}, 
-			{data: 'description', visible: false},
-			{data: 'status', visible: false},
-			{data: 'attentiontime'},
+			{data: 'total'},
 			{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 			],
 		});

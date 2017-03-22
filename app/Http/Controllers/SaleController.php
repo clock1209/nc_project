@@ -168,7 +168,7 @@ class SaleController extends Controller
     {
         // dd('quieriendo obterner folio');
         $folio = Sale::all('folio');
-        dd($folio);
+        // dd($folio);
         foreach($folio as $fol){
             $res = $fol->folio;
         }
