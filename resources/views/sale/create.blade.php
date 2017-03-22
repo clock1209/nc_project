@@ -31,16 +31,18 @@
 				<div class="panel-body table-responsive bgn">
 				<a data-toggle="collapse" href="#collapse1" class="btn bg-info">Hacer venta a usuario</a>
 					<div id="collapse1" class="row panel-collapse collapse">
-						<div class="form-horizontal">
-							<div class="form-group">
+						<div class="form-horizontal pull-right">
+							<div class="form-group row">
 								<label for="client_lbl" class="col-sm-3 control-label">Cliente:</label>
-								<div class="col-sm-9">
-									{!! Form::text('client', "", ['list'=> 'clients','class'=>'form-control']) !!}
-									<datalist size='5' id="clients">
-										@foreach ($clients as $client)
-											<option value="{{ $client }}" >
-										@endforeach
-									</datalist>
+								<div class="col-sm-10">
+										<div class="form-horizontal">
+											{!! Form::text('client', "", ['list'=> 'clients','class'=>'form-control']) !!}
+											<datalist size='5' id="clients">
+												@foreach ($clients as $client)
+													<option value="{{ $client }}" >
+												@endforeach
+											</datalist>
+										</div>
 								</div>
 							</div>
 							
@@ -142,6 +144,9 @@
 						<div class="form-group">
 							<div>
 								{!!Form::open(['route'=>'sale.details', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
+								{!! Form::hidden('sel_client', null) !!}
+								{!! Form::hidden('final_total', null) !!}
+								{!! Form::hidden('date', $date) !!}
 								<button type="submit" class="btn btn-success" id="btnVenta">Vender</button>
 								{!! Form::close() !!}
 							</div>
@@ -203,26 +208,6 @@
 			],
 		}); 
 
-		// var table2 = $('#clients').DataTable({
-		// 	"processing": true,
-		// 	"serverSide": true,
-		// 	"scrollY": 120,
-		// 	"ajax": "/api/clt_sales",
-		// 	"language": {
-		// 		url: "{{-- asset('/plugins/datatables/spanish.json') --}}"
-		// 	},
-		// 	"columns":[
-		// 	{data: 'id', visible: false},
-		// 	{data: 'name'},
-		// 	{data: 'lastNameFather'},
-		// 	{data: 'lastNameMother'},
-		// 	{data: 'email', visible: false}, 
-		// 	{data: 'address', visible: false},
-		// 	{data: 'homePhone', visible: false},
-		// 	{data: 'cellPhone', visible: false},
-		// 	{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
-		// 	],
-		// });
 
 		$('body').delegate('#btnAdd','mouseenter',function(){
 			pdt_id = $(this).attr('pdt_id');
@@ -269,38 +254,6 @@
 			});
 		});
 
-		//CLIENTES
-		// $('body').delegate('#ClienteAdd','mouseenter',function(){
-		// 	clt_id = $(this).attr('clt_id');
-		// 	var token = $("#token").val();
-		// 	$('[data-toggle=confirmation]').confirmation({
-		// 		rootSelector: '[data-toggle=confirmation]',
-		// 		title: "¿Está seguro?",
-		// 		singleton: true,
-		// 		popout: true,
-		// 		btnOkLabel: 'Sí',
-		// 		btnCancelLabel: 'No',
-		// 		placement: 'left',
-		// 		onConfirm: function() {
-		// 			$.ajax({
-		// 				url: '/sale/clientadd' + '/' + clt_id,
-		// 				headers: {'X-CSRF-TOKEN': token},
-		// 				type: 'GET',
-		// 				dataType: 'json',
-		// 				data: {id: clt_id},
-		// 			}).done(function(data){
-		// 				console.log(data);
-  //                   	$("#id_clt").html(data.id );
-		// 				$("input[name='name']").html(data.name );
-  //                   	$("input[name='lastNameFather']").html(data.lastNameFather );
-  //                   	$("input[name='lastNameMother']").html(data.lastNameMother );
-  //                   	$("input[name='email']").html(data.email);
-		// 			});
-		// 		},
-		// 		onCancel: function() {
-		// 		},
-		// 	});
-		// });
 
 		var total = 0;
 		var subtotal = 0;
@@ -329,7 +282,8 @@
 
 		$('body').delegate('#btnVenta','click',function(){
 			pdt_id = $(this).attr('pdt_id');
-			alert('le pico');
+			var final_total = $('#total_label').html();
+			$('input[name="final_total"]').val(final_total);
 			var token = $("#token").val();
 			var promise = $.ajax({
 				url: '/sale/folio',
@@ -347,7 +301,7 @@
 				var unip = $this.find('td[name="sale_price"]').html();
 				var cant = $this.find('input[name="cant"]').val();
 				var cmax = $this.find('input').attr('max');
-				alert('aqui esta');
+				// alert('aqui esta');
 				$.ajax({
 					url: '/sale/' + cant + '/' + cmax + '/' + name + '/' + det + '/' + unip + '/' + subt + '/' + data,
 					headers: {'X-CSRF-TOKEN': token},
@@ -400,6 +354,11 @@
 			// });
 			// $("form").trigger( "submit" );
 		});
+
+		$('body').delegate('input[name="client"]','focusout',function(){
+            var client = $(this).val();
+            $('input[name="sel_client"]').val(client);
+        });
 
 	});
 </script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Products;
 use App\Client;
 use App\Sale;
@@ -35,13 +36,13 @@ class SaleController extends Controller
     public function create()
     {
         $cli = Client::all();
-        // $client = Client::pluck('name', 'lastNameFather', 'lastNameMother');
         foreach ($cli as $key => $value) {
             $clients[$key] =  $value->name . " ". $value->lastNameFather . " " . $value->lastNameMother;
         }
-        // dd('ventas');
-        // return view('client.index')->with('client' , Client::all());
-        return view('sale.create')->with('product' , Products::all())->with(compact('clients'));
+
+        $date = Carbon::now();
+
+        return view('sale.create')->with('product' , Products::all())->with(compact('clients', 'date'));
     }
 
     public function getBtnDatatable()
@@ -179,27 +180,18 @@ class SaleController extends Controller
     }
 
 
-    static $folio = 120;
+    // static $folio = 120;
     public function makeSale($cant, $cmax, $name, $detail, $unip, $subt, $folio)
     {
         $unip = str_replace('$', '', $unip);
         $subt = str_replace('$', '', $subt);
-        // echo "unip" . $unip;
-        // echo "subt" . $subt;
-        // var_dump($cant);
-        // var_dump($name);
-        // var_dump($detail);
-        // dd($name);
         $res = $cmax - $cant;
 
-        // echo "jjijo";
-        // dd($subt);
+        $producto = Products::where('name', $name)
+                            ->where('details', $detail)
+                            ->update(['quantity' => $res]);
 
-        // $producto = Products::where('name', $name)
-        //                     ->where('details', $detail)
-        //                     ->update(['quantity' => $res]);
-
-        //                     
+                            
 
         $sale = Sale::create([
             'folio' => $folio,
@@ -213,49 +205,38 @@ class SaleController extends Controller
         return Response::json($folio);
     }
 
-    public function saleDetails()
+    public function saleDetails(Request $request)
     {
-        // $id_client = null;
-        // if ($name == null) {
-        //     $name = 'Venta de Mostrador';
-        //     $id_client = 666;
-        // }else{
-        //     list($nm, $ln1, $ln2) = explode(' ', $name);
+        // dd($request->final_total);
+        $client = null;
+        $id_client = 666;
+        if ($request->sel_client == null) {
+            $client = 'Venta de Mostrador';
+        }else{
+            list($nm, $ln1, $ln2) = explode(' ', $request->sel_client);
 
-        //     $client = Client::select('id')
-        //                 ->where('name', $nm)
-        //                 ->where('lastNameFather', $ln1)
-        //                 ->where('lastNameMother', $ln2)
-        //                 ->first();
+            $client = Client::select('id')
+                        ->where('name', $nm)
+                        ->where('lastNameFather', $ln1)
+                        ->where('lastNameMother', $ln2)
+                        ->first();
+        }
 
-        //     $id_client = $client->id;
-        // }
+        $folio = Sale::all('folio');
+        foreach($folio as $fol){
+            $resfolio = $fol->folio;
+        }
+        $resfolio += 1;
 
-        
-
-        // $folio = Sale::all('folio');
-        // foreach($folio as $fol){
-        //     $resfolio = $fol->folio;
-        // }
-        // $resfolio += 1;
-
-        // $vt = VentaTotal::create([
-        //     'id_client' => $id_client,
-        //     'id_user' => Auth::user()->id,
-        //     'folio' => $resfolio,
-        //     'client' => $name,
-        //     'user' => Auth::user()->username,
-        //     'total' => $total,
-        // ]);       
-        // dd($client->id);
-        // dd(Auth::user()->name);
-        // $folio = Sale::all('folio');
-        // foreach($folio as $fol){
-        //     $res = $fol->folio;
-        // }
-        // dd($res);
-        // dd();
-        // $resfolio = $folio + 1;
+        $vt = VentaTotal::create([
+            'date'      => $request->date,
+            'id_client' => $id_client,
+            'id_user' => Auth::user()->id,
+            'folio' => $resfolio,
+            'client' => $request->sel_client,
+            'user' => Auth::user()->username,
+            'total' => $request->final_total,
+        ]);       
 
         return redirect('sale/create');
     }

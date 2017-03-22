@@ -14,7 +14,8 @@
         "gufy/cpanel-whm": "dev-master",
         "pmill/php-plesk": "dev-master",
         "univerze/laravel-jira": "^0.2.0",
-        "uxweb/sweet-alert": "^1.4"
+        "uxweb/sweet-alert": "^1.4",
+        "fx3costa/laravelchartjs": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
