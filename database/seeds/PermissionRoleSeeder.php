@@ -347,7 +347,7 @@ class PermissionRoleSeeder extends Seeder
 		$admin->attachPermission($editOrder);
 		$admin->attachPermission($seeOrder);
 		$admin->attachPermission($deleteOrder);
-		$admin->attachPermission($recoverOrder);
+		// $admin->attachPermission($recoverOrder);
 
 		$admin->attachPermission($makeSale);
 

@@ -105,13 +105,13 @@
 							{!! Form::label('Prioridad:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('priority', null, ['class'=>'form-control bg_etiquetas', 'id'=>'priority']) !!}
+							{!! Form::label('priority', null, ['class'=>'form-control bg_etiquetas', 'id'=>'priority2']) !!}
 						</div>
 						<div class="col-md-3 col-sm-4">
 							{!! Form::label('Estatus:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('status', null, ['class'=>'form-control bg_etiquetas', 'id'=>'status']) !!}
+							{!! Form::label('status', null, ['class'=>'form-control bg_etiquetas', 'id'=>'status2']) !!}
 						</div>
 						<div class="col-md-12 col-sm-12">
 							{!! Form::label('Domicilio:', null, ['class'=>'form-control etiquetas']) !!}
@@ -190,10 +190,10 @@
                     	$("#address").html(data.address );
                     	$("#description").html(data.description );
                     	$("#budget").html(data.budget );
+                    	$("#priority2").html(data.priority );
+                    	$("#status2").html(data.status );
                     	$("#retainer").html(data.retainer );
                     	$("#delivery_date").html(data.delivery_date );
-                    	$("#priority").html(data.priority );
-                    	$("#status").html(data.status );
                     });
 
                    });
