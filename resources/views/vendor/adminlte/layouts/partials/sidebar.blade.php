@@ -150,7 +150,7 @@
                     <li><a href="{!!URL::to('report')!!}">Venta/Usuario</a></li>
                     {{-- @endpermission --}}
                     {{-- @permission('see_role') --}}
-                    <li><a href="{!!URL::to('role')!!}">{{ trans('adminlte_lang::message.rolelist') }}</a></li>
+                    <li><a href="{!!URL::to('reporte')!!}">Pedidos</a></li>
                     {{-- @endpermission --}}
                 </ul>
             </li>

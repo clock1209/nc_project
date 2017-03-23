@@ -218,9 +218,20 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 	****************** REPORT ROUTES ******************
 	Route::get('report/folio/{folio}',['as'=>'report.saleDetails','uses'=>'ReportController@saleDetails']);
+	Route::get('report/orders',['as'=>'report.indexorders','uses'=>'ReportController@indexOrders']);
 	Route::resource('report', 'ReportController');
 	Route::post('report/result',['as'=>'report.result','uses'=>'ReportController@result']);
+	Route::post('report/orders/result',['as'=>'report.resultOrders','uses'=>'ReportController@resultOrders']);
 	Route::get('report/searchby/{data}',['as'=>'report.searchby','uses'=>'ReportController@radio']);
+	Route::get('report/orders/searchby/{data}',['as'=>'report.orders.searchby','uses'=>'ReportController@radio']);
+
+	Route::get('reporte/folio/{folio}',['as'=>'reporte.saleDetails','uses'=>'OrderReportController@saleDetails']);
+	Route::get('reporte/orders',['as'=>'reporte.indexorders','uses'=>'OrderReportController@indexOrders']);
+	Route::resource('reporte', 'OrderReportController');
+	Route::post('reporte/result',['as'=>'reporte.result','uses'=>'OrderReportController@result']);
+	Route::post('reporte/orders/result',['as'=>'reporte.resultOrders','uses'=>'OrderReportController@resultOrders']);
+	Route::get('reporte/searchby/{data}',['as'=>'reporte.searchby','uses'=>'OrderReportController@radio']);
+	Route::get('reporte/orders/searchby/{data}',['as'=>'reporte.orders.searchby','uses'=>'OrderReportController@radio']);
 
 	// 	****************** TICKET ROUTES ******************
 	// Route::resource('ticket', 'TicketController');

@@ -21,12 +21,6 @@
                    {!!Form::model($product, ['route'=> ['product.update',$product->id], 'method'=>'PUT', 'class'=>'form-horizontal'])!!}
 
                     <div class="form-group">
-                        <label for="product_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.code') }}:</label>
-                        <div class="col-sm-8">
-                            {!!Form::text('code',null,['class'=>'form-control'])!!}
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="product_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.name') }}:</label>
                         <div class="col-sm-8">
                             {!!Form::text('name',null,['class'=>'form-control'])!!}
@@ -59,7 +53,7 @@
                     <div class="form-group">
                         <label for="product_lbl" class="col-sm-3 control-label">{{ trans('adminlte_lang::message.description') }}:</label>
                         <div class="col-sm-8">
-                            {!!Form::textarea('description',3 < 4,['class'=>'form-control'])!!}
+                            {!!Form::textarea('description',null,['class'=>'form-control', 'rows'=>2])!!}
                         </div>
                     </div>
                     <div class="form-group">

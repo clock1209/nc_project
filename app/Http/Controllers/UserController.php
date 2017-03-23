@@ -8,6 +8,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use App\Role;
 use DB;
+use Auth;
 use Mail;
 use Response;
 use Illuminate\Support\Facades\Hash;
@@ -47,7 +48,8 @@ class UserController extends Controller
 
     public function getBtnDatatable()
     {
-        $users = User::select(['id', 'name','lastNameFather','lastNameMother','username', 'email', 'address', 'homePhone', 'cellPhone']);
+        $users = User::select(['id', 'name','lastNameFather','lastNameMother','username', 'email', 'address', 'homePhone', 'cellPhone'])
+                ->where('id','!=',Auth::user()->id);
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {

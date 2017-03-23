@@ -37,12 +37,12 @@
                             {!!Form::text('sale_price',null,['class'=>'form-control'])!!}
                         </div>
                     </div>
-                    {{-- <div class="form-group">
+                    <div class="form-group">
                         <label for="product_lbl" class="col-sm-3 control-label">Categoria:</label>
                         <div class="col-sm-8">
                             {!!Form::select('category',null,['class'=>'form-control'])!!}
                         </div>
-                    </div> --}}
+                    </div>
                     {!! Form::hidden('category', 'Hogar', []) !!}
                     <div class="form-group">
                         <label for="product_lbl" class="col-sm-3 control-label">Costo de Producción:</label>

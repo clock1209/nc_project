@@ -157,6 +157,11 @@ return [
         'cellPhone'             => '"celular"',
         'phone_number'          => '"teléfono"',
         'budget'                => '"presupuesto ($)"',
+
+        'details'                => '"detalles"',
+        'sale_price'                => '"precio de venta"',
+        'production_cost'                => '"costo de Producción"',
+        'quantity'                => '"cantidad"',
     ],
 
 ];
