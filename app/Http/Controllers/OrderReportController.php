@@ -233,81 +233,81 @@ class OrderReportController extends Controller
         // dd($priority);
         if($username == 'Todos'  && $status == 'Todos' && $priority == 'Todos'){
             if (preg_match('/^20[0-9]{2}$/', $date2)) {
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('quote_date', 'like', $date2.'-'.$date1.'%');
 
             }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->whereBetween('quote_date', [$date1, $date2]);
             }
         }elseif($username == 'Todos' && $status != 'Todos' && $priority == 'Todos'){
             if (preg_match('/^20[0-9]{2}$/', $date2)) {
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('status', $status)
                 ->where('quote_date', 'like', $date2.'-'.$date1.'%');
 
             }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('status', $status)
                 ->whereBetween('quote_date', [$date1, $date2]);
             }
         }elseif($status == 'Todos' && $username != 'Todos'  && $priority == 'Todos'){
             if (preg_match('/^20[0-9]{2}$/', $date2)) {
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('user', $username)
                 ->where('quote_date', 'like', $date2.'-'.$date1.'%');
 
             }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('user', $username)
                 ->whereBetween('quote_date', [$date1, $date2]);
             }
         }elseif($status == 'Todos' && $username == 'Todos'  && $priority != 'Todos'){
             if (preg_match('/^20[0-9]{2}$/', $date2)) {
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('priority', $priority)
                 ->where('quote_date', 'like', $date2.'-'.$date1.'%');
 
             }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('priority', $priority)
                 ->whereBetween('quote_date', [$date1, $date2]);
             }
         }elseif($status == 'Todos' && $username != 'Todos'  && $priority != 'Todos'){
             if (preg_match('/^20[0-9]{2}$/', $date2)) {
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('priority', $priority)
                 ->where('user', $username)
                 ->where('quote_date', 'like', $date2.'-'.$date1.'%');
 
             }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('priority', $priority)
                 ->where('user', $username)
                 ->whereBetween('quote_date', [$date1, $date2]);
             }
         }elseif($status != 'Todos' && $username == 'Todos'  && $priority != 'Todos'){
             if (preg_match('/^20[0-9]{2}$/', $date2)) {
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('priority', $priority)
                 ->where('status', $status)
                 ->where('quote_date', 'like', $date2.'-'.$date1.'%');
 
             }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('priority', $priority)
                 ->where('status', $status)
                 ->whereBetween('quote_date', [$date1, $date2]);
             }
         }elseif($status != 'Todos' && $username != 'Todos'  && $priority == 'Todos'){
             if (preg_match('/^20[0-9]{2}$/', $date2)) {
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('username', $username)
                 ->where('status', $status)
                 ->where('quote_date', 'like', $date2.'-'.$date1.'%');
 
             }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('username', $username)
                 ->where('status', $status)
                 ->whereBetween('quote_date', [$date1, $date2]);
@@ -315,13 +315,13 @@ class OrderReportController extends Controller
         }
         else{
             if (preg_match('/^20[0-9]{2}$/', $date2)) {
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('user', $username)
                 ->where('status', $status)
                 ->where('quote_date', 'like', $date2.'-'.$date1.'%');
 
             }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
-                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                $orders = Order::select(['id','client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
                 ->where('user', $username)
                 ->where('status', $status)
                 ->whereBetween('quote_date', [$date1, $date2]);
@@ -329,21 +329,21 @@ class OrderReportController extends Controller
         }
 
         return Datatables::of($orders)
-            ->addColumn('action', function ($orders) {
+            ->addColumn('action', function ($order) {
                 
-                return $this->botones($orders);
+                return $this->botones($order);
             })
             ->make(true);
         
     }
 
 
-    private function botones($orders)
+    private function botones($order)
     {
         $see_report = "";
         // if(Entrust::can('see_report')){
             $see_report =
-            '<a data-toggle="modal" odn_id="'. $orders->id .'" data-target="#pedido" class="btn btn-info get-orders"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Detalles</t></a>';
+            '<a data-toggle="modal" odr_id="'. $order->id .'" data-target="#pedido" class="btn btn-info get-order"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Detalles</t></a>';
         // }
 
         return $see_report;

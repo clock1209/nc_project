@@ -44,34 +44,94 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="venta">
+	<div class="modal fade" id="pedido">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header header-nuvem">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">Detalles de venta</h4>
+					<h4 class="modal-title">Datos de Pedido</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<table class="table table-hover" id="sale-details">
-							<h4 style="margin-left: 25px;">
-								<span class="text-muted">#Folio: <b name="folio"></b></span>
-							</h4>
-							<thead class="thead-default">
-								<tr class="bg-faded">
-									<th>Cant</th>
-									<th>Producto</th>
-									<th>Precio Unitario</th>
-									<th>Subtotal</th>
-								</tr>
-							</thead>
-							<tbody id="tbody">
-								
-							</tbody>
-							<div name="venta_muestra" class="text-center"></div>
-						</table>
-					</div>{{-- row --}}
-				</div>
+					<div class="row">
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Fecha creación:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('order_date', null, ['class'=>'form-control bg_etiquetas', 'id'=>'order_date']) !!}
+						</div>
+						<div class="col-md-4 col-sm-4">
+							{!! Form::label('Feche entrega:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-8 col-sm-8">
+							{!! Form::label('delivery_date', null, ['class'=>'form-control bg_etiquetas', 'id'=>'delivery_date']) !!}
+						</div>
+						<div class="col-md-3 col-sm-4">
+							{!! Form::label('Cliente:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-9 col-sm-8">
+							{!! Form::label('client', null, ['class'=>'form-control bg_etiquetas', 'id'=>'client']) !!}
+						</div>
+						<div class="col-md-3 col-sm-4">
+							{!! Form::label('Usuario:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-9 col-sm-8">
+							{!! Form::label('user', null, ['class'=>'form-control bg_etiquetas', 'id'=>'user']) !!}
+						</div>
+						<div class="col-md-3 col-sm-4">
+							{!! Form::label('Teléfono:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-9 col-sm-8">
+							{!! Form::label('phone_number', null, ['class'=>'form-control bg_etiquetas', 'id'=>'phone_number']) !!}
+						</div>
+						<div class="col-md-3 col-sm-4">
+							{!! Form::label('Correo:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-9 col-sm-8">
+							{!! Form::label('email', null, ['class'=>'form-control bg_etiquetas', 'id'=>'email']) !!}
+						</div>
+						<div class="col-md-3 col-sm-4">
+							{!! Form::label('Presupuesto:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-9 col-sm-8">
+							{!! Form::label('budget', null, ['class'=>'form-control bg_etiquetas', 'id'=>'budget']) !!}
+						</div>
+						<div class="col-md-3 col-sm-4">
+							{!! Form::label('Anticipo:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-9 col-sm-8">
+							{!! Form::label('retainer', null, ['class'=>'form-control bg_etiquetas', 'id'=>'retainer']) !!}
+						</div>
+						<div class="col-md-3 col-sm-4">
+							{!! Form::label('Prioridad:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-9 col-sm-8">
+							{!! Form::label('priority', null, ['class'=>'form-control bg_etiquetas', 'id'=>'priority']) !!}
+						</div>
+						<div class="col-md-3 col-sm-4">
+							{!! Form::label('Estatus:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-9 col-sm-8">
+							{!! Form::label('status', null, ['class'=>'form-control bg_etiquetas', 'id'=>'status']) !!}
+						</div>
+						<div class="col-md-12 col-sm-12">
+							{!! Form::label('Domicilio:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-12 col-sm-12" style="margin-bottom: 5px; margin-top: 0px">
+							{{-- {!! Form::textarea('address', null, ['readonly', 'class'=>'form-control bg_etiquetas', 'id'=>'address', 'rows' => '2']) !!} --}}
+							<div class="form-control bg_etiquetas" id="address"></div>
+						</div>
+						<div class="col-md-12 col-sm-12">
+							{!! Form::label('Descripción:', null, ['class'=>'form-control etiquetas']) !!}
+							</div>
+							<div class="col-md-12 col-sm-12"  style="margin-top: 0px">
+							{{-- {!! Form::textarea('description', null, ['readonly', 'class'=>'form-control bg_etiquetas', 'id'=>'description', 'rows' => '4']) !!} --}}
+							<div class="form-control bg_etiquetas" id="description"></div>
+						</div>
+
+
+					</div>
+
+				</div>{{-- modal-body --}}
 				<div class="modal-footer background-nuvem">
 					<a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
 				</div>
@@ -112,6 +172,31 @@
 			{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 			],
 		});
+
+		$('body').delegate('.get-order','click',function(){
+                    odr_id = $(this).attr('odr_id');
+                    $.ajax({
+                        url : '{{ URL::to("/order") }}' + '/' + odr_id ,
+                        type : 'GET',
+                        dataType: 'json',
+                        data : {id: odr_id}
+                    }).done(function(data){
+                    	console.log(data);
+                    	$("#order_date").html(data.created_at );
+                    	$("#client").html(data.client );
+                    	$("#user").html(data.user );
+                    	$("#phone_number").html(data.phone_number);
+                    	$("#email").html(data.email );
+                    	$("#address").html(data.address );
+                    	$("#description").html(data.description );
+                    	$("#budget").html(data.budget );
+                    	$("#retainer").html(data.retainer );
+                    	$("#delivery_date").html(data.delivery_date );
+                    	$("#priority").html(data.priority );
+                    	$("#status").html(data.status );
+                    });
+
+                   });
 
 		// $('body').delegate('.get-venta_total','click',function(){
 		// 	folio = $(this).attr('folio');

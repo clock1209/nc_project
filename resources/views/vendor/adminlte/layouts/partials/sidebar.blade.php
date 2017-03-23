@@ -96,9 +96,9 @@
                     @permission('see_order')
                     <li><a href="{!!URL::to('order')!!}">{{ trans('adminlte_lang::message.orderlist') }}</a></li>
                     @endpermission
-                    @permission('recover_order')
+                    {{-- @permission('recover_order')
                     <li><a href="{!!URL::to('order/recover')!!}">{{ trans('adminlte_lang::message.recoverorder') }}</a></li>
-                    @endpermission
+                    @endpermission --}}
                 </ul>
             </li>
             @endpermission

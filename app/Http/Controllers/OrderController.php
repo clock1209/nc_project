@@ -134,6 +134,7 @@ class OrderController extends Controller
             $order = Order::find($id);
             $sta_sel = $order['status'];
             $prio_sel = $order['priority'];
+            
             $status = $this->statusList();
             $priority = $this->priorityList();
             // dd($prio_sel);
@@ -183,8 +184,7 @@ class OrderController extends Controller
         $array = [
             'En progreso' => 'En progreso',
             'Detenido' => 'Detenido',
-            'Listo' => 'Listo',
-            'Entregado' => 'Entregado'
+            'Listo' => 'Listo'
         ];
 
         return $array;

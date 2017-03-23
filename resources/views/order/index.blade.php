@@ -15,9 +15,9 @@
 @endsection
 
 @section('contentheader_title') 
-@permission('create_order')
+{{-- @permission('create_order')
 <a class="btn btn-success btn-md addNew" href="{{ route('order.create') }}"><i class="glyphicon glyphicon-plus"></i><t class="hidden-xs"> Agregar Nuevo</t></a>
-@endpermission
+@endpermission --}}
 @endsection
 
 @section('main-content')
@@ -70,7 +70,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div class="col-md-4 col-sm-4">
+						{{-- <div class="col-md-4 col-sm-4">
 							{!! Form::label('Fecha creación:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-8 col-sm-8">
@@ -81,19 +81,19 @@
 							</div>
 							<div class="col-md-8 col-sm-8">
 							{!! Form::label('delivery_date', null, ['class'=>'form-control bg_etiquetas', 'id'=>'delivery_date']) !!}
-						</div>
+						</div> --}}
 						<div class="col-md-3 col-sm-4">
 							{!! Form::label('Cliente:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
 							{!! Form::label('client', null, ['class'=>'form-control bg_etiquetas', 'id'=>'client']) !!}
 						</div>
-						<div class="col-md-3 col-sm-4">
+						{{-- <div class="col-md-3 col-sm-4">
 							{!! Form::label('Usuario:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
 							{!! Form::label('user', null, ['class'=>'form-control bg_etiquetas', 'id'=>'user']) !!}
-						</div>
+						</div> --}}
 						<div class="col-md-3 col-sm-4">
 							{!! Form::label('Teléfono:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
@@ -210,8 +210,8 @@
                     	$("#email").html(data.email );
                     	$("#address").html(data.address );
                     	$("#description").html(data.description );
-                    	$("#budget").html(data.budget );
-                    	$("#retainer").html(data.retainer );
+                    	$("#budget").html("$"+data.budget );
+                    	$("#retainer").html("$"+data.retainer );
                     	$("#delivery_date").html(data.delivery_date );
                     	$("#priority").html(data.priority );
                     	$("#status").html(data.status );
