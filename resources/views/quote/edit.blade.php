@@ -20,17 +20,17 @@
                 <div class="panel-body bgn">
                    {!!Form::model($quote, ['route'=> ['quote.update',$quote->id], 'method'=>'PUT', 'class'=>'form-horizontal'])!!}
 
-                    <div class="form-group mb-200" style="margin-bottom: 50px">
-                        <div class="col-sm-4 pull-right">
-                            {!!Form::date('quote_date',null,['class'=>'form-control datepicker'])!!}
-                        </div>
+                   {{--  <div class="form-group mb-200" style="margin-bottom: 50px">
+                        <div class="col-sm-4 pull-right"> --}}
+                            {!!Form::hidden('quote_date',null,['class'=>'form-control datepicker'])!!}
+                        {{-- </div>
                         <label for="date_lbl" class="col-sm-2 control-label pull-right">Fecha:</label>
-                        <div class="col-sm-3 pull-right">
+                        <div class="col-sm-3 pull-right"> --}}
                             {{-- <label for="username" class="form-control bg-olive">{{ Auth::user()->username }}</label> --}}
-                            {!!Form::text('user',null,['class' => 'form-control','readonly bg-olive'])!!}
-                        </div>
+                            {!!Form::hidden('user',null)!!}
+                        {{-- </div>
                         <label for="user_lbl" class="col-sm-2 control-label pull-right">Usuario:</label>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group">
                         <label for="client_lbl" class="col-sm-3 control-label">Cliente:</label>
@@ -82,14 +82,17 @@
                             <span class="input-group-addon">$</span>
                             {!! Form::text('budget', null, ['class'=>'form-control']) !!}
                             {{-- <input type="text" class="form-control"> --}}
-                            <span class="input-group-addon">.00</span>
+                            {{-- <span class="input-group-addon">.00</span> --}}
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group col-md-2 pull-right">
-                            <small class=" bg-info">servicio de flete </small>
-                            {{ Form::checkbox('agree', 'aceptado', false,['class'=>'bg-info']) }}
+                    <div class="form-group text-right">
+                        <div style="margin-right: 15px;" class="btn bg-inverted">
+                            <input type="checkbox" name="order">
+                            <i>Hacerlo pedido</i>
                         </div>
+
+                        {{-- <input type="checkbox" checked>
+                        <label>Checkbox 2</label> --}}
                     </div>
 
 
@@ -131,6 +134,12 @@
 
         $("[name='homePhone']").inputmask("9999-9999");  //static mask
         $("[name='cellPhone']").inputmask("(99)-9999-9999");  //static mask
+
+        $('input').iCheck({
+           checkboxClass: 'icheckbox_square-blue',
+           radioClass: 'iradio_square-blue',
+           increaseArea: '20%' // optional
+         });
     });
     
 </script>
