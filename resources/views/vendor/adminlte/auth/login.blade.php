@@ -23,7 +23,7 @@
             </div>
         @endif
 
-        <div class="login-box-body">
+        <div class="login-box-body" style="background-image: url(/img/imagen2.jpg)";>
         <p class="login-box-msg"> {{ trans('adminlte_lang::message.siginsession') }} </p>
         <form action="{{ url('/login') }}" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -37,7 +37,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 
 </head>
 
-<body data-spy="scroll" data-offset="0" data-target="#navigation">
+<body data-spy="scroll" data-offset="0" data-target="#navigation" background="/img/boxed-bg.jpg">
 
 <div id="app">
     <!-- Fixed navbar -->
@@ -71,23 +71,14 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     </div>
 
 
-    <section id="home" name="home"></section>
-    <div id="headerwrap">
-        <div class="container">
+    <section id="home" name="home" ></section>
+    <div id="headerwrap" style="background-image: url(/img/whitebg.jpg);">
+        <div class="container" >
             <div class="row centered">
                 <div class="col-lg-12">
-                    <h1>NC <b><a href="https://www.facebook.com/NCmuebleria/">Mueblería</a></b></h1>
-                    <h3>¡Tu mejor opción en muebles para el hogar, negocio y oficina!</h3>
-                </div>
-                <div class="col-lg-2"><br/>
-                    <img class="img-responsive" src="{{ asset('/img/office.jpg') }}">
-                </div>
-                <div class="col-lg-8">
-                    <img class="img-responsive" src="{{ asset('/img/logo.jpg') }}" alt="">
-                </div>
-                <div class="col-lg-2">
-                    <br>
-                    <img class="img-responsive" src="{{ asset('/img/bar.jpg') }}">
+                  <!--  <h1>NC <b><a href="https://www.facebook.com/NCmuebleria/">Mueblería</a>--><br>
+                    <img class="img-responsive" src="{{ asset('/img/imagen3.jpg') }}">
+                    <br><br><br><br><br>
                 </div>
             </div>
         </div> <!--/ .container -->
@@ -118,36 +109,17 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                     <p>Ampliamos la vida útil de tus viejos muebles.</p>
                 </div>
             </div>
-            <br>
-            <hr>
         </div> <!--/ .container -->
-    </div> }<!--/ #introwrap -->
+    </div><!--/ #introwrap -->
+   
 
-
-   <section id="showcase" name="showcase"></section>
-    <div id="showcase">
+    <div id="showcase" style="background-image: url(/img/boxed-bg.jpg);">
         <div class="container">
             <div class="row">
-                <h1 class="centered">{{ trans('Algunos de nuestros productos') }}</h1>
+                <h1 class="centered" style="color: black;">{{ trans('Algunos de nuestros productos') }}</h1>
                 <br>
                 <div class="col-lg-8 col-lg-offset-2">
-                    <div id="carousel-example-generic" class="carousel slide">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="{{ asset('/img/logo.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('/img/item-02.png') }}" alt="">
-                            </div>
-                        </div>
-                    </div>
+                    <img class="img-responsive" src="{{ asset('/img/lista.png') }}">
                 </div>
             </div>
             <br>
@@ -164,18 +136,19 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                 <h3>{{ trans('adminlte_lang::message.address') }}</h3>
                 <p>
                     Calle Álvaro Obregón #1110,<br/>
-                    Colonia La Perla<br/>
+                    Colonia La Penal<br/>
                     C.P. 44730<br/>
                     Guadalajara, Jalisco<br/>
                 </p>
             </div>
 
             <div class="col-lg-7">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.0235988569984!2d-103.32318018507335!3d20.66861888619452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b18777094453%3A0x58854bb127b9e2d0!2sNS!5e0!3m2!1ses!2smx!4v1489127269615" width="600" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/d/embed?mid=1hJTssjJTiqPLNJ_-wAFjzig6XaE" 
+                width="600" height="200" frameborder="0" style="border:0" allowfullscreen>
+                </iframe>
             </div>
         </div>
     </div> 
-
      <div id="c">
         <div class="container">
                 <p>Copyright &copy; Elegant Horses Co.</p>
@@ -189,12 +162,5 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 
 <script src="{{ asset('/js/app.js') }}"></script> 
 <script src="{{ asset('/js/smoothscroll.js') }}"></script>
-
-
-<script>
-    $('.carousel').carousel({
-        interval: 3500
-    });
-</script>
 </body>
 </html>
