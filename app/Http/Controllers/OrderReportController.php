@@ -24,14 +24,23 @@ class OrderReportController extends Controller
     public function index()
     {
         $users = User::pluck('username','username');
-        $status = Order::pluck('status','status');
         $users2['Todos'] = 'Todos';
         foreach ($users as $key => $value) {
             $users2[$value] = $value;
         }
+        $status = Order::pluck('status','status');
+        $status2['Todos'] = 'Todos';
+        foreach ($status as $key => $value) {
+            $status2[$value] = $value;
+        }
+        $priority = Order::pluck('priority','priority');
+        $priority2['Todos'] = 'Todos';
+        foreach ($priority as $key => $value) {
+            $priority2[$value] = $value;
+        }
         $date = Carbon::now();
 
-        return view('report.orders')->with(compact('users2','status','date'));
+        return view('report.orders')->with(compact('users2','status2','date','priority2'));
     }
 
     /**
@@ -107,14 +116,19 @@ class OrderReportController extends Controller
         $date1 = '';
         $date2 = '';
         $username = '';
+        $priority = '';
+
+        // dd($request->status);
 
             switch ($rbSelected) {
                 case 'Rango de fechas':
                 $date1 = $request->date1;
                 $date2 = '/'.$request->date2;
                 $username = $request->users;
+                $status = $request->status;
+                $priority = $request->priority;
                 
-                return view('report/report')->with(compact('date1', 'date2', 'username'));
+                return view('report/ordersreport')->with(compact('date1', 'date2', 'username', 'status', 'priority'));
                 break;
 
                 case 'Mes':
@@ -122,8 +136,10 @@ class OrderReportController extends Controller
                 $date1 = $this->dateFormat($request->months);
                 $date2 = '/'.$request->year;
                 $username = $request->users;
+                $status = $request->status;
+                $priority = $request->priority;
 
-                return view('report/report')->with(compact('date1', 'date2', 'username'));
+                return view('report/ordersreport')->with(compact('date1', 'date2', 'username', 'status', 'priority'));
                 break;
 
                 default:
@@ -210,6 +226,127 @@ class OrderReportController extends Controller
         $res = ($date <= 9) ? '0'.$date : $date;
         // var_dump($today);
         return $res;
+    }
+
+    public function buildDatatable($date1, $username, $status, $priority, $date2)
+    {
+        // dd($priority);
+        if($username == 'Todos'  && $status == 'Todos' && $priority == 'Todos'){
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('quote_date', 'like', $date2.'-'.$date1.'%');
+
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->whereBetween('quote_date', [$date1, $date2]);
+            }
+        }elseif($username == 'Todos' && $status != 'Todos' && $priority == 'Todos'){
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('status', $status)
+                ->where('quote_date', 'like', $date2.'-'.$date1.'%');
+
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('status', $status)
+                ->whereBetween('quote_date', [$date1, $date2]);
+            }
+        }elseif($status == 'Todos' && $username != 'Todos'  && $priority == 'Todos'){
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('user', $username)
+                ->where('quote_date', 'like', $date2.'-'.$date1.'%');
+
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('user', $username)
+                ->whereBetween('quote_date', [$date1, $date2]);
+            }
+        }elseif($status == 'Todos' && $username == 'Todos'  && $priority != 'Todos'){
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('priority', $priority)
+                ->where('quote_date', 'like', $date2.'-'.$date1.'%');
+
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('priority', $priority)
+                ->whereBetween('quote_date', [$date1, $date2]);
+            }
+        }elseif($status == 'Todos' && $username != 'Todos'  && $priority != 'Todos'){
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('priority', $priority)
+                ->where('user', $username)
+                ->where('quote_date', 'like', $date2.'-'.$date1.'%');
+
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('priority', $priority)
+                ->where('user', $username)
+                ->whereBetween('quote_date', [$date1, $date2]);
+            }
+        }elseif($status != 'Todos' && $username == 'Todos'  && $priority != 'Todos'){
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('priority', $priority)
+                ->where('status', $status)
+                ->where('quote_date', 'like', $date2.'-'.$date1.'%');
+
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('priority', $priority)
+                ->where('status', $status)
+                ->whereBetween('quote_date', [$date1, $date2]);
+            }
+        }elseif($status != 'Todos' && $username != 'Todos'  && $priority == 'Todos'){
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('username', $username)
+                ->where('status', $status)
+                ->where('quote_date', 'like', $date2.'-'.$date1.'%');
+
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('username', $username)
+                ->where('status', $status)
+                ->whereBetween('quote_date', [$date1, $date2]);
+            }
+        }
+        else{
+            if (preg_match('/^20[0-9]{2}$/', $date2)) {
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('user', $username)
+                ->where('status', $status)
+                ->where('quote_date', 'like', $date2.'-'.$date1.'%');
+
+            }elseif(preg_match('/20[0-9]{2}-[0-9]{2}-[0-9]{2}/', $date2)){
+                $orders = Order::select(['client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget','retainer','delivery_date','priority','status'])
+                ->where('user', $username)
+                ->where('status', $status)
+                ->whereBetween('quote_date', [$date1, $date2]);
+            }
+        }
+
+        return Datatables::of($orders)
+            ->addColumn('action', function ($orders) {
+                
+                return $this->botones($orders);
+            })
+            ->make(true);
+        
+    }
+
+
+    private function botones($orders)
+    {
+        $see_report = "";
+        // if(Entrust::can('see_report')){
+            $see_report =
+            '<a data-toggle="modal" odn_id="'. $orders->id .'" data-target="#pedido" class="btn btn-info get-orders"><i class="glyphicon glyphicon-info-sign"></i> <t class="hidden-xs">Detalles</t></a>';
+        // }
+
+        return $see_report;
     }
 
 }

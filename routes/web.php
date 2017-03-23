@@ -211,6 +211,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/motives', 'MotiveController@getBtnDatatable');
 	Route::get('api/websupport', 'WebSupportController@getBtnDatatable');
 	Route::get('api/reports/{date1}/{username}/{date2?}', 'ReportController@buildDatatable');
+	Route::get('api/reportso/{date1}/{username}/{status}/{priority}/{date2?}', 'OrderReportController@buildDatatable');
 	// 	****************** PERMISSION ROUTES ******************
 	Route::get('/permisos','PermissionController@index');
 	Route::get('/permisos/asignar','PermissionController@asignar');

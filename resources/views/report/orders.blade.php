@@ -20,7 +20,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading header-nuvem">reporte pedidos</div>
                     <div class="panel-body bgn">
-                        {!!Form::open(['route'=>'report.result', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
+                        {!!Form::open(['route'=>'reporte.result', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
                         <div class="form-group">
                             <label for="user_lbl" class="col-sm-2 control-label">Usuario:</label>
@@ -28,12 +28,18 @@
                                 {!! Form::select('users', $users2, null, ['class'=>'form-control']) !!}
                             </div>
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="status_lbl" class="col-sm-2 control-label">Estatus:</label>
                             <div class="col-sm-10">
-                                {!! Form::select('status', $status, null, ['class'=>'form-control']) !!}
+                                {!! Form::select('status', $status2, null, ['class'=>'form-control']) !!}
                             </div>
-                        </div> --}}
+                        </div>
+                        <div class="form-group">
+                            <label for="priority_lbl" class="col-sm-2 control-label">Prioridad:</label>
+                            <div class="col-sm-10">
+                                {!! Form::select('priority', $priority2, null, ['class'=>'form-control']) !!}
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="searchBy_lbl" class="col-sm-2 control-label">Buscar por:</label>
                             <div class="col-sm-10">
