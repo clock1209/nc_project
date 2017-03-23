@@ -8,8 +8,8 @@
     <script src="{{ asset('/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 
     <link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/css/plus.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/bootstrap.min.css?version=2') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/css/plus.css?version=2') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/bootstrap.min.css?version=3') }}" rel="stylesheet" type="text/css" />
     {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> --}}
 
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -17,13 +17,16 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables/jquery.dataTables.css') }}">
 
     <link href="{{ asset('/css/multi-select-nc.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/plugins/iCheck/square/blue.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('/plugins/iCheck/square/blue.css') }}" rel="stylesheet"> --}}
 
     <script src="{{ asset('/plugins/sweetalert-master/dist/sweetalert.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/sweetalert-master/dist/sweetalert.css') }}">
 
     <script src="/js/jquery.multi-select.js"></script>
-    <script src="/plugins/pace/pace.js"></script>
+    <script src="/plugins/pace/pace.js?version=2"></script>
+
+    <link href="/plugins/icheck-nc/skins/all.css" rel="stylesheet">
+    <script src="/plugins/icheck-nc/icheck.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

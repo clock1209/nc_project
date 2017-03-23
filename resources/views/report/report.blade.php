@@ -25,13 +25,48 @@
 								<th>Cliente</th>
 								<th>Usuario</th>
 								<th>Total</th>
-								<th style="width: 28%">Action</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 					</table>
 					<input type="hidden" id="date1" value="{{ $date1 }}">
 					<input type="hidden" id="date2" value="{{ $date2 }}">
 					<input type="hidden" id="username" value="{{ $username }}">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="venta">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header header-nuvem">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Detalles de venta</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<table class="table table-hover" id="sale-details">
+							<h4 style="margin-left: 25px;">
+								<span class="text-muted">#Folio: <b name="folio"></b></span>
+							</h4>
+							<thead class="thead-default">
+								<tr class="bg-faded">
+									<th>Cant</th>
+									<th>Producto</th>
+									<th>Precio Unitario</th>
+									<th>Subtotal</th>
+								</tr>
+							</thead>
+							<tbody id="tbody">
+								
+							</tbody>
+							<div name="venta_muestra" class="text-center"></div>
+						</table>
+					</div>{{-- row --}}
+				</div>
+				<div class="modal-footer background-nuvem">
+					<a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
 				</div>
 			</div>
 		</div>
@@ -62,6 +97,31 @@
 			{data: 'total'},
 			{data: 'action', name: 'action', orderable: false, serchable: false, bSearchable: false},
 			],
+		});
+
+		$('body').delegate('.get-venta_total','click',function(){
+			folio = $(this).attr('folio');
+			$.ajax({
+				url : '{{ URL::to("report/folio") }}' + '/' + folio ,
+				type : 'GET',
+				dataType: 'json',
+				data : {id: folio}
+			}).done(function(data){
+				console.log(data);
+				$('#tbody').empty();
+				$('div[name="venta_muestra"]').empty();
+
+				if (typeof data === 'object' ) {
+					$.each(data, function (key, value){
+						$('#tbody').append("<tr name='fila'><td>"+value.quantity+"</td><td name='name'>"+value.product+"</td><td name='sale_price'>$"+value.unitary_price+"</td><td name='td'>$"+value.subtotal+"</td></tr>");
+						$('b[name="folio"]').html(value.folio);
+					});
+				}else {
+					$('div[name="venta_muestra"]').append("<h3>Venta de Muestra ;)</h3>");
+	                $('b[name="folio"]').html(data);
+				}
+			});
+
 		});
 	});
 </script>

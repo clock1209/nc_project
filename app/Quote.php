@@ -11,7 +11,7 @@ class Quote extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'client','user','quote_date','phone_number', 'email', 'address','description','budget','expiration_date','status'
+        'client','user','quote_date','phone_number', 'email', 'address','description','budget','expiration_date','type','status'
     ];
 
     protected $dates = ['deleted_at'];

@@ -60,18 +60,29 @@
                     <h4 class="modal-title">Datos de Rol</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon">Nombre de Rol:</div>
-                        {!! Form::label('name', null, ['class'=>'form-control', 'id'=>'name']) !!}
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        {!! Form::label('Nombre de Rol:', null, ['class'=>'form-control etiquetas']) !!}
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                        {!! Form::label('name', null, ['class'=>'form-control bg_etiquetas', 'id'=>'name']) !!}
                     </div>
-                    <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon">Nombre a Mostrar:</div>
-                        {!! Form::label('display_name', null, ['class'=>'form-control', 'id'=>'display_name']) !!}
+                    <div class="col-md-4 col-sm-4">
+                        {!! Form::label('Nombre a Mostrar:', null, ['class'=>'form-control etiquetas']) !!}
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                        {!! Form::label('display_name', null, ['class'=>'form-control bg_etiquetas', 'id'=>'display_name']) !!}
                     </div>
-                    <div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon">Descripción:</div>
-                        {!! Form::label('description', null, ['class'=>'form-control', 'id'=>'description']) !!}
+                    <div class="col-md-4 col-sm-4">
+                        {!! Form::label('Descripción:', null, ['class'=>'form-control etiquetas']) !!}
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                        {!! Form::label('description', null, ['class'=>'form-control bg_etiquetas', 'id'=>'description']) !!}
                     </div>
+
+                </div>
+
+
                 </div>
                 <div class="modal-footer background-nuvem">
                     <a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
@@ -92,7 +103,24 @@
         <select id="select-permisos" multiple="multiple">
                 @if(isset($permisos))
                     @foreach($permisos as $permiso)
-                        <option value="{{ $permiso->id }}">{{ $permiso->display_name }}</option>
+                    {{-- <option value="{{ $permiso->id }}">{{ $permiso->display_name }}</option> --}}
+                        @if (preg_match('/Usuario[s]?$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-user" style="width: 100%"> {{ $permiso->display_name }}</option>
+                        @elseif (preg_match('/Rol(es)?$|Permiso$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-knight" style="width: 100%"> {{ $permiso->display_name }}</option>
+                        @elseif (preg_match('/Cliente[s]?$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="fa fa-users" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Pedido[s]?$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-paperclip" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Producto[s]?$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-bed" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Cotización?$|Cotizaciones$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-briefcase" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Venta$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-usd" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @elseif (preg_match('/Reportes$/', $permiso->display_name))
+                            <option value="{{ $permiso->id }}" class="glyphicon glyphicon-list-alt" style="width: 100%"> {{ $permiso->display_name }}</option><span class="fa fa-home"></span>
+                        @endif
                     @endforeach
                 @endif
             </select>
@@ -151,7 +179,7 @@ paceOptions = {
 
 			 	rol_id = null;
                $('#select-permisos').multiSelect({
-                    selectableHeader: "<h4 class='text-center'><b>Permisos no asignados</h4></b>",
+                    selectableHeader: "<h4 class='text-center'><b>Permisos <span class='text-danger'>NO</span> asignados</h4></b>",
                     selectionHeader: "<h4  class='text-center'><b>Permisos asignados</h4></b>",
                    afterSelect:function(value){//enviamos al servidor el id del permiso seleccionado
                         $.ajax({

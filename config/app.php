@@ -170,6 +170,7 @@ return [
         App\Providers\HTMLServiceProvider::class,
         Univerze\Jira\JiraServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -233,6 +234,7 @@ return [
         'Build' => App\Facades\HtmlGenerator::class,
         'Jira' => Univerze\Jira\Facade\JiraFacade::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

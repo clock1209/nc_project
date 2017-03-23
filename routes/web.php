@@ -148,6 +148,8 @@ Route::group(['middleware' => 'auth'], function () {
 	// 	****************** SALES ROUTES ******************
 	// Route::get('sale/recover', 'SaleController@recover');
 	Route::post('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
+	Route::get('sale/generaPdf',['as'=>'sale.generaPdf','uses'=>'SaleController@generaPdf']);
+	Route::get('sale/done',['as'=>'sale.done','uses'=>'SaleController@saleDone']);
 	Route::get('sale/{cant}/{cmax}/{name}/{detail}/{unip}/{subt}/{folio}', ['as'=>'sale.makeSale','uses'=>'SaleController@makeSale']);
 
 	Route::post('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
@@ -215,6 +217,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/permisos/desasignar','PermissionController@desasignar');
 
 	// 	****************** REPORT ROUTES ******************
+	Route::get('report/folio/{folio}',['as'=>'report.saleDetails','uses'=>'ReportController@saleDetails']);
 	Route::resource('report', 'ReportController');
 	Route::post('report/result',['as'=>'report.result','uses'=>'ReportController@result']);
 	Route::get('report/searchby/{data}',['as'=>'report.searchby','uses'=>'ReportController@radio']);

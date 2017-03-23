@@ -11,7 +11,7 @@
                     <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p>{{ Auth::user()->name }}</p>
+                    <p>{{ Auth::user()->name }} {{ Auth::user()->lastNameFather }}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('adminlte_lang::message.online') }}</a>
                 </div>
@@ -19,14 +19,14 @@
         @endif
 
         <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
+        {{-- <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="{{ trans('adminlte_lang::message.search') }}..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
             </div>
-        </form>
+        </form> --}}
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
@@ -90,9 +90,9 @@
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-paperclip'></i> <span>{{ trans('adminlte_lang::message.orders') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    @permission('create_order')
+                    {{-- @permission('create_order')
                     <li><a href="{!!URL::to('order/create')!!}">{{ trans('adminlte_lang::message.addorder') }}</a></li>
-                    @endpermission
+                    @endpermission --}}
                     @permission('see_order')
                     <li><a href="{!!URL::to('order')!!}">{{ trans('adminlte_lang::message.orderlist') }}</a></li>
                     @endpermission

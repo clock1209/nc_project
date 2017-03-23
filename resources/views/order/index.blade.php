@@ -71,78 +71,78 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-4 col-sm-4">
-							{!! Form::label('Fecha creación:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Fecha creación:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-8 col-sm-8">
-							{!! Form::label('order_date', null, ['class'=>'form-control text-danger', 'id'=>'order_date']) !!}
+							{!! Form::label('order_date', null, ['class'=>'form-control bg_etiquetas', 'id'=>'order_date']) !!}
 						</div>
 						<div class="col-md-4 col-sm-4">
-							{!! Form::label('Feche entrega:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Feche entrega:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-8 col-sm-8">
-							{!! Form::label('delivery_date', null, ['class'=>'form-control text-danger', 'id'=>'delivery_date']) !!}
+							{!! Form::label('delivery_date', null, ['class'=>'form-control bg_etiquetas', 'id'=>'delivery_date']) !!}
 						</div>
 						<div class="col-md-3 col-sm-4">
-							{!! Form::label('Cliente:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Cliente:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('client', null, ['class'=>'form-control text-danger', 'id'=>'client']) !!}
+							{!! Form::label('client', null, ['class'=>'form-control bg_etiquetas', 'id'=>'client']) !!}
 						</div>
 						<div class="col-md-3 col-sm-4">
-							{!! Form::label('Usuario:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Usuario:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('user', null, ['class'=>'form-control text-danger', 'id'=>'user']) !!}
+							{!! Form::label('user', null, ['class'=>'form-control bg_etiquetas', 'id'=>'user']) !!}
 						</div>
 						<div class="col-md-3 col-sm-4">
-							{!! Form::label('Teléfono:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Teléfono:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('phone_number', null, ['class'=>'form-control text-danger', 'id'=>'phone_number']) !!}
+							{!! Form::label('phone_number', null, ['class'=>'form-control bg_etiquetas', 'id'=>'phone_number']) !!}
 						</div>
 						<div class="col-md-3 col-sm-4">
-							{!! Form::label('Correo:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Correo:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('email', null, ['class'=>'form-control text-danger', 'id'=>'email']) !!}
+							{!! Form::label('email', null, ['class'=>'form-control bg_etiquetas', 'id'=>'email']) !!}
 						</div>
 						<div class="col-md-3 col-sm-4">
-							{!! Form::label('Presupuesto:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Presupuesto:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('budget', null, ['class'=>'form-control text-danger', 'id'=>'budget']) !!}
+							{!! Form::label('budget', null, ['class'=>'form-control bg_etiquetas', 'id'=>'budget']) !!}
 						</div>
 						<div class="col-md-3 col-sm-4">
-							{!! Form::label('Anticipo:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Anticipo:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('retainer', null, ['class'=>'form-control text-danger', 'id'=>'retainer']) !!}
+							{!! Form::label('retainer', null, ['class'=>'form-control bg_etiquetas', 'id'=>'retainer']) !!}
 						</div>
 						<div class="col-md-3 col-sm-4">
-							{!! Form::label('Prioridad:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Prioridad:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('priority', null, ['class'=>'form-control text-danger', 'id'=>'priority']) !!}
+							{!! Form::label('priority', null, ['class'=>'form-control bg_etiquetas', 'id'=>'priority']) !!}
 						</div>
 						<div class="col-md-3 col-sm-4">
-							{!! Form::label('Estatus:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Estatus:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-9 col-sm-8">
-							{!! Form::label('status', null, ['class'=>'form-control text-danger', 'id'=>'status']) !!}
+							{!! Form::label('status', null, ['class'=>'form-control bg_etiquetas', 'id'=>'status']) !!}
 						</div>
 						<div class="col-md-12 col-sm-12">
-							{!! Form::label('Domicilio:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Domicilio:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-12 col-sm-12" style="margin-bottom: 5px; margin-top: 0px">
-							{{-- {!! Form::textarea('address', null, ['readonly', 'class'=>'form-control text-danger', 'id'=>'address', 'rows' => '2']) !!} --}}
-							<div class="form-control" id="address"></div>
+							{{-- {!! Form::textarea('address', null, ['readonly', 'class'=>'form-control bg_etiquetas', 'id'=>'address', 'rows' => '2']) !!} --}}
+							<div class="form-control bg_etiquetas" id="address"></div>
 						</div>
 						<div class="col-md-12 col-sm-12">
-							{!! Form::label('Descripción:', null, ['class'=>'form-control bg-olive']) !!}
+							{!! Form::label('Descripción:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-12 col-sm-12"  style="margin-top: 0px">
-							{{-- {!! Form::textarea('description', null, ['readonly', 'class'=>'form-control text-danger', 'id'=>'description', 'rows' => '4']) !!} --}}
-							<div class="form-control" id="description"></div>
+							{{-- {!! Form::textarea('description', null, ['readonly', 'class'=>'form-control bg_etiquetas', 'id'=>'description', 'rows' => '4']) !!} --}}
+							<div class="form-control bg_etiquetas" id="description"></div>
 						</div>
 
 

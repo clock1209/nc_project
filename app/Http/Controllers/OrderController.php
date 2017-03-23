@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\OrderCreateRequest;
 use Carbon\Carbon;
 use App\Order;
 use App\Client;
@@ -74,9 +75,10 @@ class OrderController extends Controller
         // $date = $request['quote_date'];
         // $client = $request['client'];
         
-        $status = $this->statusList();        
+        $status = $this->statusList(); 
+        $delivery_date = Carbon::now()->addDays(3);       
 
-        return view('order.create')->with(compact('status'));
+        return view('order.create')->with(compact('status', 'delivery_date'));
     }
 
     /**
@@ -85,10 +87,10 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderCreateRequest $request)
     {
 
-        // dd($request);
+        // dd($request['date']);
         $order = Order::create([
             'client' => $request['client'],
             'user' => $request['user'],
@@ -104,7 +106,7 @@ class OrderController extends Controller
             'status' => $request['status'],
         ]);
 
-        return redirect('order')->with('message','Orden registrada correctamente');
+        return redirect('order')->with('message','Pedido registrada correctamente');
     }
 
     /**

@@ -26,10 +26,11 @@
 <div class="container-fluid spark-screen">
 	<div class="row">
 			{{-- {!! Build::alert_ajax('Cliente Eliminado Exitosamente') !!} --}}
+			@include('sweet::alert')
 			<div class="panel panel-default">
 				<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.clientlist') }}</div>
 				<div class="panel-body table-responsive bgn">
-				<a data-toggle="collapse" href="#collapse1" class="btn bg-info">Hacer venta a usuario</a>
+				{{-- <a data-toggle="collapse" href="#collapse1" class="btn bg-info">Hacer venta a usuario</a>
 					<div id="collapse1" class="row panel-collapse collapse">
 						<div class="form-horizontal pull-right">
 							<div class="form-group row">
@@ -47,7 +48,7 @@
 							</div>
 							
 						</div>
-					</div>
+					</div> --}}
 				{{-- <div id="collapse1" class="row panel-collapse collapse">
 					<div class="col-md-5">
 						<table class="table table-hover" id="clients">
@@ -118,6 +119,21 @@
 						</table>
 					</div>{{-- div tabla productos --}}
 					<div class="col-md-7">
+						
+						<a data-toggle="collapse" href="#collapse1" class="btn bg-info btn-block">Hacer venta a usuario</a>
+					<div id="collapse1" class="row panel-collapse collapse">
+						<div class="col-md-4 col-sm-4">
+							<label for="client_lbl" class="form-control etiquetas">Nombre de Cliente:</label>
+						</div>
+						<div class="col-md-8 col-sm-8">
+							{!! Form::text('client', "", ['list'=> 'clients','class'=>'form-control bg_etiquetas']) !!}
+									<datalist size='5' id="clients">
+										@foreach ($clients as $client)
+											<option value="{{ $client }}" >
+										@endforeach
+									</datalist>
+						</div>
+						</div>
 						<table class="table table-hover" id="addTable">
 						<h3  class="text-center">Venta</h3>
 						<thead class="thead-default">

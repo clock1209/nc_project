@@ -118,7 +118,7 @@ class PermissionRoleSeeder extends Seeder
 
 		$seeRole = new App\Permission();
 		$seeRole->name 			= 'see_role';
-		$seeRole->display_name 	= 'Ver lista de roles'; /*OPTIONAL*/
+		$seeRole->display_name 	= 'Ver lista de Roles'; /*OPTIONAL*/
 		$seeRole->description 	= 'Permite ver la lista de usuarios'; /*OPTIONAL*/
 		$seeRole->save();
 

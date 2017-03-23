@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\QuoteCreateRequest;
 use Carbon\Carbon;
 use App\Client;
 use App\Quote;
@@ -36,7 +37,7 @@ class QuoteController extends Controller
 
     public function getBtnDatatable()
     {
-        $quotes = Quote::select(['id', 'client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget', 'expiration_date', 'status']);
+        $quotes = Quote::select(['id', 'client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget', 'expiration_date','type', 'status']);
 
         return Datatables::of($quotes)
             ->addColumn('action', function ($quote) {
@@ -68,7 +69,7 @@ class QuoteController extends Controller
 
     public function btnRecoverQuote()
     {
-        $quotes = Quote::select(['id', 'client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget', 'expiration_date', 'status'])->onlyTrashed()->get();
+        $quotes = Quote::select(['id', 'client', 'user', 'quote_date', 'phone_number', 'email', 'address', 'description', 'budget', 'expiration_date','type', 'status'])->onlyTrashed()->get();
 
         return Datatables::of($quotes)
             ->addColumn('action', function ($quote) {
@@ -137,9 +138,9 @@ class QuoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuoteCreateRequest $request)
     {
-      if(Input::get('order') == 'aceptado'){
+      if(Input::get('order') == 'on'){
           $type = Input::get('radio');
           $user = Input::get('username');
           $date = Input::get('date');
@@ -161,11 +162,13 @@ class QuoteController extends Controller
             $email = 'NA';
           }
 
-          return view('order.create')->with(compact('date', 'exp_date', 'client', 'budget', 'status', 'priority', 'phonenumber', 'email', 'address', 'description'));
+          $delivery_date = Carbon::now()->addDays(3); 
+
+          return view('order.create')->with(compact('date', 'exp_date', 'client', 'budget', 'status', 'priority', 'phonenumber', 'email', 'address', 'description','delivery_date'));
       }else{
         $type = Input::get('radio');
         $user = Input::get('username');
-                // dd($user);
+                // dd($request);
 
         $quote = Quote::create([
           'client' => $request['client'],
@@ -176,6 +179,7 @@ class QuoteController extends Controller
           'address' => $request['address'],
           'description' => $request['description'],
           'budget' => $request['budget'],
+          'type' => $type,
           'expiration_date' => $request['expiration_date'],
           ]);
 
@@ -235,6 +239,54 @@ class QuoteController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+      if(Input::get('order') == 'on'){
+          $type = Input::get('radio');
+          $user = Input::get('username');
+          $date = Input::get('quote_date');
+          $exp_date = Input::get('expiration_date');
+          // dd($exp_date);
+          $client = Input::get('client');
+          $budget = Input::get('budget');
+          $phonenumber = Input::get('phone_number');
+          $address = Input::get('address');
+          $description = Input::get('description');
+          $email = Input::get('email');
+          $status = $this->statusList();
+          $priority = $this->priorityList();
+
+          if ($client == null) {
+            $client = 'Cliente Mostrador';
+            $phonenumber = 'NA';
+            $address = 'NA';
+            $email = 'NA';
+          }
+
+           Quote::whereId($id)->delete();
+
+          $delivery_date = Carbon::now()->addDays(3); 
+
+          return view('order.create')->with(compact('date', 'exp_date', 'client', 'budget', 'status', 'priority', 'phonenumber', 'email', 'address', 'description','delivery_date'));
+      }else{
+        // $type = Input::get('radio');
+        // $user = Input::get('username');
+        //         // dd($request);
+
+        // $quote = Quote::create([
+        //   'client' => $request['client'],
+        //   'user' => $user,
+        //   'quote_date' => $request['date'],
+        //   'phone_number' => $request['phone_number'],
+        //   'email' => $request['email'],
+        //   'address' => $request['address'],
+        //   'description' => $request['description'],
+        //   'budget' => $request['budget'],
+        //   'type' => $type,
+        //   'expiration_date' => $request['expiration_date'],
+        //   ]);
+
+        //         // dd($request);
+        // return redirect('quote')->with('message','La información se ha guardado.');
         $input = $request->all();
 
         $quote = Quote::find($id);
@@ -242,6 +294,8 @@ class QuoteController extends Controller
 
         Session::flash('message', 'Cotización Actualizada exitosamente');
         return Redirect::to('/quote');
+      }
+        
     }
 
     /**
