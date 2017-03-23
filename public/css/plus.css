@@ -292,12 +292,26 @@
 */
 
 .header-nuvem{
-	background: #0077b8 !important;
+	background: #367fa9 !important;
 	color: white !important;
 	font-weight: bold;
 	font-style: italic;
 	text-transform: uppercase !important;
 }
+
+.etiquetas{
+  background: rgba(60, 141, 188, .9) !important;
+  color: white !important;
+  font-style: calibri;
+}
+
+.bg_etiquetas{
+  background: rgba(242,242,242,.3) !important;
+  color: #151515 !important;
+  font-style: calibri;
+  font-weight: bold;
+}
+
 
 .background-nuvem{
 	background: #f5f6f5 !important;

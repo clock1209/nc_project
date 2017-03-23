@@ -90,9 +90,9 @@
             <li class="treeview">
                 <a href="#"><i class='glyphicon glyphicon-paperclip'></i> <span>{{ trans('adminlte_lang::message.orders') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    @permission('create_order')
+                    {{-- @permission('create_order')
                     <li><a href="{!!URL::to('order/create')!!}">{{ trans('adminlte_lang::message.addorder') }}</a></li>
-                    @endpermission
+                    @endpermission --}}
                     @permission('see_order')
                     <li><a href="{!!URL::to('order')!!}">{{ trans('adminlte_lang::message.orderlist') }}</a></li>
                     @endpermission

@@ -8,8 +8,8 @@
     <script src="{{ asset('/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 
     <link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/css/plus.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/bootstrap.min.css?version=2') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/css/plus.css?version=2') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/bootstrap.min.css?version=3') }}" rel="stylesheet" type="text/css" />
     {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> --}}
 
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
