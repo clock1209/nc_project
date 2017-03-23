@@ -131,9 +131,10 @@
                 },
             });
         });
+        $("[name='phone_number']").inputmask("(99)-9999-9999");
 
-        $("[name='homePhone']").inputmask("9999-9999");  //static mask
-        $("[name='cellPhone']").inputmask("(99)-9999-9999");  //static mask
+        // $("[name='homePhone']").inputmask("9999-9999");  //static mask
+        // $("[name='cellPhone']").inputmask("(99)-9999-9999");  //static mask
 
         $('input').iCheck({
            checkboxClass: 'icheckbox_square-blue',

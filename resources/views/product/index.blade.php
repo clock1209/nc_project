@@ -65,35 +65,52 @@
 					<h4 class="modal-title">Datos del producto</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Nombre de Producto:</div>
-						{!! Form::label('name', null, ['class'=>'form-control', 'id'=>'name']) !!}
+
+				<div class="row">
+					<div class="col-md-3 col-sm-4">
+						{!! Form::label('Producto:', null, ['class'=>'form-control etiquetas']) !!}
+						</div>
+						<div class="col-md-9 col-sm-8">
+						{!! Form::label('name', null, ['class'=>'form-control bg_etiquetas', 'id'=>'name']) !!}
 					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Detalles de Producto:</div>
-						{!! Form::label('details', null, ['class'=>'form-control', 'id'=>'details']) !!}
+					<div class="col-md-3 col-sm-4">
+						{!! Form::label('Detalles:', null, ['class'=>'form-control etiquetas']) !!}
+						</div>
+						<div class="col-md-9 col-sm-8">
+						{!! Form::label('details', null, ['class'=>'form-control bg_etiquetas', 'id'=>'details']) !!}
 					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Categoria:</div>
-						{!! Form::label('category', null, ['class'=>'form-control', 'id'=>'category']) !!}
+					<div class="col-md-3 col-sm-4">
+						{!! Form::label('Precio Venta:', null, ['class'=>'form-control etiquetas']) !!}
+						</div>
+						<div class="col-md-9 col-sm-8">
+						{!! Form::label('sale_price', null, ['class'=>'form-control bg_etiquetas', 'id'=>'sale_price']) !!}
 					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Precio de Venta:</div>
-						{!! Form::label('sale_price', null, ['class'=>'form-control', 'id'=>'sale_price']) !!}
+					<div class="col-md-3 col-sm-4">
+						{!! Form::label('Categoría:', null, ['class'=>'form-control etiquetas']) !!}
+						</div>
+						<div class="col-md-9 col-sm-8">
+						{!! Form::label('category', null, ['class'=>'form-control bg_etiquetas', 'id'=>'category']) !!}
 					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Costo de producción:</div>
-						{!! Form::label('production_cost', null, ['class'=>'form-control', 'id'=>'production_cost']) !!}
+					<div class="col-md-3 col-sm-4">
+						{!! Form::label('Descripción:', null, ['class'=>'form-control etiquetas']) !!}
+						</div>
+						<div class="col-md-9 col-sm-8">
+						{!! Form::label('description', null, ['class'=>'form-control bg_etiquetas', 'id'=>'description']) !!}
 					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Descripción:</div>
-						{!! Form::label('description', null, ['class'=>'form-control', 'id'=>'description']) !!}
+					<div class="col-md-3 col-sm-4">
+						{!! Form::label('Cantidad:', null, ['class'=>'form-control etiquetas']) !!}
+						</div>
+						<div class="col-md-9 col-sm-8">
+						{!! Form::label('quantity', null, ['class'=>'form-control bg_etiquetas', 'id'=>'quantity']) !!}
 					</div>
-					<div class="form-group has-feedback input-group mb-2 mr-sm-2 mb-sm-0">
-						<div class="input-group-addon">Existencias:</div>
-						{!! Form::label('quantity', null, ['class'=>'form-control', 'id'=>'quantity']) !!}
+					<div class="col-md-4 col-sm-4">
+						{!! Form::label('Costo Producción:', null, ['class'=>'form-control etiquetas']) !!}
+						</div>
+						<div class="col-md-8 col-sm-8">
+						{!! Form::label('production_cost', null, ['class'=>'form-control bg_etiquetas', 'id'=>'production_cost']) !!}
 					</div>
 				</div>
+				</div>{{-- modal --}}
 				<div class="modal-footer background-nuvem">
 					<a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
 				</div>

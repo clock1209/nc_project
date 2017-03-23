@@ -121,7 +121,19 @@ class ProductsController extends Controller
      */
     public function create()
     {
+        // $categories = $this->categories();
+
         return view('product.create');
+    }
+
+    private function categories()
+    {
+        $array = [
+            'Hogar' => 'Hogar',
+            'Oficina' => 'Oficina',
+            'Negocio' => 'Negocio',
+            'Infantil' => 'Infantil',
+        ];
     }
 
     /**

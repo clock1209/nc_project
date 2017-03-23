@@ -25,6 +25,7 @@
                     {!! Form::hidden('address', $address) !!}
                     {!! Form::hidden('budget', $budget) !!}
                     {!! Form::hidden('description', $description) !!}
+                    {!! Form::hidden('quote_date', $date) !!}
                     {!! Form::hidden('date', $date) !!}
                     {!! Form::hidden('phonenumber', $phonenumber) !!}
                     {!! Form::hidden('email', $email) !!}

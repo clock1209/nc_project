@@ -90,7 +90,7 @@ class OrderController extends Controller
     public function store(OrderCreateRequest $request)
     {
 
-        // dd($request);
+        // dd($request['date']);
         $order = Order::create([
             'client' => $request['client'],
             'user' => $request['user'],
@@ -106,7 +106,7 @@ class OrderController extends Controller
             'status' => $request['status'],
         ]);
 
-        return redirect('order')->with('message','Orden registrada correctamente');
+        return redirect('order')->with('message','Pedido registrada correctamente');
     }
 
     /**

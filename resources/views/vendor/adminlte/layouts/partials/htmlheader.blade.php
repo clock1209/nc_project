@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/sweetalert-master/dist/sweetalert.css') }}">
 
     <script src="/js/jquery.multi-select.js"></script>
-    <script src="/plugins/pace/pace.js"></script>
+    <script src="/plugins/pace/pace.js?version=2"></script>
 
     <link href="/plugins/icheck-nc/skins/all.css" rel="stylesheet">
     <script src="/plugins/icheck-nc/icheck.js"></script>
