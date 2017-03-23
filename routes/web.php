@@ -148,6 +148,8 @@ Route::group(['middleware' => 'auth'], function () {
 	// 	****************** SALES ROUTES ******************
 	// Route::get('sale/recover', 'SaleController@recover');
 	Route::post('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
+	Route::get('sale/generaPdf',['as'=>'sale.generaPdf','uses'=>'SaleController@generaPdf']);
+	Route::get('sale/done',['as'=>'sale.done','uses'=>'SaleController@saleDone']);
 	Route::get('sale/{cant}/{cmax}/{name}/{detail}/{unip}/{subt}/{folio}', ['as'=>'sale.makeSale','uses'=>'SaleController@makeSale']);
 
 	Route::post('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);

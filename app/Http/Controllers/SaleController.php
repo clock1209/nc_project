@@ -10,6 +10,7 @@ use App\Sale;
 use App\VentaTotal;
 use Response;
 use Entrust;
+use PDF;
 use DB;
 use Auth;
 use Datatables;
@@ -28,6 +29,22 @@ class SaleController extends Controller
         dd('index sales');
     }
 
+    public function saleDone()
+    {
+
+        // $venta_total = VentaTotal::all()->where('folio', $request->folio);
+        $sale = Sale::all()->where('folio', 207);
+        // foreach ($sale as $key => $value) {
+        // dd($value->unitary_price);
+        //     # code...
+        // }
+
+        $pdf = PDF::loadView('pdf.pdfVentas', ['sale'=>$sale]);
+
+        return $pdf->download('archivo.pdf');
+        return view('sale.done');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -35,6 +52,11 @@ class SaleController extends Controller
      */
     public function create()
     {
+
+        // $pdf = PDF::loadView('pdfVentas');
+
+        // return $pdf->download('archivo.pdf');
+
         $cli = Client::all();
         foreach ($cli as $key => $value) {
             $clients[$key] =  $value->name . " ". $value->lastNameFather . " " . $value->lastNameMother;
@@ -47,7 +69,8 @@ class SaleController extends Controller
 
     public function getBtnDatatable()
     {
-        $products = Products::select(['id','name', 'details', 'category','sale_price', 'production_cost', 'description', 'quantity']);
+        $products = Products::select(['id','name', 'details', 'category','sale_price', 'production_cost', 'description', 'quantity'])
+                ->where('quantity', '!=', '=>0');
 
         return Datatables::of($products)
             ->addColumn('action', function ($product) {
@@ -202,7 +225,7 @@ class SaleController extends Controller
         ]);
         
 
-        return Response::json($folio);
+        
     }
 
     public function saleDetails(Request $request)
@@ -240,6 +263,52 @@ class SaleController extends Controller
             'total' => $request->final_total,
         ]);       
 
-        return redirect('sale/create');
+        // $this->generaPdf();
+        // $pdf = PDF::loadView('pdfVentas');
+        // $sale = Sale::all()->where('folio', $resfolio);
+
+        // dd($sale);
+
+        // return $pdf->download('archivo.pdf');
+        // try{
+        //     if($client->email != null){
+        //         Mail::send('emails.registered', $request->all(), function($msj) use ($client){
+        //             $msj->subject('Gracias por comprar en NC Mueblería');
+        //             $msj->to($client->email);
+        //         });
+        //     }
+            
+
+            
+        // }catch(Exception $e){
+        //     alert()->error('No se pudo enviar el correo electrónico a '.$user->email.' correctamente', 'Correo NO Enviado!')->persistent("Cerrar");;
+        // }
+        // 
+        alert()->success('La venta se realizó correctamente', 'Venta Realizada!')->persistent("Cerrar");
+
+        // $pdf = PDF::loadView('pdfVentas');
+
+        // return $pdf->download('archivo.pdf');
+        // 
+        return redirect()->action('SaleController@generaPdf', ['folio' => $resfolio]);
+
+        // return redirect('sale/done');
+    }
+
+    public function generaPdf(Request $request)
+    {
+
+        sleep(3);
+        $venta_total = VentaTotal::all()->where('folio', $request->folio);
+        $sale = Sale::all()->where('folio', $request->folio);
+        // foreach ($venta_total as $key => $value) {
+        // // dd($key);
+        //     $res[$key] = $value;
+        // }
+        // dd($res);
+
+        $pdf = PDF::loadView('pdf.pdfVentas', ['sale'=>$sale, 'venta_total'=>$venta_total]);
+
+        return $pdf->download('archivo.pdf');
     }
 }

@@ -15,7 +15,8 @@
         "pmill/php-plesk": "dev-master",
         "univerze/laravel-jira": "^0.2.0",
         "uxweb/sweet-alert": "^1.4",
-        "fx3costa/laravelchartjs": "^2.2"
+        "fx3costa/laravelchartjs": "^2.2",
+        "barryvdh/laravel-dompdf": "^0.8.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

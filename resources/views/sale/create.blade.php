@@ -26,6 +26,7 @@
 <div class="container-fluid spark-screen">
 	<div class="row">
 			{{-- {!! Build::alert_ajax('Cliente Eliminado Exitosamente') !!} --}}
+			@include('sweet::alert')
 			<div class="panel panel-default">
 				<div class="panel-heading header-nuvem">{{ trans('adminlte_lang::message.clientlist') }}</div>
 				<div class="panel-body table-responsive bgn">
