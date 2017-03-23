@@ -147,6 +147,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// 	****************** SALES ROUTES ******************
 	// Route::get('sale/recover', 'SaleController@recover');
+	Route::post('sale/order/finish',['as'=>'sale.finish','uses'=>'SaleController@orderFinish']);
 	Route::post('sale/details',['as'=>'sale.details','uses'=>'SaleController@saleDetails']);
 	Route::get('sale/generaPdf',['as'=>'sale.generaPdf','uses'=>'SaleController@generaPdf']);
 	Route::get('sale/done',['as'=>'sale.done','uses'=>'SaleController@saleDone']);

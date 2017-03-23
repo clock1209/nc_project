@@ -7,6 +7,18 @@
 @section('contentheader_title')
 @endsection
 
+@section('styles')
+    <style type="text/css" media="screen">
+        .linea{
+            border-top: 2px solid #ccc;        
+            margin-top: 5px;
+        }
+        .letra{
+            font-size:large;
+        }
+    </style>
+@endsection
+
 @section('main-content')
 
 <div class="container-fluid spark-screen">
@@ -70,7 +82,8 @@
                     <div class="text-center">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary" id="update" data-toggle="confirmation"><i class="glyphicon glyphicon-floppy-disk"></i> <t class="hidden-xs">Actualizar</t></button>
-                            <a class="btn btn-danger btn-close" href="{{ route('order.destroy').'/'.$order->id }}" ><i class="glyphicon glyphicon-floppy-remove"></i> <t class="hidden-xs">Borrar</t></a>
+                            {{-- <a class="btn btn-danger btn-close" href="{{ route('order.destroy').'/'.$order->id }}" ><i class="glyphicon glyphicon-floppy-remove"></i> <t class="hidden-xs">Borrar</t></a> --}}
+                            <a data-toggle="modal" data-target="#finalizar" class="btn btn-success" id="VerCliente"><i class="glyphicon glyphicon-eye-open"></i> <t class="hidden-xs"> Finalizar</t></a>
                             <a class="btn btn-danger btn-close" href="{{ route('order.index') }}"><i class="glyphicon glyphicon-remove"></i> <t class="hidden-xs">Cancelar</t></a>
                         </div>
                     </div>
@@ -112,7 +125,7 @@
                             {!! Form::label('Usuario:', null, ['class'=>'form-control etiquetas']) !!}
                             </div>
                             <div class="col-md-9 col-sm-8">
-                            {!! Form::label('user', null, ['class'=>'form-control bg_etiquetas', 'id'=>'user']) !!}
+                            {!! Form::label('user', $order['user'], ['class'=>'form-control bg_etiquetas', 'id'=>'user']) !!}
                         </div> --}}
                         <div class="col-md-3 col-sm-4">
                             {!! Form::label('Teléfono:', null, ['class'=>'form-control etiquetas']) !!}
@@ -172,6 +185,68 @@
                 <div class="modal-footer background-nuvem">
                     <a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="modal fade" id="finalizar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header header-nuvem">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Finalzación de pedido</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        
+                    {!!Form::open(['route'=>'sale.finish', 'method'=>'POST', 'class' => 'form-horizontal'])!!}
+                    <div class="col-md-3 col-sm-4">
+                        {!! Form::label('Presupuesto:', null, ['class'=>'form-control etiquetas']) !!}
+                        </div>
+                        <div class="col-md-9 col-sm-8">
+                        {!! Form::label('budget', '$'.$order['budget'], ['class'=>'form-control bg_etiquetas', 'id'=>'budget']) !!}
+                    </div>
+                    <div class="col-md-3 col-sm-4">
+                        {!! Form::label('Anticipo:', null, ['class'=>'form-control etiquetas']) !!}
+                        </div>
+                        <div class="col-md-9 col-sm-8">
+                        {!! Form::label('retainer', '$'.$order['retainer'], ['class'=>'form-control bg_etiquetas', 'id'=>'retainer']) !!}
+                    </div>
+                    {{-- <div class="form-horizontal linea"> --}}
+                        <div class="col-md-4 col-sm-4 linea">
+                        {!! Form::label('Restante a Pagar:', null, ['class'=>'form-control etiquetas', 'style'=>'margin-top: 5px;']) !!}
+                        </div>
+                        <div class="col-md-8 col-sm-8 linea">
+                        {!! Form::text('Total Restante', '$'.$total_restante, ['class'=>'form-control bg_etiquetas texto', 'id'=>'total_restante', 'style'=>'margin-top: 5px;']) !!}
+                    </div>
+
+                    {!! Form::hidden('client', $order['client']) !!}
+                   {!! Form::hidden('user', $order['user']) !!}
+                   {!! Form::hidden('address', $order['address']) !!}
+                   {!! Form::hidden('budget', $order['budget']) !!}
+                   {!! Form::hidden('description', $order['description']) !!}
+                   {!! Form::hidden('quote_date', $order['quote_date']) !!}
+                   {!! Form::hidden('date', $date) !!}
+                   {!! Form::hidden('phone_number', $order['phone_number']) !!}
+                   {!! Form::hidden('email', $order['email']) !!}
+                   {!! Form::hidden('budget', $order['budget']) !!}
+                   {!! Form::hidden('retainer', $order['retainer']) !!}
+
+                    {{-- </div> --}}
+                    
+                    {{-- <div class="form-group text-center"> --}}
+                        
+                    {{-- </div> --}}
+                   
+
+                    </div>{{-- row --}}
+
+                </div>{{-- modal-body --}}
+                <div class="modal-footer background-nuvem">
+                {!! Form::submit('Finalizar Pedido', ['class'=>'btn btn-success']) !!}
+                    <a href="#" data-dismiss="modal" class="btn btn-default">Cerrar</a>
+                </div>
+                 {!! Form::close() !!}
             </div>
         </div>
     </div>

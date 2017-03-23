@@ -134,11 +134,13 @@ class OrderController extends Controller
             $order = Order::find($id);
             $sta_sel = $order['status'];
             $prio_sel = $order['priority'];
+            $total_restante = $order['budget'] - $order['retainer'];
+            $date = Carbon::now();
             
             $status = $this->statusList();
             $priority = $this->priorityList();
             // dd($prio_sel);
-            return view('order.edit', ['order'=>$order])->with(compact('status', 'priority', 'sta_sel', 'prio_sel'));
+            return view('order.edit', ['order'=>$order])->with(compact('status', 'priority', 'sta_sel', 'prio_sel', 'total_restante', 'date'));
         }else{
             return redirect('/order')->with('unauthorized', "No tiene los permisos necesarios para realizar esa acción.");
         }

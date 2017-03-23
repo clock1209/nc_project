@@ -75,8 +75,8 @@
 							</div>
 							<div class="col-md-8 col-sm-8">
 							{!! Form::label('order_date', null, ['class'=>'form-control bg_etiquetas', 'id'=>'order_date']) !!}
-						</div>
-						<div class="col-md-4 col-sm-4">
+						</div> --}}
+						{{-- <div class="col-md-4 col-sm-4">
 							{!! Form::label('Feche entrega:', null, ['class'=>'form-control etiquetas']) !!}
 							</div>
 							<div class="col-md-8 col-sm-8">

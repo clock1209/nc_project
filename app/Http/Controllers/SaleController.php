@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Products;
 use App\Client;
+use App\Order;
 use App\Sale;
 use App\VentaTotal;
 use Response;
@@ -311,4 +312,85 @@ class SaleController extends Controller
 
         return $pdf->download('archivo.pdf');
     }
+
+    public function orderFinish(Request $request)
+    {
+        // dd($request);
+        
+        // $unip = str_replace('$', '', $unip);
+        // $subt = str_replace('$', '', $subt);
+        // $res = $cmax - $cant;
+
+        // $producto = Products::where('name', $name)
+        //                     ->where('details', $detail)
+        //                     ->update(['quantity' => $res]);
+        
+        $resfolio = $this->cagadero($request);
+
+        // dd('shizoe');
+        // return $this->generaPdf($request);
+        // 
+        // sleep(8);
+        // $venta_total = VentaTotal::all()->where('folio', $request->folio);
+        // $sale = Sale::all()->where('folio', $request->folio);
+        // foreach ($venta_total as $key => $value) {
+        // // dd($key);
+        //     $res[$key] = $value;
+        // }
+        // dd($res);
+
+        // $pdf = PDF::loadView('pdf.pdfVentas', ['sale'=>$sale, 'venta_total'=>$venta_total]);
+
+        // return $pdf->download('archivo.pdf');
+        // 
+        return redirect()->action('SaleController@generaPdf', ['folio' => $resfolio]);
+           
+        
+    }
+
+    private function cagadero($request)
+    {
+
+        
+
+        // dd($order);
+        list($nm, $ln1, $ln2) = explode(' ', $request->client);
+
+        $client = Client::select('id')
+                        ->where('name', $nm)
+                        ->where('lastNameFather', $ln1)
+                        ->where('lastNameMother', $ln2)
+                        ->first();
+
+        $folio = Sale::all('folio');
+        foreach($folio as $fol){
+            $resfolio = $fol->folio;
+        }
+        $resfolio += 1;     
+
+        $sale = Sale::create([
+            'folio' => $resfolio,
+            'product' => 'Pedido Especial',
+            'quantity' => 1,
+            'unitary_price' => $request->budget,
+            'subtotal' => $request->budget,
+        ]);      
+
+        $vt = VentaTotal::create([
+            'date'      => $request->date,
+            'id_client' => $client->id,
+            'id_user' => Auth::user()->id,
+            'folio' => $resfolio,
+            'client' => $request->client,
+            'user' => Auth::user()->username,
+            'total' => $request->budget,
+        ]);  
+
+        $order = Order::where('client', $request->client)
+                            ->where('user', $request->user)
+                            ->update(['status' => 'Entregado']);
+
+        return $resfolio;
+
+    } 
 }
